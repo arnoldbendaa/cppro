@@ -1,0 +1,93 @@
+<div id="workbook-properties" class="workbook-properties" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-cogs"></i> 
+			Workbook Properties
+		</h3>		
+	</div>
+	<div class="modal-body">
+		<form name="form" role="form">
+			
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group getToCalc">
+						<label for="">Model:</label>
+						<select class="form-control"
+							ng-model="currentModel"
+							ng-change="changeModel()"
+							ng-options="(mo.modelVisId) for mo in models track by mo.modelId">
+					    </select>		
+					</div>
+					<div class="elementToResize">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Parameter Name</th>
+									<th>Parameter Value</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>DIMENSION_0_VISID</td>
+									<td><div class="wrap">{{workbookProperties.DIMENSION_0_VISID}}</div></td>
+									<td><button class="btn btn-warning btn-xs" ng-click="choose(0)" ng-disabled="currentModel.modelId == -1">Change</button></td>
+								</tr>
+								<tr>
+									<td>DIMENSION_1_VISID</td>
+									<td><div class="wrap">{{workbookProperties.DIMENSION_1_VISID}}</div></td>
+									<td><button class="btn btn-warning btn-xs" ng-click="choose(1)" ng-disabled="currentModel.modelId == -1">Change</button></td>
+								</tr>
+								<tr>
+									<td>DIMENSION_2_VISID</td>
+									<td><div class="wrap">{{workbookProperties.DIMENSION_2_VISID}}</div></td>
+									<td><button class="btn btn-warning btn-xs" ng-click="choose(2)" ng-disabled="currentModel.modelId == -1">Change</button></td>
+								</tr>
+								<tr>
+									<td>DATA_TYPE</td>
+									<td><div class="wrap">{{workbookProperties.DATA_TYPE}}</div></td>
+									<td><button class="btn btn-warning btn-xs" ng-click="choose(3, 'DataType')" ng-disabled="currentModel.modelId == -1">Change</button></td>
+								</tr>
+								<tr>
+									<td>INVERT_NUMBERS_VALUE</td>
+									<td>
+										<div class="checkbox">
+											<label class="checkbox">
+												<input type="checkbox" ng-model="workbookProperties.INVERT_NUMBERS_VALUE">
+											</label>
+										</div>								
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>EXCLUDE_DATA_TYPES</td>
+									<td>
+										<div class="wrap">
+											<input type="text" class="form-control" ng-model="workbookProperties.EXCLUDE_DATA_TYPES" ng-disabled="!workbookProperties.INVERT_NUMBERS_VALUE || currentModel.modelId == -1" />
+										</div>
+									</td>
+									<td><button class="btn btn-warning btn-xs" ng-click="choose(3, 'ExcludeDataTypes')" ng-disabled="!workbookProperties.INVERT_NUMBERS_VALUE || currentModel.modelId == -1">Change</button></td>
+								</tr>
+								<tr>
+									<td>PROTECTED</td>
+									<td>
+										<div class="checkbox">
+											<label class="checkbox">
+												<input type="checkbox" ng-model="workbookProperties.PROTECTED">
+											</label>
+										</div>								
+									</td>
+									<td></td>
+								</tr>
+							</tbody>	
+						</table>
+					</div>
+				</div>	
+			</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">OK</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>
+

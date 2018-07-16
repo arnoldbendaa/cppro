@@ -1,0 +1,15 @@
+<div class="logged-users" ng-controller="LoggedUsersPageController">
+	<h1 class="text-center">Logged Users</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="loggedInUsersId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="User Name"binding="fullName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Client IP" binding="clientIp"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Client Host" binding="clientHost"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Administrator" binding="admin"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Creation Time" binding="creationTime"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Last Accessed" binding="lastAccessedTime"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="95"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>
+

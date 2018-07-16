@@ -1,0 +1,34 @@
+<div id="save-flat-form-as">
+
+<!-- 	<div class="modal-header">
+		<h3><i class="fa fa-save"></i>
+			Save Flat Form As...
+		</h3>
+	</div>
+	<div class="modal-body"> -->
+
+		<form name="saveAsForm" class="css-form" novalidate>
+			<div class="form-group" ng-class="{ 'has-error': saveAsForm.flatFormName.$invalid }" >
+				<label for="">New Name:</label>
+				<input type="text" class="form-control" name="flatFormName" ng-model="saveAsParams.visId" ng-maxlength="20" required/>
+				<span class="text-danger" ng-show="saveAsForm.flatFormName.$invalid">
+					Length of Name must be supplied and not exceed 20 on a XmlForm.
+				</span>			
+			</div>	
+			<div class="form-group" ng-class="{ 'has-error': saveAsForm.flatFormDescription.$invalid }" >
+				<label for="">New Description:</label>
+				<input type="text" class="form-control" name="flatFormDescription" ng-model="saveAsParams.description" ng-maxlength="128"/>
+				<span class="text-danger" ng-show="saveAsForm.flatFormDescription.$invalid">
+					Length of Description can not exceed 128 on a XmlForm.
+				</span>			
+			</div>				
+			<button class="btn btn-success pull-right" ng-click="save()" ng-disabled="saveAsForm.$invalid">Save As</button>
+		</form>
+
+<!-- 	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" ng-disabled="saveAsForm.$invalid" type="reset">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+	</div> -->
+
+</div>

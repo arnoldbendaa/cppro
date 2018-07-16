@@ -1,0 +1,10 @@
+<div class="budget-instructions" ng-controller="BudgetInstructionsPageController">
+	<h1 class="text-center">Budget Instructions</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="budgetInstructionId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Instructions ID" binding="budgetInstructionVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Document Location" binding="budgetInstructionDocumentRef"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions"min-width="135" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

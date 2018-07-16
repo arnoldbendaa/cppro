@@ -1,0 +1,260 @@
+<form class="user-details" name="form" ng-submit="ok()" role="form" novalidate data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3>
+		<i class="fa fa-user"></i>
+		User
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-hide="isDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="inner" ng-show="isDataLoaded">
+			<tabset justified="true">
+			<tab heading="Details" style="cursor:default" ng-click="tabSelected()">
+			
+			<div ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.name.$dirty && form.name.$invalid]">
+
+				<fieldset>
+					<legend>Personal Details</legend>
+					<div class="row">
+						<div class="form-group col-md-4" ng-class="{true: 'has-error'}[validation.visId != '']">
+							<label for="">Logon Id:</label>
+							<span class="text-danger" ng-show="validation.visId != ''" class="help-block">{{validation.visId}}</span>
+							<input name="name" ng-model="user.userName" type="text" class="form-control" id="" maxlength="255" ng-uniq required ng-readonly="mode === 'edit'">
+						</div>
+						<div class="form-group col-md-4" ng-class="{true: 'has-error'}[validation.userFullName != '']">
+							<label for="">Name:</label>
+							<span class="text-danger" ng-show="validation.userFullName != ''" class="help-block">{{validation.userFullName}}</span>
+							<input name="name" ng-model="user.userFullName" type="text" class="form-control" id="" maxlength="255"  ng-uniq required ng-readonly="mode === 'edit'">
+						</div>
+						<div class="form-group col-md-4" class="{true: 'has-error'}[validation.logonAlias != '']">
+							<label for="">Logon Alias:</label>
+							<span class="text-danger" ng-show="validation.logonAlias != ''" class="help-block">{{validation.logonAlias}}</span>
+							<input name="name" ng-model="user.logonAlias" type="text" class="form-control" id="" maxlength="255" ng-uniq required ng-readonly="mode === 'edit'">
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group col-md-4" ng-class="{true: 'has-error'}[validation.emailAddress != '']">
+							<label for="">Email Address:</label>
+							<span class="text-danger" ng-show="validation.emailAddress != ''" class="help-block">{{validation.emailAddress}}</span>
+							<span class="text-danger" ng-show="!form.email.$valid" class="help-block">Not correctly email address!</span>
+							<input name="email" ng-model="user.emailAddress" type="email" class="form-control" id="" maxlength="255" ng-uniq ng-readonly="mode === 'edit'">
+						</div>
+						<div class="form-group col-md-4" ng-class="{true: 'has-error'}[validation.password != '']">
+							<label for="">Password:</label>
+							<span class="text-danger" ng-show="user.confirmPassword != user.password || validation.password != ''" class="help-block">{{validation.password}}</span>
+							<input name="name" ng-model="user.password" type="password" class="form-control" id="" maxlength="100" ng-uniq required ng-readonly="mode === 'edit'">
+						</div>
+						<div class="form-group col-md-4" ng-class="{true: 'has-error'}[validation.password != '']">
+							<label for="">Confirm Password:</label>
+							<span ng-if="user.confirmPassword != user.password" class="text-danger">
+							Passwords do not match!</span>
+							<input name="name" ng-model="user.confirmPassword" type="password" class="form-control" id="" maxlength="100"  ng-uniq required ng-readonly="mode === 'edit'" >
+						</div>
+					</div>
+					
+				</fieldset>
+
+				<fieldset>
+					<legend>Finance System</legend>
+					<div class="row">
+						<div class="form-group col-md-12" ng-class="{true: 'has-error'}[validation.externalSystemUserName != '']">
+							<label for="">User:</label>
+							<span class="text-danger" ng-show="validation.externalSystemUserName != ''"  class="help-block">{{validation.externalSystemUserName}}</span>
+							<input name="name" ng-model="user.externalSystemUserName" type="text" class="form-control" id="" maxlength="255"  ng-uniq required ng-readonly="mode === 'edit'">
+						</div>					
+					</div>
+				</fieldset>
+					
+				<fieldset>
+					<legend>Account</legend>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="user.userReadOnly">
+									Read Only
+								</label>
+							</div>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="user.passwordNeverExpires">
+									Password Never Expires
+								</label>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="user.areButtonsVisible">
+									Buttons Visible
+								</label>
+							</div>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="user.userDisabled">
+									Disable User
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="checkbox">
+								<label class="checkbox">
+									<input nowrap type="checkbox" ng-model="user.newView">
+									Show: New Budget Cycle Summary 
+								</label>
+							</div>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input nowrap type="checkbox" ng-model="user.showBudgetActivity">
+									Show: Budget Activity and Contact Budget Approver
+								</label>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="user.roadMapAvailable">
+									Show: Changelog
+								</label>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				
+			</div>
+			</tab>
+			<tab heading="Role" style="cursor:default" ng-click="tabSelected()">
+				<div ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.name.$dirty && form.name.$invalid]">
+					<div class="ud-role-panel-table elementToResize">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="clickable" ng-click="orderBy = 'role'; reverse=!reverse">Role</th>
+									<th class="action-column" style="width: 75px">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="role in user.roles| orderBy:orderBy:reverse">
+									<td>{{role.roleVisId}}</td>
+									<td class="action-column">
+										<button type="button" class="btn btn-danger btn-xs" ng-click="deleteUserRole(role.roleId); $event.stopPropagation();">Delete</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>				
+					<div class="add-selected-element-to-table">
+						<label for="">Add Role:</label>
+						<button type="button" class="btn btn-success" ng-click="openRoleForUserChooser()">Add</button>
+						<br class="clearBoth" />
+					</div>
+					<div class="clearBoth"></div>
+				</div>
+			</tab>
+			<tab heading="Security" style="cursor:default" ng-click="tabSelected()">
+				<div class="form-group reset-bottom-margin security-content" ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.name.$dirty && form.name.$invalid]">
+					<tabset justified="true">
+						<tab heading="Models" style="cursor:default" ng-click="tabSelected()">
+							<div class="security-models-tree">
+								<span class="label label-info getToCalc5">Models</span>
+								<div class="elementToResize">
+									<js-tree id="1" tree-ajax="{{treeAjax}}" tree-plugins="checkbox,wholerow" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode"></js-tree>
+								</div>
+							</div>
+						</tab>
+						<tab heading="Admin Apps" style="cursor:default" ng-click="tabSelected()">
+							<div class="security-admin-tree">
+								<span class="label label-info getToCalc6">Admin Apps</span>
+								<div class="elementToResize">
+									<js-tree id="2" tree-data="scope" tree-model="adminApp" tree-plugins="checkbox,wholerow" tree-events="loaded:readyTreeAdmin;select_node:selectAdminAppNode;deselect_node:selectAdminAppNode"></js-tree>
+								</div>
+							</div>
+						</tab>
+						<tab heading="Budget Cycles App" style="cursor:default" ng-click="tabSelected()">
+							<div class="security-budget-tree">
+								<span class="label label-info getToCalc7">Budget Cycles App</span>							
+								<div class="elementToResize">
+									<js-tree id="3" tree-data="scope" tree-model="budgetCycleApp" tree-plugins="checkbox,wholerow" tree-events="loaded:readyTreeBudgetCycle;select_node:selectBudgetCycleAppNode;deselect_node:selectBudgetCycleAppNode"></js-tree>
+								</div>
+							</div>
+						</tab>
+						<tab heading="Dashboards App" style="cursor:default" ng-click="tabSelected()">
+							<div class="security-dashboard-tree">
+								<span class="label label-info getToCalc8">Dashboards App</span>	
+								<div class="elementToResize">						
+									<js-tree id="4" tree-data="scope" tree-model="dashboardApp" tree-plugins="checkbox,wholerow" tree-events="loaded:readyTreeDashboard;select_node:selectDashboardAppNode;deselect_node:selectDashboardAppNode"></js-tree>
+								</div>	
+							</div>
+						</tab>
+					</tabset>
+				</div>			
+			</tab>
+			<tab heading="Flat Forms" ng-click="tabSelected()">
+				<div class="selected-forms">
+					<div class="frontend-cover" ng-show="selectMode"></div>
+					<div class="btn-group pull-right">
+						<input type="text" class="form-control ng-pristine ng-valid getToCalc2" placeholder="filter by word..." ng-model="filter.byWord" ng-change="onFilterWordChange(filter.byWord)">
+					</div>
+					<br class="clearBoth" />
+					<div class="xmlformsFront elementToResize">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="clickable"  ng-class="{sorted: orderBy == 'financeCube.financeCubeVisId', desc: reverse}" ng-click="orderBy = 'financeCube.financeCubeVisId'; reverse=!reverse">Finance Cube</th>
+									<th class="clickable"  ng-class="{sorted: orderBy == 'flatFormVisId', desc: reverse}" ng-click="orderBy = 'flatFormVisId'; reverse=!reverse">Xml Form Id</th>
+									<th class="clickable"  ng-class="{sorted: orderBy == 'flatFormDescription', desc: reverse}" ng-click="orderBy = 'flatFormDescription'; reverse=!reverse">Description</th>
+									<th class="">&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-class="{selected: selectedXmlFormId == xmlForm.flatFormId}"
+									ng-repeat="xmlForm in selectedXmlForms | filter:filter.byWord | orderBy:orderBy:reverse"
+									>
+									<td>{{xmlForm.financeCube.financeCubeVisId}}</td>
+									<td>{{xmlForm.flatFormVisId}}</td>
+									<td>{{xmlForm.flatFormDescription}}</td>
+									<td><input type="checkbox" ng-click="selectXmlForm(xmlForm.flatFormId)" ng-model="checkStat[xmlForm.flatFormId]" id="xmlCheck_{{xmlForm.flatFormId}}"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="pull-right getToCalc3">
+						<button type="button" class="btn btn-success btn-xs" ng-click="addXmlForms(); resizeModalElement()">Add</button>
+						<button type="button" class="btn btn-danger btn-xs" ng-disabled="selectedXmlFormId === -1" ng-click="remove();">Remove</button>
+					</div>
+					<br class="clearBoth">
+				</div>
+			</tab>
+			<tab heading="Mobile Profiles" ng-click="tabSelected();refresh();">			
+				<div class="selected-forms">
+					<div class="frontend-cover" ng-show="selectMode"></div>
+					<br class="clearBoth" />
+					<div id="mobileProfiles" style="margin-bottom: 6px">
+						<wj-flex-grid class="grid mobileProfilesFlex"  items-source="ctx.data" control="ctx.flex" 
+						selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)"
+						 sorted-column="sortedColumn(s,e)">
+							<wj-flex-grid-column header="#" name="index" binding="index"></wj-flex-grid-column>
+							<wj-flex-grid-column header="Model" binding="modelVisId"></wj-flex-grid-column>
+							<wj-flex-grid-column header="Identifier" binding="profileVisId"></wj-flex-grid-column>
+							<wj-flex-grid-column header="Description" binding="profileDescription"></wj-flex-grid-column>
+							<wj-flex-grid-column header="Last Updated" binding="updatedTime"></wj-flex-grid-column>
+							<wj-flex-grid-column header="Actions" name="buttons"></wj-flex-grid-column>
+						</wj-flex-grid>
+					</div>
+					<div class="pull-right getToCalc4">
+						<button type="button" class="btn btn-success btn-xs" ng-click="addProfile(); resizeModalElement()">Add profile</button>
+					</div>
+					<br class="clearBoth">
+				</div>
+			</tab>
+			</tabset>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</form>

@@ -1,0 +1,25 @@
+// Decompiled by:       Fernflower v0.8.6
+// Date:                12.08.2012 13:28:53
+// Copyright:           2008-2012, Stiver
+// Home page:           http://www.neshkov.com/ac_decompiler.html
+
+package com.cedar.cp.utc.struts.admin.support;
+
+
+public class EntityListsSetupAction$Parameter {
+
+   private String mText = "";
+
+
+   public void setText(String text) {
+      if(text == null) {
+         text = "";
+      }
+
+      this.mText = text;
+   }
+
+   public String getText() {
+      return this.mText;
+   }
+}

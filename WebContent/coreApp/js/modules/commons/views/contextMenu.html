@@ -1,0 +1,7 @@
+<div id="context-menu" class="dropdown clearfix" oncontextmenu="return false;">
+    <ul class="context-menu-container dropdown-menu" role="menu" ng-if="ctx.actions.length > 0">
+    	<li role="presentation" ng-repeat="action in ctx.actions" ng-hide="!action.isVisible" ng-class="{divider: action.isDivider == true, withIcon: action.withIcon == true}">
+    		<a role="menuitem" ng-if="!action.isDivider" ng-click="doAction(action.action)" ng-bind-html="action.name"></a>
+    	</li>
+    </ul>
+</div>

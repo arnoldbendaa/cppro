@@ -1,0 +1,37 @@
+.createTreeColor{
+    color:rgb(223,237,96);
+}
+.deleteTreeColor{
+    color:rgb(31,31,43);
+}
+.folderIcon{
+    background-image:url(../images/new.gif);
+}
+.settingIcon{
+    background-image:url(../images/settings.gif);
+}
+.removeIcon{
+    background-image:url(../images/delete.gif);
+}
+.moveIcon{
+    background-image:url(../images/move.gif);
+}
+.folderIcon,.settingIcon,.removeIcon,.moveIcon{
+    background-size:100% 100%;
+    font-size:1.5em;
+}
+    #treetable{
+        width:100%;
+    }
+    #treetable tr{
+        border-bottom:1px solid #ccc;
+        height:30px;
+    }
+    #treetable tbody tr{
+        color:rgb(66,66,113);
+    }
+    #treetable thead tr{
+        color:rgb(29,94,170);
+        background-color:rgb(228,244,254);
+        border-top:1px solid #ccc;
+    }

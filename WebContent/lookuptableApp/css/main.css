@@ -1,0 +1,146 @@
+/*main.css*/
+/*table tr td, table tr th {
+	border: solid 1px black;
+	padding: 0 3px;
+}*/
+html, body {
+	height: 100%;
+}
+body {
+	background: #c7c7c7;
+	overflow:hidden;
+}
+#wrapper {
+	padding-top: 61px;
+	height: 100%;
+}	
+.page {
+	/*padding: 10px;*/
+	/*background: #F0F0F0;*/
+	background: white;
+	height: calc(100% - 17px);
+}
+
+/************************ Year Chooser / Precision Chooser ************************/
+.chooser {
+	position: relative;
+	width: 72px;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+}
+.chooser .arrows {
+	top: 0;
+	right: 0;
+	position: absolute;
+	color: #444;
+}
+.chooser .arrow {
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	width: 20px;
+	height: 17px;
+	text-align: center;
+	cursor: pointer;
+	line-height: 1.2;
+	border: 1px solid #ccc;
+}
+.chooser .arrow:hover {
+	background: #e5e5e5;
+}
+.chooser .arrow.arrow-up {
+	border-bottom: none;
+	-webkit-border-radius: 0 4px 0 0;
+	-moz-border-radius: 0 4px 0 0;
+	border-radius: 0 4px 0 0;
+}
+.chooser .arrow.arrow-down {
+	-webkit-border-radius: 0  0 4px 0;
+	-moz-border-radius: 0 0 4px 0;
+	border-radius: 0 0 4px 0;
+}
+
+/************************ Currency App ************************/
+.currency-wrapper {
+	background: #ffffff;
+}
+.currency-wrapper .row {
+	padding: 20px 0;
+}
+.currency-wrapper label {
+	padding-top: 6px;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.padding {
+	padding: 0 10px 0 10px;
+}
+.info {
+	margin-right: 10px;
+}
+body {
+  min-width: initial;
+}
+/************************ Parameters App ************************/
+.parameters-wrapper {
+	background: #ffffff;
+}
+.parameters-wrapper .row {
+	padding: 20px 0;
+}
+.parameters-wrapper label {
+	padding-top: 6px;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.parameters-frontend-cover {
+	top: 0;
+}
+
+.parameters-frontend-cover i{
+	top: 6px;
+	left: calc(50% - 17px);
+	font-size: 22px;
+}
+
+span[gcuielement="gcValidationInputMessage"] b, span[gcuielement="gcValidationInputMessage"] br {
+       display: none;
+}
+
+/************************ Auction and Project App ************************/
+h2.pageTitle {
+	margin: 0;
+  	margin-left: 5px;
+}
+
+#grid .k-grid-toolbar
+{
+    padding: .6em 1.3em;
+}
+.toolbar {
+    background: #f0f0f0;
+    padding: 10px;
+    padding-top: 20px;
+}
+#inputMapping {
+	width: 450px;
+}
+
+#kendoGrid {
+	height: calc(100% - 64px - 3px) !important;
+}
+
+.import-btn{
+	margin-left: 6px;
+}
+
+#container-navbar .label-navbar {
+	padding: 5px;
+}
+#container-navbar .options-navbar {
+	padding-left: 10px;
+}
+
+#currency {
+	color: lime;
+}

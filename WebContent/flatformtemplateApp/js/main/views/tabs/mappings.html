@@ -1,0 +1,39 @@
+<div id="editor">
+	<div class="ribbon">
+
+        <div class="group">
+            <div class="content" ng-controller="OutlineController">
+                <div class="col">
+                    <a class="btn btn-default" ng-click="groupSelection()" title="Group">
+                        <i class="fa wijmo-wijribbon-groupbig wijmo-wijribbon-bigbutton"></i>
+                        <br><span>Group</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="ungroupSelection()" title="UnGroup">
+                        <i class="fa wijmo-wijribbon-ungroup wijmo-wijribbon-bigbutton"></i>
+                        <br><span>UnGroup</span>
+                    </a>
+                </div>        
+                <div class="separator big"></div>        
+				<div class="col">
+					<div class="row">
+	                    <a class="btn btn-default" ng-click="showDetailGroup()" title="Show Detail">
+	                        <i class="fa wijmo-wijribbon-showdetail"></i>
+	                        <span>Show Detail</span>
+	                    </a>						
+					</div>
+					<div class="row">
+	                    <a class="btn btn-default" ng-click="hideDetailGroup()" title="Hide Detail">
+	                        <i class="fa wijmo-wijribbon-hidedetail"></i>
+	                        <span>Hide Detail</span>
+	                    </a>						
+					</div>					
+				</div>
+            </div>
+            <div class="caption">Outline</div>
+        </div>
+
+	</div>
+
+</div>

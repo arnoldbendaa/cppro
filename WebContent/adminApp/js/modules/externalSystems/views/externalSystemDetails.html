@@ -1,0 +1,149 @@
+<div class="external-system-details model-or-external-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-exchange"></i> 
+			External System
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form class="external-system-details-form" name="form" novalidate>
+			<div class="loader align-center" ng-show="!dataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="dataLoaded">
+
+				<tabset justified="true">
+					<tab heading="Details">
+						<div class="row">
+							<div class="col-md-4 form-group" ng-class="{'has-error': validation.externalSystemVisId != '' || (form.externalSystemVisId.$invalid && form.externalSystemVisId.$dirty)}">
+								<label for="externalSystemVisId">Name:</label>
+								<input name="externalSystemVisId" id="externalSystemVisId" ng-model="externalSystem.externalSystemVisId" type="text" class="form-control" ng-maxlength="29" required>
+								<p class="text-danger" ng-hide="validation.externalSystemVisId == ''">* {{validation.externalSystemVisId}}</p>
+								<p class="text-danger" ng-show="form.externalSystemVisId.$invalid && form.externalSystemVisId.$dirty">
+									<span ng-show="form.externalSystemVisId.$error.required">* Please supply a name.</span>
+									<span ng-show="form.externalSystemVisId.$error.maxlength">* Length of name must not exceed 29 characters.</span>
+								</p>
+							</div>
+
+							<div class="col-md-8 form-group" ng-class="{'has-error': validation.externalSystemDescription != '' || (form.externalSystemDescription.$invalid && form.externalSystemDescription.$dirty)}">
+								<label for="externalSystemDescription">Description:</label>
+								<input name="externalSystemDescription" id="externalSystemDescription" ng-model="externalSystem.externalSystemDescription" type="text" class="form-control" ng-maxlength="128" required>
+								<p class="text-danger" ng-hide="validation.externalSystemDescription == ''">* {{validation.externalSystemDescription}}</p>
+								<p class="text-danger" ng-show="form.externalSystemDescription.$invalid && form.externalSystemDescription.$dirty">
+									<span ng-show="form.externalSystemDescription.$error.required">* Please supply a description.</span>
+									<span ng-show="form.externalSystemDescription.$error.maxlength">* Length of description must not exceed 128 characters.</span>
+								</p>
+							</div>
+						</div>	
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label>System Type</label>
+								<select class="form-control" ng-disabled="true">
+									<option>{{externalSystem.systemType}}</option>
+								</select>
+							</div>
+
+							<div class="col-md-8 form-group" ng-class="{'has-error': validation.connectorClass != '' || (form.connectorClass.$invalid && form.connectorClass.$dirty)}">
+								<label for="connectorClass">Connector Class:</label>
+								<input name="connectorClass" id="connectorClass" ng-model="externalSystem.connectorClass" type="text" class="form-control" ng-maxlength="512">
+								<p class="text-danger" ng-hide="validation.connectorClass == ''">* {{validation.connectorClass}}</p>
+								<p class="text-danger" ng-show="form.connectorClass.$invalid && form.connectorClass.$dirty">
+									<span ng-show="form.connectorClass.$error.maxlength">* Length of connector class must not exceed 512 characters.</span>
+								</p>
+							</div>
+						</div>	
+						<div class="row">	
+							<div class="col-md-12 form-group" ng-class="{'has-error': validation.location != '' || (form.location.$invalid && form.location.$dirty)}">
+								<label for="location">Location:</label>
+								<input name="location" id="location" ng-model="externalSystem.location" type="text" class="form-control" ng-disabled="externalSystem.externalSystemId > -1" ng-maxlength="128" required>
+								<p class="text-danger" ng-hide="validation.location == ''">* {{validation.location}}</p>
+								<p class="text-danger" ng-show="form.location.$invalid && form.location.$dirty">
+									<span ng-show="form.location.$error.required">* Please supply a location.</span>
+									<span ng-show="form.location.$error.maxlength">* Length of location must not exceed 128 characters.</span>
+								</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<button ng-show="!externalSystem.enabled" class="btn btn-danger" tooltip-placement="right" tooltip="Click to change" ng-click="externalSystem.enabled = true">Disabled</button>
+								<button ng-show="externalSystem.enabled" class="btn btn-success" tooltip-placement="right" tooltip="Click to change" ng-click="externalSystem.enabled = false">Enabled</button>
+							</div>
+						</div>	
+					</tab>
+
+					<tab heading="Configuration">
+						<div class="form-group properties-table">
+							<label for="">Drill back configurations by sub system:</label>
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Description</th>
+										<th class="action-column" style="width: 75px">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="subSystem in externalSystem.subSystems | orderBy:orderBy:reverse">
+										<td>{{$index+1}}</td>
+										<td>{{subSystem.subSystemDescription}}</td>
+										<td class="action-column">
+										<button type="button" class="btn btn-warning btn-xs" ng-click="editSubSystem(subSystem); $event.stopPropagation();">Edit</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</tab>
+
+					<tab heading="Properties">
+						<h4 class="groupTitle floated getToCalc1">Properties:</h4>
+				  		<button class="btn btn-success add-remove-property-button"
+				  		 ng-click="createProperty(selectedProperty.name, selectedProperty.value)" type="reset">Insert</button>						
+						<br class="clearBoth" />
+						<span class="text-danger" ng-show="validation.properties != ''" class="help-block">{{validation.properties}}</span>
+						<div class="properties-table">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th class="clickable" ng-click="orderBy = ''; reverse=false">#</th>
+										<th class="clickable limited" ng-class="{sorted: orderBy == 'name', desc: reverse}" ng-click="orderBy = 'name'; reverse=!reverse">Name</th>
+										<th class="clickable limited" ng-class="{sorted: orderBy == 'value', desc: reverse}" ng-click="orderBy = 'value'; reverse=!reverse">Value</th>
+										<th class="action-column" style="width: 75px">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-class="{selected: property === selectedProperty}" 
+										ng-repeat="property in externalSystem.properties | orderBy:orderBy:reverse" 
+										ng-click="changeSelectedProperty(property)">
+										<td>{{$index+1}}</td>
+										<td class="limited"><div>{{property.name}}</div></td>
+										<td class="limited"><div>{{property.value}}</div></td>
+										<td class="action-column">
+											<button type="button" class="btn btn-danger btn-xs" ng-click="deleteProperty($index); $event.stopPropagation();">Delete</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>	
+						<br class="clearBoth" />
+						<div class="row getToCalc2">
+							<div class="col-md-6 form-group">
+								<label for="">Name:</label>
+								<input name="name" ng-model="selectedProperty.name" type="text" class="form-control">
+							</div>
+							<div class="col-md-6 form-group">
+								<label for="">Value:</label>
+								<textarea rows="2" ng-model="selectedProperty.value" class="form-control">
+								</textarea>
+							</div>
+						</div>
+			  		</tab>
+				</tabset>
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-disabled="form.$invalid" ng-click="save()">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

@@ -1,0 +1,41 @@
+<div class="modal-header">
+	<div class="row">
+		<div class="col-md-12">
+			<h3><i class="fa fa-archive"></i> User Budget Responsibility Area Assignments</h3>
+		</div>
+	</div>
+	<br/>
+	<div class="row" ng-show="data.isDataLoaded">
+		<strong>Model: </strong> {{data.model}}
+	</div>
+</div>
+<div class="modal-body">
+	<div class="loader align-center" ng-show="!data.isDataLoaded">
+		<i class="fa fa-refresh fa-2x fa-spin"></i>
+	</div>
+	<div class="modal-table" ng-show="data.isDataLoaded && data.rows.length>0">
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Responsibility Area</th>
+					<th>User</th> 
+					<th>Read/Write</th> 
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="align-left" ng-repeat="row in data.rows">
+					<td>{{row.elementName}} {{row.elementDescription}}</td>
+					<td>{{row.userName}} ({{row.userFullName}})</td>
+					<td class="align-center">{{row.readWrite}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="alert alert-info align-center" ng-show="data.isDataLoaded && data.rows.length<=0">
+		<strong>There are no results.</strong>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

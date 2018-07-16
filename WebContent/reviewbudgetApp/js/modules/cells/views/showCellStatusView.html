@@ -1,0 +1,160 @@
+<div class="modal-header">
+	<div class="row">
+		<div class="col-md-12">
+			<h3><i class="fa fa-file-text-o"></i> Cell Status</h3>
+		</div>
+	</div>
+</div>
+<div class="modal-body">
+	<div class="loader align-center" ng-show="!data.isDataLoaded">
+		<i class="fa fa-refresh fa-2x fa-spin"></i>
+	</div>
+	<tabset justified="true" ng-show="data.isDataLoaded && (data.warningMessage == null)">
+		<tab heading="General">
+			<div class="box-content">
+				<div class="row">
+					<div class="col-md-4">Structure element:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dim1.name  + ' ' +  data.dim1.description}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Read only account element:</div>
+					<div class="field col-md-8">
+						<input type="checkbox" ng-disabled="true" ng-checked="false">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Current value:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.currentValue | number:2}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Original value:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.originalValue | number:2}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Variance:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{(data.originalValue - data.currentValue) | number:2}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Data type:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dataType.name  + ' ' +  data.dataType.description}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Cell has note:</div>
+					<div class="field col-md-8">
+						<input type="checkbox" ng-disabled="true" ng-checked="data.hasNote">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Cell has calculation:</div>
+					<div class="field col-md-8">
+						<input type="checkbox" ng-disabled="true" ng-checked="false">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Cell is of type credit:</div>
+					<div class="field col-md-8">
+						<input type="checkbox" ng-disabled="true" ng-checked="false">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">User modified:</div>
+					<div class="field col-md-8">
+						<input type="checkbox" ng-disabled="true" ng-checked="data.originalValue != data.currentValue">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Cell editable:</div>
+					<div class="field col-md-8">
+						<input type="checkbox" ng-disabled="true" ng-checked="false">
+					</div>
+				</div>
+				<div class="row last">
+					<div class="col-md-4">Protected reason:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="">
+					</div>
+				</div>
+			</div>
+		</tab>
+		<tab heading="Internal">
+			<div class="box-content">
+				<div class="row">
+					<div class="col-md-4">Structure element reference is:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dim1.id}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Structure element vis_id is:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dim1.name}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Structure element is leaf:</div>
+					<div class="field col-md-8">
+						<input type="checkbox" ng-disabled="true" ng-checked="data.dim1.leaf">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Row axis index:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Structure index 0:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Request dim0, {{data.dim0.id}}:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dim0.name + ' ' + data.dim0.description}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Request dim1, {{data.dim1.id}}:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dim1.name + ' ' + data.dim1.description}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Request dim2, {{data.dim2.id}}:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dim2.name}}">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">Data type:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="{{data.dataType.name + ' ' + data.dataType.description}}">
+					</div>
+				</div>
+				<div class="row last">
+					<div class="col-md-4">Internal debug startup:</div>
+					<div class="field col-md-8">
+						<input type="text" ng-disabled="true" value="">
+					</div>
+				</div>
+			</div>
+		</tab>
+	</tabset>
+	<div class="alert alert-danger align-center" ng-show="data.isDataLoaded && (data.warningMessage != null)">
+		<strong>{{data.warningMessage}}</strong>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

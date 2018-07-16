@@ -1,0 +1,410 @@
+@import "cpIcon.css";
+
+.clearBoth,
+.clear-both {
+	clear: both;
+}
+
+.actionButtons
+{
+	text-align:right;
+	padding:10px;
+}
+
+pre
+{
+    margin-top: 0;
+	font-family: "Courier New", monospace;
+	font-size: 11px;
+}
+
+input, select, textarea
+{
+	color: #000000;
+	font-weight: bold;
+	font-size: 10px;
+	padding: 2px 4px;
+}
+
+
+.textheader
+{
+	color: #D19800;
+	font-weight: bold;
+	font-size: 16px
+}
+
+.textnormal, .menutext, .menuitemtext
+{
+	color: #1D5EAA;
+	font-weight: normal;
+	font-size: 10px
+}
+
+.menutext, .menuitemtext
+{
+    border-width: 1px;
+    border-color: #FFFFF4;
+    border-style: solid;
+	font-size: 10px;
+	padding-left: 2px;
+}
+
+.menuitemtext
+{
+	padding-left: 10px;
+}
+
+.menutext
+{
+	font-weight: bold;
+	padding-left: 4px;
+}
+
+.reporttext, .reportitemtext
+{
+    border-width: 1px;
+    border-color: #FFFFF4;
+    border-style: solid;
+	font-size: 10px;
+	padding-left: 2px;
+}
+
+.reportitemtext
+{
+	padding-left: 10px;
+}
+
+.reporttext
+{
+	font-weight: bold;
+	padding-left: 4px;
+}
+
+.texthighlight
+{
+	color: #D19800;
+	font-weight: bold;
+	font-size: 10px
+}
+
+.inputlabel
+{
+	color: #D19800;
+	font-weight: bold;
+	font-size: 10px
+}
+
+.inputnumber
+{
+	text-align: right;
+    padding-right: 1px;
+}
+
+.inputtext
+{
+	text-align: left;
+}
+
+.inputheader
+{
+	color: #1D5EAA;
+	font-weight: bold;
+	font-size: 12px
+}
+
+LEGEND
+{
+	color: #1D5EAA;
+	font-weight: bold;
+	font-size: 10px;
+}
+
+TH, .listheader, .sortcolumnheader
+{
+	font-weight: bold;
+	font-size: 14px;
+	background-color: #e9eef7;
+	text-align:center;
+}
+
+.error
+{
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 10px
+}
+
+.information
+{
+	color: #333399;
+	font-weight: bold;
+	font-size: 10px
+}
+
+.smalllink
+{
+	font-weight: bold;
+	font-size: 9px
+}
+
+.button, .buttonOver,  .disabledButton
+{
+    background-color: #FFFFF4;
+    color:      #1D5EAA;
+    border-color: #94D6E7;
+    border-width: thin;
+    border-style: outset;
+    cursor: pointer;
+}
+
+.buttonOver
+{
+    background-color: #EAF4FE;
+}
+
+.disabledButton
+{
+    color: #EAF4FE;
+}
+
+.syserror
+{
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 16px
+}
+
+.groupcell, .tabgroupcell
+{
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-style: solid;
+	border-color: gray;
+}
+
+.activeUserYou
+{
+    border-bottom: thin solid navy;
+    font-weight: bold
+}
+
+.activeUser
+{
+    border-bottom: thin solid navy
+}
+
+.popupTableBody
+{
+    overflow-x:hidden;
+    overflow-y:auto;
+    border-bottom:solid;
+    height:298px;
+}
+
+.menuItem
+{
+	cursor:pointer;	
+}
+
+.dialogContent
+{
+	max-height:500px;
+	padding-bottom:6px;
+	overflow:auto;
+	border-bottom:black thin solid;
+	margin-bottom:5px;
+}
+
+.dialogActions
+{
+	text-align:right;
+	padding: 0 0 0 27px;
+}
+
+.soria .dijitButtonNode
+{
+    padding:0;
+}
+
+.row:hover
+{
+	background-color: #fbfafa;
+}
+
+tr.odd td {
+	border-top: solid 1px #E4E3E1;
+}
+
+tr.odd:hover td {
+	background-color: #AEC7E3;
+	cursor: pointer;
+}
+
+tr.even td {
+	border-top: solid 1px #E4E3E1;
+	background-color: #F2F5F9;
+}
+
+tr.evenMain td {
+	background-color: #e3e6ea;
+	border-top: 1px dotted #D5CDB5;
+}
+
+tr.even:hover td {
+	background-color: #AEC7E3;
+	cursor: pointer;
+}
+
+tr.first td {
+	border-top: solid 1px #BBBBBB;
+}
+
+tr.firstfirst td {
+	border-top: solid 0px;
+}
+
+
+tr.evenWelcome td {
+	 background-color: #D1D9EA;
+ border-top: solid 1px #E4E3E1;
+}
+
+tr.oddWelcome td {
+	background-color: #C5D0E5;
+ border-top: solid 1px #E4E3E1;
+}
+tr.oddWelcome:hover td {
+	background-color: #AEC7E3;
+	cursor: pointer;
+}
+tr.evenWelcome:hover td {
+	background-color: #AEC7E3;
+	cursor: pointer;
+}
+table.topBudgetRespArea {
+	margin-top: 20px;	
+}
+table.topBudgetRespArea:last-child {
+	margin-bottom: 20px;
+	
+}
+table.budgetRespArea td img {
+ 	padding: 0;
+ 	vertical-align: middle;
+}
+
+table.budgetRespArea td {
+	padding: 5px 3px;
+	
+}
+table.budgetRespArea th {
+	border-bottom: solid 2px #F8F8F7;
+	padding: 3px;
+}
+
+div.totalsForBudget {
+	height: 100%;
+}
+
+table.budgetRespArea tr:hover td {
+	cursor: pointer;
+}
+
+table.budgetRespArea td.budgetIframe {
+	padding: 0px;
+}
+
+table.budgetRespArea thead:hover th {
+	cursor: default;
+}
+
+table.budgetRespArea td.col1 {
+	width: 48.4%;
+	padding-left: 20%;
+}
+
+table.budgetRespArea td.col2 {
+	width: 5.6%;
+}
+
+table.budgetRespArea td.col3,
+table.budgetRespArea th.col3 {
+	width: 5%;
+}
+
+table.budgetRespArea td.col4, table.budgetRespArea td.col5, table.budgetRespArea td.col6, table.budgetRespArea td.col7,
+table.budgetRespArea th.col4, table.budgetRespArea th.col5, table.budgetRespArea th.col6, table.budgetRespArea th.col7   {
+	width: 4%;
+}
+
+table.budgetRespArea td.col8,
+table.budgetRespArea th.col8 {
+	width: 25%;
+}
+
+table.budgetRespArea th.col1_2 {
+	width: 54%;
+	padding-left: 20%;
+	border-top: solid 1px #BBBBBB;
+
+}
+table.budgetRespArea th.col3 {
+	border-top: solid 1px #BBBBBB;
+
+}
+table.budgetRespArea th.col8 {
+	border-top: solid 1px #BBBBBB;
+
+}
+
+table.budgetRespArea th.col4_5_6_7{
+	border-bottom: solid 1px #bbb;
+	width: 4%;
+	border-top: solid 1px #BBBBBB;
+}
+.plusMinus {
+	 width: 23px;
+	 cursor: pointer;	
+}
+
+.firstColumnIframe {
+	float: left;
+}
+
+.secondColumnIframe {
+	float: right;
+}
+
+.warningIconIframe {
+	float: left;
+	margin-left: 3px;
+}
+
+table.budgetRespArea td.center{
+	vertical-align: middle;
+	text-align: center;
+}
+
+.changelogHeader {
+	margin-bottom: 3px;
+}
+
+.roadMap {
+	margin-top: 2px;
+}
+.roadMapRevTitle {
+	font-weight: 600;
+	cursor: pointer;
+}
+.roadMapRevDesc {
+	font-size: 11px;
+	padding: 0 0 4px 8px;
+}
+
+div.cpAutoScroll {
+	max-height: 500px;
+	overflow: auto;	
+}

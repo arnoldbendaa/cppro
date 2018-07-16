@@ -1,0 +1,71 @@
+<div ng-controller="ConfigurationsController" class="configurations paneContainer">
+	<div class="leftPane">
+	        <div class="frontend-cover paneCover">
+            <i class="fa fa-refresh fa-2x fa-spin"></i>
+            </div>
+		<div class="paneContent">
+			<div class="crud-buttons">
+				<button class="btn btn-success" ng-click="insertTreeElement('directory')" ng-disabled="!availableOperations.createDirectory">Create Directory</button>
+				<button class="btn btn-success" ng-click="insertTreeElement('configuration')" ng-disabled="!availableOperations.createConfiguration">Create Configuration</button>
+				<button class="btn btn-warning" ng-click="rename()" ng-disabled="!availableOperations.rename">Rename</button>
+				<button class="btn btn-info" ng-click="edit(data)" ng-disabled="!availableOperations.edit">Edit</button>
+				<button class="btn btn-danger" ng-click="deleteTreeElement()" ng-disabled="!availableOperations.delete">Delete</button>
+			</div>
+			<js-tree id="manageConfigurationsTree" tree-ajax="{{configurationsTreeAjaxUrl}}" tree-plugins="contextmenu,types,dnd" tree-types="typesConfig" tree-contextmenu="contextMenu" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode;move_node:dnd">
+			</js-tree>
+			<!-- tree-data="scope" tree-model="configurationsTree" -->
+		</div>
+	</div>
+
+	<div class="rightPane">
+		<div class="paneContent">
+			<h1 class="text-center getToCalc1">Configurations</h1>
+			<div ng-show="isConfigurationEdit" class="form-group getToCalc2">
+				<label for="">Name:</label>
+				<input
+				name="name"
+				ng-model = "nodeNameInput"
+				maxlength=50
+				ng-model="select.original.textNode"
+				type="text"
+				class="form-control"
+				>
+			</div>
+			<div ng-show="isConfigurationEdit && editMod">
+				<div class="getToCalc3">
+					<button type="button" class="btn btn-warning btn-xs" ng-click="openModalTree()">Add Dimension Elements</button>
+					<button type="button" class="btn btn-warning btn-xs" ng-click="openModalAddTotal()">Add Total</button>
+					<button type="button" class="btn btn-warning btn-xs" ng-click="addAllDimensions()">Add Grand Total</button>
+				</div>
+				<br class="clearBoth">
+				<wj-flex-grid class="grid flexToResize" items-source="ctx.data"
+					selection-changed="selectionChangedHandler()" control="ctx.flex"
+					resized-column="resizedColumn(s,e)"
+					allow-sorting="false"
+					allow-dragging="Rows"
+					col="3">
+					<wj-flex-grid-column header="#" name="index" binding="index" width="35" min-width="30"></wj-flex-grid-column>
+					<wj-flex-grid-column header="Sheet name" name="sheetName" binding="sheetName" width="*" min-width="30"></wj-flex-grid-column>
+					<wj-flex-grid-column header="Model" binding="modelVisId" width="*" min-width="30"></wj-flex-grid-column>
+					<wj-flex-grid-column header="Excluded dimensions" binding="excludedDimensions" width="*" min-width="30"></wj-flex-grid-column>
+					<wj-flex-grid-column header="" name="checked" binding="" align="center" width="150" min-width="30"></wj-flex-grid-column>
+					<wj-flex-grid-column header="Actions" name="buttons" width="160" min-width="30"></wj-flex-grid-column>
+					<wj-flex-grid-column header="Delete/Edit" name="delete" width="210" min-width="30"></wj-flex-grid-column>
+				</wj-flex-grid>
+			</div>
+			<div ng-show="isConfigurationEdit" class="row getToCalc4">
+				<div class="form-group col-md-12">
+					<br>
+					<button class="btn btn-success pull-right" ng-click="changeIsButton();saveConfChanges()" type="submit">Save Configuration Changes</button>
+					<button class="btn btn-danger pull-left" ng-click="cancel()" type="submit">Cancel</button>
+				</div>
+			</div>
+			<div class="no-content-info" ng-show="!isConfigurationEdit && !editMod">
+				Nothing to show here. <br /> Please select element on Configurations tree and use rename/edit option to start working.
+			</div>
+		</div>
+	</div>
+
+	<br class="clearBoth">
+
+</div>

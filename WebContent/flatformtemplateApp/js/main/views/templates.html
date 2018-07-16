@@ -1,0 +1,102 @@
+<div ng-controller="TemplatesController" class="templates paneContainer">
+
+	<div class="leftPane">
+		<div class="frontend-cover paneCover">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="paneContent">
+			<div class="crud-buttons">
+				<button class="btn btn-success" ng-click="insertTreeElement(templateTypes[0])" ng-disabled="!availableOperations.createDirectory">Create Directory</button>
+				<button class="btn btn-success" ng-click="insertTreeElement(templateTypes[1])" ng-disabled="!availableOperations.createTemplateDependent">Create Template</button>
+				<button class="btn btn-warning" ng-click="prepareRenameTreeElement()" ng-disabled="!availableOperations.rename">Rename</button>
+				<button class="btn btn-info" ng-click="prepareEditTreeElement()" ng-disabled="!availableOperations.edit">Edit</button>
+				<button class="btn btn-danger" ng-click="deleteTreeElement()" ng-disabled="!availableOperations.delete">Delete</button>	
+				<br>
+				<button class="btn btn-primary btn-file" ng-disabled="!availableOperations.import">
+					Import
+					<input type="file" ngf-select ngf-change="importToDirectory($files)" ng-multiple="true" accept=".xls,.xlsx" />
+				</button>
+				<button class="btn btn-primary" ng-click="doExport()" ng-disabled="!availableOperations.export">Export</button>
+			</div>
+			<js-tree id="manageTemplatesTree" tree-ajax="{{templatesTreeAjaxUrl}}" tree-plugins="types,contextmenu,dnd" tree-types="typesConfig" tree-contextmenu="contextMenu" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode;move_node:dnd"
+			></js-tree> 
+		</div>
+	</div>
+
+	<div class="rightPane">
+		<div class="paneContent" ng-class="{'spreadsheetPane': displayMode == 'spreadsheet'}">
+
+			<h1 class="text-center getToCalc1" ng-show="displayMode != 'spreadsheet'">Templates</h1>
+
+			<div class="no-content-info" ng-show="displayMode == 'main'">
+				Nothing to show here. <br /> Please select element on Templates tree and use rename/edit option to start working.
+			</div>
+
+			<div class="spreadsheetContainer" ng-show="displayMode == 'spreadsheet'">
+				<div ng-controller="SpreadSheetController" class="bonhamsflatFormApp">
+					<context-menu on-show="onShowHandler(event)"></context-menu>
+					
+				    <div id="container-navbar" ng-controller="TabController">
+				    	<div ng-include="templatePath+'main/views/tabs/spreadMainMenu.html'"></div>
+				        <tabset>
+				            <tab heading="File" disabled="true" ng-click="showMenu()" class="showMenu"></tab>
+				            <tab heading="Home" select="onTabSelect('Home')">
+				                <div ng-include="templatePath+'main/views/tabs/home.html'"></div>
+				            </tab>
+				            <tab heading="Insert" select="onTabSelect('Insert')">
+				                <div ng-include="templatePath+'main/views/tabs/insert.html'"></div>
+				            </tab>
+				            <tab heading="Data" select="onTabSelect('Mappings')">
+				                <div ng-include="templatePath+'main/views/tabs/mappings.html'"></div>
+				            </tab>
+				            <tab heading="View" select="onTabSelect('View')">
+				                <div ng-include="templatePath+'main/views/tabs/view.html'"></div>
+				            </tab>
+				            <tab heading="Settings" select="onTabSelect('Settings')">
+				                <div ng-include="templatePath+'main/views/tabs/settings.html'"></div>
+				            </tab>
+				        	<tab heading="Exit" disabled="true" class="exit" ng-click="exit()"></tab>
+				        </tabset>
+				    </div>
+
+				    <div id="formula-bar">
+				        <input id="position-box" type="text" disabled="disabled" value=""/>
+				        <div id="formula-box" contenteditable="true" spellcheck="false"></div>
+				        <div class="clear-both"></div>
+				    </div>
+				  
+				    <div id="container-full">
+				        <div id="control-panel">
+				            <wij-spread id="spreadsheet"></wij-spread>
+				        </div>
+				    </div>
+
+				    <div id="status-bar" class="clearfix" ng-controller="StatusBarController">
+				        <div class="zoom-state pull-right">
+				            <input id="zoomStatus" class="form-control" type="text" ng-model="zoom.status" zoom-status/>
+				        </div>
+				        <div class="zoom-container pull-right">
+				            <input id="zoom-controller" data-slider-id='zoomController' type="text"/>
+				        </div>
+				    </div>
+				</div>
+			</div>
+
+			<div ng-show="displayMode == 'renameForm'">
+	            <label for="">Name</label> 
+	            <input type="text" ng-model="editTreeElement.visId" class="form-control" /> 
+	            <br>
+	            <label for="">Description</label> 
+	            <input type="text" ng-model="editTreeElement.description" class="form-control"/> 
+	            <br>
+	            <div>
+		            <button  ng-click="cancelRenameTreeElement()" class="btn btn-danger pull-left">Cancel</button>
+		            <button  ng-click="renameTreeElement()" ng-disabled="currentUUID == null || editTreeElement.visId == ''" class="btn btn-success pull-right" >Rename</button>
+	            </div>
+			</div>
+		</div>
+	</div>
+
+	<br class="clearBoth">
+
+</div>

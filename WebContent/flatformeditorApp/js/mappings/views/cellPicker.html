@@ -1,0 +1,137 @@
+<div data-cookie="{{cookieName}}">
+	<div ng-show="loaded" class="frontend-cover">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+	<div class="cell-picker" data-cookie="{{cookieName}}">
+		<div class="modal-header">
+			<h3>
+				Cell Picker
+			</h3>
+		</div>
+		<div class="modal-body useInModalHeightCalc">
+			<fieldset>
+				<legend>Picker Params:</legend>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th class="clickable" ng-click="orderBy = ''; reverse=false">#</th>
+							<th class="clickable">Dimension</th>
+							<th class="clickable">Hierarchy</th>
+							<th class="clickable">Visual Id</th>
+							<th class="clickable">Description</th>
+							<th class="clickable">Orientation</th>
+							<th class="clickable">Query</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="dimension in currentModelDimensions | orderBy:orderBy:reverse">
+							<td>{{$index+1}}</td>
+							<td>{{dimension.dimensionVisId}}</td>
+							<td>
+								<select class="form-control"
+								ng-options="hierarchy.hierarchyVisId for hierarchy in dimension.hierarchies"
+								ng-change="changeHierarchy(hier, $index)"
+								ng-model="dimension.hierarchies[0]">
+								</select>
+							</td>
+							<td>{{currentDimensionElementGroups[$index].visualId}}</td>
+							<td>{{currentDimensionElementGroups[$index].description}}</td>
+							<td>
+								<select class="form-control"
+								ng-options="orientationType for orientationType in orientation"
+								ng-change="changeOrientationType(currentDimensionElementGroups[$index].chosenOrentation, $index)"
+								ng-model="currentDimensionElementGroups[$index].chosenOrentation">
+								</select>
+							</td>
+							<td>
+								<select class="form-control"
+								ng-options="queryType for queryType in query"
+								ng-model="currentDimensionElementGroups[$index].chosenQuery">
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			
+				<fieldset>
+					<legend>Calendar Options:</legend>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="useContextualCalendarSyntax">
+									Use contextual calendar syntax
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							Year offset: <input class="offset-input form-control" ng-model="yearOffset" numbers-only="numbers-only">
+						</div>
+						<div class="col-md-4">
+							Period offset: <input class="offset-input form-control" ng-model="periodOffset" numbers-only="numbers-only">
+						</div>
+					</div>
+				</fieldset>
+				
+				<div class="row small-row">
+					<div class="col-md-4">
+						<div class="checkbox">
+							<label class="checkbox left">
+								<input type="checkbox" ng-model="includeVisId">
+								Include visual id
+							</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						Data type: <select class="offset-input form-control"
+										ng-options="dataTypeTmp.dataTypeVisId for dataTypeTmp in dataTypesForFinanceCube.collection"
+										ng-model="chosenDataType">
+						</select>
+					</div>
+					<div class="col-md-4">
+						Output type: <select class="offset-input form-control"
+										ng-options="type for type in outputTypes"
+										ng-model="chosenOutputType">
+						</select>
+					</div>
+				</div>
+				<div class="row small-row">
+					<div class="col-md-4">
+						<div class="checkbox">
+							<label class="checkbox left">
+								<input type="checkbox" ng-model="includeDescription">
+								Include description
+							</label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						Input/Output: <select class="offset-input form-control"
+										ng-options="io for io in ioSelections"
+										ng-model="chosenIOSelection">
+						</select>
+					</div>
+					<div class="col-md-4">
+						<button class="btn btn-success inner-button" ng-click="openTreePicker()" type="reset">Tree Picker</button>
+						<button class="btn btn-warning inner-button" ng-click="runQueryForPreviewSheet()" type="reset">Run Query</button>
+					</div>
+				</div>
+			</fieldset>
+			<div id="preview" class="row">
+				<div class="panel">
+					<div class="col-md-12">
+						<label class="control-label">Preview:</label>
+					</div>
+					<div class="col-md-12 wrapper" id="cellPickerPreview">		
+						<wij-spread id="cell-picker-preview" gcuielement="gcSpread1" class="gc-host-none-user-select"></wij-spread> 	
+					</div>
+					<br class="clearBoth"/>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal-footer">
+			<button class="btn btn-success" ng-click="runQueryForOriginalSheet()" type="reset">OK</button>
+			<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+		</div>
+	</div>
+</div>

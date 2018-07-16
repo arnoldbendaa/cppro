@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--[if IE 9]>         <html class="ie9 no-focus"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-focus"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <title>OneUI - Admin Dashboard Template &amp; UI Framework</title>
+
+    <meta name="description" content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    <!-- Web fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <!-- Bootstrap and OneUI CSS framework -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" id="css-main" href="./css/oneui.css">
+    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+    <link href="./bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./css/admin.css" rel="stylesheet" type="text/css">
+    <link href="./css/common.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+    <nav id="sidebar">
+        <div id="sidebar-scroll">
+            <div class="sidebar-content">
+                <div class="side-content">
+                    <ul class="nav-main">
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-bar-chart"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Auction</a>
+                                    <a href="#">Hierarchy</a>
+                                    <a href="#">Free Form</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a   href="#"><i class="fa fa fa-tasks"></i><span class="sidebar-mini-hide">Batch Recalculate</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-info-circle"></i> <span class="sidebar-mini-hide">Budget Instructions</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-refresh"></i> <span class="sidebar-mini-hide">Budget Cycles</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-pencil"></i><span class="sidebar-mini-hide">Data Editor</span></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cogs"></i><span class="sidebar-mini-hide">Data Types</span></a>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-tachometer"></i><span class="sidebar-mini-hide">Dimensions</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Account</a>
+                                    <a href="#">Business</a>
+                                    <a href="#">Calendar</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-sitemap"></i><span class="sidebar-mini-hide">Hierarchies</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Account</a>
+                                    <a href="#">Business</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-cubes"></i><span class="sidebar-mini-hide">Finance Cubes</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Finance Cube Formula</a>
+                                    <a href="#">Models</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-list"></i><span class="sidebar-mini-hide">Models</span></a>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-exchange"></i><span class="sidebar-mini-hide">Input/Output</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">External Systems</a>
+                                    <a href="#">Model Mappings</a>
+                                    <a href="#">Import</a>
+                                    <a href="#">Change Management</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-eye"></i><span class="sidebar-mini-hide">Lookup Tables</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Currency</a>
+                                    <a href="#">Parameters</a>
+                                    <a href="#">Auction</a>
+                                    <a href="#">Project</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-desktop"></i><span class="sidebar-mini-hide">Monitors</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Task</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-archive"></i><span class="sidebar-mini-hide">Report</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">External User Destinations</a>
+                                    <a href="#">Internal User Destinations</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-lock"></i><span class="sidebar-mini-hide">Security</span></a>
+                            <ul>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#">Responsibility Areas</a>
+                                    <ul>
+                                        <li>
+                                            <a href="base_ui_blocks.html">Model/Users</a>
+                                        </li>
+                                        <li>
+                                            <a href="base_ui_blocks_api.html">User/Models</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Authentication</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cogs"></i><span class="sidebar-mini-hide">System Properties</span></a>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-user"></i><span class="sidebar-mini-hide">User</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Users</a>
+                                    <a href="#">Roles</a>
+                                    <a href="#">Logged in Users</a>
+                                    <a href="#">Login History</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-comments-o"></i><span class="sidebar-mini-hide">Notes</span></a>
+                        </li>
+
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-file"></i><span >Forms</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Flat Forms</a>
+                                    <a href="#">Flat Forms Template Manager</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="fa fa-files-o"></i><span >Profiles</span></a>
+                            <ul>
+                                <li>
+                                    <a href="#">Web profiles</a>
+                                    <a href="#">Mobile profiles</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header id="header-navbar" class="content-mini content-mini-full bg-primary">
+        <div id="submenu" class="row" ng-controller="SubMenuController">
+            <div class="col-md-12">
+                <div class="timer text-right">Session timeout: 119 min | <a class="logout color-white " ng-click="logout()">logout</a> | <a class="logout color-white" ng-click="closeTab()">close tab</a></div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-md" ng-click="refresh()" ng-disabled="isRefreshDisabled" title="Refresh Table">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-md" ng-click="create()" ng-disabled="isCreateDisabled">
+                        <i class="fa fa-file-o"></i> Create
+                    </button>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-md" ng-click="open()" ng-disabled="isOpenDisabled">
+                        <i class="fa fa-folder-open-o"></i> Open
+                    </button>
+                </div>
+                <div class="btn-group" ng-show="actions.length > 0">
+                    <button type="button" class="btn btn-default btn-md" ng-disabled="isActionDisabled">Actions</button>
+                    <button type="button" class="btn btn-default btn-md dropdown-toggle" ng-disabled="isActionDisabled" data-toggle="dropdown">
+                        <span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation" ng-repeat="action in actions" ng-class="{divider: action.isDivider == true, disabled: action.disabled}">
+                            <a role="menuitem" tabindex="-1" ng-click="action.disabled != true && doAction($index)" title="{{action.name}}">{{action.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="filter-by-model pull-right">
+                    <select class="form-control" id="activeModel"
+                            ng-change="selectCurrentModel(currentModel)"
+                            ng-model="currentModel"
+                            ng-options="(model.modelVisId + ' &mdash; ' + model.financeCubeVisId + ' &mdash; ' + model.description) for model in models.sourceCollection">
+                        <option value="">Model &mdash;&mdash; Finance Cube &mdash;&mdash; Description</option>
+                    </select>
+                </div>
+                <div class="input-group filter-by-word pull-right" style="width:20%;margin-right:7px;">
+                    <input type="text" class="form-control" placeholder="filter by word..." ng-model="filter.byWord" ng-change="onFilterWordChange(filter.byWord)"/>
+                    <span class="input-group-addon clear-filter" ng-click="filter.byWord='';onFilterWordChange(filter.byWord)"><span class="glyphicon glyphicon-remove"></span></span>
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <main id="main-container">
+        <div class="content bg-gray-lighter" style="background-color:#c7c7c7;padding:50px; ">
+            <div class="row items-push" style="padding:20px;background-color:#f0f0f0;">
+                <h1 class="text-center">Batch Recalculate</h1>
+                <table id="example" class="display cell-border compact" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th  style="border-left:1px solid #e0e0e0;">#</th>
+                            <th>Identifier</th>
+                            <th>Description</th>
+                            <th>Model ID</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+<script type="text/javascript" src="./scripts/jquery-1.11.1.min.js"></script>
+
+<script src="./scripts/bootstrap.min.js"></script>
+<script src="./scripts/jquery.slimscroll.min.js"></script>
+<script src="./scripts/jquery.scrollLock.min.js"></script>
+<script src="./scripts/jquery.appear.min.js"></script>
+<script src="./scripts/jquery.countTo.min.js"></script>
+<script src="./scripts/jquery.placeholder.min.js"></script>
+<script src="./scripts/js.cookie.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="./scripts/admin.js"></script>
+<script>
+    var data = [
+        [
+            '1',
+            'Forecast - Management Charge',
+            'Forecast - Management Charge',
+            '5/1 - 5 - Bonhams 1793 Ltd',
+            '&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="submit"/>&nbsp;&nbsp;<input type="button" class="btn btn-warning" value="Open"/>&nbsp;&nbsp;<input type="button" class="btn btn-danger" value="Delete"/>',
+        ],
+        [
+            '1',
+            'Forecast - Management Charge',
+            'Forecast - Management Charge',
+            '5/1 - 5 - Bonhams 1793 Ltd',
+            '&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="submit"/>&nbsp;&nbsp;<input type="button" class="btn btn-warning" value="Open"/>&nbsp;&nbsp;<input type="button" class="btn btn-danger" value="Delete"/>',
+        ],
+        [
+            '1',
+            'Forecast - Management Charge',
+            'Forecast - Management Charge',
+            '5/1 - 5 - Bonhams 1793 Ltd',
+            '&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="submit"/>&nbsp;&nbsp;<input type="button" class="btn btn-warning" value="Open"/>&nbsp;&nbsp;<input type="button" class="btn btn-danger" value="Delete"/>',
+        ],
+        [
+            '1',
+            'Forecast - Management Charge',
+            'Forecast - Management Charge',
+            '5/1 - 5 - Bonhams 1793 Ltd',
+            '&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="submit"/>&nbsp;&nbsp;<input type="button" class="btn btn-warning" value="Open"/>&nbsp;&nbsp;<input type="button" class="btn btn-danger" value="Delete"/>',
+        ],
+        [
+            '1',
+            'Forecast - Management Charge',
+            'Forecast - Management Charge',
+            '5/1 - 5 - Bonhams 1793 Ltd',
+            '&nbsp;&nbsp;<input type="button" class="btn btn-primary" value="submit"/>&nbsp;&nbsp;<input type="button" class="btn btn-warning" value="Open"/>&nbsp;&nbsp;<input type="button" class="btn btn-danger" value="Delete"/>',
+        ]
+    ]
+
+    var table = $('#example').DataTable( {
+        data: data,
+        "searching":false,
+        "bFilter" : false,
+        "ordering":false,
+        "bLengthChange": false,
+        "info":     false,
+        "paging":   false,
+        "dom": '<"top"ip><"clear">'
+    } );
+
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<div id="worksheet-properties" class="worksheet-properties" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-cogs"></i> 
+			Worksheet Properties: <i>{{currentFlatFormWorksheet.name}}</i>
+		</h3>		
+	</div>
+	<div class="modal-body">
+		<form name="form" role="form">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="" class="getToCalc1">Model &mdash;&mdash; Finance Cube &mdash;&mdash; Description</label>
+						<select class="form-control look-like-table elementToResize"
+							id="financeCube"
+							ng-model="currentFinanceCube"
+							ng-change="changeFinanceCube()"
+							ng-disabled="changingFinanceCubeDisabled"
+							ng-options="(fc.model.modelVisId + ' &mdash;&mdash; ' + fc.financeCubeVisId + ' &mdash;&mdash; ' + fc.financeCubeDescription) for fc in financeCubes track by fc.financeCubeId"
+							size="100">
+					    </select>
+					</div>
+				</div>	
+			</div>
+			<!-- <div class="modalDivider" ng-show="currentFinanceCube != null"></div> -->
+			<div style="position: relative;" class="getToCalc2">
+				<div class="frontend-cover" ng-show="changingFinanceCubeDisabled">
+					<i class="fa fa-refresh fa-spin"></i>
+				</div>
+				<table class="table table-striped" ng-show="currentFinanceCube != null">
+					<thead>
+						<tr>
+							<th>Dimension</th>
+							<th>Description</th>
+							<th>Hierarchy</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{currentModelDimensions[0].dimensionVisId}}</td>
+							<td>{{currentModelDimensions[0].dimensionDescription}}</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control"
+										ng-model="currentHierarchy0"
+										ng-change="changeHierarchy(0)"
+										ng-options="(dim0.hierarchyVisId) for dim0 in currentModelDimensions[0].hierarchies track by dim0.hierarchyId">
+								    </select>
+								</div>							
+							</td>
+						</tr>
+						<tr>
+							<td>{{currentModelDimensions[1].dimensionVisId}}</td>
+							<td>{{currentModelDimensions[1].dimensionDescription}}</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control"
+										ng-model="currentHierarchy1"
+										ng-change="changeHierarchy(1)"
+										ng-options="(dim1.hierarchyVisId) for dim1 in currentModelDimensions[1].hierarchies track by dim1.hierarchyId">
+								    </select>
+								</div>							
+							</td>
+						</tr>
+						<tr>
+							<td>{{currentModelDimensions[2].dimensionVisId}}</td>
+							<td>{{currentModelDimensions[2].dimensionDescription}}</td>
+							<td>
+								<div class="form-group">
+									<select class="form-control"
+										ng-model="currentHierarchy2"
+										ng-change="changeHierarchy(2)"
+										ng-options="(dim2.hierarchyVisId) for dim2 in currentModelDimensions[2].hierarchies track by dim2.hierarchyId">
+								    </select>
+								</div>							
+							</td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>			
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">OK</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>
+

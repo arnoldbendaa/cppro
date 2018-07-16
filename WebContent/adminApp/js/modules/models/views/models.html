@@ -1,0 +1,11 @@
+<div class="model" ng-controller="ModelController">
+	<h1 class="text-center">Model</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="modelId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Model ID" binding="modelVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="modelDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Global" binding="global"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="135"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

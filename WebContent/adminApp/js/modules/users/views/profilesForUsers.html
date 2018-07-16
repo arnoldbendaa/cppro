@@ -1,0 +1,112 @@
+<form  class="profiles-for-users" name="form" data-cookie="{{cookieName}}" novalidate>
+	<div class="modal-header" >
+		<h3><i class="fa fa-file"></i>
+			Profile For Users
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-hide="isMainDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="inner" ng-show="isMainDataLoaded">
+			<fieldset class="getToCalc1">
+				<legend>Name, Description and Budget Cycle</legend>
+				<div class="row">
+					<div class="col-md-4">	
+						<div class="form-group" ng-class="{'has-error': validation.visId != '' || (form.visId.$invalid && form.visId.$dirty)}">
+							<label class="control-label" for="visId">Identifier:</label>
+							<input name="visId" ng-model="visId" type="text" class="form-control" ng-maxlength="120" required/>
+
+							<p class="text-danger" ng-hide="validation.visId == ''">* {{validation.visId}}</p>
+							<p class="text-danger" ng-show="form.visId.$invalid && form.visId.$dirty">
+								<span ng-show="form.visId.$error.required">* Please supply an Identifier.</span>
+								<span ng-show="form.visId.$error.maxlength">* Length of identifier must not exceed 20 characters.</span>
+							</p>
+						</div>
+					</div>				
+					<div class="col-md-4">
+						<div class="form-group" ng-class="{'has-error': validation.description != '' || (form.description.$invalid && form.description.$dirty)}">
+							<label class="control-label" for="description">Description:</label>
+							<input name="description" ng-model="description" type="text" class="form-control" ng-maxlength="128"/>
+
+							<p class="text-danger" ng-hide="validation.description == ''">* {{validation.description}}</p>
+							<p class="text-danger" ng-show="form.description.$invalid && form.description.$dirty">
+								<span ng-show="form.description.$error.maxlength">* Length of description must not exceed 128 characters.</span>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group" ng-class="{'has-error': validation.budgetCycle != ''}">
+							<label class="control-label" for="budgetCycle">Budget Cycle:</label>
+							<select class="form-control"
+								name="budgetCycle"
+								ng-model="selectedBudgetCycle"
+								ng-options="budgetCycle.budgetCycleVisId for budgetCycle in budgetCycles">
+							</select>
+							<p class="text-danger" ng-hide="validation.budgetCycle == ''">* {{validation.budgetCycle}}</p>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset class="getToCalc2">
+				<legend>Budget Location</legend>
+				<div class="col-md-12">
+					<div class="form-group" ng-class="{'has-error': validation.businessDimension != ''}">
+						<label class="control-label" for="businessDimension">Business Dimension:</label>
+						<div class="input-group">
+							<input name="businessDimension" type="text" class="form-control" ng-model="ccTreeString" disabled required/>
+							<span class="input-group-btn">
+								<button class="btn btn-info" ng-click="change('business')">Change</button>
+							</span>
+						</div>
+						<p class="text-danger" ng-hide="validation.businessDimension == ''">* {{validation.businessDimension}}</p>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="getToCalc3">
+				<legend>Deployment Location</legend>
+				<div class="col-md-4">
+					<div class="form-group" ng-class="{'has-error': validation.accountDimension != ''}">
+						<label class="control-label" for="accountDimension">Account Dimension:</label>
+						<div class="input-group">
+							<input name="accountDimension" type="text" class="form-control" ng-model="expTreeString" disabled/>
+							<span class="input-group-btn">
+								<button class="btn btn-info" ng-click="change('account')">Change</button>
+							</span>
+						</div>
+						<p class="text-danger" ng-hide="validation.accountDimension == ''">* {{validation.accountDimension}}</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group" ng-class="{'has-error': validation.calendarDimension != ''}">
+						<label class="control-label" for="calendarDimension">Calendar Dimension:</label>
+						<div class="input-group">
+							<input name="calendarDimension" type="text" class="form-control" ng-model="callTreeString" disabled/>
+							<span class="input-group-btn">
+								<button class="btn btn-info" ng-click="change('calendar')">Change</button>
+							</span>
+						</div>
+						<p class="text-danger" ng-hide="validation.calendarDimension == ''">* {{validation.calendarDimension}}</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group" ng-class="{'has-error': validation.dataType != ''}">
+						<label class="control-label" for="dataType">Data Type:</label>
+						<div class="input-group">
+							<input name="dataType" type="text" class="form-control" ng-model="dataTypeString" disabled/>
+							<span class="input-group-btn">
+								<button class="btn btn-info" ng-click="change('dataType')">Change</button>
+							</span>
+						</div>
+						<p class="text-danger" ng-hide="validation.dataType == ''">* {{validation.dataType}}</p>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-disabled="form.$invalid" ng-click="addProfile()">Add profile</button>
+		<button class="btn btn-primary" ng-click="close()">Close</button>
+	</div>
+</form>

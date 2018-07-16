@@ -1,0 +1,94 @@
+BODY, FRAME, IFRAME, DIV, .scrollpane
+{
+	background-color : #FFFFF4;
+
+	scrollbar-face-color:#EAF4FF;
+	scrollbar-darkshadow-color:#3E005B;
+	scrollbar-shadow-color:#00529C;
+	scrollbar-3dlight-color:#F0F0FF;
+	scrollbar-highlight-color:#EAEAEA;
+	scrollbar-arrow-color:#00529C;
+	scrollbar-track-color:#F0F0FF;
+}
+
+H1, .header1
+{
+	color: #1D5EAA;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 24px
+}
+
+H2, .header2
+{
+	color: #1D5EAA;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 20px
+}
+
+H3, .header3
+{
+	color: #D19800;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 20px
+}
+
+H4, .header4
+{
+	color: #D19800;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 18px
+}
+
+H5, .header5
+{
+	color: #1D5EAA;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 16px
+}
+
+HR
+{
+	color: #1D5EAA;
+}
+
+P, .normaltext
+{
+	color: #1D5EAA;
+	font-family: Verdana, Arial;
+	font-weight: normal;
+	font-size: 10px
+}
+
+pre
+{
+    margin-top: 0;
+    color: #1D5E33;
+	font-family: "Courier New", monospace;
+	font-size: 8px;
+}
+
+TH, .listheader, .sortcolumnheader
+{
+	color: #1D5EAA;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 12px;
+	background: #E4F4FE;
+}
+
+TD, .listlabel, .outputlabel
+{
+	color: #1D5EAA;
+	font-family: Verdana, Arial;
+	font-weight: normal;
+	font-size: 10px
+}
+
+
+
+

@@ -1,0 +1,12 @@
+<div class="dimension-calendars" ng-controller="CalendarController">
+	<h1 class="text-center">Dimensions Calendar</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="dimensionId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Model ID" binding="model.modelVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Dimension ID" binding="dimensionVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Hierarchy ID" binding="hierarchy.hierarchyVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="dimensionDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="135" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

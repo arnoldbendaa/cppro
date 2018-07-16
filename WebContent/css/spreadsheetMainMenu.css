@@ -1,0 +1,182 @@
+/**************************************************** MAIN MENU ************************************************/
+#mainMenu{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 821px;
+	height: 100%;
+	border-right: solid 1px #1B7817;
+	display: none;
+	overflow: hidden; 
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+	box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+}
+#mainMenu,
+#mainMenu i.s2{
+	background-color: #338A2E;
+}
+#mainMenu .left {
+	width: 220px;
+	height: 100%;
+	float: left;
+}
+#mainMenu .right {
+	width: calc(100% - 220px);
+	height: calc(100% - 2px);
+	background-color: white;
+	margin: 1px 0;
+	padding: 20px 35px;
+	float: left;
+}
+#mainMenu .right .box {
+	height: 100%;
+}
+#mainMenu .right .box .title{
+	color: #666;
+	padding-left: 0px;
+	padding-bottom: 30px;
+	font-size: 33px;
+	margin-top: 0px;
+}
+#mainMenu .right .box .title i.fa{
+	font-size: 75px;
+	color: #F0F0F0;
+	top: 15px;
+	position: relative;
+	margin-right: 20px;
+}
+#mainMenu .right .box .title i.fa.s1{
+	font-size: 70px;
+	margin-top: 0;
+	float: none;
+	top: -5px;
+}
+#mainMenu .right .box .title i.fa.s2{
+	font-size: 70px;
+	margin-left: -18px;
+	margin-top: 0;
+	margin-right: 0;
+	float: none;
+	left: -21px;
+	top: 18px;
+	background: white;
+	padding-left: 5px;
+}
+#mainMenu .right .box .content{
+	height: calc(100% - 140px);
+}
+#mainMenu .right .box.saveAs .title{
+	padding-top: 20px;
+}
+#mainMenu .ui-resizable-handle.ui-resizable-e{
+	right: 0;
+}
+#mainMenu .back{
+
+}
+#mainMenu .back a{
+	font-size: 34px;
+	width: 100%;
+	padding: 10px 0 0 20px;
+	color: #fff;
+	float: left;
+}
+#mainMenu .back a:hover{
+	color: #BAF9BA;
+}
+#mainMenu .back a i{
+
+}
+#mainMenu ul{
+	list-style: none;
+	padding: 0;
+}
+#mainMenu ul li{
+	clear: both;
+	width: 100%;
+}
+#mainMenu ul li a,
+#mainMenu .btn-file{
+	position: relative;
+	padding: 20px 30px;
+	color: #fff;
+	float: left;
+	width: 100%;
+	text-decoration: none;
+	font-size: 14px;
+	box-shadow: none;
+}
+#mainMenu ul li a.active,
+#mainMenu ul li a.active i.s2,
+#mainMenu .btn-file.active{
+	background-color: #6CAE6C; /* #70D370 */
+}
+#mainMenu ul li a:hover,
+#mainMenu ul li a:hover i.s2,
+#mainMenu ul li a.active:hover,
+#mainMenu ul li a.active:hover i.s2,
+#mainMenu .btn-file:hover,
+#mainMenu .btn-file.active:hover{
+	background-color: #156711;
+}
+#mainMenu ul li a i,
+#mainMenu .btn-file i{
+	margin-right: 8px;
+	font-size: 21px;
+	position: relative;
+	top: 1px
+}
+#mainMenu i.s1{
+	margin-top: -4px;
+	float: left;
+}
+#mainMenu i.s2{
+	margin-left: -12px;
+	margin-top: -1px;
+	float: left;
+}
+#mainMenu .left i.import-file,
+#mainMenu .left i.export-file {
+	margin-top: -4px;
+	float: left;
+	font-size: 18px;
+}
+#mainMenu .left i.import-arrow {
+	margin-left: -12px;
+	margin-top: 3px;
+	font-size: 20px;
+	float: left;
+}
+#mainMenu .left i.export-arrow {
+	margin-left: -15px;
+	margin-top: 3px;
+	font-size: 20px;
+	float: left;
+}
+#mainMenu .btn-file {
+	position: relative;
+	overflow: hidden;
+	background: transparent;
+	border: 0;
+	color: #fff;
+	width: 100%;
+	text-align: left;
+	padding: 20px 30px;
+	border-radius: 0;
+}
+#mainMenu .btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	background: red;
+	cursor: inherit;
+	display: block;
+}

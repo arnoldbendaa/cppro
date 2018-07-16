@@ -1,0 +1,147 @@
+.warningTabIcon
+{
+    background-image: url('../images/warnings.gif');
+    background-repeat: no-repeat;
+    width:16px;
+    height:16px;
+}
+
+.cpAccountIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpAccountIcon:before{content: '\e057';}
+
+
+.cpMenuIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpMenuIcon:before {content: '\e07f'}
+
+
+.cpHomeIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpHomeIcon:before {content: '\e02c';}
+
+.cpRoadmapIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpRoadmapIcon:before {content: '\e000';}
+
+.cpCommsIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpCommsIcon:before {content: '\e038';}
+
+
+.cpAnalysisIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpAnalysisIcon:before {content: '\e06f';}
+
+
+.cpLogoutIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpLogoutIcon:before {content: '\e097';}
+
+
+.cpHelpIcon
+{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpHelpIcon:before {content: '\e030';}
+
+.cpChangeLogIcon{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpChangeLogIcon:before {content: '\e082';}
+
+.cpDashboardIcon{
+    font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:19px;
+}.cpDashboardIcon:before {content: '\e09E';}
+
+.cpDashboardMenuIcon{
+    width: calc(100% - 6px);
+    float: left;
+    padding: 3px 3px;
+    font-size: 14px;
+    margin-top: 7px;
+}.cpDashboardMenuIcon:before{
+    font-family: 'entypo';
+    font-size: 16px;
+    width: 25px;
+    float: left;
+    text-align: left;
+}
+.cpDashboardMenuIcon:hover{
+    /*background-color: #FDEB9F;*/
+}
+.cpDashboardMenuIcon a{
+    font-size: inherit;
+    color: inherit;
+}
+.cpAuctionIcon:before {
+    content: '\e09F';
+    font-size: 14px;
+}
+.cpHierarchyIcon:before {
+    content: '\e0A0';
+    margin-top: -2px;
+}
+.cpFreeFormIcon:before {
+    content: '\e0A1';
+    font-size: 17px;
+    margin-top: -4px;
+}
+.cpDashboardList{
+    cursor: pointer;
+    float: left;
+    width: 100%;
+    border-top: solid #F2F2F2 1px;
+    padding-top: 1px;
+}
+.cpDashboardList .header{
+    background: #F4F4F4;
+    padding: 5px;
+}
+.cpDashboardList .header .arrow{
+    float: right;
+}
+.cpDashboardList .header .arrow:before{
+    font-family: 'entypo';
+    font-size: 12px;
+    content: '\e088';
+}
+.cpDashboardList .list{
+    margin: 0;
+    /*display: none;*/
+}

@@ -1,0 +1,158 @@
+<div class="modal-header">
+	<div class="row">
+		<div class="col-md-12">
+			<h3><i class="fa fa-archive"></i> Finance System Cell Data</h3>
+		</div>
+	</div>
+	<div class="row main-informations" ng-show="data.isDataLoaded && data.rows !=  null && data.rows.length > 0">
+		<div class="col-md-5">
+			<div class="row" ng-repeat="dimension in data.dimensionInfo">
+				<div class="col-md-3">
+					{{dimension.name}}:
+				</div>
+				<div class="col-md-4">
+					{{dimension.value}}
+				</div>
+				<div class="col-md-5">
+					{{dimension.description}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					{{data.dataType.name}}:
+				</div>
+				<div class="col-md-9">
+					{{data.dataType.value}}
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-3">
+			<div class="row">
+				<div class="col-md-5">
+				<span ng-if = "data.dataType.value == 'AQ' || data.dataType.value == 'BQ'">Quantity: </span>
+				<span ng-if = "data.dataType.value != 'AQ' && data.dataType.value != 'BQ'">Value: </span>
+				</div>
+				<div class="col-md-7">
+					<span ng-if = "data.dataType.value == 'AQ' || data.dataType.value == 'BQ'"> {{wholeQuantity | number:2}} </span>
+					<span ng-if = "data.dataType.value != 'AQ' && data.dataType.value != 'BQ'"> {{wholeValue | number:2}} </span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					CP:
+				</div>
+				<div class="col-md-7">
+					{{data.cpValue | number:2}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-5">
+					Difference:
+				</div>
+				<div class="col-md-7">
+					<span ng-if = "data.dataType.value != 'AQ' && data.dataType.value != 'BQ'"> {{wholeValue - data.cpValue | number:2}}</span>
+					<span ng-if = "data.dataType.value == 'AQ' || data.dataType.value == 'BQ'">	{{wholeQuantity - data.cpValue | number:2}} </span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="row" ng-model="timePeriod">
+				<div class="col-md-6">
+					{{data.timePeriod.name}}:
+				</div>
+				<div class="col-md-6">
+					<input type="text" ng-model="data.timePeriod.value" class="form-control" placeholder="{{data.timePeriod.value}}"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					{{data.startPeriod.name}}:
+				</div>
+				<div class="col-md-6">
+					<div class="dropdown pull-right">
+						<select class="form-control" ng-model="data.startPeriod.value" ng-change="changePeriod(data.startPeriod)">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					{{data.endPeriod.name}}:
+				</div>
+				<div class="col-md-6">
+					<div class="dropdown pull-right">
+						<select class="form-control" ng-model="data.endPeriod.value" ng-change="changePeriod(data.endPeriod)">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-body">
+	<div class="loader align-center" ng-show="!data.isDataLoaded">
+		<i class="fa fa-refresh fa-2x fa-spin"></i>
+	</div>
+	<div class="modal-table" ng-show="data.isDataLoaded && rows!= null &&rows.length>0 ">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th ng-repeat="column in columnNames" ng-if="$index!=2">
+						{{column}}
+					</th>
+					<th>Link</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="align-right" ng-repeat="row in rows">
+				
+					<td ng-repeat="column in columnNames"  ng-if="$index!=columnNames.length-1">
+					<span ng-if="$index<2">{{row[$index]}}</span>
+					<span ng-if="$index>1&&$index<4">{{row[$index*1+1*1]}}</span>
+					<span ng-if="$index==4">
+						<span ng-if = "data.dataType.value != 'AQ' && data.dataType.value != 'BQ'">{{row[5] | number:2}}</span>
+						<span ng-if = "data.dataType.value == 'AQ' || data.dataType.value == 'BQ'">{{row[2]}}</span>
+					</span>
+					<span ng-if="$index>4">{{row[$index*1+1*1]}}</span>
+					</td>
+					<td><a href="{{row[columnNames.length+1]}}" class="btn btn-warning btn-xs" target="_blank">Link</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="alert alert-info align-center" ng-show="data.isDataLoaded && (rows != null) && rows.length<=0">
+		<strong>There are no results.</strong>
+	</div>
+	<div class="alert alert-danger align-center" ng-show="data.isDataLoaded && (data.warningMessage != null || data.validationMessage != null)">
+		<strong ng-show="data.warningMessage != null">{{data.warningMessage}}</strong>
+		<strong ng-show="data.validationMessage != null">{{data.validationMessage}}</strong>
+	</div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

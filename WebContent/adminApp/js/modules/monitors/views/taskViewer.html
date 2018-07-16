@@ -1,0 +1,19 @@
+<div class="task-viewer" ng-controller="TaskViewerPageController" id="gsFlexGrid">
+	<h1 class="text-center" ng-if="isTasksLoaded">Task Viewer</h1>
+	<h1 class="text-center" ng-if="!isTasksLoaded">Loading...</h1>
+	
+	<div class="loader align-center" ng-if="loaderManager.isTaskViewerLoading">
+		<i class="fa fa-refresh fa-2x fa-spin"></i>
+	</div>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="taskId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Name" binding="taskName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Notes" binding="step"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Task Id" binding="taskId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Status"binding="status"></wj-flex-grid-column>
+		<wj-flex-grid-column header="User"binding="userName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Created" binding="createDate"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="135"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

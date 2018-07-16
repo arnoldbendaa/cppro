@@ -1,0 +1,90 @@
+<div id="editor">
+	<div class="ribbon">
+
+        <div class="group">
+            <div class="content" ng-controller="OutlineController">
+                <div class="col">
+                    <a class="btn btn-default" ng-click="groupSelection()" title="Group">
+                        <i class="fa wijmo-wijribbon-groupbig wijmo-wijribbon-bigbutton"></i>
+                        <br><span>Group</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="ungroupSelection()" title="UnGroup">
+                        <i class="fa wijmo-wijribbon-ungroup wijmo-wijribbon-bigbutton"></i>
+                        <br><span>UnGroup</span>
+                    </a>
+                </div>        
+                <div class="separator big"></div>        
+				<div class="col">
+					<div class="row">
+	                    <a class="btn btn-default" ng-click="showDetailGroup()" title="Show Detail">
+	                        <i class="fa wijmo-wijribbon-showdetail"></i>
+	                        <span>Show Detail</span>
+	                    </a>						
+					</div>
+					<div class="row">
+	                    <a class="btn btn-default" ng-click="hideDetailGroup()" title="Hide Detail">
+	                        <i class="fa wijmo-wijribbon-hidedetail"></i>
+	                        <span>Hide Detail</span>
+	                    </a>						
+					</div>					
+				</div>
+            </div>
+            <div class="caption">Outline</div>
+        </div>	
+
+        <div class="group">
+        	<div class="content mappings" id="mappings" ng-controller="MappingController">
+
+				<div class="col col1">
+					<div class="row">
+						<div class="form-group" ng-class="{'has-error': validation.inputMapping == false}" popover-placement="bottom" popover="{{currentMapping.inputMapping}}" popover-trigger="mouseenter">
+							<label class="control-label" for="">Input:</label>
+							<input class="form-control" ng-model="currentMapping.inputMapping" ng-focus="setEditedType('input')" ng-blur="onMappingEditEnded()" />
+							<br class="clearBoth">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group" ng-class="{'has-error': validation.outputMapping == false}" popover-placement="bottom" popover="{{currentMapping.outputMapping}}" popover-trigger="mouseenter">
+							<label class="control-label" for="">Output:</label>
+							<input class="form-control" ng-model="currentMapping.outputMapping" ng-focus="setEditedType('output')" ng-blur="onMappingEditEnded()"/>
+							<br class="clearBoth">
+						</div>
+					</div>
+				</div>
+				<div class="separator big"></div>  
+				<div class="col col2">
+					<div class="row">
+						<div class="form-group" ng-class="{'has-error': validation.formulaMapping == false}" popover-placement="bottom" popover="{{currentMapping.formulaMapping}}" popover-trigger="mouseenter">
+							<label class="control-label" for="">Formula:</label>
+							<input class="form-control" ng-model="currentMapping.formulaMapping" ng-focus="setEditedType('formula')" ng-blur="onMappingEditEnded()" />
+							<br class="clearBoth">
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<label class="control-label" for="">View Mode:</label>
+							<select class="form-control"
+								ng-model="viewMode.currentItem"
+								ng-options="viewMode as viewMode.label for viewMode in viewMode.items | notTestLoadingFilter">
+							</select>
+							<br class="clearBoth">
+						</div>
+					</div>					
+				</div>
+
+
+<!-- 				<div class="separator big"></div>  
+				<div class="col col2" style="font-size: 9px;">
+					{{validation}}	
+					{{currentMapping}}		
+					{{testWorkbookCell}}	
+				</div> -->
+        	</div>
+        	<div class="caption">Mappings</div>
+        </div>
+
+	</div>
+
+</div>

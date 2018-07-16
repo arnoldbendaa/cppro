@@ -1,0 +1,32 @@
+<div id="mainMenu" ng-cloak class="ng-cloak" ng-controller="SpreadSheetMenuController">
+	<div class="left">
+		
+		<div class="back">
+			<a href="javascript:void(0)" ng-click="hideMenu()" title="Close Menu">
+				<i class="fa fa-arrow-circle-o-left"></i>
+			</a>
+		</div>
+		<ul>
+			<li><a href="javascript:void(0)" ng-class="{'active': mainMenuVisibility.save}" ng-click="switchMainMenu('save')"><i class="fa fa-save"></i>Save</a></li>
+			<li>
+				<span class="btn btn-default file-input btn-file" title="Import Excel File">
+					<i class="fa fa-file-o import-file"></i><i class="fa fa-reply import-arrow"></i>Import...
+					<input type="file" ngf-select ngf-change="upload($files)" ng-click="hideMenu()" accept=".xls,.xlsx" />
+				</span>
+			</li>
+			<li><a href="javascript:void(0)" ng-class="{'active': mainMenuVisibility.export}" ng-click="exportOne()"><i class="fa fa-file-o export-file"></i><i class="fa fa-share export-arrow"></i>Export</a></li>
+			<li><a href="javascript:void(0)" ng-click="exitSpreadSheetEditor()"><i class="fa fa-close"></i>Exit</a></li>
+		</ul>
+
+	</div>
+	<div class="right">
+
+		<div class="box save" ng-show="mainMenuVisibility.save">
+			<h3 class="title"><i class="fa fa-save"></i>Save</h3>
+			<div class="content">
+				<save-template template="template"></save-template>
+			</div>
+		</div>
+
+	</div>
+</div>

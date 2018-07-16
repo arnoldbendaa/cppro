@@ -1,0 +1,57 @@
+<div class="sheet-editor" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-eye"></i>
+			Sheet Editor
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="getToCalc1">
+			<a class="btn btn-success btn-xs" ng-click="insertRow()" >Insert</a>
+		</div>
+		<div class="list clearfix elementToResize">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th class="sheet-name">Name</th>
+						<th><input type="checkbox" title="Visibility" ng-checked="isAllSheetsShown" ng-click="onAllSheetsShow()" /></th>
+						<th>Order</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr	ng-repeat="sheet in sheets">
+						<td>{{$index+1}}</td>
+						<td>
+							<div ng-show="editedRowIndex == $index">
+								<input type="text" class="form-control" ng-model="sheet.name" placeholder="Enter sheet name">
+							</div>
+							<div ng-show="editedRowIndex != $index">
+								<span>{{sheet.name}}</span>
+							</div>
+						</td>
+						<td>
+							<input type="checkbox" ng-checked="sheet.isVisible == true" ng-click="sheet.isVisible = !sheet.isVisible"/>
+						</td>
+						<td>
+							<a class="btn btn-default btn-xs" ng-click="moveRow($index, -1)" ng-if="$index > 0"><i class="fa fa-arrow-up"></i></a>
+							<a class="btn btn-default btn-xs disabled" ng-if="$index <= 0"><i class="fa fa-arrow-up"></i></a>
+							<a class="btn btn-default btn-xs" ng-click="moveRow($index, 1)" ng-if="$index < sheets.length - 1"><i class="fa fa-arrow-down"></i></a>
+							<a class="btn btn-default btn-xs disabled" ng-if="$index >= sheets.length - 1"><i class="fa fa-arrow-down"></i></a>
+						</td>
+						<td>
+							<a class="btn btn-primary btn-xs" ng-click="editRow($index)" ng-if="editedRowIndex != $index">Edit</a>
+							<a class="btn btn-success btn-xs" ng-click="saveRow($index)" ng-if="editedRowIndex == $index">Save</a>
+							<a class="btn btn-danger btn-xs" ng-click="deleteRow($index)" >Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="text-danger" ng-hide="validation == ''">* {{validation}}</p>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="ok()" type="reset">OK</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

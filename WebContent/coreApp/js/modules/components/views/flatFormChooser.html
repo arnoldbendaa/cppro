@@ -1,0 +1,25 @@
+<div class="flat-form-container">
+	<div class="flat-form-filter clearfix">
+		<h4 class="pull-left">
+			{{chooserInfo}}
+		</h4>
+		<div class="pull-right">
+			<div class="input-group"> 
+				<span class="input-group-addon"> 
+					<span class="glyphicon glyphicon-filter"></span> 
+				</span> 
+				<input type="text" ng-model="ctx.filter" class="form-control" placeholder="filter"/> 
+			</div>
+		</div>
+	</div>
+
+	<div class="flat-form-chooser">
+		<wj-flex-grid class="grid flat-form-grid" items-source="ctx.data" control="ctx.flex">
+			<wj-flex-grid-column header="Finance Cube" name="financeCubeVisId" binding="financeCube.financeCubeVisId" width="*" min-width="15" visible="{{isFinanceCubeColumnVisible}}"></wj-flex-grid-column>
+			<wj-flex-grid-column header="Xml Form ID" name="flatFormVisId" binding="flatFormVisId" width="*" min-width="15"></wj-flex-grid-column>
+			<wj-flex-grid-column header="Description" name="flatFormDescription" binding="flatFormDescription" width="2*" min-width="15"></wj-flex-grid-column>
+			<wj-flex-grid-column header="Last Updated" name="updateTime" binding="updateTime" width="*" min-width="15" visible="{{isLastUpdatedColumnVisible}}"></wj-flex-grid-column>
+			<wj-flex-grid-column header="" name="checked" binding="" align="center" width="40" min-width="15"></wj-flex-grid-column>
+		</wj-flex-grid>
+	</div>
+</div>

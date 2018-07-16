@@ -1,0 +1,54 @@
+<div class="task-view-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-desktop"></i>
+			Task Viewer
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-show="!isDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+	
+		<div class="inner" ng-show="isDataLoaded">
+			<div class="row getToCalc1">
+			  <div class="col-md-6 form-group">
+			  	<label for="">Task ID:</label>
+				<input name="name" ng-model="task.taskId" type="text" readonly="readonly" class="form-control">
+			  </div>
+			  <div class="col-md-6 form-group">
+			  	<label for="">Name:</label>
+				<input name="name" ng-model="task.taskName" type="text" readonly="readonly" class="form-control">
+			  </div>
+		  </div>
+			  
+		  <div class="row getToCalc2">
+			  <div class="col-md-6 form-group">
+			  	<label for="">User:</label>
+				<input name="name" ng-model="userName" type="text" readonly="readonly" class="form-control">
+			  </div>
+			  <div class="col-md-6 form-group">
+			  	<label for="">Status:</label>
+				<input name="name" ng-model="task.status" type="text" readonly="readonly" class="form-control">
+			  </div>
+		  </div>
+			  
+		  <div class="row getToCalc3">
+			  <div class="col-md-6 form-group">
+			  	<label for="">Created:</label>
+				<input name="name" ng-model="task.createDate" type="text" readonly="readonly" class="form-control">
+			  </div>
+			  <div class="col-md-6 form-group">
+			  	<label for="">Notes:</label>
+				<input name="name" ng-model="task.step" type="text" readonly="readonly" class="form-control">
+			  </div>
+			</div>
+			
+			<div class="log-panel" ng-bind-html="task.taskEvents">
+			</div>
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

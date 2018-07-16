@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Fancytree - Example: RTL</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link href="http://wwwendt.de/tech/fancytree/src/skin-xp/ui.fancytree.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/analysis.css"/>
+
+    <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://wwwendt.de/tech/fancytree/src/jquery.fancytree.js"></script>
+    <script src="http://wwwendt.de/tech/fancytree/src/jquery.fancytree.dnd.js"></script>
+    <script src="http://wwwendt.de/tech/fancytree/src/jquery.fancytree.table.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- (Irrelevant source removed.) -->
+    <style type="text/css">
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $("#treetable").fancytree({
+                extensions: ["dnd","table"],
+                source: [
+                    {"title": "Books & Audible", "expanded": true, "folder": true, "children": [
+                        {"title": "Books", "folder": true, "children": [
+                            {"title": "General Books"},
+                            {"title": "Kindle Books"},
+                            {"title": "Books For Study"},
+                            {"title": "Audiobooks"}
+                        ]},
+                        {"title": "Movies, TV, Music, Games", "folder": true, "children": [
+                            {"title": "Music"},
+                            {"title": "MP3 Downloads"},
+                            {"title": "Musical Instruments & DJ"},
+                            {"title": "Film & TV"},
+                            {"title": "Blue-ray"},
+                            {"title": "PC & Video Games"}
+                        ]},
+                        {"title": "Electronics & Computers", "expanded": true, "folder": true, "children": [
+                            {"title": "Electronics"},
+                            {"title": "Computers"}
+                        ]}
+                    ]}
+                ],
+                icon: false,
+                renderNode: function (event, data) {
+//                    var node = data.node;
+//                    var $nodeSpan = $(node.span);
+//
+//                    // check if span of node already rendered
+//                    if (!$nodeSpan.data('rendered')) {
+//
+//                        var deleteButton = '<a href="#"><span class="fa fa-remove fa-2x deleteTreeColor"></span>&nbsp;</a>';
+//                        var propertyButton = ('<a href="#"><span class="fa fa-list-alt fa-2x createTreeColor"></span>&nbsp;</a>');
+//                        var createButton = ('<a href="#"><span class="fa fa-folder fa-2x createTreeColor"></span>&nbsp;</a>');
+//                        var buttons = $('<div style="position:absolute;right:20px">'+deleteButton+"</div>");
+//                        $nodeSpan.append(buttons);
+////                        deleteButton.hide();
+////
+////                        $nodeSpan.hover(function () {
+////                            // mouse over
+////                            deleteButton.show();
+////
+////                        }, function () {
+////
+////                            // mouse out
+////                            deleteButton.hide();
+////                        })
+//
+//                        // span rendered
+//                        $nodeSpan.data('rendered', true);
+//                    }
+                },
+                renderColumns: function(event, data) {
+                    var node = data.node,
+                            $tdList = $(node.tr).find(">td");
+                    var level = node.getLevel();
+                    if(level==1)
+                        $tdList.eq(1).html('<a type="button" href="#" data-toggle="modal" data-target="#myModal"><span class="folderIcon createTreeColor">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;</a>');
+                    else if(level==2)
+                        $tdList.eq(1).html('<a type="button" href="#" data-toggle="modal" data-target="#myModal"><span class="folderIcon fa-2x createTreeColor">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;</a><a href="#" onclick="renameNode();"><span class="settingIcon createTreeColor">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;</a><a href="#" onclick="removeNode();"><span class="removeIcon deleteTreeColor">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;</a>');
+                    else if(level==3)
+                        $tdList.eq(1).html('<a href="#" onclick="openMoveDlg();"><span class="moveIcon createTreeColor">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;</a><a href="#"><span class="removeIcon deleteTreeColor" onclick="removeNode();">&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;</a>');
+                    else
+                            return;
+                },
+                table: {
+                    indentation: 20,      // indent 20px per node level
+                },
+
+                dnd: {
+                    focusOnClick: true,
+                    dragStart: function(node, data) {
+                        return true;
+                    },
+                    dragEnter: function(node, data) {
+                        return true;
+                    },
+                    dragDrop: function(node, data) {
+                        data.otherNode.moveTo(node, data.hitMode);
+                    }
+                },
+
+                init: function(event, data){
+                },
+                keydown: function(event, data) {
+                    var KC = $.ui.keyCode,
+                            oe = event.originalEvent;
+                    // Swap LEFT/RIGHT keys
+                    switch( event.which ) {
+                        case KC.LEFT:
+                            oe.keyCode = KC.RIGHT;
+                            oe.which = KC.RIGHT;
+                            break;
+                        case KC.RIGHT:
+                            oe.keyCode = KC.LEFT;
+                            oe.which = KC.LEFT;
+                            break;
+                    }
+                }
+            });
+        });
+        function createNode() {
+            setTimeout(function(){
+                console.log("create node called");
+                var tree = $("#treetable").fancytree("getTree");
+                var node = tree.getActiveNode();
+                var title = $("#folderName").val();
+                if(title==""||title==undefined) return;
+                $("#folderName").val("");
+                node.addChildren({
+                    title:title
+                });
+            },300);
+        }
+        function removeNode() {
+            setTimeout(function(){
+                console.log("create node called");
+                var tree = $("#treetable").fancytree("getTree");
+                var node = tree.getActiveNode();
+                node.remove();
+            },300);
+        }
+        function renameNode() {
+            setTimeout(function(){
+                var tree = $("#treetable").fancytree("getTree");
+                var node = tree.getActiveNode();
+                $("#propertyName").val(node.title);
+                $("#editModal").modal("show");
+            },300);
+        }
+        function editNode() {
+            var propertyName = $("#propertyName").val();
+            if(propertyName==""||propertyName==undefined) return;
+            var tree = $("#treetable").fancytree("getTree");
+            var node = tree.getActiveNode();
+            node.setTitle(propertyName);
+        }
+        function getDatas(){
+            var tree = $("#treetable").fancytree("getTree");
+            var root = tree.getRootNode();
+            var nodes = root.children[0].getChildren();
+            var len = nodes.length;
+            var html ="";
+            for(var i = 0 ; i < len; i++){
+                var title = nodes[i].title;
+                var value = nodes[i].getIndex();
+                html = html + '<option value="'+value+'">'+title+'</option>';
+            }
+            return html;
+        }
+        function openMoveDlg() {
+            setTimeout(function(){
+                var html = getDatas();
+                $("#folderSelect").html(html);
+                $("#moveModal").modal("show");
+                var tree = $("#treetable").fancytree("getTree");
+                var node = tree.getActiveNode();
+                var index = node.parent.getIndex();
+                $("#folderSelect").val(index);
+            },300);
+        }
+        function moveNode() {
+            var tree = $("#treetable").fancytree("getTree");
+            var node = tree.getActiveNode();
+            var index = $("#folderSelect").val();
+            var root = tree.getRootNode();
+            var nodes = root.children[0].getChildren();
+
+            node.moveTo(nodes[index],"over");
+        }
+    </script>
+</head>
+<body class="example">
+<table id="treetable">
+    <colgroup>
+        <col class="col-md-8"></col>
+        <col class="col-md-3"></col>
+    </colgroup>
+    <thead>
+    <tr>
+        <th class="col-md-8 text-center">Analysis</th>
+        <th class="col-md-3">Action</th> </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" id="folderName"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="createNode();">Create</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="editModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Property</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" id="propertyName"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="editNode();">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="moveModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Move Analysis To Another Folder</h4>
+            </div>
+            <div class="modal-body">
+                <select type="text" class="form-control" id="folderSelect"></select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="moveNode();">Move Analysis</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<style>
+    #treetable{
+        width:100%;
+    }
+    #treetable tr{
+        border-bottom:1px solid #ccc;
+        height:30px;
+    }
+    #treetable tbody tr{
+        color:rgb(66,66,113);
+    }
+    #treetable thead tr{
+        color:rgb(29,94,170);
+        background-color:rgb(228,244,254);
+        border-top:1px solid #ccc;
+    }
+</style>
+</html>

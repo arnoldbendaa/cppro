@@ -1,0 +1,874 @@
+<div id="insert-sparkline" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-bar-chart"></i>
+			Sparkline: {{type}}
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form name="sparkline" class="css-form" novalidate>	
+
+			<fieldset>
+				<legend>Main Data</legend>
+				<div class="row">
+					<div class="col-md-6 fieldRange fieldRange-dataRange">
+						<div class="form-group" ng-class="{ 'has-error': sparkline.dataRange.$invalid }" >
+							<label popover="{{descriptions.dataRange}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">{{fieldLabels.dataRange}}</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="dataRange" ng-model="dataRange" required/>
+			                 	<a class="spread-btn" ng-click="getSelections('dataRange')" title="Select {{labels.dataRange}}">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>			
+						</div>	
+					</div>					
+					<div class="col-md-6 fieldRange fieldRange-locationRange">
+						<div class="form-group" ng-class="{ 'has-error': sparkline.locationRange.$invalid }" >
+							<label popover="{{descriptions.locationRange}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Location Range</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="locationRange" ng-model="locationRange" required/>
+			                 	<a class="spread-btn" ng-click="getSelections('locationRange')" title="Select Location Range">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>											
+						</div>				
+					</div>
+				</div>
+			
+				<!-- Line, Column, Win/Loss -->
+				<div class="row" ng-show="type == types[0] || type == types[1] || type == types[2]">
+					<div class="col-md-6 fieldRange fieldRange-dateAxisData">
+						<div class="form-group">
+							<label popover="{{descriptions.dateAxisData}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Date Axis Data</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="dateAxisData" ng-model="dateAxisData"/>
+			                 	<a class="spread-btn" ng-click="getSelections('dateAxisData')" title="Select Date Axis Data">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>
+
+				<!-- Scatter -->
+				<div class="row" ng-show="type == types[5]">
+					<div class="col-md-6 fieldRange fieldRange-points2">
+						<div class="form-group">
+							<label popover="{{descriptions.points2}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Points2</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="points2" ng-model="points2"/>
+			                 	<a class="spread-btn" ng-click="getSelections('points2')" title="Select Points2">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>
+
+			</fieldset>
+
+			<!-- Area, Stacked, Cascade -->
+			<fieldset ng-show="type == types[4] || type == types[7] || type == types[9]">
+				<legend>Limits and lines</legend>
+				<div class="row">
+					<!-- Area, Cascade -->
+					<div class="col-md-6 fieldRange fieldRange-minimumValue" ng-show="type == types[4] || type == types[9]">
+						<div class="form-group">
+							<label popover="{{descriptions.minimumValue}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Min</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="minimumValue" ng-model="minimumValue"/>
+			                 	<a class="spread-btn" ng-click="getSelections('minimumValue')" title="Select Minimum Value">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>	
+					<!-- Area, Stacked, Cascade -->
+					<div class="col-md-6 fieldRange fieldRange-maximumValue" ng-show="type == types[4] || type == types[7] || type == types[9]">
+						<div class="form-group">
+							<label popover="{{descriptions.maximumValue}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Max</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="maximumValue" ng-model="maximumValue"/>
+			                 	<a class="spread-btn" ng-click="getSelections('maximumValue')" title="Select Maximum Value">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>
+				<div class="row" ng-show="type == types[4]">
+					<div class="col-md-6 fieldRange fieldRange-line1">
+						<div class="form-group">
+							<label popover="{{descriptions.line1}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Line1</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="line1" ng-model="line1"/>
+			                 	<a class="spread-btn" ng-click="getSelections('line1')" title="Select Line1">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-6 fieldRange fieldRange-line2">
+						<div class="form-group">
+							<label popover="{{descriptions.line2}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Line2</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="line2" ng-model="line2"/>
+			                 	<a class="spread-btn" ng-click="getSelections('line2')" title="Select Line2">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>
+			</fieldset>
+
+			<!-- Scatter -->
+			<div ng-show="type == types[5]">
+				<fieldset>
+					<legend>Limits and lines</legend>
+					<div class="row">
+						<div class="col-md-3 fieldRange fieldRange-minX">
+							<div class="form-group">
+								<label popover="{{descriptions.minX}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">MinX</span></label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="minX" ng-model="minX"/>
+				                 	<a class="spread-btn" ng-click="getSelections('minX')" title="Select MinX">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-maxX">
+							<div class="form-group">
+								<label popover="{{descriptions.maxX}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">MaxX</span></label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="maxX" ng-model="maxX"/>
+				                 	<a class="spread-btn" ng-click="getSelections('maxX')" title="Select MaxX">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>	
+						<div class="col-md-3 fieldRange fieldRange-minY">
+							<div class="form-group">
+								<label popover="{{descriptions.minY}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">MinY</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="minY" ng-model="minY"/>
+				                 	<a class="spread-btn" ng-click="getSelections('minY')" title="Select MinY">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-maxY">
+							<div class="form-group">
+								<label popover="{{descriptions.maxY}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">MaxY</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="maxY" ng-model="maxY"/>
+				                 	<a class="spread-btn" ng-click="getSelections('maxY')" title="Select MaxY">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-6 fieldRange fieldRange-hLine">
+							<div class="form-group">
+								<label popover="{{descriptions.hLine}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">HLine</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="hLine" ng-model="hLine"/>
+				                 	<a class="spread-btn" ng-click="getSelections('hLine')" title="Select HLine">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-6 fieldRange fieldRange-vLine">
+							<div class="form-group">
+								<label popover="{{descriptions.vLine}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">VLine</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="vLine" ng-model="vLine"/>
+				                 	<a class="spread-btn" ng-click="getSelections('vLine')" title="Select VLine">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>	
+					</div>
+				</fieldset>
+	
+				<fieldset>
+					<legend>Gray zone</legend>
+					<div class="row">
+						<div class="col-md-3 fieldRange fieldRange-xMinZone">
+							<div class="form-group">
+								<label popover="{{descriptions.xMinZone}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">XMinZone</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="xMinZone" ng-model="xMinZone"/>
+				                 	<a class="spread-btn" ng-click="getSelections('xMinZone')" title="Select XMinZone">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-xMaxZone">
+							<div class="form-group">
+								<label popover="{{descriptions.xMaxZone}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">XMaxZone</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="xMaxZone" ng-model="xMaxZone"/>
+				                 	<a class="spread-btn" ng-click="getSelections('xMaxZone')" title="Select XMaxZone">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>	
+						<div class="col-md-3 fieldRange fieldRange-yMinZone">
+							<div class="form-group">
+								<label popover="{{descriptions.yMinZone}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">YMinZone</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="yMinZone" ng-model="yMinZone"/>
+				                 	<a class="spread-btn" ng-click="getSelections('yMinZone')" title="Select YMinZone">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-yMaxZone">
+							<div class="form-group">
+								<label popover="{{descriptions.yMaxZone}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">YMaxZone</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="yMaxZone" ng-model="yMaxZone"/>
+				                 	<a class="spread-btn" ng-click="getSelections('yMaxZone')" title="Select YMaxZone">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>	
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend>Sparkline style</legend>
+					<div class="row">
+						<div class="col-md-3 fieldRange fieldRange-tags">
+							<div class="form-group">
+								<label popover="{{descriptions.tags}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Tags</label>
+								<div class="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="tags">
+										Tags
+									</label>
+								</div>		
+							</div>	
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-drawSymbol">
+							<div class="form-group">
+								<label popover="{{descriptions.drawSymbol}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">DrawSymbol</label>
+								<div class="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="drawSymbol">
+										DrawSymbol
+									</label>
+								</div>		
+							</div>	
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-drawLines">
+							<div class="form-group">
+								<label popover="{{descriptions.drawLines}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">DrawLines</label>
+								<div class="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="drawLines">
+										DrawLines
+									</label>
+								</div>		
+							</div>	
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-dash">
+							<div class="form-group">
+								<label popover="{{descriptions.dash}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Dash</label>
+								<div class="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="dash">
+										Dash
+									</label>
+								</div>		
+							</div>	
+						</div>				
+					</div>
+				</fieldset>	
+			</div>
+
+			<!-- Spread, BoxPlot -->
+			<fieldset ng-show="type == types[6] || type == types[8]">
+				<legend>Settings</legend>
+				<div class="row">
+					<div class="col-md-6 fieldRange fieldRange-style">
+						<div class="form-group">
+							<label popover="{{descriptions.style}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Style</label>
+							<div class="ctrls">
+								<select 
+									class="form-control" name="style"
+									ng-options="(st.name) for st in styles track by st.id"
+									ng-model="style">
+								</select>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-6 fieldRange fieldRange-showAverage">
+						<div class="form-group">
+							<label popover="{{descriptions.showAverage}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Show Average</label>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="showAverage">
+									Show Average
+								</label>
+							</div>		
+						</div>	
+					</div>
+				</div>
+			</fieldset>
+
+			<!-- Spread -->
+			<fieldset ng-show="type == types[6]">
+				<legend>Scale</legend>
+				<div class="row">
+					<div class="col-md-6 fieldRange fieldRange-scaleStart">
+						<div class="form-group">
+							<label popover="{{descriptions.scaleStart}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Scale Start</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="scaleStart" ng-model="scaleStart"/>
+			                 	<a class="spread-btn" ng-click="getSelections('scaleStart')" title="Select Scale Start">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>	
+					<div class="col-md-6 fieldRange fieldRange-scaleEnd">
+						<div class="form-group">
+							<label popover="{{descriptions.scaleEnd}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Scale End</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="scaleEnd" ng-model="scaleEnd"/>
+			                 	<a class="spread-btn" ng-click="getSelections('scaleEnd')" title="Select Scale End">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>	
+				</div>	
+			</fieldset>
+
+			<!-- BoxPlot -->
+			<fieldset ng-show="type == types[8]">
+				<legend>Start/End</legend>
+				<div class="row">
+					<div class="col-md-3 fieldRange fieldRange-scaleStart">
+						<div class="form-group">
+							<label popover="{{descriptions.scaleStart}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Scale Start</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="scaleStart" ng-model="scaleStart"/>
+			                 	<a class="spread-btn" ng-click="getSelections('scaleStart')" title="Select Scale Start">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-3 fieldRange fieldRange-scaleEnd">
+						<div class="form-group">
+							<label popover="{{descriptions.scaleEnd}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Scale End</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="scaleEnd" ng-model="scaleEnd"/>
+			                 	<a class="spread-btn" ng-click="getSelections('scaleEnd')" title="Select Scale End">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-3 fieldRange fieldRange-acceptableStart">
+						<div class="form-group">
+							<label popover="{{descriptions.acceptableStart}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Acceptable Start</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="acceptableStart" ng-model="acceptableStart"/>
+			                 	<a class="spread-btn" ng-click="getSelections('acceptableStart')" title="Select Acceptable Start">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-3 fieldRange fieldRange-acceptableEnd">
+						<div class="form-group">
+							<label popover="{{descriptions.acceptableEnd}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Acceptable End</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="acceptableEnd" ng-model="acceptableEnd"/>
+			                 	<a class="spread-btn" ng-click="getSelections('acceptableEnd')" title="Select Acceptable End">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>			
+			</fieldset>
+
+			<!-- BoxPlot -->
+			<fieldset ng-show="type == types[8]">
+				<legend>BoxPlot Class</legend>
+				<div class="row">
+					<div class="col-md-12 fieldRange fieldRange-boxPlotClass">
+						<div class="form-group">
+							<label popover="{{descriptions.boxPlotClass}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">BoxPlot Class</label>
+						    <br class="clearBoth">
+						    <div class="radio pull-left">    
+						        <label class="radio hint">
+						            <input 
+						            	type="radio" 
+						            	name="boxPlotClass" 
+						            	ng-model="boxPlotClass" 
+						            	value="5ns"> 5ns
+						        </label>	
+						        <div popover="5ns - {{descriptions.boxPlotClassOptions.fiveNS}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}"></div>			        
+						    </div>
+						    <div class="radio pull-left">    
+						        <label class="radio hint">
+						            <input 
+						            	type="radio" 
+						            	name="boxPlotClass" 
+						            	ng-model="boxPlotClass" 
+						            	value="7ns"> 7ns
+						        </label>	
+						        <div popover="7ns - {{descriptions.boxPlotClassOptions.sevenNS}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}"></div>			        
+						    </div>
+						    <div class="radio pull-left">    
+						        <label class="radio hint">
+						            <input 
+						            	type="radio" 
+						            	name="boxPlotClass" 
+						            	ng-model="boxPlotClass" 
+						            	value="tukey"> tukey
+						        </label>
+						        <div popover="tukey - {{descriptions.boxPlotClassOptions.tukey}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}"></div>				        
+						    </div>
+						    <div class="radio pull-left">    
+						        <label class="radio hint">
+						            <input 
+						            	type="radio" 
+						            	name="boxPlotClass" 
+						            	ng-model="boxPlotClass" 
+						            	value="bowley"> bowley
+						        </label>
+						        <div popover="bowley - {{descriptions.boxPlotClassOptions.bowley}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}"></div>				        
+						    </div>
+						    <div class="radio pull-left">    
+						        <label class="radio hint">
+						            <input 
+						            	type="radio" 
+						            	name="boxPlotClass" 
+						            	ng-model="boxPlotClass" 
+						            	value="sigma3"> sigma3
+						        </label>	
+						        <div popover="sigma3 - {{descriptions.boxPlotClassOptions.sigma3}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}"></div>			        
+						    </div>
+						</div>				
+					</div>
+				</div>					
+			</fieldset>
+
+			<!-- Stacked, Cascade, Pareto -->
+			<fieldset ng-class="{'left': type == types[7] || type == types[10]}" ng-show="type == types[7] || type == types[9] || type == types[10]">
+				<legend>Label</legend>
+				<!-- Stacked, Cascade -->
+				<div class="row" ng-show="type == types[7] || type == types[9]">
+					<div class="col-md-12 fieldRange fieldRange-labelRange" ng-class="{'col-md-6': type == types[9]}">
+						<div class="form-group">
+							<label popover="{{descriptions.labelRange}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Label Range</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="labelRange" ng-model="labelRange"/>
+			                 	<a class="spread-btn" ng-click="getSelections('labelRange')" title="Select Label Range">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>
+				<!-- Pareto -->
+				<div class="row" ng-show="type == types[10]">
+					<div class="col-md-12 fieldRange fieldRange-label">
+						<div class="form-group">
+							<label popover="{{descriptions.label}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Label</label>
+							<div class="ctrls">
+								<select 
+									class="form-control" name="label"
+									ng-options="(la.name) for la in labels track by la.id"
+									ng-model="label">
+								</select>
+							</div>										
+						</div>				
+					</div>										
+				</div>
+			</fieldset>
+
+			<!-- Stacked, Pareto -->
+			<fieldset ng-class="{'right': type == types[7] || type == types[10]}" ng-show="type == types[7] || type == types[10]">
+				<legend>Highlight</legend>
+				<div class="row">
+					<div class="col-md-12 fieldRange fieldRange-highlightPosition">
+						<div class="form-group">
+							<label popover="{{descriptions.highlightPosition}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Highlight Position</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="highlightPosition" ng-model="highlightPosition"/>
+							</div>										
+						</div>				
+					</div>
+				</div>	
+			</fieldset>
+			
+			<!-- Stacked -->
+			<div ng-show="type == types[7]">
+				<fieldset>
+					<legend>Parameters</legend>
+					<div class="row">
+						<div class="col-md-6 fieldRange fieldRange-textOrientation">
+							<div class="form-group">
+								<label popover="{{descriptions.textOrientation}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Text Orientation</label>
+								<br class="clearBoth">
+							    <div class="radio pull-left">    
+							        <label class="radio">
+							            <input 
+							            	type="radio" 
+							            	name="textOrientation" 
+							            	ng-model="textOrientation" 
+							            	value="0"> Horizontal
+							        </label>				        
+							    </div>
+							    <div class="radio pull-left">    
+							        <label class="radio">
+							            <input 
+							            	type="radio" 
+							            	name="textOrientation" 
+							            	ng-model="textOrientation" 
+							            	value="1"> Vertical
+							        </label>				        
+							    </div>						    
+							</div>				
+						</div>	
+						<div class="col-md-6 fieldRange fieldRange-textSize">
+							<div class="form-group">
+								<label popover="{{descriptions.textSize}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Text Size</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="textSize" ng-model="textSize"/>
+								</div>										
+							</div>				
+						</div>	
+					</div>
+				</fieldset>	
+				<fieldset>
+					<legend>Target</legend>
+					<div class="row">
+						<div class="col-md-3 fieldRange fieldRange-targetRed">
+							<div class="form-group">
+								<label popover="{{descriptions.targetRed}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Target Red</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="targetRed" ng-model="targetRed"/>
+				                 	<a class="spread-btn" ng-click="getSelections('targetRed')" title="Select Target Red">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-targetGreen">
+							<div class="form-group">
+								<label popover="{{descriptions.targetGreen}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Target Green</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="targetGreen" ng-model="targetGreen"/>
+				                 	<a class="spread-btn" ng-click="getSelections('targetGreen')" title="Select Target Green">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-targetBlue">
+							<div class="form-group">
+								<label popover="{{descriptions.targetBlue}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Target Blue</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="targetBlue" ng-model="targetBlue"/>
+				                 	<a class="spread-btn" ng-click="getSelections('targetBlue')" title="Select Target Blue">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>
+						<div class="col-md-3 fieldRange fieldRange-targetYellow">
+							<div class="form-group">
+								<label popover="{{descriptions.targetYellow}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Target Yellow</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="targetYellow" ng-model="targetYellow"/>
+				                 	<a class="spread-btn" ng-click="getSelections('targetYellow')" title="Select Target Yellow">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+							</div>				
+						</div>	
+					</div>
+				</fieldset>									
+			</div>
+
+			<!-- Pareto -->
+			<fieldset ng-show="type == types[10]">
+				<legend>Target</legend>
+				<div class="row">
+					<div class="col-md-6 fieldRange fieldRange-target">
+						<div class="form-group">
+							<label popover="{{descriptions.target}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Target</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="target" ng-model="target"/>
+			                 	<a class="spread-btn" ng-click="getSelections('target')" title="Select Target">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>	
+					<div class="col-md-6 fieldRange fieldRange-target2">
+						<div class="form-group">
+							<label popover="{{descriptions.target2}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Target2</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="target2" ng-model="target2"/>
+			                 	<a class="spread-btn" ng-click="getSelections('target2')" title="Select Target2">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>	
+				</div>
+			</fieldset>
+
+			<!-- Bullet -->
+			<fieldset ng-show="type == types[11]">
+				<legend>Parameters</legend>
+				<div class="row">
+					<div class="col-md-4 fieldRange fieldRange-target">
+						<div class="form-group">
+							<label popover="{{descriptions.target}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Target</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="target" ng-model="target"/>
+			                 	<a class="spread-btn" ng-click="getSelections('target')" title="Select Target">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-4 fieldRange fieldRange-maxi">
+						<div class="form-group">
+							<label popover="{{descriptions.maxi}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Maxi</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="maxi" ng-model="maxi"/>
+			                 	<a class="spread-btn" ng-click="getSelections('maxi')" title="Select Maxi">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-4 fieldRange fieldRange-good">
+						<div class="form-group">
+							<label popover="{{descriptions.good}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Good</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="good" ng-model="good"/>
+			                 	<a class="spread-btn" ng-click="getSelections('good')" title="Select Good">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-md-4 fieldRange fieldRange-bad">
+						<div class="form-group">
+							<label popover="{{descriptions.bad}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Bad</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="bad" ng-model="bad"/>
+			                 	<a class="spread-btn" ng-click="getSelections('bad')" title="Select Bad">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+					<div class="col-md-4 fieldRange fieldRange-forecast">
+						<div class="form-group">
+							<label popover="{{descriptions.forecast}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Forecast</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="forecast" ng-model="forecast"/>
+			                 	<a class="spread-btn" ng-click="getSelections('forecast')" title="Select Forecast">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>
+					</div>
+					<div class="col-md-4 fieldRange fieldRange-tickunitBullet">
+						<div class="form-group">
+							<label popover="{{descriptions.tickunitBullet}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Tickunit</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="tickunitBullet" ng-model="tickunitBullet"/>
+			                 	<a class="spread-btn" ng-click="getSelections('tickunitBullet')" title="Select Tickunit">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>				
+					</div>
+				</div>
+			</fieldset>
+
+			<!-- Variance -->
+			<fieldset ng-show="type == types[14]">
+				<legend>Parameters & Settings</legend>
+				<div class="row">
+					<div class="col-md-4 fieldRange fieldRange-reference">
+						<div class="form-group">
+							<label popover="{{descriptions.reference}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Reference</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="reference" ng-model="reference"/>
+			                 	<a class="spread-btn" ng-click="getSelections('reference')" title="Select Reference">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>
+					</div>
+					<div class="col-md-4 fieldRange fieldRange-mini">
+						<div class="form-group">
+							<label popover="{{descriptions.mini}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Mini</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="mini" ng-model="mini"/>
+			                 	<a class="spread-btn" ng-click="getSelections('mini')" title="Select Mini">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>
+					</div>
+					<div class="col-md-4 fieldRange fieldRange-maxi">
+						<div class="form-group">
+							<label popover="{{descriptions.maxi}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Maxi</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="maxi" ng-model="maxi"/>
+			                 	<a class="spread-btn" ng-click="getSelections('maxi')" title="Select Maxi">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 fieldRange fieldRange-mark" ng-show="false">
+						<div class="form-group">
+							<label popover="{{descriptions.mark}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Mark</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="mark" ng-model="mark"/>
+			                 	<a class="spread-btn" ng-click="getSelections('mark')" title="Select Mark">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>
+					</div>	
+					<div class="col-md-4 fieldRange fieldRange-tickunit">
+						<div class="form-group">
+							<label popover="{{descriptions.tickunit}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Tick Unit</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="tickunit" ng-model="tickunit"/>
+			                 	<a class="spread-btn" ng-click="getSelections('tickunit')" title="Select Tick Unit">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>										
+						</div>
+					</div>						
+					<div class="col-md-4 fieldRange fieldRange-legend">
+						<div class="form-group">
+							<label popover="{{descriptions.legend}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Legend</label>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="legend">
+									Legend
+								</label>
+							</div>		
+						</div>	
+					</div>									
+				</div>
+			</fieldset>			
+
+			<fieldset class="left">
+				<legend>Color</legend>
+				<div class="row">
+					<!-- not Pareto -->
+					<div class="col-md-6 fieldRange fieldRange-color" ng-show="type != types[10]">
+						<div class="form-group">
+							<label popover="{{descriptions.color}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">{{fieldLabels.color}}</label>
+							<div class="ctrls">
+								<spectrum-colorpicker
+									title={{fieldLabels.color}}
+									ng-model="color"
+									options="{
+										showPalette: true,
+										hideAfterPaletteSelect:true,
+										localStorageKey: 'spectrum.colors',
+										showInput: true,
+										maxSelectionSize: 50,
+									}">
+								</spectrum-colorpicker>
+							</div>										
+						</div>	
+					</div>
+					<!-- Area, Scatter, Cascade, Variance -->
+					<div class="col-md-6 fieldRange fieldRange-color2" ng-show="type == types[4] || type == types[5] || type == types[9] || type == types[14]">
+						<div class="form-group">
+							<label popover="{{descriptions.color2}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">{{fieldLabels.color2}}</label>
+							<div class="ctrls">
+								<spectrum-colorpicker
+									title={{fieldLabels.color2}}
+									ng-model="color2"
+									options="{
+										showPalette: true,
+										hideAfterPaletteSelect:true,
+										localStorageKey: 'spectrum.colors',
+										showInput: true,
+										maxSelectionSize: 50,
+									}">
+								</spectrum-colorpicker>
+							</div>										
+						</div>	
+					</div>
+					<!-- Pie, Stacked, Pareto -->
+					<div class="col-md-6 fieldRange fieldRange-colorRange" ng-show="type == types[3] || type == types[7] || type == types[10]">
+						<div class="form-group">
+							<label popover="{{descriptions.colorRange}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Select Color Range</label>
+								<div class="ctrls">
+									<input type="text" class="form-control" name="colorRange" ng-model="colorRange"/>
+				                 	<a class="spread-btn" ng-click="getSelections('colorRange')" title="Select Color Range">
+				                        <i class="fa wijmo-wijribbon-fillup"></i>
+				                    </a>
+								</div>										
+						</div>	
+					</div>	
+				</div>
+			</fieldset>
+
+			<!-- Spread, Stacked, BoxPlot, Bullet, Variance -->
+			<fieldset class="right" ng-show="type == types[6] || type == types[7] || type == types[8] || type == types[11] || type == types[14]">
+				<legend>Orientation</legend>	
+				<div class="row">
+					<div class="col-md-12 fieldRange fieldRange-vertical">
+						<div class="form-group">
+							<label popover="{{descriptions.vertical}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">Vertical</label>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="vertical">
+									Vertical
+								</label>
+							</div>		
+						</div>	
+					</div>
+				</div>				
+			</fieldset>
+	
+
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="insert()" ng-disabled="sparkline.$invalid" type="reset">{{buttonName}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+	</div>
+</div>

@@ -1,0 +1,16 @@
+<div class="calendar-period">
+	<div class="loader text-center" ng-show="isUpdating == true">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+	<div ng-click="startEditing();" ng-show="editMode == false && isUpdating == false">
+		<div ng-transclude></div>
+	</div>
+	<div ng-show="editMode == true && isUpdating == false">
+		<select class="form-control"
+			name="period"
+			ng-blur="editMode = false"
+			ng-model="selectedPeriodId" 
+			ng-options="calendar.id as calendar.name for calendar in filteredCalendars" required>
+		</select>
+	</div>
+</div>

@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+
+	<!-- Generic Import Entry Type -->
+	<xsd:complexType name="genericImportType">
+		<xsd:sequence>
+			<xsd:element name="company" type="companyType" minOccurs="1" maxOccurs="unbounded"/>
+			<xsd:element name="values" type="importGroupType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="extractDateTime" type="xsd:dateTime" use="required"/>
+		<xsd:attribute name="externalSystemVisId" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="companyType">
+		<xsd:sequence>
+			<xsd:element name="ledger" type="ledgerType" minOccurs="1" maxOccurs="unbounded"/>
+			<xsd:element name="calendarYear" type="calendarYearType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="companyVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="dummy" type="xsd:boolean" use="required"/>
+		<xsd:attribute name="importCalendarColumnIndex" type="xsd:int" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="ledgerType">
+		<xsd:sequence>
+			<xsd:element name="valueType" type="valueTypeType" minOccurs="1" maxOccurs="unbounded"/>
+			<xsd:element name="currency" type="currencyType" minOccurs="1" maxOccurs="unbounded"/>
+			<xsd:element name="dimension" type="dimensionType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ledgerVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="dummy" type="xsd:boolean" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="valueTypeType">
+		<xsd:attribute name="valueTypeVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="currencyType">
+		<xsd:attribute name="currencyVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="dimensionType">
+		<xsd:sequence>
+			<xsd:element name="dimensionElement" type="dimensionElementType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="hierarchy" type="hierarchyType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="dimensionVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="dimensionType" type="dimensionTypeType"/>
+		<xsd:attribute name="importColumnIndex" type="xsd:int" use="required"/>
+	</xsd:complexType>
+
+	<xsd:simpleType name="dimensionTypeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="business"/>
+			<xsd:enumeration value="account"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="dimensionElementType">
+		<xsd:attribute name="dimensionElementVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="creditDebit" type="dimElemCreditDebitType" use="optional"/>
+		<xsd:attribute name="disabled" type="xsd:boolean" use="optional" default="false"/>
+		<xsd:attribute name="notPlannable" type="xsd:boolean" use="optional" default="false"/>
+	</xsd:complexType>
+
+	<xsd:simpleType name="dimElemCreditDebitType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="credit"/>
+			<xsd:enumeration value="debit"/>
+        </xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="hierarchyType">
+		<xsd:sequence>
+			<xsd:element name="hierarchyElement" type="hierarchyElementType" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="hierarchyVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="hierarchyElementType">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="hierarchyElement" type="hierarchyElementType" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="hierarchyElementFeed" type="hierarchyElementFeedType"
+							 minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="hierarchyElementVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="creditDebit" type="hierElemCreditDebitType" use="optional" default="n/a"/>
+	</xsd:complexType>
+
+	<xsd:simpleType name="hierElemCreditDebitType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="n/a"/>
+			<xsd:enumeration value="credit"/>
+			<xsd:enumeration value="debit"/>
+			<xsd:enumeration value="inherit"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="hierarchyElementFeedType">
+		<xsd:attribute name="dimensionElementVisId" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="calendarYearType">
+		<xsd:sequence>
+			<xsd:element name="calendarElement" type="calendarElementType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="calendarYearVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="year" type="xsd:int" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="calendarElementType">
+		<xsd:attribute name="calendarElementVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="period" type="xsd:int" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="importGroupType">
+		<xsd:sequence>
+			<xsd:element name="value" type="importRowType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="companyVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="ledgerVisId" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<!--
+	CP expects the value to be supplied as a long with four implied decimal places.
+	i.e. The original value * 10000.
+	-->
+	<xsd:complexType name="importRowType">
+		<xsd:attribute name="visId0" type="xsd:string" use="required"/>
+		<xsd:attribute name="visId1" type="xsd:string" use="required"/>
+		<xsd:attribute name="visId2" type="xsd:string" use="required"/>
+		<xsd:attribute name="visId3" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId4" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId5" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId6" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId8" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId7" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId9" type="xsd:string" use="optional"/>
+		<xsd:attribute name="valueTypeVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="currencyVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="calendarYearVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="value" type="xsd:long" use="required"/>
+	</xsd:complexType>
+
+	<xsd:element name="genericImport" type="genericImportType"/>
+
+</xsd:schema>

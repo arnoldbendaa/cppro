@@ -1,0 +1,11 @@
+<div class="modelUserSecurity" ng-controller="ModelUserSecurityController">
+	<h1 class="text-center">Model/User Security</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="modelId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Model" binding="modelDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="#Users" binding="numUsers"></wj-flex-grid-column>
+		<wj-flex-grid-column header="User Names..." binding="userSummary"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="85"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

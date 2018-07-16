@@ -1,0 +1,154 @@
+<div class="data-type-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-cogs"></i> 
+			Data Type
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form class="data-type-details-form" name="form" role="form" novalidate>
+			<div class="loader align-center" ng-show="!isMainDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="isMainDataLoaded">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.dataTypeVisId != '']">
+							<label for="">Identifier:</label>
+							<span class="text-danger" ng-show="validation.dataTypeVisId != ''" class="help-block">{{validation.dataTypeVisId}}</span>
+							<input name="name" ng-model="dataType.dataTypeVisId" type="text" class="form-control">
+						</div>
+					</div>	
+					<div class="col-md-8">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.dataTypeDescription != '']">
+							<label for="">Description:</label>
+							<span class="text-danger" ng-show="validation.dataTypeDescription != ''" class="help-block">{{validation.dataTypeDescription}}</span>
+							<input name="name" ng-model="dataType.dataTypeDescription" type="text" class="form-control">
+						</div>				
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<fieldset>
+							<legend>Type</legend>
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.subType != '']">
+								<span class="text-danger" ng-show="validation.subType != ''" class="help-block">{{validation.subType}}</span>
+								<select class="form-control"
+									ng-model="currentSubType"
+									ng-change="changeSubType()"
+									ng-options="(st.name) for st in subTypes track by st.index">
+						        </select>
+							</div>
+						</fieldset>
+					</div>	
+					<div class="col-md-4">
+						<fieldset>
+							<legend>Import/Export Settings</legend>
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.availableForImport != '']">
+								<div class="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="dataType.availableForImport">
+										Available for Import
+									</label>
+								</div>
+								<span class="text-danger" ng-show="validation.availableForImport != ''" class="help-block">{{validation.availableForImport}}</span>
+							</div>
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.availableForExport != '']">
+								<div class="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="dataType.availableForExport">
+										Available for Export
+									</label>
+								</div>
+								<span class="text-danger" ng-show="validation.availableForExport != ''" class="help-block">{{validation.availableForExport}}</span>
+							</div>	
+						</fieldset>
+					</div>
+					<div class="col-md-4">
+						<fieldset>
+							<legend>Update Settings</legend>
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.readOnlyFlag != '']">
+								<div class="checkbox">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="dataType.readOnlyFlag">
+										Read Only
+									</label>
+								</div>
+								<span class="text-danger" ng-show="validation.readOnlyFlag != ''" class="help-block">{{validation.readOnlyFlag}}</span>
+							</div>		
+						</fieldset>
+					</div>
+				</div>
+
+				<div ng-show="areMeasureDetailsDisplayed">
+
+					<!-- <div class="modalDivider"></div> -->
+
+					<!-- <h4 class="modalDetailsGroupTitle">Measure Details:</h4> -->
+					<div class="row dataClassSettings">
+						<div class="col-md-6">
+							<fieldset>
+								<legend>Measure Details - Data Class</legend>
+								<div class="form-group" ng-class="{true: 'has-error'}[validation.measureClass != '']">
+									<span class="text-danger" ng-show="validation.measureClass != ''" class="help-block">{{validation.measureClass}}</span>
+									<select class="form-control"
+										ng-model="currentMeasureClass"
+										ng-change="changeMeasureClass()"
+										ng-options="(mc.name) for mc in measureClasses track by mc.index">
+							        </select>
+								</div>
+							</fieldset>
+						</div>
+						<div class="col-md-6">
+							<fieldset>
+								<legend>Measure Details - Data Class Details</legend>
+								<div class="form-group" ng-class="{true: 'has-error'}[validation.measureLength != '']">
+									<label for="">Length:</label>
+									<span class="text-danger" ng-show="validation.measureLength != ''" class="help-block">{{validation.measureLength}}</span>
+									<input name="name" ng-model="dataType.measureLength" ng-disabled="measureLengthDisabled" type="text" class="form-control">
+								</div>
+								<div class="form-group" ng-class="{true: 'has-error'}[validation.measureScale != '']">
+									<label for="">Decimal Places:</label>
+									<span class="text-danger" ng-show="validation.measureScale != ''" class="help-block">{{validation.measureScale}}</span>
+									<input name="name" ng-model="dataType.measureScale" ng-disabled="measureScaleDisabled" type="text" class="form-control">
+								</div>
+								<div class="form-group" ng-class="{true: 'has-error'}[validation.measureValidation != '']">
+									<label for="">Validation:</label>
+									<span class="text-danger" ng-show="validation.measureValidation != ''" class="help-block">{{validation.measureValidation}}</span>
+									<input name="name" ng-model="dataType.measureValidation" ng-disabled="measureValidationDisabled" type="text" class="form-control">
+								</div>
+							</fieldset>
+						</div>
+						<br class="clearBoth" />
+					</div>
+
+				</div>
+
+				<div ng-show="areVirtualDetailsDisplayed">
+					<!-- <div class="modalDivider"></div> -->
+					<fieldset>
+						<legend>Virtual Details</legend>
+						<!-- <h4 class="modalDetailsGroupTitle">Virtual Details:</h4> -->
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.formulaExpr != '']">
+							<label for="">Formula:</label>
+							<span class="text-danger" ng-show="validation.formulaExpr != ''" class="help-block">{{validation.formulaExpr}}</span>
+							<textarea name="formula" ng-model="dataType.formulaExpr" class="virtualFormula form-control" rows="3">{{dataType.formulaExpr}}</textarea>
+						</div>
+					</fieldset>
+				</div>
+
+				<div ng-show="!isMainDataLoaded">
+					<br/>
+					<div class="loader align-center">
+						<i class="fa fa-refresh fa-2x fa-spin"></i>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">{{submitButtonName}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

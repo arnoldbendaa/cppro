@@ -1,0 +1,12 @@
+<div class="data-types" ng-controller="DataTypesPageController">
+	<h1 class="text-center">Data Types</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="dataTypeId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Data Type ID" binding="dataTypeVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Type" binding="subTypeName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Measure Class" binding="measureClassName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="dataTypeDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="135" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+</div>

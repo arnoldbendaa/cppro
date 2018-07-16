@@ -1,0 +1,169 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+ body {
+    overflow-x: hidden;
+ }
+
+/* Toggle Styles */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 23px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: rgb(51,51,101);
+    padding:3px;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #888;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 33px;
+    font-size: 18px;
+    line-height: 33px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: rgb(51,51,101);
+    background: #e6e6e6;
+    height:33px;
+    background: linear-gradient(#f7f7f7, #e6e6e6);
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #333;
+    background: #e6e6e6;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 10px;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 30px;
+    }
+    #page-content-wrapper {
+        margin-top: -30px;
+        position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+#rowsNumber{
+    width:50px;
+    height:23px;
+    border-width:1px;
+}
+.sidebar-nav li i.fa{
+    font-size:10px;
+}
+#menu-toggle i{
+    margin-left:-30px;
+    z-index:1000;
+    margin-top:10px;
+    position:relative;
+    font-size:16px;
+}
+.toggled #menu-toggle i{
+    margin-left:0;
+}
+#example_paginate{
+     float: right;
+     text-align: right;
+     padding-top:0.25em;
+ }
+#example_paginate .paginate_button {
+box-sizing:border-box;display:inline-block;min-width:1.5em;padding:0.5em 1em;margin-left:2px;text-align:center;text-decoration:none !important;cursor:pointer;*cursor:hand;color:#333 !important;border:1px solid transparent;
+}
+#example_paginate .paginate_button.current{
+    box-sizing:border-box;display:inline-block;min-width:1.5em;padding:0.5em 1em;margin-left:2px;text-align:center;text-decoration:none !important;cursor:pointer;*cursor:hand;color:#333 !important;border:1px solid transparent;
+    background:linear-gradient(to bottom, #fff 0%, #dcdcdc 100%)
+}
+#example thead tr{
+    background : linear-gradient(rgb(244,241,234),rgb(238,233,220));
+}
+#example{
+    color:rgb(51,51,101);
+}
+
+table.dataTable.stripe tbody tr.odd, table.dataTable.display tbody tr.odd{
+    background-color:rgb(255,253,243);
+}

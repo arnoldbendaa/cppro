@@ -1,0 +1,36 @@
+<div class="notes-viewer" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-comments-o"></i>
+			Notes
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-show="!isDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="nv-panel" ng-show="isDataLoaded">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th class="clickable" ng-click="orderBy = ''; reverse=false">#</th>
+						<th class="clickable" ng-click="orderBy = 'comment'; reverse=!reverse">Comment</th>
+						<th class="clickable" ng-click="orderBy = 'user'; reverse=!reverse">Author</th>
+						<th class="clickable" ng-click="orderBy = 'date'; reverse=!reverse">Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="notes in notes | orderBy:orderBy:reverse">
+						<td>{{$index+1}}</td>
+						<td title="Comment">{{notes.comment}}</td>
+						<td title="Author">{{notes.user}}</td>
+						<td title="Date"><div class="date">{{notes.date}}</div></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

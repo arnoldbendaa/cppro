@@ -1,0 +1,13 @@
+<div class="system-properties" ng-controller="SystemPropertiesPageController">
+	<h1 class="text-center">System Properties</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="systemPropertyId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Property" binding="property"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Value" binding="value"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="description"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="85"></wj-flex-grid-column>
+	</wj-flex-grid>
+	
+	<div id="menu" style="position: absolute; display: none; background-color: white; padding: 10px; z-index: 500"> Menu</div>
+</div>

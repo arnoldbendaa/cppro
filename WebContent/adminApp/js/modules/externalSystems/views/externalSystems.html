@@ -1,0 +1,15 @@
+<div class="external-system" ng-controller="ExternalSystemController">
+	<h1 class="text-center">External Systems</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="externalSystemId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Name" binding="externalSystemVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="System Type" binding="systemType"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="externalSystemDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Location" binding="location"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Enabled" binding="enabled"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="135" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+
+	<div class="clearBoth"></div>
+</div>

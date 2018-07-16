@@ -1,0 +1,29 @@
+<div class="dashboard-select-flat-form" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+	<!-- <i class="fa fa-meh-o"></i> -->
+		<h3>
+		Select Flat Form
+		</h3>
+	</div>
+	<div class="modal-body">
+	    <div class="form-group row getElementToCalcResize1">
+            <div class="form-group col-md-7">
+		        <label for="model">Model:</label>
+		        <select name="model" class="form-control" id="activeModel" ng-change="selectCurrentFinanceCube()" ng-model="financeCubeId" ng-options="financeCube.financeCubeId as financeCube.modelVisId + ' - ' + financeCube.description for financeCube in financeCubeModels.listFinanceCubeModels">
+		        </select>
+	        </div>
+	    </div>
+
+		<div id="kendoGrid"
+         kendo-grid="myKendo"
+         k-data-source="gridDataSource"
+         options="gridOptions"
+         k-columns="gridColumns"
+         k-on-change="handleChange(dataItem)"></div>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+		<button class="btn btn-success" ng-click="loadForm()" type="reset">Ok</button>
+	</div>
+</div>

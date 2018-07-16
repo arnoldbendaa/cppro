@@ -1,0 +1,83 @@
+<div id="mainMenu" ng-cloak class="ng-cloak">
+	<div class="left">
+		<div class="back">
+			<a href="javascript:void(0)" ng-click="hideMenu()" title="Close Menu">
+				<i class="fa fa-arrow-circle-o-left"></i>
+			</a>
+		</div>
+		<ul>
+			<li><a href="javascript:void(0)" ng-class="{'active': mainMenuVisibility.newFlatForm}" ng-click="switchMainMenu('newFlatForm')"><i class="fa fa-file-o"></i>New</a></li>
+			<li><a href="javascript:void(0)" ng-class="{'active': mainMenuVisibility.save}" ng-click="switchMainMenu('save')"><i class="fa fa-save"></i>Save</a></li>
+			<li><a href="javascript:void(0)" ng-class="{'active': mainMenuVisibility.saveAs}" ng-click="switchMainMenu('saveAs')"><i class="fa fa-save s1"></i><i class="fa fa-save s2"></i>Save As</a></li>
+			<li><a href="javascript:void(0)" ng-class="{'active': mainMenuVisibility.copyTemplateTo}" ng-click="switchMainMenu('copyTemplateTo')"><i class="fa fa-copy"></i></i>Copy Template To</a></li>
+			<li>
+				<span class="btn btn-default file-input btn-file" title="Import Excel File">
+					<i class="fa fa-folder-open-o"></i>Import...
+					<input type="file" ngf-select ngf-change="upload($files)" ng-click="hideMenu()" accept=".xls,.xlsx">
+				</span>
+			</li>
+			<li><a href="javascript:void(0)" ng-click="exit()"><i class="fa fa-close"></i>Exit</a></li>
+		</ul>
+	</div>
+	<div class="right">
+
+		<div class="box newFlatForm" ng-show="mainMenuVisibility.newFlatForm">
+			<h3 class="title"><i class="fa fa-file-o"></i>New</h3>
+			<div class="content">
+				<button class="btn btn-success pull-left" ng-click="newFlatForm()"><i class="fa fa-plus-circle"></i> New Workbook</button>
+			</div>
+		</div>
+
+		<div class="box save" ng-show="mainMenuVisibility.save">
+			<h3 class="title"><i class="fa fa-save"></i>Save</h3>
+			<div class="content" ng-controller="DetailsController">
+				<form role="form" name="detailsForm">
+					<div class="form-group" ng-class="{ 'has-error': detailsForm.visId.$invalid }" >
+						<label for="name">Name:</label>
+						<input type="text" class="form-control" id="name" name="visId" ng-model="flatForm.visId" ng-maxlength="120" required >
+						<span class="text-danger" ng-show="detailsForm.visId.$invalid">
+							Length of Name must be supplied and not exceed 120 on a XmlForm.
+						</span>				
+					</div>
+		  			<div class="form-group" ng-class="{'has-error': detailsForm.description.$invalid}">
+						<label for="description">Description:</label>
+						<input type="text" class="form-control" id="description" name="description" ng-model="flatForm.description" ng-maxlength="128">
+						<span class="text-danger" ng-show="detailsForm.description.$invalid">
+							Length of Description can not exceed 128 on a XmlForm.
+						</span>
+		  			</div>
+		  			<div class="form-group" ng-class="{'has-error': detailsForm.currentFinanceCube.$invalid}">
+						<label for="financeCube">Finance Cube:</label>
+						<select class="form-control"
+							id="financeCube"
+							name="currentFinanceCube"
+							required
+							ng-model="currentFinanceCube"
+							ng-change="changeFinanceCube()"
+							ng-options="(fc.financeCubeVisId) for fc in financeCubes track by fc.financeCubeId">
+					    </select>   
+						<span class="text-danger" ng-show="detailsForm.currentFinanceCube.$invalid">
+							Finance Cube must be set.
+						</span>					
+		  			</div>
+					<button class="btn btn-success pull-right" ng-disabled="detailsForm.$invalid" ng-click="save()">Save</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="box saveAs" ng-show="mainMenuVisibility.saveAs">
+			<h3 class="title"><i class="fa fa-save s1"></i><i class="fa fa-save s2"></i>Save As</h3>
+			<div class="content">
+				<save-flat-form-as save-as-params="saveAsParams" spread="spread" flatform="flatForm" id="save-flat-form-as"></save-flat-form-as>
+			</div>
+		</div>
+
+		<div class="box copyTemplateTo" ng-show="mainMenuVisibility.copyTemplateTo">
+			<h3 class="title"><i class="fa fa-copy"></i></i></i>Copy Template To</h3>
+			<div class="content">
+				<copy-template-to id="copy-template-to" sourceid="flatForm.flatFormId" ng-if="mainMenuVisibility.copyTemplateTo"></copy-template-to>
+			</div>
+		</div>
+
+	</div>
+</div>

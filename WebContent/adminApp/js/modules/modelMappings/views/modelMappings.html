@@ -1,0 +1,20 @@
+<div class="model-mappings" ng-controller="ModelMappingsController">
+	<h1 class="text-center">Model Mappings</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="mappedModelId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Name" binding="mappedModelVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="mappedModelDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="External System" binding="externalSystemVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Companies" binding="companies"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Ledger" binding="ledgerVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Global" binding="global"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="135" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+<div class="multiImportButton" ng-show="multiImport" >
+<button type="button" class="btn btn-primary btn-xs" ng-click="startMultiImport()">Import</button> 
+<button type="button" class="btn btn-danger btn-xs" ng-click="cancelMultiImport()">Cancel</button>
+</div>
+	<div class="clearBoth"></div>
+	
+</div>

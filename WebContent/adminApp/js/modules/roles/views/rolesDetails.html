@@ -1,0 +1,44 @@
+<div class="role-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-user"></i>
+			Role
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-show="!isDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+	
+		<div class="inner" ng-show="isDataLoaded">
+			<div class="row getToCalc1">
+				<div class="form-group col-md-6" ng-class="{true: 'has-error'}[validation.roleVisId != '']">
+					<label for="">Identifier:</label>
+					<span class="text-danger" ng-show="validation.roleVisId != ''" class="help-block">{{validation.roleVisId}}</span>
+					<input name="name" maxlength="20" ng-model="role.roleVisId" type="text"  class="form-control">
+					
+				</div>
+				<div class="form-group col-md-6" ng-class="{true: 'has-error'}[validation.roleDescription != '']">
+					<label for="">Description:</label>
+					<span class="text-danger" ng-show="validation.roleDescription != ''" class="help-block">{{validation.roleDescription}}</span>
+					<input name="name" maxlength="60" ng-model="role.roleDescription" type="text"  class="form-control">
+				</div>
+			</div>
+		</div>
+		
+		<div class="modalDivider getToCalc2"></div>
+
+		<div>
+			<h4 class="groupTitle getToCalc3">Security:</h4>
+			<div class="ro-panel">
+				<div class="role-areas">
+					<js-tree tree-data="scope" tree-model="treeProcess" tree-plugins="checkbox,wholerow" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode;"></js-tree>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

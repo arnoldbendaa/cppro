@@ -1,0 +1,10 @@
+<div class="task-list inner" ng-controller="DatabaseController">
+	<h1 class="text-center">List of available tasks</h1>
+	
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="tidyTaskId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Name" binding="tidyTaskVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="tidyTaskDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="135" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+</div>

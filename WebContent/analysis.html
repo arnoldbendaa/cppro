@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+	<link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="./bower_components/jquery-bootstrap-scrolling-tabs/jquery.scrolling-tabs.min.css" rel="stylesheet" type="text/css">
+	<link href="./bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="./css/theme.css" rel="stylesheet" type="text/css">
+	<link href="./css/layout.css" rel="stylesheet" type="text/css">
+	<link href="./css/simple-sidebar.css" rel="stylesheet" type="text/css">
+	<link href="./css/common.css" rel="stylesheet" type="text/css">
+
+	<script type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+	
+	<script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./bower_components/jquery-bootstrap-scrolling-tabs/jquery.scrolling-tabs.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<title>Communication</title>
+</head>
+<body>
+<div id="wrapper">
+	<div id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<li class="sidebar-brand">
+				<a href="#">
+					Actions
+				</a>
+			</li>
+			<li>
+				<a href="#"><i class="fa fa-circle" aria-hidden="true">  &nbsp;</i>New</a>
+			</li>
+			<li>
+				<a href="#"><i class="fa fa-circle" aria-hidden="true">  &nbsp;</i>Refresh</a>
+			</li>
+		</ul>
+	</div>
+	<a href="#menu-toggle" id="menu-toggle"><i class="fa fa-caret-square-o-left text-gray" aria-hidden="true"></i></a>
+	<div id="page-content-wrapper">
+		<div class="container-fluid">
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#home">Public Analysis</a></li>
+					<li><a data-toggle="tab" href="#menu1">My Analysis</a></li>
+				</ul>
+				<div class="tab-content">
+					<div id="home" class="tab-pane fade in active">
+					  <div id="container"></div>
+
+					</div>
+					<div id="menu1" class="tab-pane fade">
+					analysis
+					</div>
+				</div>
+		</div>
+	</div>
+
+
+</div>
+<script>
+	$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+		if($("#wrapper")[0].className=="toggled"){
+			$("#menu-toggle").find("i").removeClass("fa-caret-square-o-left");
+			$("#menu-toggle").find("i").addClass("fa-caret-square-o-right");
+		}else{
+			$("#menu-toggle").find("i").addClass("fa-caret-square-o-left");
+			$("#menu-toggle").find("i").removeClass("fa-caret-square-o-right");
+		}
+	});
+	var jsonData = [
+		{
+			id  : 1,
+			text : "Folder 1",
+			type: "root",
+			state : {
+				selected  : false
+			},
+			children    : [
+				{
+					id  : 2,
+					text : "Sub Folder 1 <span class='fa fa-folder fa-2x text-yellow' style='position:absolute;right:20px'></span>",
+					type: "child",
+					state : {
+						selected  : false
+					},
+				},
+				{
+					id  : 3,
+					text : "Sub Folder 2",
+					type: "child",
+					state : {
+						selected  : false
+					},
+				}
+			]
+		},
+		{
+			id: 4,
+			text : "Folder 2",
+			state : {
+				selected : true
+			},
+			children : []
+		}
+	];
+
+	$('#container')
+			.jstree({
+				core: {
+					data: jsonData
+				},
+				types: {
+					"root": {
+						"icon" : "fa fa-plus-square-o"
+					},
+					"child": {
+//						"icon" : "fa fa-square fa-minus-square-o"
+						"icon" : 'fa fa-square',
+					},
+					"default" : {
+						"icon":"fa fa-square-o"
+					}
+				},
+				plugins: ["search", "themes", "types"]
+			}).on('open_node.jstree', function (e, data) { data.instance.set_icon(data.node, "fa fa-minus-square-o");
+	}).on('close_node.jstree', function (e, data) { data.instance.set_icon(data.node, "fa fa-plus-square-o"); });
+
+</script>
+
+</body>
+</html>

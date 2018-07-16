@@ -1,0 +1,93 @@
+<div id="editor">
+
+	<div class="ribbon">
+
+		<div class="group" ng-controller="HeadingGridlineController">
+			<div class="content">
+				<div class="col">
+					<div class="row">
+		                <a class="btn btn-default" ng-click="showHideHeadings('row')" title="Row Header">
+		                    <i class="fa wijmo-wijribbon-checked" ng-if="areHeadingsVisible.row"></i>
+		                    <i class="fa wijmo-wijribbon-unchecked" ng-if="!areHeadingsVisible.row"></i>
+		                    <span>Row Header</span>
+		                </a>
+					</div>
+					<div class="row">
+		                <a class="btn btn-default" ng-click="showHideHeadings('column')" title="Column Header">
+		                    <i class="fa wijmo-wijribbon-checked" ng-if="areHeadingsVisible.column"></i>
+		                    <i class="fa wijmo-wijribbon-unchecked" ng-if="!areHeadingsVisible.column"></i>
+		                    <span>Column Header</span>
+		                </a>
+					</div>					
+				</div>
+				<div class="separator big"></div>	
+				<div class="col">
+					<div class="row">
+		                <a class="btn btn-default" ng-click="showHideGridLines('column')" title="Vertical Gridline">
+		                    <i class="fa wijmo-wijribbon-checked" ng-if="areGridLinesVisible.column"></i>
+		                    <i class="fa wijmo-wijribbon-unchecked" ng-if="!areGridLinesVisible.column"></i>		                
+		                    <span>Vertical Gridline</span>
+		                </a>
+					</div>					
+					<div class="row">
+		                <a class="btn btn-default" ng-click="showHideGridLines('row')" title="Horizontal Gridline">
+		                    <i class="fa wijmo-wijribbon-checked" ng-if="areGridLinesVisible.row"></i>
+		                    <i class="fa wijmo-wijribbon-unchecked" ng-if="!areGridLinesVisible.row"></i>		                
+		                    <span>Horizontal Gridline</span>
+		                </a>
+					</div>
+				</div>								
+			</div>
+			<div class="caption">Show/Hide</div>
+		</div>
+
+		<div class="group" ng-controller="ZoomController">
+            <div class="content">
+                <div class="col">
+					<div class="btn-group pull-left btn-build-table" dropdown>
+	                    <a class="btn btn-default dropdown-toggle" title="Zoom">
+	                        <i class="fa fa-clipboard wijmo-wijribbon-zoom wijmo-wijribbon-bigbutton"></i>
+	                        <br><span class="dropdownMenu">Zoom</span>
+	                    </a>
+	                    <ul class="dropdown-menu">
+	                    	<li><a href="javascript:void(0)" ng-click="zoomTo(400)">400%</a></li>
+	                        <li><a href="javascript:void(0)" ng-click="zoomTo(200)">200%</a></li>
+	                        <li><a href="javascript:void(0)" ng-click="zoomTo(150)">150%</a></li>
+	                        <li><a href="javascript:void(0)" ng-click="zoomTo(100)">100%</a></li>
+	                        <li><a href="javascript:void(0)" ng-click="zoomTo(75)">75%</a></li>
+	                        <li><a href="javascript:void(0)" ng-click="zoomTo(50)">50%</a></li>
+	                        <li><a href="javascript:void(0)" ng-click="zoomTo(25)">25%</a></li>
+	                    </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="zoomTo(100)" title="100%">
+                        <i class="fa fa-clipboard wijmo-wijribbon-zoomdefault wijmo-wijribbon-bigbutton"></i>
+                        <br><span>100%</span>
+                    </a>
+                </div>                
+            </div>
+            <div class="caption">Zoom</div>
+        </div>
+
+		<div class="group" ng-controller="ViewPortController">
+			<div class="content">
+				<div class="col">
+	                <a class="btn btn-default" ng-click="freeze()" title="Freeze Pane">
+	                    <i class="fa fa-clipboard wijmo-wijribbon-freeze wijmo-wijribbon-bigbutton"></i>
+	                    <br><span>Freeze Pane</span>
+	                </a>			
+				</div>
+				<div class="col">
+                    <a class="btn btn-default" ng-click="unfreeze()" title="UnFreeze Pane">
+                        <i class="fa fa-clipboard wijmo-wijribbon-unfreeze wijmo-wijribbon-bigbutton"></i>
+                        <br><span>UnFreeze Pane</span>
+                    </a>					
+				</div>				
+			</div>
+			<div class="caption">Viewport</div>
+		</div>
+
+	</div>
+
+</div>

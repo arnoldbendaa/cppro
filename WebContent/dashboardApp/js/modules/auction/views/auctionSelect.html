@@ -1,0 +1,71 @@
+<div class="dashboard-grid" data-cookie="{{cookieName}}">
+    <div class="modal-header">
+        <!-- <i class="fa fa-meh-o"></i> -->
+        <h3>
+			Select Auction
+		</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row getElementToCalcResize1">
+            <form name="filterForm">
+                <div class="form-group col-md-5">
+                    <label for="model">Model:</label>
+                    <select name="model" class="form-control" id="activeModel" ng-change="selectCurrentModel(dashboardModel)" ng-model="dashboardModel.model" ng-options="(model) for model in dashboardModel.models">
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label>From:</label>
+                    <p class="input-group">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="yyyy-MM-dd" 
+                               datepicker-popup='yyyy-MM-dd' 
+                               ng-model="from" 
+                               is-open="datePickerOptions.opened.from" 
+                               ng-click="openDatePicker('from')" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="$event.stopPropagation(); openDatePicker('from')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="form-group col-md-3 datepicker-right">
+                    <label>To:</label>
+                    <p class="input-group">
+                        <input type="text" 
+                               class="form-control" 
+                               placeholder="yyyy-MM-dd" 
+                               datepicker-popup='yyyy-MM-dd' 
+                               ng-model="to" 
+                               is-open="datePickerOptions.opened.to" 
+                               ng-click="openDatePicker('to')" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="$event.stopPropagation(); openDatePicker('to')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="form-group col-md-1">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-info form-control" ng-click="setFilter()"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div id="kendoGrid"
+             kendo-grid="myKendo"
+             k-data-source="gridDataSource"
+             options="gridOptions"
+             k-columns="gridColumns"
+             k-on-dblclick="loadAuction()"
+             k-on-change="handleChange(dataItem)" >
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+        <button class="btn btn-success" ng-click="loadAuction()" ng-disabled="disableSelectAuction" type="reset">Ok</button>
+    </div>
+</div>

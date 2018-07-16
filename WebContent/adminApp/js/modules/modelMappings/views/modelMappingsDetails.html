@@ -1,0 +1,248 @@
+<form class="model-mappings-details-form" name="form" novalidate data-cookie="{{cookieName}}">
+    <div class="modal-header">
+        <h3><i class="fa fa-exchange"></i>
+			{{global ? 'Global ' : ''}}Mapped Model
+		</h3>
+    </div>
+    <div class="modal-body">
+            <p class="bg-danger text-center" ng-if="mappedModelLoader.mappedModelDetailsLoaded && mappedModel.validationError !== null">{{mappedModel.validationError}}</p>
+            <tabset type="pills" ng-if="mappedModel.validationError === null">
+            <!-- Step 1 - External System -->
+            <tab heading="1" active="steps[0].active" ng-click="tabSelected()">
+                <h4 class="groupTitle getToCalc1-1">External System</h4>
+                <p class="bg-info getToCalc1-2">Choose the external system you want to interface with Collaborative Planning.</p>
+                <div class="loader align-center" ng-show="!externalSystemsLoader.externalSystemsLoaded || !mappedModelLoader.mappedModelDetailsLoaded"><i class="fa fa-refresh fa-2x fa-spin"></i>
+                </div>
+                <div class="inner" ng-show="externalSystemsLoader.externalSystemsLoaded && mappedModelLoader.mappedModelDetailsLoaded">
+
+                    <wj-flex-grid class="grid mh400 elementToResize1" is-read-only="true" selection-mode="Row" headers-visibility="Column" items-source="externalSystemsCtx.data" control="externalSystemsCtx.flex">
+                        <wj-flex-grid-column width="*" header="Name" name="externalSystemVisId" binding="externalSystemVisId"></wj-flex-grid-column>
+                        <wj-flex-grid-column width="*" header="Description" name="externalSystemDescription" binding="externalSystemDescription"></wj-flex-grid-column>
+                        <wj-flex-grid-column width="*" header="Location" name="location" binding="location"></wj-flex-grid-column>
+                        <wj-flex-grid-column width="*" header="Enabled" name="enabled" binding="enabled"></wj-flex-grid-column>
+                        <wj-flex-grid-column width="*" header="Selection" name="selection" align="center">
+                            <input type="radio" name="externalSystemCheckbox" ng-disabled="!$item.enabled " ng-checked="selectedExternalSystem === $item" ng-click="selectExternalSystem($item); $event.stopPropagation();" />
+                        </wj-flex-grid-column>
+                    </wj-flex-grid>
+
+                </div>
+            </tab>
+            <!-- Step 2 - Company -->
+            <tab heading="2" disabled="steps[1].disable" active="steps[1].active" ng-click="tabSelected()">
+                <h4 class="groupTitle getToCalc2-1">Company</h4>
+                <p class="bg-info getToCalc2-2">Select a {{mappedModel.global ? 'companies' : 'company'}} to base the mapping on.</p>
+                <div class="loader align-center" ng-show="!mappedModelLoader.externalCompaniesLoaded"><i class="fa fa-refresh fa-2x fa-spin"></i>
+                </div>
+                <div class="inner" ng-show="mappedModelLoader.externalCompaniesLoaded">
+
+                    <wj-flex-grid class="grid mh400 elementToResize2" is-read-only="true" selection-mode="Row" headers-visibility="Column" items-source="externalCompaniesCtx.data" control="externalCompaniesCtx.flex">
+                        <wj-flex-grid-column width="3*" header="Name" name="companyVisId" binding="companyVisId"></wj-flex-grid-column>
+                        <wj-flex-grid-column width="*" header="Selection" name="selection" align="center">
+                            <input type="{{global === true ? 'checkbox' : 'radio'}}" name="externalCompanyCheckbox" ng-disabled="isDisabledExternalCompany($item)" ng-checked="isSelectedExternalCompany($item)" ng-click="selectExternalCompany($item); $event.stopPropagation();" />
+                        </wj-flex-grid-column>
+                    </wj-flex-grid>
+
+                </div>
+            </tab>
+            <!-- Step 3 - Ledger -->
+            <tab heading="3" disabled="steps[2].disable" active="steps[2].active" ng-click="tabSelected()">
+                <h4 class="groupTitle getToCalc3-1">Ledger</h4>
+                <p class="bg-info getToCalc3-2">Select a ledger to be used in the mapping.</p>
+                <div class="loader align-center" ng-show="!mappedModelLoader.externalLedgersLoaded"><i class="fa fa-refresh fa-2x fa-spin"></i>
+                </div>
+                <div class="inner" ng-show="mappedModelLoader.externalLedgersLoaded">
+
+                    <wj-flex-grid class="grid mh400 elementToResize3" is-read-only="true" selection-mode="Row" headers-visibility="Column" items-source="externalLedgersCtx.data" control="externalLedgersCtx.flex">
+                        <wj-flex-grid-column width="*" header="Name" name="ledgerDescription" binding="ledgerDescription"></wj-flex-grid-column>
+                        <wj-flex-grid-column width="2*" header="Companies" name="companies" binding="companies"></wj-flex-grid-column>
+                        <wj-flex-grid-column width="*" header="Selection" name="selection" align="center">
+                            <input type="radio" name="externalLedgerCheckbox" ng-checked="selectedExternalLedger === $item" ng-click="selectExternalLedger($item); $event.stopPropagation();" />
+                        </wj-flex-grid-column>
+                    </wj-flex-grid>
+
+                </div>
+            </tab>
+            <!-- Step 4 - Model details -->
+            <tab heading="4" disabled="steps[3].disable" active="steps[3].active" ng-click="tabSelected()">
+                <h4 class="groupTitle">Model details</h4>
+                <p class="bg-info">Input a model name and model description.</p>
+                <div class="loader align-center" ng-show="!mappedModelLoader.externalModelSuggestedAndDimensionsLoaded"><i class="fa fa-refresh fa-2x fa-spin"></i>
+                </div>
+                <div class="inner" ng-show="mappedModelLoader.externalModelSuggestedAndDimensionsLoaded">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="mappedModelVisId">Model:</label>
+                            <input name="mappedModelVisId" id="mappedModelVisId" ng-disabled="mappedModel.mappedModelId !== -1" ng-model="suggestedModel.modelVisId" ng-class="{'has-error': form.mappedModelVisId.$invalid && form.mappedModelVisId.$dirty}" type="text" class="form-control" ng-maxlength="50" required>
+                            <p class="text-danger" ng-show="form.mappedModelVisId.$invalid && form.mappedModelVisId.$dirty">
+                                <span ng-show="form.mappedModelVisId.$error.required">* Please supply a model name.</span>
+                                <span ng-show="form.mappedModelVisId.$error.maxlength">* Length of name must not exceed 50 characters.</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label for="mappedModelDescription">Description:</label>
+                            <input name="mappedModelDescription" id="mappedModelDescription" ng-disabled="mappedModel.mappedModelId !== -1" ng-model="suggestedModel.modelDescription" ng-class="{'has-error': form.mappedModelDescription.$invalid && form.mappedModelDescription.$dirty}" type="text" class="form-control" ng-maxlength="128" required>
+                            <p class="text-danger" ng-show="form.mappedModelDescription.$invalid && form.mappedModelDescription.$dirty">
+                                <span ng-show="form.mappedModelDescription.$error.required">* Please supply a model description.</span>
+                                <span ng-show="form.mappedModelDescription.$error.maxlength">* Length of description must not exceed 128 characters.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </tab>
+            <!-- Step 5 - Dimensions and Hierarchies -->
+            <tab heading="5" disabled="steps[4].disable" active="steps[4].active" ng-click="tabSelected()">
+                <h4 class="groupTitle getToCalc5-1">Dimensions and Hierarchies</h4>
+                <p class="bg-info getToCalc5-2">Select the dimensions and hierarchies to include in the mapping.</p>
+                <div class="loader align-center" ng-show="!mappedModelLoader.externalModelSuggestedAndDimensionsLoaded"><i class="fa fa-refresh fa-2x fa-spin"></i>
+                </div>
+                <div class="inner" ng-show="mappedModelLoader.externalModelSuggestedAndDimensionsLoaded">
+                    <tabset class="step5tabset">
+                        <tab heading="Cost Centre" ng-click="refreshStep5Flex()">
+                            <br class="clearBoth">
+                            <div class="row">
+                                <div class="col-md-4 tree-view mh400 elementToResize5ccLeft">
+                                    <js-tree ng-if="mappedModel.mappedModelId == -1" tree-data="scope" id="businessNode" tree-model="businessDimensionTreeModel" tree-plugins="checkbox" tree-events="ready:readyTree;select_node:selectBusinessDimensionNode;deselect_node:deselectBusinessDimensionNode"></js-tree>
+                                    <js-tree ng-if="mappedModel.mappedModelId !== -1" tree-data="scope" id="businessNode" tree-model="businessDimensionTreeModel"></js-tree>
+                                </div>
+                                <div class="col-md-8 flex-view">
+                                    <div id="businessDimensionTable" class="dimension-grid mh400 elementToResize5ccRight"></div>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab heading="Expense Code" ng-click="refreshStep5Flex()">
+                            <br class="clearBoth">
+                            <div class="row">
+                                <div class="col-md-4 tree-view mh400 elementToResize5ecLeft">
+                                    <js-tree ng-if="mappedModel.mappedModelId == -1" tree-data="scope" id="accountNode" tree-model="accountDimensionTreeModel" tree-plugins="checkbox" tree-events="ready:readyTree;select_node:selectAccountDimensionNode;deselect_node:deselectAccountDimensionNode"></js-tree>
+                                    <js-tree ng-if="mappedModel.mappedModelId !== -1" tree-data="scope" id="accountNode" tree-model="accountDimensionTreeModel"></js-tree>
+                                </div>
+                                <div class="col-md-8 flex-view">
+                                    <div id="accountDimensionTable" class="dimension-grid mh400 elementToResize5ecRight"></div>
+                                </div>
+                            </div>
+                        </tab>    
+                    </tabset>
+                </div>
+            </tab>
+            <!-- Step 6 - Dimension Elements -->
+            <tab heading="6" disabled="steps[5].disable" active="steps[5].active" ng-click="tabSelected()">
+                <h4 class="groupTitle getToCalc6-1">Dimension Elements</h4>
+                <p class="bg-info getToCalc6-2">Add mapping details to import the required business or account elements in the model.</p>
+                <tabset class="step6tabset">
+                    <tab heading="Cost Centre" ng-click="refreshStep6Flex()">
+                        <br class="clearBoth">
+                        <div class="row">
+                            <div class="col-md-4 tree-view mh400 elementToResize6ccLeft">
+                                <js-tree id="businessDimNode" tree-ajax="{{treeAjaxBusinessDimElement}}" tree-plugins="checkbox" tree-events="loaded:readyDimensionElementTree;select_node:selectBusinessDimElementNode;deselect_node:deselectBusinessDimElementNode;before_open:beforeOpen"></js-tree>
+                            </div>
+                            <div class="col-md-8 flex-view">
+                                <div id="businessDimensionElementTable" class="dimension-grid mh250 elementToResize6ccRight"></div>
+                            </div>
+                        </div> 
+                    </tab>
+                    <tab heading="Expense Code" ng-click="refreshStep6Flex()">
+                        <br class="clearBoth">
+                        <div class="row">
+                            <div class="col-md-4 tree-view mh400 elementToResize6ecLeft">
+                                <js-tree id="accountDimNode" tree-ajax="{{treeAjaxAccountDimElement}}" tree-plugins="checkbox" tree-events="ready:readyDimensionElementTree;select_node:selectAccountDimElementNode;deselect_node:deselectAccountDimElementNode;before_open:beforeOpen"></js-tree>
+                            </div>
+                            <div class="col-md-8 flex-view">
+                                <div id="accountDimensionElementTable" class="dimension-grid mh250 elementToResize6ecRight"></div>
+                            </div>
+                        </div> 
+                    </tab>
+                </tabset>
+            </tab>
+            <!-- Step 7 - Calendar -->
+            <tab heading="7" disabled="steps[6].disable" active="steps[6].active" ng-click="tabSelected()">
+                <h4 class="groupTitle">Calendar</h4>
+                <p class="bg-info">Define the composition of the CP Calendar and how periods in each year map into the external system.</p>
+                <div class="inner">
+                    <fieldset>
+                    <legend>Calendar Details</legend>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="mappedCalendarlVisId">Hierarchy Identifier:</label>
+                                <input name="mappedCalendarlVisId" id="mappedCalendarlVisId" ng-model="modelSuggestedCalendar.calendarVisId" ng-class="{'has-error': form.mappedCalendarlVisId.$invalid && form.mappedCalendarlVisId.$dirty}" type="text" class="form-control" ng-maxlength="59" required>
+                                <p class="text-danger" ng-show="form.mappedCalendarlVisId.$invalid && form.mappedCalendarlVisId.$dirty">
+                                    <span ng-show="form.mappedCalendarlVisId.$error.required">* Please supply a model name.</span>
+                                    <span ng-show="form.mappedCalendarlVisId.$error.maxlength">* Length of name must not exceed 59 characters.</span>
+                                </p>
+                            </div>
+                        </div>
+                      <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="calendarDescription">Description:</label>
+                                <input name="calendarDescription" id="calendarDescription" ng-model="modelSuggestedCalendar.calendarDescription" ng-class="{'has-error': form.calendarDescription.$invalid && form.calendarDescription.$dirty}" type="text" class="form-control" ng-maxlength="128" required>
+                                <p class="text-danger" ng-show="form.calendarDescription.$invalid && form.calendarDescription.$dirty">
+                                    <span ng-show="form.calendarDescription.$error.required">* Please supply a model description.</span>
+                                    <span ng-show="form.calendarDescription.$error.maxlength">* Length of description must not exceed 128 characters.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </fieldset>
+                <fieldset>
+                <legend>Years</legend>        
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <div class="buttons">
+                                <button type="button" class="btn btn-success btn-md add-remove-dimension-element" ng-disabled="false" ng-click="addYear('left')">Add Left</button>
+                                <button type="button" class="btn btn-success btn-md add-remove-dimension-element" ng-disabled="isAddRightDisabled" ng-click="addYear('right')">Add Right</button>
+                                <button type="button" class="btn btn-danger btn-md add-remove-dimension-element" ng-disabled="false" ng-click="deleteYear('left')">Delete Left</button>
+                                <button type="button" class="btn btn-danger btn-md add-remove-dimension-element" ng-disabled="false" ng-click="deleteYear('right')">Delete Right</button>
+                            </div>
+                          </div>     
+                             <br class="clearBoth" />
+                         </br>
+                    </div>
+                    <div clas="col-md-12 form-group">
+                         <div id="calendarTable"></div> 
+                    </div>
+                        </br>
+                   </fieldset>    
+                </div>
+            </tab>
+            <!-- Step 8 - Finance Cubes -->
+            <tab heading="8" disabled="steps[7].disable" active="steps[7].active" ng-click="tabSelected()">
+                <h4 class="groupTitle">Finance Cubes</h4>
+                <p class="bg-info">Define finance cubes and map CP data types into value types in the external system.</p>
+                <div class="inner">
+                    <fieldset>
+                        <legend>Finance Cubes</legend>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <wj-flex-grid class="grid" items-source="financeCubeCtx.data" selection-changed="selectionChangedHandler()" control="financeCubeCtx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)" is-read-only="true"  headers-visibility="Column" selection-mode="Row">
+                                    <wj-flex-grid-column width="*" header="Name" binding="financeCubeVisId"></wj-flex-grid-column>
+                                    <wj-flex-grid-column width="*" header="Description" binding="financeCubeDescription"></wj-flex-grid-column>
+                                </wj-flex-grid> 
+                            </div>
+                        </div>
+                        </br>
+                        </br>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success btn-md add-remove-dimension-element" ng-if="financeCubeCtx.data && financeCubeCtx.data.sourceCollection.length == 0" ng-click="addFinanceCube()">Add</button>
+                                    <button type="button" class="btn btn-info btn-md add-remove-dimension-element" ng-if="financeCubeCtx.data && financeCubeCtx.data.sourceCollection.length > 0" ng-disabled="isEditFinanceCubeButtonDisabled" ng-click="editFinanceCube()">Edit</button>
+                                    <button type="button" class="btn btn-danger btn-md add-remove-dimension-element" ng-if="financeCubeCtx.data && financeCubeCtx.data.sourceCollection.length > 0" ng-disabled="isDeleteFinanceCubeButtonDisabled" ng-click="deleteFinanceCube()">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tab>
+        </tabset>
+    </div>
+    <div class="modal-footer">
+        <div class="btn-group">
+            <button class="btn btn-default" ng-click="previous()" ng-disabled="stepPreviousDisable"><span class="fa fa-angle-left"></span> Previous</button>
+            <button class="btn btn-default" ng-click="next()" ng-disabled="stepNextDisable">Next <span class="fa fa-angle-right"></span> </button>
+            <button class="btn btn-success" ng-click="save()" ng-disabled="isFinishBtnDisabled">Finished</button>
+        </div>
+        <button class="btn btn-primary" ng-click="close()">Close</button>
+    </div>
+</form>

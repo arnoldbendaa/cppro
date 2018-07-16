@@ -1,0 +1,265 @@
+/*main.css*/
+/*table tr td, table tr th {
+	border: solid 1px black;
+	padding: 0 3px;
+}*/
+html, body {
+	height: 100%;
+}
+body {
+	background: #c7c7c7;
+}
+#wrapper {
+	padding-top: 61px;
+	height: 100%;
+}	
+.page {
+	/*padding: 10px;*/
+	/*background: #F0F0F0;*/
+		background: white;
+	height: calc(100% - 17px);
+}
+.timer {
+	color: #000;
+	top: 8px;
+}
+.logout{
+	color: #000;
+}
+.logout:hover{
+	color: gray;
+}
+
+/************** LEFT / RIGHT RESIZABLE PANES ************/
+.paneContainer{
+	width: 100%; 
+	height: 100%; 
+		/*background-color: green; */
+		background-color: white;
+	/*padding: 5px;*/
+}
+.paneContainer .leftPane,
+.paneContainer .rightPane {
+	height: 100%; 
+	float: left; 
+	padding: 0; 
+	position: relative;
+}
+.paneContainer .paneContent {
+	/*background-color: red;*/
+	width: 100%;
+	height: 100%;
+	padding: 15px; 
+	overflow: auto;
+	position: relative;
+}
+.paneContainer .spreadsheetPane{
+	padding: 0 !important;
+}
+.paneContainer .spreadsheetPane .spreadsheetContainer{
+	min-width: 1110px !important;
+}
+.paneContainer .leftPane .paneContent {
+	width: calc(100% - 7px); /*7px is ui-resizable handle width*/
+}
+.paneContainer .leftPane{
+	width: 355px; 
+	max-width: calc(100% - 100px);
+		/*background-color: lightgreen; */
+}
+.paneContainer .rightPane{
+	width: calc(100% - 355px); 
+	/*background-color: yellowgreen;*/
+}
+.paneContainer .paneContent .no-content-info{
+	color: gray;
+	font-style: italic;
+	font-size: 24px;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	top: 30%;
+}
+.paneContainer .ui-resizable-handle{
+		background: url("../../images/vgrabber.gif") 50% 50% no-repeat #c7c7c7;
+	right: 0;
+	background-size: 50%;
+}
+.paneContainer .crud-buttons button{
+	margin-bottom: 3px;
+}
+.paneContainer h1,
+.generate h1{
+	margin-top: 0;
+}
+.generate{
+	height: 100%;
+}
+.generate .paneContainer{
+	width: 66%; /*calc(100% - 300px)*/; 
+	float: left;
+}
+.generate .paneContainer .leftPane,
+.generate .paneContainer .rightPane {
+	width: 50%;
+}
+.generate .generateForm{
+	width: 34%; /*300px;*/ 
+	height: 100%; 
+	float: left; 
+	border-left: solid 7px #c7c7c7; 
+	overflow: auto;
+}
+.generate .generateForm .inner{
+	width: 100%; 
+	height: 100%; 
+	padding: 15px;
+}
+.generate .generateForm form{
+	height: calc(100% - 40px);
+}
+.generate .generateForm form select,
+.generate .generateForm .financeCubeChooser {
+	height: calc(100% - 200px);
+	margin-bottom: 0;
+}
+.frontend-cover.paneCover,
+.frontend-cover.menuCover{
+  visibility: hidden;
+  opacity: 0;
+}
+.frontend-cover.menuCover{
+	background: #F5F5F5;
+}
+.frontend-cover.paneCover.show{
+  visibility: visible;
+  opacity: 0.5;
+  transition: visibility 0s linear 0.5s,opacity 0.5s linear;	
+  -webkit-transition: visibility 0s linear 0.5s,opacity 0.5s linear;	
+  transition-delay: 0s;
+  -webkit-transition-delay: 0s;
+}
+.frontend-cover.menuCover.show{
+  visibility: visible;
+  opacity: 0.5;
+}
+.frontend-cover.paneCover.show i,
+.frontend-cover.paneCover.show.with-icon i{
+	display: inline-block;
+}
+.frontend-cover.paneCover.show.without-icon i{
+	display: none;
+}
+.leftPane .btn-file {
+	position: relative;
+	overflow: hidden;
+	width: 64px;
+	height: 34px;
+}
+.leftPane .btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	background: red;
+	cursor: inherit;
+	display: block;
+}
+/************** NAVIGATION ************/
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: 44px;
+	background: #f5f5f5;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+	box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+	-webkit-backface-visibility: hidden;
+	border-radius: 0px;
+	border: 0;
+	min-height: initial;
+}
+.navbar .logo {
+	padding: 3px 0;
+	border-right: 1px solid #dadada;
+	width: 220px;
+	float: left;	
+}
+.navbar .logo a,.navbar .logo img {
+	margin: 0 auto;
+	display: block;
+	width: 154px;
+}
+.navbar ul {
+	list-style: none;
+}
+.navbar>ul>li {
+	float: left;
+	border-right: 1px solid #dadada;
+}
+.navbar>ul>li>.item-label {
+	font-weight: bold;
+	font-size: 95%;
+}
+.navbar>ul>li div.item-label:after{
+	font-family: "FontAwesome";
+	content: "\f107";
+	padding-left: 5px;
+	font-size: 12px;
+}
+.navbar .item-label {
+	padding: 13px 15px 13px 15px;
+	cursor: pointer;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+.navbar .item-label:hover {
+	background: #e5e5e5;
+}
+.navbar li a {
+	display: block;
+	text-decoration: none;
+	color: #000;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+.navbar li .item-label.active {
+	color: #ffffff;
+	background: #648ebb;
+}
+.navbar .item-label .fa {
+	display: inline-block;
+	width: 23px;
+	text-align: center;
+}
+#container-navbar {
+	padding: 0px;
+}
+/**************************************************** CONTEXT MENU ************************************************/
+#context-menu {
+    -ms-transform-origin: 0 0; /* IE 9 */
+    -webkit-transform-origin: 0 0; /* Chrome, Safari, Opera */
+    transform-origin: 0 0;
+	position: fixed;
+	z-index: 30000;
+  	display:none;
+}
+#context-menu .context-menu-container {
+    display:block;
+    position:static;
+    margin-bottom:5px;
+}
+/**************************************************** Configurations ************************************************/
+.frontend-cover.configurationsTreeBusinessDimensionChooser{
+	display: none;
+}

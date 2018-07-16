@@ -1,0 +1,438 @@
+body {
+	display: block;
+	background-color: #F5F5F5;
+}
+[ng\:cloak], [ng-cloak], .ng-cloak {
+	display: none !important;
+}
+thead{
+	background: #eee;
+}
+.table-hover tbody tr td {
+	cursor: pointer;
+}
+.table-hover tbody tr.selected td {
+	background-color: #eee8d4;
+}
+#container-full {
+	margin-right: auto;
+	margin-left: auto;
+}
+#container-main {
+	padding: 0px;
+}
+
+#workbookTest .breadcrumb {
+	margin: 7px;
+}
+.bonhamsflatFormApp .modal.softpro-modals.trees-chooser-dialog .modal-content{
+	height: 100%;
+}
+.popover {
+	max-width: 600px;
+	font-size: 80%;
+	color: #333;
+}
+select.look-like-table{
+
+}
+select.look-like-table option{
+	background-color: #fff;
+	padding: 8px;
+	border-top: 1px solid #ddd;
+}
+select.look-like-table option:nth-child(2n+1){
+	background-color: #EFEFEF;
+}
+select.look-like-table option:checked{
+	/*background: linear-gradient(#eee8d4, #eee8d4);*/
+	background: linear-gradient(#80ADBF, #80ADBF);
+}
+
+/**************************************************** CONTEXT MENU ************************************************/
+#context-menu {
+    -ms-transform-origin: 0 0; /* IE 9 */
+    -webkit-transform-origin: 0 0; /* Chrome, Safari, Opera */
+    transform-origin: 0 0;
+	position: fixed;
+	z-index: 30000;
+  	display:none;
+}
+#context-menu .context-menu-container {
+    display:block;
+    position:static;
+    margin-bottom:5px;
+}
+/**************************************************** CONTROL PANEL ************************************************/
+#control-panel {
+	overflow: hidden;
+}
+/** SpreadSheet **/
+#spreadsheet {
+	height: 86%;
+}
+.canvas-style {
+    cursor: pointer !important;
+}
+
+/**************************************************** Cell Picker ************************************************/
+.cell-picker .offset-input{
+	margin-bottom: 10px;
+}
+.cell-picker .checkbox{
+	margin-left: 16px;
+}
+.cell-picker .checkbox label{
+	margin-top: 14px;
+}
+.cell-picker .checkbox .left{
+	margin-left: 19px;
+}
+.cell-picker .inner-button{
+	margin-top: 19px;
+}
+.cell-picker .small-row{
+	margin-right: -8px;
+	margin-left: -6px;
+}
+.cell-picker td{
+	word-break: break-all;
+}
+/********************************************* Copy Template To ************************************************************************/
+.bonhamsflatFormApp .modal.softpro-modals.copy-template-to-dialog .modal-content{
+	height: 100%;
+}
+#copy-template-to{
+	font-size: 12px;
+	position: relative;
+	height: calc(100% - 60px);
+}
+#copy-template-to .flatForms{
+	height: 100%;
+	overflow: auto;
+	margin-bottom: 20px;
+}
+#copy-template-to .flatForms .flatForms-grid{
+	height: 100%;
+}
+#copy-template-to table.table thead{
+	background: #eee;
+}
+#copy-template-to table.table tr.flatFormDisabled{
+	color: lightgray;
+}
+#copy-template-to th{
+	cursor: pointer;
+}
+#copy-template-to th.ffCol1{
+}
+#copy-template-to th.ffCol2{
+	cursor: default;
+}
+#copy-template-to th.ffCol3{
+	width: 100px;
+}
+#copy-template-to th.ffCol4{
+	width: 151px;
+}
+#copy-template-to th.ffCol5{
+}
+#copy-template-to th.ffCol6{
+	width: 82px;
+}
+#copy-template-to .checkbox,
+#copy-template-to .checkbox label.checkbox{
+	margin: 0;
+	cursor: default;
+}
+#copy-template-to .wj-header input[type=checkbox] {
+	display: none;
+}
+/*********************************************************************************************************************/
+#table-builder-controller .btn-group-freeze.pull-left {
+	margin-right: 0;
+}
+#table-builder-controller .btn-group-freeze .btn {
+	border-radius: 4px 0 0 4px;
+	border-right: none;
+}
+#table-builder-controller .btn-build-table .btn{
+	border-radius: 0 4px 4px 0;
+}
+#border-controller .btn-group {
+	float: left;
+}
+#editor .btn-table-builder-element {
+	width: 40px;
+}
+#sheet-editor .list {
+	overflow: auto;
+	margin-bottom: 10px;
+}
+#sheet-editor .list table.table{
+	margin-bottom: 0; 
+}
+#sheet-editor .list input.form-control {
+	height: auto;
+	padding: 2px 6px;
+}
+#sheet-editor .list,
+#sheet-editor .list input.form-control {
+	font-size: 12px;
+}
+/**************************************************** DETAILS ************************************************/
+.manage-users .manage-users-table{
+	max-height: 400px;
+	overflow: auto;
+}
+@media (min-height: 864px) {		
+	.manage-users .manage-users-table{	
+		max-height: 496px;
+	}	
+}		
+@media (min-height: 900px) {		
+	.manage-users .manage-users-table{	
+		max-height: 532px;
+	}	
+}		
+@media (min-height: 960px) {		
+	.manage-users .manage-users-table{	
+		max-height: 592px;
+	}	
+}		
+@media (min-height: 1024px) {		
+	.manage-users .manage-users-table{	
+		max-height: 656px;
+	}	
+}		
+@media (min-height: 1080px) {		
+	.manage-users .manage-users-table{	
+		max-height: 712px;
+	}	
+}		
+/**************************************************** Workbook / Worksheet Properties ************************************************/
+.workbook-properties{
+	
+}
+.workbook-properties table.table{
+	border-bottom: 1px solid #ddd;
+	table-layout: fixed; 
+	width: 100%
+}
+.workbook-properties table.table th:last-child{
+	width: 65px;
+}
+.workbook-properties table.table tbody tr td:first-child{
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.workbook-properties table.table .wrap{
+	word-wrap: break-word;
+}
+.workbook-properties table.table button{
+	float: right;
+}
+.workbook-properties table.table div.checkbox{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.workbook-properties table.table div.checkbox label.checkbox{
+	margin-top: 0;
+}
+
+#container-navbar {
+	padding: 0px;
+}
+
+
+
+
+
+
+
+
+
+    .sidebar-menu>li {
+	    position: relative;
+	    margin: 0;
+	    padding: 0;
+	}
+	.skin-blue .sidebar-menu>li>a {
+	    border-left: 3px solid transparent;
+	}
+	.sidebar-menu li>a {
+	    position: relative;
+	    color:white;
+	}
+	.sidebar-menu>li>a {
+	    padding: 12px 35px 12px 15px;
+	    display: block;
+	    color:white;
+	}
+	.sidebar-menu>li>a:hover{
+		background-color:rgb(221,71,12);
+	}
+	.sidebar-menu>li.active>a{
+		background-color:rgb(221,71,12);
+	}
+.sidebar-menu{
+	padding:0;
+}
+
+.insp-container, .clab-container {
+    display: none;
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    right: -300px;
+    top: 0;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    opacity:1;
+}
+.tab-content>.active {
+    display: block;
+}
+.insp-pane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 12px;
+    background-color: #f0f2f4;
+}
+
+.insp-group-layout {
+    position: relative;
+}
+.insp-group-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 3px;
+    padding: 6px 8px;
+    cursor: default;
+}
+.insp-group-title .group-state {
+    height: 12px;
+    width: 12px;
+}
+span.groupheader {
+    font-weight: bold;
+}
+
+.insp-group-content {
+    padding: 3px 16px 3px 24px;
+}
+.insp-col-6 {
+    width: 50%;
+}
+.insp-inline-row-item {
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.insp-row {
+    margin-bottom: 8px;
+}
+.insp-inline-row {
+    font-size: 0;
+}
+insp-text .editor {
+    padding: 3px 6px;
+    line-height: 1.5;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+.insp-row .btn {
+    padding: 2px 8px !important;
+    border: 1px solid #aaa;
+    line-height: normal;
+}
+.insp-dropdown-list .display {
+    width: calc(100% - 10px);
+    display: inline-block;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    text-align: left;
+}
+.insp-dropdown-list .caret {
+    margin-left: 3px;
+}
+.main-sidebar{
+	left:-200px;
+}
+
+.navbar ul {
+    list-style: none;
+    padding-left:0;
+}
+.navbar>ul>li>.item-label {
+    font-weight: bold;
+    font-size: 95%;
+}
+.navbar .item-label {
+    padding: 7px 0 7px 15px;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.navbar .item-label {
+    border-bottom: 1px solid #445;
+}
+.navbar .item-label .fa {
+    display: inline-block;
+    width: 23px;
+    text-align: center;
+}
+.navbar ul ul li>.item-label, .navbar ul ul>.item-label {
+    padding-left: 43px;
+    font-size: 85%;
+}
+.navbar .item-label {
+    padding: 7px 0 7px 15px;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    color:white;
+}
+
+.navbar li a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+.navbar {
+    z-index: 100;
+    width: 200px;
+    height: 100% !important;
+    background: #000;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+    -webkit-backface-visibility: hidden;
+    border-radius: 0px;
+}
+.navbar>ul>li div.item-label:after {
+    font-family: "FontAwesome";
+    content: "\f107";
+    padding-left: 5px;
+    font-size: 12px;
+}
+.navbar>ul>li div.item-label.expanded:after {
+    content: "\f106";
+}
+	.navbar .item-label:hover{
+		background-color:rgb(221,71,12);
+	}
+

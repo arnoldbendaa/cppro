@@ -1,0 +1,69 @@
+<div class="report-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-tachometer"></i> 
+			Report: External Users Destinations
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form class="report-details-form" name="form" role="form" novalidate>
+			<div class="loader align-center" ng-show="!isMainDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="isMainDataLoaded">
+				<div class="report-main-data">
+					
+					<h4 class="groupTitle">Report details:</h4>
+
+					<div class="row">
+						<div class="col-md-6 form-group" ng-class="{'has-error': validation.reportVisId != ''}">
+							<label for="">Identifier:</label>
+							<span class="text-danger" ng-show="validation.reportVisId != ''" class="help-block">{{validation.reportVisId}}</span>
+							<input name="name" ng-model="report.reportVisId" type="text" class="form-control">
+						</div>							
+						<div class="col-md-6 form-group" ng-class="{'has-error': validation.reportDescription != ''}">
+							<label for="">Description:</label>
+							<span class="text-danger" ng-show="validation.reportDescription != ''" class="help-block">{{validation.reportDescription}}</span>
+							<input name="name" ng-model="report.reportDescription" type="text" class="form-control">
+						</div>							
+					</div>	
+				</div>
+
+				<div class="modalDivider getToCalc1"></div>
+
+				<div class="dim-elements">
+
+					<h4 class="groupTitle floated">External Mail List:</h4>
+					<div class="right refresh-button">
+						<button 
+							type="button" 
+							class="btn btn-warning btn-md"
+							ng-click="refreshData()">Refresh</button>
+					</div>
+					<br class="clearBoth" />
+
+					<span class="text-danger" ng-show="validation.users != ''" class="help-block">{{validation.users}}</span>
+
+					<wj-flex-grid class="grid report-users-grid user-grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+						<wj-flex-grid-column header="#" name="index" binding="index"></wj-flex-grid-column>
+						<wj-flex-grid-column header="E-mail" binding="name"></wj-flex-grid-column>
+						<wj-flex-grid-column min-width="95" header="Actions" name="buttons"></wj-flex-grid-column>	
+					</wj-flex-grid>	
+
+					<div class="add-selected-element-to-table" ng-class="{'has-error': form.email.$error.email}">
+						<label for="">Add E-mail:</label>
+						<input type="email" name="email" class="form-control" ng-model="newReportElement">	
+						<button type="button" class="btn btn-success" ng-class="{'disabled': form.email.$error.email}" ng-click="addReportElement()">Add</button>
+						<br class="clearBoth" />
+					</div>
+				
+				</div>	
+
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">{{submitButtonName}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

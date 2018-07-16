@@ -1,0 +1,42 @@
+.width100{
+    width:100%;
+}
+.text-red{
+    color:red;
+}
+.text-gray{
+    color:gray;
+}
+.text-yellow{
+    color:rgb(255, 165, 0);
+}
+.text-green{
+    color:green;
+}
+.text-magenta{
+    color:Magenta;
+}
+.text-blue{
+    color:blue;
+}
+.color-white{
+    color:white;
+}
+.main-text-color{
+    color:rgb(51,51,102);
+}
+.nav-tabs li a{
+    border-width:1px 1px 1px 1px;
+    border-style:solid;
+    border-color:rgb(181,188,199);
+    padding-top:0px;
+    margin-top:10px;
+}
+.nav-tabs li.active a{
+    padding-top:10px;
+    margin-top:0;
+    background:linear-gradient(rgb(238,199,155), rgb(245,239,219),rgb(245,239,219),rgb(245,239,219));
+}
+.text-center{
+	text-align:center;
+}

@@ -1,0 +1,45 @@
+<div class="sub-system-configuration" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-exchange"></i> 
+			Configuration Details
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-show="!dataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="inner" ng-show="dataLoaded">
+			<div class="form-group">
+				<label for="name">Description:</label>
+					<input id="name" value="{{subSystem.subSystemDescription}}" type="text" class="form-control"  ng-disabled="true">
+			</div>
+			<div class="row vertical-center"> 
+				<div class="col-xs-6">
+					Available:
+					<select size="14" class="form-control" ng-model="itemAvailable" ng-options="item.description for item in subSystem.subSystemConfiguration.availableColumns"></select>
+				</div>
+				<div class="col-xs">
+					<div class="btn-group-vertical">
+						<button class="btn btn-default btn-xs" ng-click="add()"><span class="glyphicon glyphicon-arrow-right"></span></button>
+						<button class="btn btn-default btn-xs" ng-click="remove()"><span class="glyphicon glyphicon-arrow-left"></span></button>
+					</div>
+				</div>
+				<div class="col-xs-5">
+					Selected:
+					<select size="14" class="form-control" ng-model="itemSelected" ng-options="item.description for item in subSystem.subSystemConfiguration.selectedColumns"></select>
+				</div>
+				<div class="col-xs">
+					<div class="btn-group-vertical">
+						<button class="btn btn-default btn-xs" ng-click="up()"><span class="glyphicon glyphicon-arrow-up"></span></button>
+						<button class="btn btn-default btn-xs" ng-click="down()"><span class="glyphicon glyphicon-arrow-down"></span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="ok()">Ok</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+	</div>
+</div>

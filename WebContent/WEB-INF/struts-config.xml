@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE struts-config
+  PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+         "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="loginForm" type="com.cedar.cp.utc.struts.login.LoginForm"/>
+		<form-bean name="myAccountForm" type="com.cedar.cp.utc.struts.user.MyAccountForm"/>
+		<form-bean name="communicationListForm" type="com.cedar.cp.utc.struts.message.MessageListForm"/>
+		<form-bean name="communicationForm" type="com.cedar.cp.utc.struts.message.MessageNewForm"/>
+		<form-bean name="communicationListUsersForm" type="com.cedar.cp.utc.struts.message.MessageUserListForm"/>
+        <form-bean name="communicationDistributionListForm" type="com.cedar.cp.utc.struts.message.MessageDistributionListForm"/>
+        <form-bean name="communicationDistributionUserListForm" type="com.cedar.cp.utc.struts.message.MessageDistributionUserListForm"/>
+        <form-bean name="communicationOpenForm" type="com.cedar.cp.utc.struts.message.MessageOpenForm"/>
+        <form-bean name="budgetCycleStatusForm" type="com.cedar.cp.utc.struts.approver.BudgetCycleStatusForm"/>
+		<form-bean name="budgetCycleStateForm" type="com.cedar.cp.utc.struts.approver.ChangeBudgetCycleForm"/>
+        <form-bean name="reviewBudgetForm" type="com.cedar.cp.utc.struts.approver.ReviewBudgetForm"/>
+        <form-bean name="budgetWorkspaceForm" type="com.cedar.cp.utc.struts.approver.BudgetWorkspaceForm"/>
+        <form-bean name="dataEntryForm" type="com.cedar.cp.utc.struts.approver.DataEntryForm"/>
+        <form-bean name="dataExtractForm" type="com.cedar.cp.utc.struts.approver.DataExtractForm"/>
+		<form-bean name="cellNoteForm" type="com.cedar.cp.utc.struts.cellnote.CellNoteForm"/>
+		<form-bean name="homeForm" type="com.cedar.cp.utc.struts.homepage.HomePageForm"/>
+        <form-bean name="changePasswordForm" type="com.cedar.cp.utc.struts.login.ChangePasswordForm"/>
+        <form-bean name="adminForm" type="com.cedar.cp.utc.struts.admin.AdminForm" />
+        <form-bean name="supportForm" type="com.cedar.cp.utc.struts.admin.support.SupportForm" />
+        <form-bean name="entityListsForm" type="com.cedar.cp.utc.struts.admin.support.EntityListsForm" />
+        <form-bean name="propertyForm" type="com.cedar.cp.utc.struts.admin.props.PropertyForm" />
+        <form-bean name="challengeForm" type="com.cedar.cp.utc.struts.admin.reset.ChallengeForm" />
+        <form-bean name="passwordChangeForm" type="com.cedar.cp.utc.struts.admin.reset.PasswordChangeForm" />
+        <form-bean name="performanceForm" type="com.cedar.cp.utc.struts.admin.perf.PerformanceForm" />
+        <form-bean name="performanceTypeForm" type="com.cedar.cp.utc.struts.admin.perf.PerformanceTypeForm" />
+        <form-bean name="budgetInstructionForm" type="com.cedar.cp.utc.struts.admin.bi.BudgetInstructionForm" />
+        <form-bean name="budgetInstructionAssignmentForm" type="com.cedar.cp.utc.struts.admin.bi.BudgetInstructionAssignmentForm" />
+        <form-bean name="cycleHistoryForm" type="com.cedar.cp.utc.struts.cyclehistory.CycleHistoryForm" />
+        <form-bean name="cycleHistoryDetailsForm" type="com.cedar.cp.utc.struts.cyclehistory.CycleHistoryDetailsForm" />
+        <form-bean name="cycleActivityForm" type="com.cedar.cp.utc.struts.cycleactivity.ActivityForm" />
+        <form-bean name="costCentreSelectForm" type="com.cedar.cp.utc.struts.cycleactivity.CostCentreSelectForm" />
+        <form-bean name="taskForm" type="com.cedar.cp.utc.struts.task.TaskForm" />
+        <form-bean name="taskDetailForm" type="com.cedar.cp.utc.struts.task.TaskDetailForm" />
+        <form-bean name="xmlReportsForm" type="com.cedar.cp.utc.struts.xmlreports.XmlReportsForm" />
+        <form-bean name="organiseReportsForm" type="com.cedar.cp.utc.struts.xmlreports.OrganiseReportsForm" />
+        <form-bean name="massUpdateForm" type="com.cedar.cp.utc.struts.topdown.MassUpdateForm" />
+        <form-bean name="budgetLimitForm" type="com.cedar.cp.utc.struts.topdown.BudgetLimitForm" />
+        <form-bean name="budgetLimitEditForm" type="com.cedar.cp.utc.struts.topdown.BudgetLimitEditForm" />
+        <form-bean name="dimensionForm" type="com.cedar.cp.utc.struts.topdown.DimensionForm" />
+        <form-bean name="massupdatePopupForm" type="com.cedar.cp.utc.struts.topdown.PopupForm" />
+        <form-bean name="reportForm" type="com.cedar.cp.utc.struts.report.ReportForm" />
+        <form-bean name="reportDetailForm" type="com.cedar.cp.utc.struts.report.ReportDetailForm" />
+        <form-bean name="perfTestsForm" type="com.cedar.cp.utc.struts.admin.perf.PerfTestsForm" />
+        <form-bean name="runPerfTestsForm" type="com.cedar.cp.utc.struts.admin.perf.RunPerfTestsForm" />
+        <form-bean name="deletePerfTestRunForm" type="com.cedar.cp.utc.struts.admin.perf.DeletePerfTestRunForm" />
+		<form-bean name="budgetViolationConfirmForm" type="com.cedar.cp.utc.struts.approver.BudgetViolationConfirmForm" />
+		<form-bean name="virementDataEntryForm" type="com.cedar.cp.utc.struts.virement.VirementDataEntryForm" />
+		<form-bean name="virementAuthEntryForm" type="com.cedar.cp.utc.struts.virement.VirementAuthEntryForm" />
+		<form-bean name="virementAddressForm" type="com.cedar.cp.utc.struts.virement.VirementAddressForm" />
+		<form-bean name="virementsForm" type="com.cedar.cp.utc.struts.virement.VirementsForm" />
+        <form-bean name="virementsGUIForm" type="com.cedar.cp.utc.struts.virement.VirementsGUIForm" />
+        <form-bean name="virementSpreadForm" type="com.cedar.cp.utc.struts.virement.VirementSpreadForm"/>
+		<form-bean name="virementBudgetCycleForm" type="com.cedar.cp.utc.struts.virement.VirementBudgetCycleForm"/>
+		<form-bean name="virementQueryForm" type="com.cedar.cp.utc.struts.virement.VirementQueryForm"/>
+		<form-bean name="moveXmlReportForm" type="com.cedar.cp.utc.struts.xmlreports.MoveXmlReportForm" />
+        <form-bean name="loadtestForm" type="com.cedar.cp.utc.struts.approver.LoadtestForm"/>
+        <form-bean name="menuForm" type="com.cedar.cp.utc.struts.admin.MenuForm" />
+        <form-bean name="roadMapForm" type="com.cedar.cp.utc.struts.admin.RoadMapForm" />
+        <form-bean name="dashboardForm" type="com.cedar.cp.utc.struts.admin.DashboardForm" />
+        <form-bean name="assignmentForm" type="com.cedar.cp.utc.struts.admin.report.assignment.AssignmentForm" />
+        <form-bean name="userReportForm" type="com.cedar.cp.utc.struts.admin.report.user.UserForm" />
+        <form-bean name="dataEntryTestForm" type="com.cedar.cp.utc.struts.admin.test.DataEntryTestForm" />
+        <form-bean name="statusMessageForm" type="com.cedar.cp.utc.struts.approver.StatusConfirmForm" />
+        <form-bean name="activeUserForm" type="com.cedar.cp.utc.struts.admin.user.ActiveUserForm" />
+        <form-bean name="jobSubmitForm" type="com.cedar.cp.utc.struts.admin.job.JobForm"/>
+		<form-bean name="reportUpdateForm" type="com.cedar.cp.utc.struts.report.ReportUpdateForm"/>
+
+        <form-bean name="workbenchForm" type="com.cedar.cp.utc.struts.workbench.WorkBenchForm"/>
+        <form-bean name="biRequestForm" type="com.cedar.cp.utc.struts.budgetinstruction.BudgetInstructionForm" />
+        <form-bean name="logonHistoryForm" type="com.cedar.cp.utc.struts.admin.logonhistory.LogonHistoryForm" />
+
+		<form-bean name="gadgetProfileForm" type="com.cedar.cp.utc.struts.gadget.apps.dataentry.ProfileForm"/>
+		<form-bean name="gadgetAppletViewForm" type="com.cedar.cp.utc.struts.gadget.apps.dataentry.AppletViewForm"/>
+		
+		<form-bean name="formReportForm" type="com.cedar.cp.utc.struts.admin.report.form.FormReportForm" />
+		<form-bean name="formReportDef" type="com.cedar.cp.utc.struts.admin.report.reportdefinition.actionform.ReportDefinitionForm" />
+	</form-beans>
+
+    <global-exceptions>
+        <exception
+            key="cp.systemError.reference"
+            type="java.lang.Exception"
+            handler="com.cedar.cp.utc.common.CPExceptionHandler"/>
+    </global-exceptions>
+
+	<global-forwards type="org.apache.struts.action.ActionForward">
+        <forward name="system.error" path="/jsp/system/systemError.jsp"/>
+        <forward name="system.nosecurity" path="/jsp/system/noSecurity.jsp"/>
+        <forward name="default.action" path="/jsp/system/invalidAction.jsp"/>
+        <forward name="startup" path="/homePage.do"/>
+    </global-forwards>
+
+    <action-mappings>
+
+		<action path="/patchStatus" forward="/jsp/system/patchStatus.jsp"/>
+
+        <action path="/actionComplete" forward="/jsp/system/actionComplete.jsp"/>
+
+        <action path="/communicationList" type="com.cedar.cp.utc.struts.message.MessageList"/>
+
+        <action path="/communicationListSetup" forward="/jsp/message/fullCommunication.jsp"/>
+        
+        <action path="/homePage"
+			type="com.cedar.cp.utc.struts.homepage.HomePageTabSetupAction"
+			validate="false"
+			name="homeForm"
+			scope="request" >
+            <forward name="loggedOn" path="/jsp/system/welcomeTabs.jsp"/>
+            <forward name="notLoggedOn" path="/jsp/system/loginRedirect.jsp"/>
+            <forward name="unsupportedBrowser" path="/jsp/unsupported.jsp"/>
+            <forward name="forceQuestions" path="/challengeQuestionSetup.do"/>
+            <forward name="forceWord" path="/challengeWordSetup.do"/>
+        </action>
+
+       <action path="/tableWelcomeModelData"
+			type="com.cedar.cp.utc.struts.homepage.HomePageModelSetupAction"
+			validate="false"
+			name="homeForm"
+			scope="request" >
+            <forward name="loggedOn" path="/jsp/inline/apps/welcome/welcomeModelData.jsp"/>
+        </action>
+
+		<action path="/support"
+			type="com.cedar.cp.utc.struts.admin.support.SupportSetupAction"
+			validate="false"
+            name="supportForm"
+			scope="request" >
+            <forward name="success" path="/jsp/inline/apps/admin/support/support.jsp"/>
+        </action>
+
+		<action path="/downLoadLog" type="com.cedar.cp.utc.struts.admin.support.LogDownloadAction"/>		
+
+		<action path="/supportTabs"
+			type="com.cedar.cp.utc.struts.admin.support.SupportTabs">
+            <forward name="success" path="/jsp/admin/support/supportTabs.jsp"/>
+        </action>
+
+		<action path="/assignment"
+			type="com.cedar.cp.utc.struts.admin.report.assignment.AssignmentSetup"
+			validate="false"
+            name="assignmentForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/report/assignment/assignment.jsp"/>
+			<forward name="popup" path="/jsp/admin/report/assignment/fullListPopupAssignment.jsp"/>
+			<forward name="successpopup" path="/jsp/inline/apps/approvers/approverList.jsp"/>
+		</action>
+
+        <action path="/userReport"
+            type="com.cedar.cp.utc.struts.admin.report.user.UserSetup"
+            validate="false"
+            name="userReportForm"
+            scope="request" >
+            <forward name="success" path="/jsp/admin/report/user/user.jsp"/>
+			<forward name="popup" path="/jsp/admin/report/user/fullListPopupUser.jsp"/>
+		</action>
+
+        <action path="/entityLists"
+			type="com.cedar.cp.utc.struts.admin.support.EntityListsSetupAction"
+			validate="false"
+            name="entityListsForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/support/entityLists.jsp"/>
+        </action>
+
+        <action path="/sendServerLog"
+			type="com.cedar.cp.utc.struts.admin.support.SendServerLog"
+			validate="false"
+            name="supportForm"
+			scope="request" >
+            <forward name="success" path="/mainMenu.do"/>
+            <forward name="fail" path="/support.do"/>
+        </action>
+
+        <action path="/changeDebugLevel"
+			type="com.cedar.cp.utc.struts.admin.support.ChangeDebugLevel"
+			validate="false"
+            name="supportForm"
+			scope="request" >
+            <forward name="success" path="/mainMenu.do"/>
+        </action>
+
+		<action path="/logConfig"
+			type="com.cedar.cp.utc.struts.admin.support.LogConfig"/>
+
+		<action path="/performance"
+			type="com.cedar.cp.utc.struts.admin.perf.PerformanceSetup"
+			validate="false"
+            name="performanceForm"
+			scope="request" >
+            <forward name="success" path="/jsp/inline/apps/admin/performance/performance.jsp"/>
+        </action>
+
+        <action path="/releaseInfo"
+			forward="/jsp/admin/releaseInfo/release.jsp"/>
+
+        <action path="/performanceType"
+			type="com.cedar.cp.utc.struts.admin.perf.PerformanceTypeSetup"
+			validate="false"
+            name="performanceTypeForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/perf/performanceType.jsp"/>
+        </action>
+
+        <action path="/performanceDatum"
+			type="com.cedar.cp.utc.struts.admin.perf.PerformanceDatumSetup"
+			validate="false"
+            name="performanceTypeForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/perf/performanceDatum.jsp"/>
+        </action>
+
+        <action path="/propertyList"
+			type="com.cedar.cp.utc.struts.admin.props.PropertyListSetup"
+			validate="false"
+            name="propertyForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/props/propsList.jsp"/>
+        </action>
+
+        <action path="/propertyEditSetup"
+			type="com.cedar.cp.utc.struts.admin.props.PropertyEditSetup"
+			validate="false"
+            name="propertyForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/props/propsEdit.jsp"/>
+            <forward name="logo" path="/jsp/admin/props/propsLogoEdit.jsp"/>
+        </action>
+
+        <action path="/propertyEdit"
+            input="/jsp/admin/props/propsEdit.jsp"
+			type="com.cedar.cp.utc.struts.admin.props.PropertyEdit"
+			validate="true"
+            name="propertyForm"
+			scope="request" >
+            <forward name="success" path="/propertyList.do"/>
+        </action>
+        
+        <action path="/challengeQuestionSetup"
+			type="com.cedar.cp.utc.struts.admin.reset.ChallengeSetup"
+			validate="false"
+            name="challengeForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/reset/challengeSetupPage.jsp"/>
+        </action>
+
+        <action path="/challengeQuestionSubmit"
+			type="com.cedar.cp.utc.struts.admin.reset.ChallengeSubmit"
+            input="/jsp/admin/reset/challengeSetupPage.jsp"
+			validate="true"
+            name="challengeForm"
+			scope="request" >
+            <forward name="success" path="/homePage.do"/>
+            <forward name="fail" path="/jsp/admin/reset/challengeSetupPage.jsp"/>
+        </action>
+        
+ 		<action path="/challengeWordSetup"
+			type="com.cedar.cp.utc.struts.admin.reset.ChallengeWordSetup"
+			validate="false"
+            name="challengeForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/reset/challengeWordSetupPage.jsp"/>
+        </action>
+
+        <action path="/challengeWordSubmit"
+			type="com.cedar.cp.utc.struts.admin.reset.ChallengeWordVerification"
+			validate="false"
+            name="challengeForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/reset/resetUserPassword.jsp"/>
+            <forward name="fail" path="/jsp/admin/reset/verifyError.jsp"/>
+        </action>
+
+        <action path="/challengeWordSetupSubmit"
+			type="com.cedar.cp.utc.struts.admin.reset.ChallengeWordSubmit"
+            input="/jsp/admin/reset/challengeWordSetupPage.jsp"
+			validate="false"
+            name="challengeForm"
+			scope="request" >
+            <forward name="success" path="/homePage.do"/>
+            <forward name="fail" path="/jsp/admin/reset/challengeWordSetupPage.jsp"/>
+        </action>
+
+        <action path="/reset" forward="/jsp/admin/reset/resetUserVerify.jsp"/>
+        
+        <action path="/resetVerify"
+			type="com.cedar.cp.utc.struts.admin.reset.ResetUserVerification"
+			validate="false"
+            name="challengeForm"
+			scope="request" >
+            <forward name="successEmail" path="/jsp/admin/reset/emailResetSent.jsp"/>
+            <forward name="successQuestion" path="/jsp/admin/reset/challengePage.jsp"/>
+            <forward name="successWord" path="/jsp/admin/reset/challengeWordPage.jsp"/>
+            <forward name="strikes" path="/jsp/admin/reset/verifyError.jsp"/>
+            <forward name="fail" path="/jsp/admin/reset/resetUserVerify.jsp"/>
+        </action>
+
+        <action path="/passwordReset"
+			type="com.cedar.cp.utc.struts.admin.reset.PasswordResetFromLink"
+            name="challengeForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/reset/resetUserPassword.jsp"/>
+            <forward name="fail" path="/jsp/admin/reset/verifyError.jsp"/>
+        </action>
+
+        <action path="/resetUserPasswordSubmit"
+			type="com.cedar.cp.utc.struts.admin.reset.PasswordResetSubmit"
+            validate="true"
+            input="/jsp/admin/reset/resetUserPassword.jsp"
+            name="passwordChangeForm"
+			scope="request" >
+            <forward name="success" path="/homePage.do"/>
+        </action>
+
+        <action path="/challengeSubmit"
+            input="/jsp/admin/reset/challengePage.jsp"
+			type="com.cedar.cp.utc.struts.admin.reset.ChallengeVerification"
+			validate="true"
+            name="challengeForm"
+			scope="request" >
+            <forward name="success" path="/jsp/admin/reset/resetUserPassword.jsp"/>
+            <forward name="fail" path="/jsp/admin/reset/verifyError.jsp"/>
+        </action>
+
+        <action path="/login"
+            input="/jsp/system/login.jsp"
+            name="loginForm"
+            scope="request"
+            validate="true"
+            type="com.cedar.cp.utc.struts.login.Login">
+            <forward name="success" path="/homePage.do"/>
+            <forward name="notLoggedIn" path="/jsp/system/login.jsp" />
+            <forward name="logonTriesExceeded" path="/jsp/system/logonTriesExceeded.jsp"/>
+            <forward name="resetAfterlogonTriesExceeded" path="/reset.do"/>
+            <forward name="passwordExpired" path="/jsp/system/changePassword.jsp"/>
+            <forward name="forceQuestions" path="/challengeQuestionSetup.do"/>
+            <forward name="forceWord" path="/challengeWordSetup.do"/>
+        </action>
+
+		<action path="/logout" type="com.cedar.cp.utc.struts.login.Logout">
+            <forward name="success" path="/jsp/system/loggedOff.jsp"/>
+        </action>
+
+        <action path="/changePassword"
+            name="changePasswordForm"
+            scope="request"
+            validate="true"
+            input="/jsp/system/changePassword.jsp"
+            type="com.cedar.cp.utc.struts.login.ChangePasswordAction">
+            <forward name="success" path="/homePage.do"/>
+        </action>
+
+		<action path="/unknown" unknown="true" forward="/jsp/system/notYetImplemented.jsp"/>
+
+		<action path="/communicationNewSetup"
+			name="communicationForm"
+			type="com.cedar.cp.utc.struts.message.MessageNewSetup"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/message/popupNewMessage.jsp"/>
+		</action>
+
+		<action path="/communicationListUserSetup"
+			name="communicationListUsersForm"
+			type="com.cedar.cp.utc.struts.message.MessageUserListSetup"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/message/popupSelectUser.jsp"/>
+		</action>
+
+		<action path="/communicationDistributionListSetup"
+			name="communicationDistributionListForm"
+			type="com.cedar.cp.utc.struts.message.MessageDistributionListSetup"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/message/popupSelectDistributionList.jsp"/>
+		</action>
+
+		<action path="/communicationDistributionUserListSetup"
+			name="communicationDistributionUserListForm"
+			type="com.cedar.cp.utc.struts.message.MessageDistributionUserListSetup"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/message/popupDistributionUserList.jsp"/>
+		</action>
+
+        <action path="/communicationNew"
+			input="/communicationNewSetup.do"
+			name="communicationForm"
+			type="com.cedar.cp.utc.struts.message.MessageNew"
+		  	scope="request"
+			validate="true">
+			<forward name="success" path="/popupClose.do"/>
+		</action>
+
+		<action path="/communicationOpenSetup"
+			name="communicationOpenForm"
+			type="com.cedar.cp.utc.struts.message.MessageOpenSetup"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/message/popupOpenMessage.jsp"/>
+		</action>
+
+		<action path="/communicationOpen"
+			name="communicationOpenForm"
+			type="com.cedar.cp.utc.struts.message.MessageOpen"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/message/popupMessageClose.jsp"/>
+		</action>
+
+		<action path="/communicationViewNewAttach"
+			type="com.cedar.cp.utc.struts.message.MessageViewAttatch"
+			name="communicationOpenForm"
+			scope="request"
+			validate="false">
+			<forward name="fail" path="/jsp/message/downloadError.jsp"/>
+		</action>
+
+		<action path="/viewBISetup"
+			type="com.cedar.cp.utc.struts.budgetinstruction.ViewBISetup">
+			<forward name="fail" path="/jsp/message/downloadError.jsp"/>
+		</action>
+
+		<action path="/viewAttachmentSetup"
+			type="com.cedar.cp.utc.struts.attachment.ViewAttachmentSetup">
+			<forward name="fail" path="/jsp/message/downloadError.jsp"/>
+		</action>
+
+		<action path="/myAccountSetup"
+	        type="com.cedar.cp.utc.struts.user.MyAccountSetupAction"
+	        name="myAccountForm"
+	        scope="request"
+	        validate="false" >
+	        <forward name="success" path="/jsp/inline/apps/account/myAccount.jsp"/>
+	    </action>
+
+	    <action path="/changeMyAccount"
+	        input="/jsp/user/myAccount.jsp"
+	        name="myAccountForm"
+	        scope="request"
+	        validate="true"
+	        type="com.cedar.cp.utc.struts.user.ChangeMyAccountAction">
+	        <forward name="success" path="/homePage.do"/>
+	    </action>
+
+        <action path="/administration"
+            type="com.cedar.cp.utc.struts.admin.AdministrationSetupAction">
+        </action>
+
+        <action path="/popupClose" forward="/jsp/system/popupClose.jsp" />
+
+        <action path="/budgetCycleStatus"
+            type="com.cedar.cp.utc.struts.approver.BudgetCycleStatusSetupAction"
+            name="budgetCycleStatusForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/approver/budgetCycleStatus.jsp"/>
+        </action>
+
+        <action path="/changeBudgetCycleState"
+            type="com.cedar.cp.utc.struts.approver.ChangeBudgetCycleState"
+			name="budgetCycleStateForm"
+            scope="request"
+            validate="false" >
+            <forward name="approve" path="/budgetCycleStatus.do"/>
+            <forward name="limitViolation" path="/budgetViolation.do"/>
+            <forward name="statusMessage" path="/statusMessage.do"/>
+        </action>
+
+        <action path="/budgetViolation"
+            type="com.cedar.cp.utc.struts.approver.BudgetViolationSetup"
+			name="budgetViolationConfirmForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/approver/budgetLimitViolation.jsp"/>
+        </action>
+
+        <action path="/budgetViolationConfirm"
+            type="com.cedar.cp.utc.struts.approver.BudgetViolationConfirm"
+			name="budgetViolationConfirmForm"
+            scope="request"
+            input="/jsp/approver/budgetLimitViolation.jsp"
+            validate="true" >
+            <forward name="ok" path="/changeBudgetCycleState.do"/>
+            <forward name="cancel" path="/budgetCycleStatus.do"/>
+        </action>
+
+        <action path="/statusMessage"
+            type="com.cedar.cp.utc.struts.approver.StatusMessageSetup"
+			name="statusMessageForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/approver/statusMessage.jsp"/>
+        </action>
+
+        <action path="/statusMessageConfirm"
+            type="com.cedar.cp.utc.struts.approver.StatusMessageConfirm"
+			name="statusMessageForm"
+            scope="request"
+            input="/jsp/approver/statusMessage.jsp"
+            validate="true" >
+            <forward name="ok" path="/changeBudgetCycleState.do"/>
+            <forward name="cancel" path="/budgetCycleStatus.do"/>
+        </action>
+
+        <action path="/reviewBudget"
+            type="com.cedar.cp.utc.struts.approver.ReviewBudgetSetupAction"
+            name="reviewBudgetForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/approver/reviewBudget.jsp" />
+            <forward name="success_full" path="/jsp/approver/fullReviewBudget.jsp" />
+        </action>
+
+        <action path="/budgetWorkspace"
+            type="com.cedar.cp.utc.struts.approver.BudgetWorkspaceSetupAction"
+            name="budgetWorkspaceForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/approver/budgetWorkspace.jsp" />
+			<forward name="dojo" path="/jsp/approver/dojoBudgetWorkspace.jsp" />
+		</action>
+
+        <action path="/dataExtract"
+            name="dataExtractForm"
+            scope="request"
+            validate="false"
+            type="com.cedar.cp.utc.struts.approver.DataExtractSetupAction">
+            <forward name="success" path="/jsp/approver/dataExtract.jsp" />
+        </action>
+
+		<action path="/cellNoteSetup"
+			name="cellNoteForm"
+			type="com.cedar.cp.utc.struts.cellnote.CellNoteSetup"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/cellnote/popupCellNote.jsp"/>
+		</action>
+
+		<action path="/cellNote"
+			name="cellNoteForm"
+			type="com.cedar.cp.utc.struts.cellnote.CellNote"
+		  	scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/system/popupClose.jsp"/>
+		</action>
+
+		<action path="/budgetCycles"
+			type="com.cedar.cp.utc.struts.cyclehistory.CycleHistorySetupAction"
+		  	scope="request"
+            name="cycleHistoryForm"
+			validate="false">
+			<forward name="success" path="/jsp/cycleHistory/budgetCycleList.jsp"/>
+		</action>
+
+		<action path="/budgetCycleHistoryDetails"
+			type="com.cedar.cp.utc.struts.cyclehistory.CycleHistoryDetailSetupAction"
+		  	scope="request"
+            name="cycleHistoryDetailsForm"
+			validate="false">
+			<forward name="success" path="/jsp/cycleHistory/budgetCycleHistoryDetails.jsp"/>
+		</action>
+
+		<action path="/budgetCycleActivityList"
+			type="com.cedar.cp.utc.struts.cycleactivity.CycleActivityList"
+		  	scope="request"
+            name="cycleActivityForm"
+			validate="false">
+			<forward name="success" path="/jsp/cycleActivity/budgetCycleActivityList.jsp"/>
+		</action>
+
+		<action path="/budgetCycleActivityDetail"
+			type="com.cedar.cp.utc.struts.cycleactivity.ActivityDetailSetup"
+		  	scope="request"
+            name="cycleActivityForm"
+			validate="false">
+            <forward name="success" path="/jsp/cycleActivity/budgetCycleActivityDetails.jsp"/>
+		</action>
+
+		<action path="/popupCostCentreSelector"
+			type="com.cedar.cp.utc.struts.cycleactivity.CostCentreSelectSetup"
+		  	scope="request"
+            name="costCentreSelectForm"
+			validate="false">
+            <forward name="success" path="/jsp/cycleActivity/popupCostCentreSelect.jsp"/>
+			<forward name="noRa" path="/jsp/cycleActivity/popupCostCentreSelectError.jsp"/>
+		</action>
+
+		<action path="/tasks"
+			type="com.cedar.cp.utc.struts.task.TaskSetup"
+		  	scope="request"
+            name="taskForm"
+			validate="false">
+			<forward name="success" path="/jsp/task/taskList.jsp"/>
+		</action>
+
+		<action path="/tableTaskList"
+			type="com.cedar.cp.utc.struts.task.TaskListSetup"
+		  	scope="request"
+            name="taskForm"
+			validate="false">
+			<forward name="success" path="/jsp/inline/apps/task/tasks.jsp"/>
+		</action>
+
+		<action path="/taskDetails"
+			type="com.cedar.cp.utc.struts.task.TaskDetailSetup"
+		  	scope="request"
+            name="taskDetailForm"
+			validate="false">
+			<forward name="success" path="/jsp/task/taskDetails.jsp"/>
+		</action>
+
+		<action path="/massUpdate"
+			type="com.cedar.cp.utc.struts.topdown.MassUpdateSetup"
+		  	scope="request"
+            name="massUpdateForm"
+			validate="false">
+			<forward name="success" path="/jsp/topdown/massUpdate.jsp"/>
+		</action>
+
+        <action path="/submitMassUpdate"
+			type="com.cedar.cp.utc.struts.topdown.MassUpdate"
+		  	scope="request"
+            name="massUpdateForm"
+            input="/jsp/topdown/massUpdate.jsp"
+			validate="true">
+			<forward name="success" path="/massUpdate.do"/>
+            <forward name="continue" path="/jsp/topdown/massUpdate.jsp" />
+		</action>
+
+        <action path="/dimensionSelect"
+			type="com.cedar.cp.utc.struts.topdown.DimensionSelect"
+		  	scope="request"
+            name="dimensionForm"
+			validate="false">
+            <forward name="success" path="/jsp/topdown/dimensionSelect.jsp" />
+            <forward name="selected" path="/massUpdate.do" />
+		</action>
+
+        <action path="/popupSelector"
+            scope="request"
+            type="com.cedar.cp.utc.struts.topdown.PopupSetup"
+            name="massupdatePopupForm"
+            validate="false">
+            <forward name="model" path="/jsp/topdown/popupModel.jsp" />
+            <forward name="financecube" path="/jsp/topdown/popupFinanceCube.jsp" />
+            <forward name="datatype" path="/jsp/topdown/popupDataType.jsp" />
+			<forward name="budgetcycle" path="/jsp/topdown/popupBudgetCycle.jsp"/>
+        </action>
+
+        <action path="/budgetLimit"
+			type="com.cedar.cp.utc.struts.topdown.BudgetLimitSetup"
+		  	scope="request"
+            name="budgetLimitForm"
+			validate="false">
+			<forward name="success" path="/jsp/topdown/budgetLimits.jsp"/>
+		</action>
+
+        <action path="/editBudgetLimit"
+			type="com.cedar.cp.utc.struts.topdown.BudgetLimitEdit"
+		  	scope="request"
+            name="budgetLimitEditForm"
+            input="/jsp/topdown/addBudgetLimit.jsp"
+			validate="true">
+            <forward name="setupadd" path="/jsp/topdown/addBudgetLimit.jsp"/>
+			<forward name="success" path="/budgetLimit.do"/>
+		</action>
+
+		<action path="/xmlReports" forward="/jsp/xmlreports/fullXmlreports.jsp"/>
+		
+		<action path="/adminPanel" forward="/adminApp/jsp/adminPanelRedirect.jsp"/>
+        
+        <action path="/xmlPublicReports"
+            type="com.cedar.cp.utc.struts.xmlreports.XmlPublicReportsAction"
+            name="xmlReportsForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/inline/apps/xmlreports/publicReports.jsp"/>
+        </action>
+        		
+        <action path="/xmlPrivateReports"
+            type="com.cedar.cp.utc.struts.xmlreports.XmlPrivateReportsAction"
+            name="xmlReportsForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/inline/apps/xmlreports/privateReports.jsp"/>
+        </action>
+
+        <action path="/xmlReportView"
+            name="xmlReportsForm"
+            scope="request"
+            validate="false"
+            type="com.cedar.cp.utc.struts.xmlreports.XmlReportViewSetupAction">
+            <forward name="success" path="/jsp/xmlreports/fullxmlreportView.jsp" />
+            <forward name="noReport" path="/jsp/xmlreports/xmlreportNoReport.jsp" />
+        </action>
+
+        <action path="/clearCache"
+			type="com.cedar.cp.utc.struts.admin.ClearCacheAction"
+			validate="false"
+            name="adminForm"
+			scope="request" >
+            <forward name="success" path="/mainMenu.do"/>
+        </action>
+
+        <action path="/reports"
+            type="com.cedar.cp.utc.struts.report.ReportSetup"
+            scope="request"
+            name="reportForm"
+            validate="false">
+            <forward name="success" path="/jsp/report/reportList.jsp"/>
+        </action>
+
+        <action path="/tableReportsList"
+            type="com.cedar.cp.utc.struts.report.ReportListSetup"
+            scope="request"
+            name="reportForm"
+            validate="false">
+            <forward name="success" path="/jsp/inline/apps/task/taskReports.jsp"/>
+        </action>
+
+		<action path="/reportDetails"
+            type="com.cedar.cp.utc.struts.report.ReportDetailSetup"
+            scope="request"
+            name="reportDetailForm"
+            validate="false">
+            <forward name="success" path="/jsp/report/reportDetails.jsp"/>
+        </action>
+
+        <action path="/deleteTaskReport"
+            type="com.cedar.cp.utc.struts.report.DeleteTaskReportAction"
+            scope="request"
+            name="reportDetailForm"
+            validate="false">
+            <forward name="success" path="/reports.do"/>
+        </action>
+
+        <action path="/perfTests"
+            type="com.cedar.cp.utc.struts.admin.perf.PerfTestsSetup"
+            scope="request"
+            name="perfTestsForm"
+            validate="false">
+            <forward name="success" path="/jsp/admin/perf/perfTests.jsp"/>
+        </action>
+
+        <action path="/runPerfTestsSetup"
+            type="com.cedar.cp.utc.struts.admin.perf.RunPerfTestsSetup"
+            name="runPerfTestsForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/admin/perf/runPerfTests.jsp"/>
+        </action>
+
+        <action path="/runPerfTests"
+            input="/jsp/admin/perf/runPerfTests.jsp"
+            name="runPerfTestsForm"
+            scope="request"
+            validate="true"
+            type="com.cedar.cp.utc.struts.admin.perf.RunPerfTestsAction">
+            <forward name="success" path="/perfTests.do"/>
+        </action>
+
+        <action path="/deletePerfTestRun"
+            type="com.cedar.cp.utc.struts.admin.perf.DeletePerfTestRunAction"
+            name="deletePerfTestRunForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/perfTests.do"/>
+        </action>
+
+		<action path="/virements"
+			type="com.cedar.cp.utc.struts.virement.VirementListSetupAction"
+			name="virementsForm"
+			scope="request"
+			validate="false" >
+			<forward name="success" path="/jsp/virement/virements.jsp"/>
+            <forward name="edit" path="/virement.do"/>
+            <forward name="view" path="/viewVirement.do"/>
+            <forward name="auth" path="/showVirementAuth.do"/>
+		</action>
+
+		<action path="/tableVirements"
+			type="com.cedar.cp.utc.struts.virement.VirementListSetupAction"
+			name="virementsForm"
+			scope="request"
+			validate="false" >
+			<forward name="success" path="/jsp/inline/virements/virementsForAuth.jsp"/>
+		</action>
+
+		<action path="/virementsGUI"
+            type="com.cedar.cp.utc.struts.virement.VirementGUIListSetupAction"
+            name="virementsGUIForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/virement/virementGUIList.jsp"/>
+        </action>
+
+
+        <action path="/virementQuery"
+			type="com.cedar.cp.utc.struts.virement.VirementQuerySetupAction"
+			name="virementQueryForm"
+			scope="request"
+			validate="false" >
+			<forward name="success" path="/jsp/virement/virementQuery.jsp"/>
+			<forward name="virementQueryResults" path="/jsp/virement/virementQueryResult.jsp"/>
+			<!--<forward name="list" path="/virementRunQuery.do"/>-->
+		</action>
+
+		<action path="/virement"
+			type="com.cedar.cp.utc.struts.virement.VirementDataEntrySetupAction"
+			name="virementDataEntryForm"
+			scope="request"
+			validate="false" >
+			<forward name="success" path="/jsp/virement/virementDataEntry.jsp"/>
+		</action>
+
+        <action path="/showVirementAuth"
+            type="com.cedar.cp.utc.struts.virement.VirementAuthSetupAction"
+            name="virementAuthEntryForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/virement/virementAuthView.jsp"/>
+        </action>
+
+		<action path="/authVirement"
+			type="com.cedar.cp.utc.struts.virement.VirementAuthAction"
+			name="virementAuthEntryForm"
+			scope="request"
+			validate="false" >
+			<forward name="success" path="/virements.do"/>
+            <forward name="spread" path="/showVirementSpread.do"/>
+			<forward name="auth" path="/jsp/virement/virementAuthView.jsp"/>
+		</action>
+
+		<action path="/viewVirement"
+			type="com.cedar.cp.utc.struts.virement.VirementViewSetupAction"
+			name="virementDataEntryForm"
+			scope="request"
+			validate="false" >
+            <forward name="spread" path="/showVirementSpread.do"/>
+            <forward name="success" path="/jsp/virement/virementView.jsp"/>
+		</action>
+
+        <action path="/editVirementSpread"
+            type="com.cedar.cp.utc.struts.virement.VirementSpreadEditAction"
+            name="virementSpreadForm"
+            scope="request"
+            validate="false">
+            <forward name="succ/communicationListSetup.doess" path="/editVirement.do"/>
+            <forward name="viewVirement" path="/viewVirement.do"/>
+            <forward name="authVirement" path="/showVirementAuth.do"/>
+            <forward name="iterate" path="/jsp/virement/virementSpread.jsp"/>
+        </action>
+
+        <action path="/showVirementSpread"
+            type="com.cedar.cp.utc.struts.virement.VirementSpreadSetupAction"
+            name="virementSpreadForm"
+            scope="request"
+            validate="false">
+            <forward name="success" path="/jsp/virement/virementSpread.jsp"/>
+        </action>
+
+        <action path="/editVirement"
+			type="com.cedar.cp.utc.struts.virement.VirementDataEntryEditAction"
+			name="virementDataEntryForm"
+			scope="request"
+			validate="true"
+			input="/jsp/virement/virementDataEntry.jsp" >
+			<forward name="success" path="/jsp/virement/virementDataEntry.jsp"/>
+            <forward name="spread" path="/showVirementSpread.do"/>
+            <forward name="submitted" path="/jsp/virement/virementSubmitted.jsp"/>
+			<forward name="saved" path="/virements.do"/>
+		</action>
+
+		<action path="/addVirementDetail"
+			type="com.cedar.cp.utc.struts.virement.VirementAddDetailAction"
+			name="virementAddressForm"
+			scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/virement/addressSelect.jsp"/>
+			<forward name="selected" path="/editVirement.do"/>
+			<forward name="cancel" path="/editVirement.do"/>
+		</action>
+
+		<action path="/selectVirementBudgetCycle"
+			type="com.cedar.cp.utc.struts.virement.VirementSelectBudgetCycleAction"
+			name="virementBudgetCycleForm"
+			scope="request"
+			validate="false">
+			<forward name="success" path="/jsp/virement/popupBudgetCycle.jsp"/>
+		</action>
+
+		<!--
+		<action path="/organiseReports"
+            type="com.cedar.cp.utc.struts.xmlreports.XmlReportsSetupAction"
+            name="xmlReportsForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/xmlreports/organise.jsp"/>
+        </action>-->
+
+        <action path="/organiseReportFolder"
+            type="com.cedar.cp.utc.struts.xmlreports.OrganiseReportsAction"
+            name="organiseReportsForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/xmlReports.do"/>
+        </action>
+
+        <action path="/moveReportSetup"
+            type="com.cedar.cp.utc.struts.xmlreports.MoveReportSetupAction"
+            name="moveXmlReportForm"
+            scope="request"
+            validate="false" >
+            <forward name="success" path="/jsp/xmlreports/popupMovereport.jsp"/>
+            <forward name="all_done" path="/popupClose.do"/>
+        </action>
+
+        <action path="/loadtest"
+            name="loadtestForm"
+            scope="request"
+            validate="false"
+            type="com.cedar.cp.utc.struts.approver.LoadtestSetupAction">
+            <forward name="success" path="/jsp/approver/loadtest.jsp" />
+        </action>
+
+        <action path="/mainMenu"
+			type="com.cedar.cp.utc.struts.admin.MenuSetupAction"
+			validate="false"
+            name="menuForm"
+			scope="request" >
+            <forward name="success" path="/jsp/inline/apps/menu/mainMenu.jsp"/>
+        </action>
+        
+        <action path="/roadMapMenu"
+			type="com.cedar.cp.utc.struts.admin.RoadMapMenu"
+			validate="false"
+            name="roadMapForm"
+			scope="request" >
+            <forward name="success" path="/jsp/inline/apps/menu/roadMapMenu.jsp"/>
+        </action>
+        
+        <action path="/dashboardMenu"
+			type="com.cedar.cp.utc.struts.admin.DashboardMenu"
+			validate="false"
+            name="dashboardForm"
+			scope="request" >
+            <forward name="success" path="/jsp/inline/apps/menu/dashboardMenu.jsp"/>
+        </action>
+
+        <action path="/reportsLayout"
+			type="com.cedar.cp.utc.struts.xmlreports.ReportsLayoutAction"
+			validate="false"
+            name="reportForm"
+			scope="request" >
+            <forward name="success" path="/xmlReports.do"/>
+        </action>
+
+        <action path="/dataEntryXMLTest"
+            type="com.cedar.cp.utc.struts.admin.test.DataEntryTest"
+            validate="false"
+            name="dataEntryTestForm"
+            scope="request">
+            <forward name="success"  path="/jsp/admin/test/dataEntryTest.jsp"/>
+        </action>
+
+        <action path="/activeUsers"
+            type="com.cedar.cp.utc.struts.admin.user.ActiveUsersSetup"
+            validate="false"
+            name="activeUserForm"
+            scope="request">
+            <forward name="success"  path="/jsp/inline/apps/admin/user/activeUsers.jsp"/>
+        </action>
+
+        <action path="/submitJob"
+            type="com.cedar.cp.utc.struts.admin.job.JobDispatcher"
+            validate="false"
+            name="jobSubmitForm"
+            scope="request">
+            <forward name="success" path="jsp/admin/job/testJob.jsp"/>
+        </action>
+
+		<action path="/doReportUpdates"
+				type="com.cedar.cp.utc.struts.report.DoReportUpdatesAction"
+				validate="false"
+				name="reportUpdateForm"
+				scope="request">
+			<forward name="success" path="/jsp/report/reportUpdateDetails.jsp"/>
+		</action>
+
+		<action path="/undoReportUpdates"
+				type="com.cedar.cp.utc.struts.report.UndoReportUpdatesAction"
+				validate="false"
+				name="reportUpdateForm"
+				scope="request">
+			<forward name="success" path="/jsp/report/reportUpdateDetails.jsp"/>
+		</action>
+
+		<action path="/reportsMenu" forward="/reportsLayout.do" />
+
+		<action path="/ajaxValidateMassUpdateCal"
+				type="com.cedar.cp.utc.struts.topdown.AJAXValidateCal">
+        </action>
+		
+		<action path="/ajaxSpeedTest"
+			type="com.cedar.cp.utc.struts.admin.support.AJAXSpeedTest"/>
+
+		<action path="/ajaxTraceRoute"
+			type="com.cedar.cp.utc.struts.admin.support.AJAXTraceRoute"/>
+
+		<!-- test actions -->
+        <action path="/testLogin"
+            input="/testHomePage.do"
+            name="loginForm"
+            scope="request"
+            validate="true"
+            type="com.cedar.cp.utc.struts.login.Login">
+            <forward name="success" path="/testHomePage.do"/>
+        </action>
+
+        <action path="/testHomePage"
+			type="com.cedar.cp.utc.struts.homepage.HomePageSetupAction"
+			validate="false"
+			name="homeForm"
+			scope="request" >
+            <forward name="loggedOn" path="/jsp/test/welcome.jsp"/>
+            <forward name="notLoggedOn" path="/jsp/test/login.jsp"/>
+            <forward name="unsupportedBrowser" path="/jsp/unsupported.jsp"/>
+        </action>
+
+        <action path="/testLogout"
+            type="com.cedar.cp.utc.struts.login.Logout">
+            <forward name="success"  path="/jsp/test/login.jsp"/>
+        </action>
+
+		<!-- dojo 1.0 test actions -->
+		<action path="/combo"
+				type="com.cedar.cp.utc.struts.test.ComboAJAXAction">
+        </action>
+		<action path="/tree"
+				type="com.cedar.cp.utc.struts.test.TreeAJAXAction">
+        </action>
+
+        <action path="/logonHistoryList"
+            type="com.cedar.cp.utc.struts.admin.logonhistory.LogonHistoryAction"
+            validate="false"
+            name="logonHistoryForm"
+            scope="request" >
+            <forward name="success" path="/jsp/admin/logonhistory/logonHistoryList.jsp"/>
+            <forward name="popup" path="/jsp/admin/logonhistory/popupLogonHistoryList.jsp"/>
+		</action>
+
+		<action path="/gadgetRecentMessage"
+			type="com.cedar.cp.utc.struts.gadget.apps.message.UnreadMessages"
+			validate="false"
+			name="homeForm"
+			scope="request">
+			<forward name="success" path="/jsp/gadget/apps/message/recentMessages.jsp"/>
+		</action>
+
+		<action path="/gadgetDataEntryProfile"
+			type="com.cedar.cp.utc.struts.gadget.apps.dataentry.Profiles"
+			validate="false"
+			name="gadgetProfileForm"
+			scope="request">
+			<forward name="success" path="/jsp/gadget/apps/dataentry/profileList.jsp"/>
+		</action>
+
+		<action path="/gadgetDataEntryView"
+			type="com.cedar.cp.utc.struts.gadget.apps.dataentry.AppletView"
+			validate="false"
+			name="gadgetAppletViewForm"
+			scope="request">
+			<forward name="success" path="/jsp/gadget/apps/dataentry/appletView.jsp"/>
+		</action>
+
+		<action path="/tableMessageList"
+			type="com.cedar.cp.utc.struts.message.MessageListSetup" scope="request" validate="false"
+			name="communicationListForm">
+			<forward name="success" path="/jsp/inline/apps/message/messages.jsp"/>
+		</action>
+
+		<action path="/tableSentMessageList"
+			type="com.cedar.cp.utc.struts.message.MessageSentListSetup" scope="request" validate="false"
+			name="communicationListForm">
+			<forward name="success" path="/jsp/inline/apps/message/sentMessages.jsp"/>
+		</action>
+
+		<action path="/tableRecentMessageList"
+			type="com.cedar.cp.utc.struts.gadget.apps.message.UnreadMessages" scope="request" validate="false"
+			name="homeForm">
+			<forward name="success" path="/jsp/inline/apps/message/recentMessages.jsp"/>
+		</action>
+
+        <action path="/modelBudgetInstructions"
+				type="com.cedar.cp.utc.struts.budgetinstruction.BubgetInstructionListSetupAction"
+				validate="false"
+				name="biRequestForm"
+				scope="request">
+			<forward name="success" path="/jsp/inline/apps/bi/modelBudgetInstructions.jsp"/>
+		</action>
+
+		<action path="/formReport"
+            type="com.cedar.cp.utc.struts.admin.report.form.FormReportSetup"
+            validate="false"
+            name="formReportForm"
+            scope="request" >
+            <forward name="success" path="/jsp/admin/report/form/form.jsp"/>
+			<forward name="popup" path="/jsp/admin/report/form/fullListPopupForm.jsp"/>
+		</action>
+
+		<action path="/reportDef" forward="/jsp/report/reportDef.jsp"/>
+		
+		<action path="/formReportList"
+			type="com.cedar.cp.utc.struts.admin.report.reportdefinition.FormReportAction" scope="request" validate="false"
+			name="formReportDef">
+			<forward name="success" path="/jsp/inline/apps/report/FormReport.jsp"/>
+		</action>
+		<action path="/mappedExcelReportList"
+			type="com.cedar.cp.utc.struts.admin.report.reportdefinition.MappedExcelReportAction" scope="request" validate="false"
+			name="formReportDef">
+			<forward name="success" path="/jsp/inline/apps/report/MappedExcelReport.jsp"/>
+		</action>
+		<action path="/calculatorReportList"
+			type="com.cedar.cp.utc.struts.admin.report.reportdefinition.CalculatorReportAction" scope="request" validate="false"
+			name="formReportDef">
+			<forward name="success" path="/jsp/inline/apps/report/CalculatorReport.jsp"/>
+		</action>
+		<action path="/summaryCalcReportList"
+			type="com.cedar.cp.utc.struts.admin.report.reportdefinition.SummaryCalcReportAction" scope="request" validate="false"
+			name="formReportDef">
+			<forward name="success" path="/jsp/inline/apps/report/SummaryCalcReport.jsp"/>
+		</action>
+
+		<action path="/webReportSubmit" type="com.cedar.cp.utc.struts.admin.report.reportdefinition.SubmitAction"/>
+				
+		<action path="/viewVirementQuery"
+			type="com.cedar.cp.utc.struts.virement.ViewVirementQueryResultAction"
+			name="virementQueryForm"			
+			scope="request"
+			validate="false" >			
+			<forward name="success" path="/jsp/cellnote/viewCellNoteBudgetTransferResult.jsp"/>
+			<forward name="error" path="/jsp/cellnote/viewCellNoteBudgetTransferResult.jsp"/>
+		</action>
+
+		<action path="/jsonList" 
+			type="com.cedar.cp.utc.struts.helper.JSONListHelper">
+		</action>
+		
+        <action path="/ajaxClient"
+                type="com.cedar.cp.utc.struts.admin.client.Messenger">
+        </action>
+
+        <action path="/ajaxEvictUser"
+                type="com.cedar.cp.utc.struts.admin.user.EvictUserContext">
+        </action>
+		
+        <action path="/ajaxMessageData"
+                type="com.cedar.cp.utc.struts.message.MessageData">
+        </action>
+        
+	</action-mappings>
+	
+	<message-resources parameter="ApplicationResources"/>
+
+</struts-config>

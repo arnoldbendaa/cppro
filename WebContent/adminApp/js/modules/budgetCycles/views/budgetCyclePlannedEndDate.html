@@ -1,0 +1,17 @@
+<div class="budget-cycle-planned-end-date">
+	<div class="input-group datepicker-right">
+		<input type="text" class="form-control" 
+			disabled="false" 
+			name="plannedEndDate"
+			ng-model="plannedEndDate" 
+			show-weeks="false" show-button-bar="false" 
+			datepicker-popup="{{format}}"
+			is-open="openedPlannedEndDate"
+			close-text="Close"
+			date-format required/>
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-success plannedButtons" ng-click="openPlannedEndDate($event);" >Add</button>
+			<button type="button" class="btn btn-info plannedButtons" ng-disabled="plannedEndDate == null" ng-click="openLevels($event);" >Levels</button>
+		</span>
+	</div>
+</div>	

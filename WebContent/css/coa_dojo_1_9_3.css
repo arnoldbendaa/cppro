@@ -1,0 +1,58 @@
+@import "../libs/dojo/dojo/resources/dojo.css";
+@import "../libs/dojo/dojox/layout/resources/ExpandoPane.css";
+@import "../libs/dojo/dijit/themes/claro/claro.css";
+@import "coa.css";
+
+html, body, #main, .main
+{
+	width: 100%;	/* make the body expand to fill the visible window */
+	
+	background-color: #f9f7fb;
+	margin:0;
+	padding:0;
+	/*min-height: 100px !important;
+	max-height: 200px !important;*/
+	height: 100%;
+	
+
+}
+
+.controlsBottom{
+	padding-top:6px;
+	padding-bottom:4px;
+	padding-right:40px;
+	text-align:right;
+}
+
+/* this should make moving the css on easy so we dont have to alter specific files everytime*/
+.dijitDialogUnderlay {
+	background: #000;   /* black background when dialog shown */
+	opacity: 0.5;
+}
+
+.soria .expandoRight
+{
+	border-right: 1px solid #74C2E1;
+	padding:4px;
+}
+
+.soria .coaHeader
+{
+	height:62px;
+	border-bottom: 1px solid #74C2E1;
+}
+
+.soria .coaHeaderSwish
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f9f7fb;
+	background:url( ../images/watermark_adv.jpg ) no-repeat top right;
+}
+
+.soria .dijitContentPane
+{
+	background-color: #F9F7FB;
+}

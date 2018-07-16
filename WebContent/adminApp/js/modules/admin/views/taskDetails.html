@@ -1,0 +1,54 @@
+<div class="task-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-university"></i> 
+			Database Tidy Tasks
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-show="!isDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="inner" ng-show="isDataLoaded">
+			<div class="form-group getToCalc1">
+				<label for="">Identifier:</label>
+				<input name="name" value="{{tidyTask.tidyTaskVisId}}" type="text" class="form-control" ng-disabled="true">
+			</div>
+
+			<div class="form-group getToCalc2">
+				<label for="">Description:</label>
+				<input name="name" value="{{tidyTask.tidyTaskDescription}}" type="text" class="form-control" ng-disabled="true">
+			</div>
+
+			<div class="form-group reset-bottom-margin" ng-show="tidyTask.commands !== null && tidyTask.commands.length > 0">
+				<label for="" class="getToCalc3">Commands:</label>
+				<div class="elementToResize">
+					<table class="table table-striped commands">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Cmd Type</th>
+								<th>Command</th>
+							</tr>
+						</thead>					
+						<tbody>
+							<tr ng-repeat="command in tidyTask.commands">
+								<td>{{$index+1}}</td>
+								<td>{{command.name}}</td>
+								<td>{{command.command}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div class="form-group" ng-show="tidyTask.commands !== null && tidyTask.commands.length == 0">
+				<label for="">Commands:</label>
+				<div class="align-center">No commands related to task {{tidyTask.name}}</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

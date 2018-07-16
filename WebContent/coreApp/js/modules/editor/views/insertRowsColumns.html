@@ -1,0 +1,33 @@
+<div id="insert-rows-columns">
+	<div class="modal-header">
+		<h3><i class="fa fa-table"></i>
+			Insert rows and columns
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form name="insertRowsColumns" class="css-form" novalidate>	
+			<div class="col-md-6">
+				<div class="form-group" ng-class="{ 'has-error': insertRowsColumns.rows.$invalid }" >
+					<label for="">Rows:</label>
+					<span class="text-danger" ng-show="insertRowsColumns.rows.$invalid">
+						Min 0 and max 100 rows.
+					</span>				
+					<input type="number" class="form-control" name="rows" ng-model="rows" min="0" max="100" required/>
+				</div>	
+			</div>	
+			<div class="col-md-6">
+				<div class="form-group" ng-class="{ 'has-error': insertRowsColumns.columns.$invalid }" >
+					<label for="">Columns:</label>
+					<span class="text-danger" ng-show="insertRowsColumns.columns.$invalid">
+						Min 0 and max 100 columns.
+					</span>							
+					<input type="number" class="form-control" name="columns" ng-model="columns" min="0" max="100" required/>
+				</div>				
+			</div>			
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="insert()" ng-disabled="insertRowsColumns.$invalid" type="reset">Insert</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+	</div>
+</div>

@@ -1,0 +1,265 @@
+<div class="authentication-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-lock"></i> 
+			Authentication
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form class="data-type-details-form" name="form" role="form" novalidate>
+			<div class="loader align-center" ng-show="!isMainDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="isMainDataLoaded">
+
+				<div>
+					<div class="col-md-4 col-left">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.authenticationVisId != '']">
+							<label for="">Identifier:</label>
+							<span class="text-danger" ng-show="validation.authenticationVisId != ''" class="help-block">{{validation.authenticationVisId}}</span>
+							<input name="name" ng-model="authentication.authenticationVisId" type="text" class="form-control">
+						</div>				
+					</div>
+					<div class="col-md-6">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.authenticationDescription != '']">
+							<label for="">Description:</label>
+							<span class="text-danger" ng-show="validation.authenticationDescription != ''" class="help-block">{{validation.authenticationDescription}}</span>
+							<input name="name" ng-model="authentication.authenticationDescription" type="text" class="form-control">
+						</div>
+					</div>
+					<div class="col-md-2 col-right">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.active != '']">
+							<label for=""></label>
+							<div class="checkbox disabled">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="authentication.active" disabled="disabled">
+									Active
+								</label>
+							</div>
+							<span class="text-danger" ng-show="validation.active != ''" class="help-block">{{validation.active}}</span>
+						</div>
+					</div>
+				</div>
+
+				<br class="clearBoth" />
+
+				<div>
+					<div class="col-md-4 col-left">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.authenticationTechnique != '']">
+							<label for="">Authentication technique:</label>
+							<span class="text-danger" ng-show="validation.authenticationTechnique != ''" class="help-block">{{validation.authenticationTechnique}}</span>
+							<select class="form-control"
+								ng-model="currentAuthenticationTechnique"
+								ng-change="changeAuthenticationTechnique()"
+								ng-options="(at.name) for at in authenticationTechniques track by at.index">
+					        </select>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.securityAdministrator != '']">
+							<label for="">Security admin user:</label>
+							<span class="text-danger" ng-show="validation.securityAdministrator != ''" class="help-block">{{validation.securityAdministrator}}</span>
+							<select class="form-control"
+								ng-model="currentSecurityAdministrator"
+								ng-change="changeSecurityAdministrator()"
+								ng-options="(sa.name) for sa in securityAdministrators track by sa.index">
+					        </select>
+						</div>
+					</div>
+					<div class="col-md-4 col-right">
+						<div class="form-group" ng-class="{true: 'has-error'}[validation.securityLog != '']">
+							<label for="">Security log:</label>
+							<span class="text-danger" ng-show="validation.securityLog != ''" class="help-block">{{validation.securityLog}}</span>						
+							<select class="form-control"
+								ng-model="currentSecurityLog"
+								ng-change="changeSecurityLog()"
+								ng-options="(sl.name) for sl in securityLogs track by sl.index">
+					        </select>
+						</div>	
+					</div>
+				</div>		
+
+				<br class="clearBoth" />
+
+<!-- 				<div class="modalDivider" ng-show="detailsFieldsGroupVisibility[1] || detailsFieldsGroupVisibility[2] || detailsFieldsGroupVisibility[3] || detailsFieldsGroupVisibility[4]"></div> -->
+
+				<!-- INTERNAL: -->
+				<div class="internal-details" ng-show="detailsFieldsGroupVisibility[1]">
+					<fieldset>
+						<legend>Internal Details</legend>
+						<!-- <h4 class="modalDetailsGroupTitle">Internal Details</h4> -->
+						<div class="content">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.minimumPasswordLength != '']">
+										<label for="">Minimum password length:</label>
+										<span class="text-danger" ng-show="validation.minimumPasswordLength != ''" class="help-block">{{validation.minimumPasswordLength}}</span>
+										<input name="name" ng-model="authentication.internal.minimumPasswordLength" type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.minimumAlphas != '']">
+										<label for="">Minimum alphas:</label>
+										<span class="text-danger" ng-show="validation.minimumAlphas != ''" class="help-block">{{validation.minimumAlphas}}</span>
+										<input name="name" ng-model="authentication.internal.minimumAlphas" type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.minimumDigits != '']">
+										<label for="">Minimum digits:</label>
+										<span class="text-danger" ng-show="validation.minimumDigits != ''" class="help-block">{{validation.minimumDigits}}</span>
+										<input name="name" ng-model="authentication.internal.minimumDigits" type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.maximumRepetition != '']">
+										<label for="">Maximum repetition:</label>
+										<span class="text-danger" ng-show="validation.maximumRepetition != ''" class="help-block">{{validation.maximumRepetition}}</span>
+										<input name="name" ng-model="authentication.internal.maximumRepetition" type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.minimumChanges != '']">
+										<label for="">Minimum changes:</label>
+										<span class="text-danger" ng-show="validation.minimumChanges != ''" class="help-block">{{validation.minimumChanges}}</span>
+										<input name="name" ng-model="authentication.internal.minimumChanges" type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.maximumLogonAttempts != '']">
+										<label for="">Maximum logon attempts:</label>
+										<span class="text-danger" ng-show="validation.maximumLogonAttempts != ''" class="help-block">{{validation.maximumLogonAttempts}}</span>
+										<input name="name" ng-model="authentication.internal.maximumLogonAttempts" type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.passwordReuseDelta != '']">
+										<label for="">Password reuse count:</label>
+										<span class="text-danger" ng-show="validation.passwordReuseDelta != ''" class="help-block">{{validation.passwordReuseDelta}}</span>
+										<input name="name" ng-model="authentication.internal.passwordReuseDelta" type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.passwordExpiry != '']">
+										<label for="">Password expiry:</label>
+										<span class="text-danger" ng-show="validation.passwordExpiry != ''" class="help-block">{{validation.passwordExpiry}}</span>
+										<input name="name" ng-model="authentication.internal.passwordExpiry" type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.passwordMask != '']">
+										<label for="">Password mask:</label>
+										<span class="text-danger" ng-show="validation.passwordMask != ''" class="help-block">{{validation.passwordMask}}</span>
+										<input name="name" ng-model="authentication.internal.passwordMask" type="text" class="form-control">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group" ng-class="{true: 'has-error'}[validation.passwordUseridDiffer != '']">
+									<label for=""></label>
+										<div class="checkbox">
+											<label class="checkbox">
+												<input type="checkbox" ng-model="authentication.internal.passwordUseridDiffer">
+												Is password userid different
+											</label>
+										</div>
+										<span class="text-danger" ng-show="validation.passwordUseridDiffer != ''" class="help-block">{{validation.passwordUseridDiffer}}</span>
+									</div>
+								</div>
+							</div>
+							<br class="clearBoth" />					
+						</div>
+					</fieldset>
+				</div>
+
+
+				<!-- EXTERNAL: -->
+				<div class="external-details" ng-show="detailsFieldsGroupVisibility[2]">
+					<fieldset>
+						<legend>External Details</legend>
+						<!-- <h4 class="modalDetailsGroupTitle">External Details</h4> -->
+						<div class="content">
+
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.jaasEntryName != '']">
+								<label for="">JAAS Entry Name:</label>
+								<span class="text-danger" ng-show="validation.jaasEntryName != ''" class="help-block">{{validation.jaasEntryName}}</span>
+								<input name="name" ng-model="authentication.jaasEntryName" type="text" class="form-control">
+							</div>
+							
+						</div>
+					</fieldset>
+				</div>
+
+				<!-- COSIGN: -->
+<!-- 				<div class="cosign-details" ng-show="detailsFieldsGroupVisibility[3]">
+	<h4 class="modalDetailsGroupTitle">Cosing Details</h4>
+	<div class="content">
+
+		<div class="form-group" ng-class="{true: 'has-error'}[validation.cosignConfigurationFile != '']">
+			<label for="">Cosign Configuration File:</label>
+			<span class="text-danger" ng-show="validation.cosignConfigurationFile != ''" class="help-block">{{validation.cosignConfigurationFile}}</span>
+			<br />{{authentication.cosignConfigurationFile}}
+			<input name="name" ng-model="authentication.cosignConfigurationFile" type="file" class="form-control">
+		</div>
+		
+	</div>
+</div> -->
+
+				<!-- NTLM: -->
+				<div class="ntlm-details" ng-show="detailsFieldsGroupVisibility[4]">
+					<fieldset>
+						<legend>NTLM Details</legend>
+						<!-- <h4 class="modalDetailsGroupTitle">NTLM Details</h4> -->
+						<div class="content">
+							<div class="row">
+								<div class="form-group col-md-6" ng-class="{true: 'has-error'}[validation.ntlmNetbiosWins != '']">
+									<label for="">NTLM Netbios wins:</label>
+									<span class="text-danger" ng-show="validation.ntlmNetbiosWins != ''" class="help-block">{{validation.ntlmNetbiosWins}}</span>
+									<input name="name" ng-model="authentication.ntlm.ntlmNetbiosWins" type="text" class="form-control">
+								</div>
+								<div class="form-group col-md-6" ng-class="{true: 'has-error'}[validation.ntlmDomain != '']">
+									<label for="">NTLM Domain:</label>
+									<span class="text-danger" ng-show="validation.ntlmDomain != ''" class="help-block">{{validation.ntlmDomain}}</span>
+									<input name="name" ng-model="authentication.ntlm.ntlmDomain" type="text" class="form-control">
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6" ng-class="{true: 'has-error'}[validation.ntlmDomainController != '']">
+									<label for="">NTLM Domain Controller:</label>
+									<span class="text-danger" ng-show="validation.ntlmDomainController != ''" class="help-block">{{validation.ntlmDomainController}}</span>
+									<input name="name" ng-model="authentication.ntlm.ntlmDomainController" type="text" class="form-control">
+								</div>
+								<div class="form-group col-md-6" ng-class="{true: 'has-error'}[validation.ntlmLogLevel != '']">
+									<label for="">NTLM Log Level:</label>
+									<span class="text-danger" ng-show="validation.ntlmLogLevel != ''" class="help-block">{{validation.ntlmLogLevel}}</span>
+									<select class="form-control"
+										ng-model="currentNtlmLogLevel"
+										ng-change="changeNtlmLogLevel()"
+										ng-options="(nll.name) for nll in ntlmLogLevels track by nll.index">
+							        </select>
+								</div>
+							</div>
+						</div>
+					</fieldset>	
+				</div>
+
+				<div ng-show="!isMainDataLoaded">
+					<br/>
+					<div class="loader align-center">
+						<i class="fa fa-refresh fa-2x fa-spin"></i>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">{{submitButtonName}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

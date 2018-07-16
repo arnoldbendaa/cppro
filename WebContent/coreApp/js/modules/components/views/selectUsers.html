@@ -1,0 +1,25 @@
+<div class="select-users" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-cube"></i>
+			Select Users
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="selectSth getToCalc1" ng-if="false">
+			<a href="javascript:void(0)" ng-click="changeSelection('all')">select all</a> |
+			<a href="javascript:void(0)" ng-click="changeSelection('none')">deselect all</a> |
+			<a href="javascript:void(0)" ng-click="changeSelection('invert')">invert selection</a> |
+			<a href="javascript:void(0)" ng-click="refreshData()">refresh</a>
+		</div>
+		<wj-flex-grid class="grid" id="select-users-grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)" selection-mode="Row" headers-visibility="Column">
+			<wj-flex-grid-column width="*" min-width="15" header="User ID" binding="userName" is-read-only="true"></wj-flex-grid-column>
+			<wj-flex-grid-column width="*" min-width="15" header="User Full Name" binding="userFullName" is-read-only="true"></wj-flex-grid-column>
+			<wj-flex-grid-column width="*" min-width="15" header=" " binding="checked" is-read-only="false" name="checked"></wj-flex-grid-column>
+		</wj-flex-grid>
+
+	</div>
+	<div class="modal-footer">
+		<button class = "btn btn-success" ng-click="ok()"> Ok </button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button >
+	</div>
+</div>

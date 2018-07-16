@@ -1,0 +1,53 @@
+<div id="editor" ng-controller="SettingsController">
+
+	<div class="ribbon">
+		
+        <div class="group">
+            <div class="content">
+                <div class="col">
+                    <a class="btn btn-default" ng-click="openWorkbookProperties()" title="Worbook Properties">
+                        <i class="fa wijmo-wijribbon-workbookProperties wijmo-wijribbon-bigbutton"></i>
+                        <br><span>Properties</span>
+                    </a>
+                </div>
+            </div>
+            <div class="caption">Workbook</div>
+        </div>
+
+        <div class="group">
+            <div class="content">
+                <div class="col">
+                    <a class="btn btn-default" ng-click="openWorksheetProperties()" title="Worksheet Properties">
+                        <i class="fa wijmo-wijribbon-worksheetProperties wijmo-wijribbon-bigbutton"></i>
+                        <br><span>Properties</span>
+                    </a>
+                </div>
+            </div>
+            <div class="caption">Worksheet</div>
+        </div>
+
+        <div class="group">
+            <div class="content">
+                <div class="col">
+                    <a class="btn btn-default" ng-click="manageUsers()" title="Manage Users">
+                        <i class="fa wijmo-wijribbon-manageUsers wijmo-wijribbon-bigbutton"></i>
+                        <br><span>Manage</span>
+                    </a>
+                </div>
+            </div>
+            <div class="caption">Users</div>
+        </div>
+        <div class="group">
+            <div class="content" style="padding-left:20px;padding-right:20px;">
+                <div class="col">
+                    <div class="checkbox" style="margin-top:-10px;">
+					  <label><input type="checkbox" ng-model="lockState" ng-click= "toggleLock()" style="width:20px;"></label>
+					</div>
+
+                </div>
+            </div>
+            <div class="caption">Lock</div>
+        </div>
+	</div>
+
+</div>

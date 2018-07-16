@@ -1,0 +1,385 @@
+*
+{
+    font-family: Verdana, Arial, serif;
+    font-size: 9pt;
+    font-weight: normal;
+    color: #333366;
+}
+
+html
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+}
+
+h1, .heading1
+{
+    margin: 2px 0;
+    padding: 0;
+    font-size: 16pt;
+    font-weight: bold;
+}
+h2, .heading2
+{
+    margin: 2px 0;
+    padding: 0;
+    font-size: 14pt;
+    font-weight: bold;
+}
+h3, .heading3
+{
+    margin: 2px 0;
+    padding: 0;
+    font-size: 12pt;
+    font-weight: bold;
+}
+h4, .heading4
+{
+    margin: 2px 0;
+    padding: 0;
+    font-size: 11pt;
+    font-weight: bold;
+}
+h5, .heading5
+{
+    margin: 2px 0;
+    padding: 0;
+    font-size: 10pt;
+    font-weight: bold;
+}
+h6, .heading6
+{
+    margin: 2px 0;
+    padding: 0;
+    font-size: 8pt;
+    font-weight: bold;
+}
+
+p
+{
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+tr, td, th
+{
+    margin:0;
+    padding: 0;
+}
+
+th
+{
+    font-weight: bold;
+}
+
+.coaApp, .coaInnerApp
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #f9f7fb;
+}
+
+.coaApp
+{
+    border: 1px solid #74C2E1;
+}
+
+.coaAppBody
+{
+    padding: 4px;
+}
+
+.coaHeader
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f9f7fb;
+    border-bottom: 1px solid #74C2E1;
+}
+
+.coa .coaHeader
+{
+	background:url(../images/swish.jpg) no-repeat top right;
+}
+
+.soria .coaHeader
+{
+	background:url(../images/watermark_adv.jpg) no-repeat top right;
+}
+
+.coaHeaderTitle
+{
+    margin: 0;
+    padding: 0 10px ;
+    height: 60px;
+    font-size: 14pt;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.coa .coaMenuBar
+{
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 32px;
+    background-color: #e3e7ed;
+    border-bottom: 1px solid #83389b;
+    vertical-align: middle;
+    text-align: right;
+    line-height: 32px;
+}
+
+.soria .coaMenuBar
+{
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 32px;
+    background-color: #e3e7ed;
+    border-bottom: 1px solid #74C2E1;
+    vertical-align: middle;
+    text-align: right;
+    line-height: 32px;
+}
+
+.coa .coaSideMenu
+{
+    margin: 0;
+    padding: 4px;
+    width: 220px;
+    height: 465px;
+    border-right: 1px solid #83389b;
+}
+
+.soria .coaSideMenu
+{
+    margin: 0;
+    padding: 4px;
+    width: 220px;
+    height: 465px;
+    border-right: 1px solid #74C2E1;
+}
+
+.coa .coaFooter
+{
+    margin: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    height: 25px;
+    border-top: 1px solid #83389b;
+	text-align:right;
+	line-height:25px;
+}
+
+.soria .coaFooter
+{
+    margin: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+    height: 25px;
+    border-top: 1px solid #74C2E1;
+	text-align:right;
+	line-height:25px;
+}
+
+.coa .coaLogo
+{
+    margin: 0;
+    padding: 0;
+    width: 234px;
+    height: 60px;
+    border-bottom: 1px solid #83389b;
+}
+
+.soria .coaLogo
+{
+    margin: 0;
+    padding: 0;
+    width: 234px;
+    height: 60px;
+    border-bottom: 1px solid #74C2E1;
+}
+
+.coa hr
+{
+    color: #83389b;
+}
+
+.soria hr
+{
+    color: #74C2E1;
+}
+
+.coa input[type=text],textarea
+{
+    background-color: #f6f5f3;
+    border: solid 1px #9a7057;
+}
+
+select
+{
+    background-color: #e8ecf7;
+    border-color:  #9894a3;
+}
+
+.coaField
+{
+    padding: 0 2px;
+    background-color: #f6f5f3;
+    border:  solid 1px #9a7057;
+}
+
+.coaFieldDis
+{
+    padding: 0 2px;
+    background-color: #fdf3e4;
+    border:  solid 1px #cbc3c4;
+}
+
+.coaAction
+{
+    vertical-align: middle;
+    background-color: transparent;
+    margin: 1px;
+}
+
+.coaActionHov
+{
+    vertical-align: middle;
+    background-color: #fff4b7;
+    border:  solid 1px #fad585;
+    margin: 0;
+}
+
+.coaButton
+{
+    background-color: #f3f2f7;
+    border:  solid 1px #9894a3;
+}
+
+.coaButtonHov
+{
+    background-color: #fff4b7;
+    border:  solid 1px #fad585;
+	cursor:pointer;
+}
+
+.coaButtonDis
+{
+    background-color: #fbf0e5;
+    border:  solid 1px #c8c5ce;
+}
+
+.coaSelect
+{
+    background-color: #e8ecf7;
+    border:  solid 1px #d4d0c7;
+}
+
+.coaCheckbox
+{
+    background-color: #f9f7fb;
+    border: #f9f7fb;
+}
+
+.coaRadio
+{
+    background-color: #f9f7fb;
+    border: #f9f7fb;
+}
+
+.coaTab
+{
+    background-color: #efedf4;
+    border: #f9f7fb;
+    border-top: solid 1px #9994a4;
+    border-left: solid 1px #9994a4;
+    border-right: solid 1px #9994a4;
+}
+
+.coaTabSel
+{
+    background-color: #e1dfcd;
+    border-top: solid 1px #9994a4;
+    border-left: solid 1px #9994a4;
+    border-right: solid 1px #9994a4;
+}
+
+.coaTabHov
+{
+    background-color: #e1dfcd;
+    border-top: solid 1px #9994a4;
+    border-left: solid 1px #9994a4;
+    border-right: solid 1px #9994a4;
+}
+
+.coaTable
+{
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+
+.coa .coaTable thead tr th
+{
+    background-color: #cfc4f1; /* could be #cfc4f1 or #fdb759*/
+}
+
+.soria .coaTable thead tr th
+{
+    background-color: #D4E3FB;
+}
+
+.coaTable tr.coaEven
+{
+    background-color: #e9ebeb;
+}
+
+.coaTable tr.coaOdd
+{
+    background-color: #f3f5f5;
+}
+
+.coaTable tr.coaHover
+{
+    background-color: #fdeb9f;
+}
+
+/*
+.coaTable tr.coaHover td
+{
+    color: #ffffff;
+}
+*/
+
+A
+{
+	text-decoration:none;
+}
+
+A:hover
+{
+    background-color: #f2f1c2;
+    text-decoration: underline;
+}
+
+.coaCentered
+{
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+}
+
+.coaSmallFont
+{
+    font-size: 8pt;
+}

@@ -1,0 +1,58 @@
+<div class="mapped-finance-cube-chooser" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-cube"></i>
+			Finance Cube Mapping
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div>
+		<fieldset class="getToCalc1">
+			<legend>Finance Cube Details</legend>
+			<div class="row">
+				<div class="col-md-12">
+				<label>Name:</label>
+					<input class="form-control" type="text" ng-disabled="financeCubeId !== -1" ng-model="financeCubeVisId" name="name" id="name">
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-md-12 ">
+					<label>Description:</label>
+					<input class="form-control" type="text" ng-disabled="financeCubeId !== -1" ng-model="financeCubeDescription" name="description" id="description">
+				</div>
+			</div>
+			</br>
+		</fieldset>	
+			<fieldset>
+				<legend>Data Types</legend>
+				<div class="row dataTypesRow">
+					<div class="col-md-4 elementToResize1 tree-view">
+						<js-tree id="1" tree-ajax="{{treeAjaxDataType}}" tree-plugins="contextmenu" tree-contextmenu="contextMenu" tree-events="select_node:selectDataType"></js-tree>
+					</div>
+					<div class="col-md-1 button-view">
+						<div ng-disabled="isAddDataTypeDisabled" class="btn btn-success btn-xs" ng-click="addDataType()"><i class="fa fa-chevron-circle-right"></i></div>
+						<div ng-disabled="isDeleteDataTypeDisabled" class="btn btn-danger btn-xs" ng-click="deleteDataType()"><i class="fa fa-chevron-circle-left"></i></div>
+					</div>
+					<div class="col-md-8 flexgridToResize flex-view">
+						<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex">
+							<wj-flex-grid-column width="*" header="DT" binding="dataTypeId" data-map="dataTypeMap"></wj-flex-grid-column>
+							<wj-flex-grid-column width="2*" header="Imp/Exp" binding="impExp" data-map="exportImportMap"></wj-flex-grid-column>
+							<wj-flex-grid-column width="*" header="VT" binding="valueType" is-read-only="true"></wj-flex-grid-column>
+							<wj-flex-grid-column width="*" header="Curr." binding="currency" is-read-only="true"></wj-flex-grid-column>
+							<wj-flex-grid-column width="*" header="Bal. Type" binding="balanceType" is-read-only="true"></wj-flex-grid-column>
+							<wj-flex-grid-column width="*" header="Imp. From" binding="impFromDate" data-map="yearsMap"></wj-flex-grid-column>
+							<wj-flex-grid-column width="*" header="Imp. To" binding="impToDate" data-map="yearsMap" ></wj-flex-grid-column>
+							<wj-flex-grid-column width="*" header="Exp. From" binding="expFromDate" data-map="yearsMap" ></wj-flex-grid-column>
+							<wj-flex-grid-column width="*" header="Exp. To" binding="expToDate" data-map="yearsMap" ></wj-flex-grid-column>
+							<!-- <wj-flex-grid-column width="1.5*" header="Delete"></wj-flex-grid-column> -->
+						</wj-flex-grid>
+					</div>
+				</div>
+				</br>
+			</fieldset>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class = "btn btn-success" ng-disabled="isOkBtnDisabled" ng-click ="ok()"> Ok </button>
+		<button class="btn btn-primary" ng-click="cancel()" type="reset">Cancel</button >
+	</div>
+</div>

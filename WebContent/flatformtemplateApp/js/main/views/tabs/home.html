@@ -1,0 +1,261 @@
+<div id="editor">
+
+    <div class="ribbon">
+    
+        <div class="group" ng-controller="UndoRedoController">
+            <div class="content">
+                <div class="col">
+                    <div class="row">
+                        <a class="btn btn-default shortHeight" ng-click="undo()" title="Undo">
+                            <i class="fa fa-undo accessbar-undo"></i>
+                            <br><span>Undo</span>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a class="btn btn-default shortHeight" ng-click="redo()" title="Redo">
+                            <i class="fa fa-repeat accessbar-redo"></i>
+                            <br><span>Redo</span>
+                        </a>    
+                    </div>                    
+                </div>
+            </div>
+            <div class="caption"></div>
+        </div>
+
+        <div class="group" ng-controller="ClipboardController">
+            <div class="content">
+                <div class="col">
+                    <a class="btn btn-default" ng-click="paste()" title="Paste">
+                        <i class="fa fa-clipboard wijmo-wijribbon-paste wijmo-wijribbon-bigbutton"></i>
+                        <br><span>Paste</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <a class="btn btn-default" ng-click="cut()" title="Cut">
+                            <i class="fa fa-cut wijmo-wijribbon-cut"></i>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a class="btn btn-default"  ng-click="copy()" title="Copy">
+                            <i class="fa fa-copy wijmo-wijribbon-copy"></i>
+                        </a>
+                    </div>                 
+                </div>
+            </div>
+            <div class="caption">Clipboard</div>
+        </div>
+
+        <div class="group">
+            <div class="content" ng-controller="FontController">
+                <div class="row fonts1">
+                    <select class="form-control selectFontFamily" ng-model="selectedFontFamily" ng-change="manageFont()">
+                        <option ng-repeat="fontFamily in fontFamilies">{{fontFamily}}</option>
+                    </select>  
+                    <select class="form-control selectFontSize" ng-model="selectedFontSize" ng-change="manageFont()">
+                        <option ng-repeat="fontSize in fontSizes">{{fontSize}}</option>
+                    </select>
+                    <a class="btn btn-default" ng-click="increaseFontSize()" title="Increase font size">
+                        <i class="fa fa-bold wijmo-wijribbon-increaseFontSize"></i>
+                    </a>
+                    <a class="btn btn-default" ng-click="decreaseFontSize()" title="Decrease font size">
+                        <i class="fa fa-bold wijmo-wijribbon-decreaseFontSize"></i>
+                    </a>                                        
+                </div>
+                <div class="row">                    
+                    <div id="fontSample" style="display: none;">Hello world</div>
+                    <a class="btn btn-default" ng-class="{'active': isBold}" ng-click="manageBold()" title="Bold">
+                        <i class="fa fa-bold wijmo-wijribbon-bold"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': isItalic}" ng-click="manageItalic()" title="Italic">
+                        <i class="fa fa-italic wijmo-wijribbon-italic"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': isUnderline}" ng-click="manageTextDecoration('underline')" title="Underline">
+                        <i class="fa fa-underline wijmo-wijribbon-underline"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': isStrikethrough}"  ng-click="manageTextDecoration('line-through')" title="Strikethrough">
+                        <i class="fa fa-strikethrough wijmo-wijribbon-strikethrough"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': isOverline}"  ng-click="manageTextDecoration('overline')" title="Overline">
+                        <i class="fa fa-exclamation-triangle wijmo-wijribbon-overline"></i>
+                    </a>
+                    <div class="separator"></div>
+                    <a class="btn btn-default" ng-click="formatCells()" title="Borders" ng-controller="TableBuilderController">
+                        <i class="fa fa-italic wijmo-wijribbon-allborder"></i>
+                    </a>
+                    <div class="separator"></div>
+                    <div class="selectFontColor" ng-controller="ColorController">
+                        <spectrum-colorpicker
+                            title="Font Color"
+                            ng-model="fontColor"
+                            options="{
+                                showPalette: true,
+                                showPaletteOnly: true,
+                                hideAfterPaletteSelect:true,
+                                localStorageKey: 'spectrum.colors',
+                                change: changeFontColor,
+                                palette: colors
+                            }">
+                        </spectrum-colorpicker>
+                    </div>    
+                    <div class="selectBackgroundColor" ng-controller="ColorController">    
+                        <spectrum-colorpicker
+                            title="Background Color"
+                            ng-model="backgroundColor"
+                            options="{
+                                showPalette: true,
+                                showPaletteOnly: true,
+                                hideAfterPaletteSelect:true,
+                                allowEmpty:true,
+                                localStorageKey: 'spectrum.colors',
+                                change: changeBackgroundColor,
+                                palette: colors
+                            }">
+                        </spectrum-colorpicker>
+                    </div>                 
+                </div>
+            </div>
+            <div class="caption">Fonts</div>
+        </div>
+
+        <div class="group" ng-controller="AlignmentController">
+            <div class="content">
+                <div class="row">    
+                    <a class="btn btn-default" ng-class="{'active': vAlign == 'top'}" ng-click="manageVerticalAlignment('top')" title="Top Align">
+                        <i class="fa fa-align-left wijmo-wijribbon-topalign"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': vAlign == 'center'}" ng-click="manageVerticalAlignment('center')" title="Middle Align">
+                        <i class="fa fa-align-center wijmo-wijribbon-middlealign"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': vAlign == 'bottom'}" ng-click="manageVerticalAlignment('bottom')" title="Bottom Align">
+                        <i class="fa fa-align-right wijmo-wijribbon-bottomalign"></i>
+                    </a>  
+                    <div class="separator"></div>    
+                    <a class="btn btn-default" ng-click="manageIndentation('increase')" title="Increase Indentation">
+                        <i class="fa fa-indent wijmo-wijribbon-increaseindent"></i>
+                    </a>
+                    <a class="btn btn-default" ng-click="clearIndentation()" title="Clear Indentation">
+                        <i class="fa fa-exclamation-triangle wijmo-wijribbon-clearIndentation"></i>
+                    </a>
+                    <a class="btn btn-default" ng-click="manageWrapText()" title="Wrap Text">
+                        <i class="fa fa-exclamation-triangle wijmo-wijribbon-wraptext"></i>
+                        <span>Wrap Text</span>
+                    </a>          
+                </div>
+                <div class="row">
+                    <a class="btn btn-default" ng-class="{'active': hAlign == 'left'}" ng-click="manageHorizontalAlignment('left')" title="Left Align">
+                        <i class="fa fa-align-left wijmo-wijribbon-leftalign"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': hAlign == 'center'}" ng-click="manageHorizontalAlignment('center')" title="Center Align">
+                        <i class="fa fa-align-center wijmo-wijribbon-centeralign"></i>
+                    </a>
+                    <a class="btn btn-default" ng-class="{'active': hAlign == 'right'}" ng-click="manageHorizontalAlignment('right')" title="Right Align">
+                        <i class="fa fa-align-right wijmo-wijribbon-rightalign"></i>
+                    </a>                    
+                    <div class="separator"></div>      
+                    <a class="btn btn-default" ng-click="manageIndentation('decrease')" title="Decrease Indentation">
+                        <i class="fa fa-outdent wijmo-wijribbon-decreaseindent"></i>
+                    </a>
+                    <a class="btn btn-default" ng-click="mergeCells()" title="Merge Cells">
+                        <i class="fa fa-exclamation-triangle wijmo-wijribbon-mergecenter"></i>
+                        <span>Merge & Center</span>
+                    </a>         
+                </div>
+            </div>
+            <div class="caption">Alignment</div>
+        </div>
+
+        <div class="group" ng-controller="FormatController">
+            <div class="content">
+                <div class="row" style="width: 100%"> 
+                    <select class="form-control"
+                        ng-model="currentCategory"
+                        ng-options="category as category for category in categories"
+                        ng-change="changeFormat('changeCategoryAndFormat')">
+                    </select>                    
+                </div>
+                <div class="row">    
+                    <a class="btn btn-default" ng-click="changeFormatTo('percent')" title="Percent style">
+                        <i class="fa fa-bold wijmo-wijribbon-percentstyle"></i>
+                    </a>
+                    <a class="btn btn-default" ng-click="changeFormatTo('comaStyle')" title="Comma style">
+                        <i class="fa fa-bold wijmo-wijribbon-commastyle"></i>
+                    </a>
+                    <div class="separator"></div>  
+                    <a class="btn btn-default" ng-click="changeFormat('increaseDecimal')" title="Increase decimal">
+                        <i class="fa fa-bold wijmo-wijribbon-increasedecimal"></i>
+                    </a>
+                    <a class="btn btn-default" ng-click="changeFormat('decreaseDecimal')" title="Decrease decimal">
+                        <i class="fa fa-bold wijmo-wijribbon-decreasedecimal"></i>
+                    </a>                                                           
+                </div>
+            </div>
+            <div class="caption">
+                Numbers
+                <a class="open-modal" ng-click="formatCells()" title="Change Format">
+                    <i class=""></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="group" ng-controller="CellsController">
+            <div class="content">
+                <div class="col">
+                    <div class="btn-group pull-left btn-build-table" dropdown>
+                        <a class="btn btn-default dropdown-toggle" title="Insert">
+                            <i class="fa fa-clipboard wijmo-wijribbon-insert wijmo-wijribbon-bigbutton"></i>
+                            <br><span class="dropdownMenu">Insert</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="insertRow()" title="Insert Row">Insert Row</a></li>
+                            <li><a ng-click="insertColumn()" title="Insert Column">Insert Column</a></li>     
+                            <li class="divider"></li>                       
+                            <li><a ng-click="insertRowsColumns()" title="Insert Rows and Columns...">Insert Rows and Columns...</a></li>
+                        </ul>
+                    </div>                      
+                </div>
+                <div class="col">
+                    <div class="btn-group pull-left btn-build-table" dropdown>
+                        <a class="btn btn-default dropdown-toggle" title="Delete">
+                            <i class="fa fa-clipboard wijmo-wijribbon-delete wijmo-wijribbon-bigbutton"></i>
+                            <br><span class="dropdownMenu">Delete</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="deleteRow()" title="Delete Row">Delete Row</a></li>
+                            <li><a ng-click="deleteColumn()" title="Delete Column">Delete Column</a></li>
+                        </ul>
+                    </div>                    
+                </div>     
+                <div class="col">
+                    <div class="btn-group pull-left btn-build-table" dropdown>
+                        <a class="btn btn-default dropdown-toggle" title="Show/Hide">
+                            <i class="fa fa-clipboard wijmo-wijribbon-showHideRowsCols wijmo-wijribbon-bigbutton"></i>
+                            <br><span class="dropdownMenu">Show/Hide</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-click="hideRows()" title="Hide Rows">Hide Rows</a></li>
+                            <li><a ng-click="showRows()" title="Show Rows">Show Row</a></li>
+                            <li class="divider"></li>
+                            <li><a ng-click="hideColumns()" title="Hide Columns">Hide Columns</a></li>
+                            <li><a ng-click="showColumns()" title="Show Columns">Show Columns</a></li>
+                        </ul>
+                    </div>                      
+                </div>                          
+            </div>
+            <div class="caption">Cells</div>
+        </div>
+
+        <div class="group" ng-controller="SheetEditorController">
+            <div class="content">
+                <div id="sheet-visibility-controller">
+                    <a class="btn btn-default pull-left" ng-click="manageSheetVisibility()" title="Manage Sheets">
+                        <i class="fa fa-eye wijmo-wijribbon-showHideSheets wijmo-wijribbon-bigbutton"></i>
+                        <br><span>Manage</span>
+                    </a>
+                </div>
+            </div>
+            <div class="caption">Sheets</div>
+        </div>
+
+    </div>
+</div>

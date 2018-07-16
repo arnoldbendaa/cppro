@@ -1,0 +1,19 @@
+{
+  "name": "WebContent",
+  "description": "jsp",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-bootstrap-scrolling-tabs": "^0.1.2",
+    "components-font-awesome": "^4.7.0",
+    "datatables.net": "^1.10.13"
+  }
+}

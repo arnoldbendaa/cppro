@@ -1,0 +1,187 @@
+<div class="dimension-details dimensions-business-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-tachometer"></i> 
+			Dimension Business
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form class="dimension-details-form dimensions-business-details-form" name="form" role="form" novalidate>
+			<div class="loader align-center" ng-show="!isMainDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="isMainDataLoaded">
+
+				<div ng-show="business.inUseLabel != null" class="inUseLabel">
+					<div ng-switch on="business.inUseLabel[(business.inUseLabel).length-1]">
+						<div ng-switch-when="*">
+							<div class="in-use-label alert alert-danger"><i class="fa fa-warning"></i>{{business.inUseLabel | limitTo: (business.inUseLabel).length-1}}</div>
+						</div>
+						<div ng-switch-default>
+							<div class="in-use-label"><i class="fa fa-warning"></i>{{business.inUseLabel}}</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modalDivider getToCalc1"></div>
+
+				<div class="dimension-main-data">
+				
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.dimensionVisId != '']">
+								<label for="">Identifier:</label>
+								<span class="text-danger" ng-show="validation.dimensionVisId != ''" class="help-block">{{validation.dimensionVisId}}</span>
+								<input name="name" ng-model="business.dimensionVisId" ng-disabled="business.readOnly" type="text" class="form-control">
+							</div>							
+						</div>
+						<div class="col-md-4">
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.dimensionDescription != '']">
+								<label for="">Description:</label>
+								<span class="text-danger" ng-show="validation.dimensionDescription != ''" class="help-block">{{validation.dimensionDescription}}</span>
+								<input name="name" ng-model="business.dimensionDescription" ng-disabled="business.readOnly" type="text" class="form-control">
+							</div>							
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="">Model:</label>
+								<input name="name" ng-model="business.model.modelVisId" type="text" class="form-control" disabled="disabled">
+							</div>							
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="">Source System:</label>
+								<input name="name" ng-model="business.externalSystemRefName" type="text" class="form-control" disabled="disabled">
+							</div>						
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modalDivider getToCalc2"></div>
+
+				<div class="dim-elements">
+
+					<h4 class="groupTitle">Dimension Elements:</h4>
+
+					<button 
+						type="button" 
+						class="btn btn-success btn-md add-remove-dimension-element"
+						ng-disabled="business.readOnly || business.augentMode"
+						ng-click="createDimensionElement(); $event.stopPropagation();">Insert</button>
+					
+					<button 
+						type="button" 
+						class="btn btn-warning btn-md refresh-dimension-elements"
+						ng-click="refreshData()">Refresh</button>
+
+					<br class="clearBoth" />
+
+					<wj-flex-grid class="grid dim-elems-grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+						<wj-flex-grid-column header="#" name="index" binding="dimensionElementId"></wj-flex-grid-column>
+						<wj-flex-grid-column header="Identifier" name="dimensionElementVisId" binding="dimensionElementVisId"></wj-flex-grid-column>
+						<wj-flex-grid-column header="Description" name="dimensionElementDescription" binding="dimensionElementDescription"></wj-flex-grid-column>
+						<wj-flex-grid-column header="Not Plannable" binding="notPlannable"></wj-flex-grid-column>
+						<wj-flex-grid-column header="Disabled" binding="disabled"></wj-flex-grid-column>
+						<wj-flex-grid-column header="Cr/Dr" name="creditDebit" binding="creditDebit"></wj-flex-grid-column>
+						<wj-flex-grid-column header="Null" name="nullElement" binding="nullElement"></wj-flex-grid-column>
+						<wj-flex-grid-column min-width="85" header="Actions" name="buttons"></wj-flex-grid-column>	
+					</wj-flex-grid>	
+
+				</div>	
+
+				<div class="modalDivider getToCalc3"></div>
+
+				<div class="edit-dim-elem">
+					
+					<div class="coverEdition" ng-hide="selectedDimensionElementId != -1 && selectedDimensionElement.operation != 'remove'"></div>
+
+					<div>
+						<div class="row">
+							<div class="form-group col-md-6">
+								<label for="">Identifier:</label>				
+								<input 
+									name="name" 
+									maxlength=60
+									ng-model="selectedDimensionElement.dimensionElementVisId" 
+									ng-disabled="business.readOnly || business.augentMode"
+									ng-change="markDimensionElementAsUpdated()"
+									type="text" 
+									class="form-control"
+									>
+							</div>				
+							<div class="form-group col-md-6">
+								<label for="">Description:</label>
+								<input 
+									name="name" 
+									maxlength=64
+									ng-model="selectedDimensionElement.dimensionElementDescription" 
+									ng-disabled="business.readOnly || business.augentMode"
+									ng-change="markDimensionElementAsUpdated()"
+									type="text" 
+									class="form-control">
+							</div>					
+						</div>
+						<div class="row checkbox-radio">
+							<div class="col-md-6">
+								<fieldset>
+									<legend>Access:</legend>
+									<div class="form-group">
+										<div class="checkbox">
+											<label class="checkbox">
+												<input 
+													type="checkbox" 
+													ng-model="selectedDimensionElement.notPlannable"
+													ng-disabled="business.readOnly || business.augentMode"
+													ng-change="markDimensionElementAsUpdated()"
+													>
+												Not Plannable
+											</label>
+										</div>
+										<div class="checkbox">
+											<label class="checkbox">
+												<input 
+													type="checkbox" 
+													ng-model="selectedDimensionElement.disabled"
+													ng-disabled="business.readOnly || business.augentMode"
+													ng-change="markDimensionElementAsUpdated()"
+													>
+												Disabled
+											</label>
+										</div>
+									</div>
+								</fieldset>
+							</div>	
+							<div class="col-md-6">
+								<fieldset>
+									<legend>Null Element:</legend>
+									<div class="form-group">
+										<div class="checkbox">
+											<label class="checkbox">
+												<input 
+													type="checkbox" 
+													ng-model="selectedDimensionElement.nullElement"
+													ng-disabled="isAnyNullElement || selectedDimensionElement.operation != 'insert'"
+													ng-change="markDimensionElementAsUpdated(); setAnyNullElement(true)"
+													>
+												Null
+											</label>
+										</div>
+									</div>
+								</fieldset>	
+							</div>									
+						</div>
+					</div>
+						
+					<br class="clearBoth" />	
+
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-disabled="business.readOnly" ng-click="save()" type="reset">{{submitButtonName}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

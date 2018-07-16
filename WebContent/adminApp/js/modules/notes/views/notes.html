@@ -1,0 +1,72 @@
+<div class="notes" ng-controller="NotesPageController">
+	<h1 class="text-center">Notes</h1>
+	<div class="inner">
+		<div class="row data-editor-filter">
+			<div class="col-md-2"></div>
+			<div class="col-md-2 finance-cubes">	
+				<div class="form-group">
+					<label>Finance Cube:</label>
+					<select class="form-control" size="5" ng-options="fina for fina in financeCubes" ng-change="onChange()" ng-model="choosedFinanceCube"></select>
+				</div>
+
+			</div>
+			<div class="col-md-2 dimension-filters">
+				<label>Cost Center:</label>
+				<div class="form-group">
+					<multiple-chooser items-source="costCenters" items-selected="selectedCostCenters" items-loaded="loadingManager.isCostCenterLoaded" all-option="true"></multiple-chooser>
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<label>Calendar (from - to):</label>
+				<div class="form-group">
+		            <p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="fromDate" is-open="openedCalendarFrom" max-date="toDate" close-text="Close" />
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="openCalendarFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<label>&nbsp;</label>
+				<div class="form-group">
+					<p class="input-group">
+		              <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" ng-model="toDate" is-open="openedCalendarTo" min-date="fromDate" close-text="Close" />
+		              <span class="input-group-btn">
+		                <button type="button" class="btn btn-default" ng-click="openCalendarTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+		              </span>
+		            </p>
+				</div>
+				<div class="button">
+					<a class="btn btn-primary" 
+							ng-disabled="selectedModelId == 0"
+							ng-click="search()">
+						Search
+					</a>
+				</div>
+			</div>
+			<div class="col-md-2">
+		</div>
+		</div>
+
+		<div class="loader align-center" ng-if="notesLoader.isNotesLoading == true && notesLoader.isNotesLoaded == false">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+
+		<div ng-if="notesLoader.isNotesLoaded == true">
+			<wj-flex-grid class="grid" 
+				items-source="ctx.data" 
+				selection-changed="selectionChangedHandler()"
+				control="ctx.flex"
+				resized-column="resizedColumn(s,e)"
+				sorted-column="sortedColumn(s,e)">
+				<wj-flex-grid-column header="User" binding="user" is-read-only="true"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Cost Center" binding="costCenter" is-read-only="true"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Date" format="d" binding="date" is-read-only="true"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Comment" binding="comment" is-read-only="true"></wj-flex-grid-column>
+				<wj-flex-grid-column min-width="205" header="Actions" name="buttons"></wj-flex-grid-column>
+			</wj-flex-grid>
+		</div>
+	</div>
+</div>

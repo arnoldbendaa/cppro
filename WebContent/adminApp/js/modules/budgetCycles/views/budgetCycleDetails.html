@@ -1,0 +1,153 @@
+<form class="budget-cycle-details-form" name="form" novalidate data-cookie="{{cookieName}}">
+	<div class="budget-cycle-model-chooser" ng-show="!isModelChoosed">
+		<model-chooser id="budgetCycle.model.modelId" vis-id="budgetCycle.model.modelVisId" close="close()"></model-chooser>
+	</div>
+	<div class="budget-cycle-details" ng-show="isModelChoosed" data-cookie="{{cookieName}}">
+		<div class="modal-header">
+			<h3><i class="fa fa-refresh"></i> 
+				Budget Cycle
+			</h3>
+		</div>
+		<div class="modal-body useInModalHeightCalc">
+			<div class="loader align-center" ng-hide="isMainDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="isMainDataLoaded">
+
+				<fieldset class="getToCalc2">
+					<legend>Details</legend>
+					<div class="row">
+						<div class="col-md-2">	
+							<div class="form-group">
+								<label class="control-label" for="modelId">Model:</label>
+								<input disabled="true" value="{{budgetCycle.model.modelVisId}}" type="text" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="form-group" ng-class="{'has-error': validation.budgetCycleVisId != '' || (form.budgetCycleVisId.$invalid && form.budgetCycleVisId.$dirty)}">
+								<label class="control-label" for="budgetCycleVisId">Identifier:</label>
+								<input name="budgetCycleVisId" ng-model="budgetCycle.budgetCycleVisId" type="text" class="form-control" ng-maxlength="20" required/>
+
+								<p class="text-danger" ng-hide="validation.budgetCycleVisId == ''">* {{validation.budgetCycleVisId}}</p>
+								<p class="text-danger" ng-show="form.budgetCycleVisId.$invalid && form.budgetCycleVisId.$dirty">
+									<span ng-show="form.budgetCycleVisId.$error.required">* Please supply an Identifier.</span>
+									<span ng-show="form.budgetCycleVisId.$error.maxlength">* Length of identifier must not exceed 20 characters.</span>
+								</p>
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="form-group" ng-class="{'has-error': validation.budgetCycleDescription != '' || (form.budgetCycleDescription.$invalid && form.budgetCycleDescription.$dirty)}">
+								<label class="control-label" for="budgetCycleDescription">Description:</label>
+								<input name="budgetCycleDescription" ng-model="budgetCycle.budgetCycleDescription" type="text" class="form-control" ng-maxlength="128"/>
+
+								<p class="text-danger" ng-hide="validation.budgetCycleDescription == ''">* {{validation.budgetCycleDescription}}</p>
+								<p class="text-danger" ng-show="form.budgetCycleDescription.$invalid && form.budgetCycleDescription.$dirty">
+									<span ng-show="form.budgetCycleDescription.$error.maxlength">* Length of description must not exceed 128 characters.</span>
+								</p>
+							</div>
+						</div>
+						<div class="col-md-2">
+							<label class="control-label" for="category">Category:</label>
+							<select class="form-control"
+								ng-disabled="disableBudgetStatus(budgetCycle.status)"
+								ng-change="onBudgetStatusChange()"
+								ng-model="budgetCycle.category"
+								ng-options="category.key as category.name for category in categories">
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<div class="form-group">
+								<label class="control-label" for="modelId">Status:</label>
+								<select class="form-control"
+									ng-disabled="disableBudgetStatus(budgetCycle.status)"
+									ng-change="onBudgetStatusChange()"
+									ng-model="budgetCycle.status"
+									ng-options="status.statusId as status.label for status in statuses">
+								</select>
+							</div>
+						</div>				
+						<div class="col-md-3">
+							<div class="form-group" ng-class="{'has-error': validation.periodFrom != '' || validation.periods != '' }">
+								<label class="control-label" for="periodFrom">Period (From):</label>
+								<calendar-period
+										model-id="budgetCycle.model.modelId"
+										period-id="budgetCycle.periodFromId"
+										period-vis-id="budgetCycle.periodFromVisId"
+										max-period-id="budgetCycle.periodToId"
+										on-period-change="onPeriodChange(id, visId)">
+										<div class="form-group" ng-click="changePeriod('from');">
+											<input class="form-control" value="{{budgetCycle.periodFromVisId}}" type="text">
+										</div>
+								</calendar-period>
+								<p class="text-danger" ng-hide="validation.periodFrom == ''">* {{validation.periodFrom}}</p>
+							</div>
+						</div>	
+						<div class="col-md-3">	
+							<div class="form-group" ng-class="{'has-error': validation.periodTo != '' || validation.periods != '' }">
+								<label class="control-label" for="modelId">Period (To):</label>
+								<calendar-period
+										model-id="budgetCycle.model.modelId"
+										period-id="budgetCycle.periodToId"
+										period-vis-id="budgetCycle.periodToVisId"
+										min-period-id="budgetCycle.periodFromId"
+										on-period-change="onPeriodChange(id, visId)">
+										<div class="form-group" ng-click="changePeriod('to');">
+											<input class="form-control" value="{{budgetCycle.periodToVisId}}" type="text">
+										</div>
+								</calendar-period>
+								<p class="text-danger" ng-hide="validation.periodTo == ''">* {{validation.periodTo}}</p>
+								<p class="text-danger" ng-hide="validation.periods == ''">* {{validation.periods}}</p>
+							</div>
+						</div>	
+						<div class="col-md-4">
+							<div class="form-group datepicker" ng-class="{'has-error': validation.plannedEndDate != ''}">
+								<label class="control-label" for="plannedEndDate">Planned:</label>
+								<budget-cycle-planned-end-date model-id="budgetCycle.model.modelId" planned-end-date="budgetCycle.plannedEndDate" level-dates="budgetCycle.levelDates"></budget-cycle-planned-end-date>
+								<p class="text-danger" ng-hide="validation.plannedEndDate == ''">* {{validation.plannedEndDate}}</p>
+							</div>
+							<button ng-hide="true" class="btn btn-info btn-xs pull-right" ng-click="">Levels</button>
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend class="getToCalc3">XML Forms</legend>
+					<div ng-class="{'has-error': validation.xmlForms != ''}">
+						<p class="text-danger" ng-hide="validation.xmlForms == ''">* {{validation.xmlForms}}</p>
+						<budget-cycle-xml-forms 
+							model-id="budgetCycle.model.modelId"
+							xml-forms="budgetCycle.xmlForms" 
+							default-xml-form-id="budgetCycle.defaultXmlFormId"
+							default-xml-form-data-type="budgetCycle.defaultXmlFormDataType">
+						</budget-cycle-xml-forms>
+					</div>
+				</fieldset>
+
+				<fieldset class="getToCalc4">
+					<legend>Actuals</legend>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group datepicker">
+								<label class="control-label" for="name">Start Date:</label>
+								<input class="form-control" type="text" value="{{budgetCycle.startDate | date:'dd/MMM/yy'}}" disabled="true" />
+							</div>
+						</div>	
+						<div class="col-md-6">
+							<div class="form-group datepicker">
+								<label class="control-label" for="name">End Date:</label>
+								<input class="form-control" type="text" value="{{budgetCycle.endDate | date:'dd/MMM/yy'}}" disabled="true" />
+							</div>
+						</div>
+					</div>
+				</fieldset>
+
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-success" ng-disabled="form.$invalid||open" ng-click="save()">Save</button>
+			<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,12 @@
+<div class="data-types" ng-controller="ChangeManagementController">
+	<h1 class="text-center">Change Managements</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="changeMgmtId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Model" binding="model.modelVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Created Time" name="created" binding="created"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Source System" binding="sourceSystem"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Task ID" name="taskId" binding="taskId"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="75" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+</div>

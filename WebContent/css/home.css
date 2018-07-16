@@ -1,0 +1,48 @@
+.toolbarIcons{
+    font-size:25px;
+    border-color:white;
+}
+.page-header.navbar .top-menu .navbar-nav > li.dropdown > a.dropdown-toggle{
+    padding-top:10px;
+}
+#tab1{
+    height:50%;
+}
+.tab-content .scrollY{
+    height:50vh;
+    overflow-y:auto;
+}
+.tab-content .scrollY tr:hover{
+	//background-color:blue;
+
+	}
+thead{
+    background-color:rgba(233,238,247,0.8);
+}
+.page-header.navbar .top-menu .navbar-nav > li.dropdown > .dropdown-toggle{
+    color:white;
+}
+.page-header.navbar .top-menu .navbar-nav > li.dropdown > .dropdown-toggle:hover{
+    color:#aaa;
+}
+#bottomTable{
+    border-top:1px solid #888;
+}
+.rightBordered{
+    border-right:1px solid #888;
+}
+.page-header.md-shadow-z-1-i.navbar{
+    background-color:rgb(58,81,115);
+}
+.main-text-color li a,.main-text-color a,.main-text-color th{
+    color:rgb(51,51,102);
+}
+.table-striped>tbody>tr:nth-of-type(odd){
+    background-color:rgb(242,245,249);
+}
+.tab-content{
+    padding-top:25px;
+}
+.tab-content tbody tr:hover{
+	background-color:rgb(128,173,191);	
+}

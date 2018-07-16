@@ -1,0 +1,111 @@
+<div id="insert">
+
+	<div class="ribbon">
+
+        <div class="group">
+            <div class="content" ng-controller="InsertController">
+<!--                 <div class="col" ng-repeat="type in types">
+                    <a class="btn btn-default" ng-click="insertSparkline('{{type}}')" title="type">
+                        <i class="fa wijmo-wijribbon-sparkline-line wijmo-wijribbon-bigbutton"></i>
+                        <br><span>{{type}}</span>
+                    </a>
+                </div> -->
+
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[0])" title="{{types[0]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-line wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[0]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[1])" title="{{types[1]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-column wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[1]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[2])" title="{{types[2]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-winloss wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[2]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[3])" title="{{types[3]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-pie wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[3]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[4])" title="{{types[4]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-area wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[4]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[5])" title="{{types[5]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-scatter wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[5]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[6])" title="{{types[6]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-spread wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[6]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[7])" title="{{types[7]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-stacked wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[7]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[8])" title="{{types[8]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-boxplot wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[8]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[9])" title="{{types[9]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-cascade wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[9]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[10])" title="{{types[10]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-pareto wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[10]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[11])" title="{{types[11]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-bullet wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[11]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[12])" title="{{types[12]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-hbar wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[12]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[13])" title="{{types[13]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-vbar wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[13]"></span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="btn btn-default" ng-click="insertSparkline(types[14])" title="{{types[14]}}">
+                        <i class="fa wijmo-wijribbon-sparkline-variance wijmo-wijribbon-bigbutton"></i>
+                        <br><span ng-bind="types[14]"></span>
+                    </a>
+                </div>
+
+            </div>
+            <div class="caption">Sparklines</div>
+        </div>	
+
+	</div>
+
+</div>

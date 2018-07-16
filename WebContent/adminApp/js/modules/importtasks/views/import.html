@@ -1,0 +1,11 @@
+<div class="import" ng-controller="ImportController">
+	<h1 class="text-center">Import</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="importId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Import Task" width="235" binding="importVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="External System" width="230" binding="externalSystemVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" width="*" binding="importDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" align="center" min-width="75"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

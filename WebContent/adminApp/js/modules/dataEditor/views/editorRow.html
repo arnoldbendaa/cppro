@@ -1,0 +1,28 @@
+<tr>
+	<td class="index">
+		{{$index+1}}
+	</td>
+	<td class="finance-cubes">{{row.financeCubeVisId}}</td>
+	<td class="dimension-vis-id"><editor-dimension dimension="row.costCentre"></editor-dimension></td>
+	<td class="dimension-id"><editor-dimension dimension="row.dim0"></editor-dimension></td>
+	<td class="dimension-vis-id"><editor-dimension dimension="row.expenseCode"></editor-dimension></td>
+	<td class="dimension-id"><editor-dimension dimension="row.dim1"></editor-dimension> 
+		<div class="editor-dimension">
+			<div>{{dimension}}</div>
+			<input class="form-control" type="text" ng-keyup="onKeyUp($event)"/>
+		</div>
+	</td>
+	<td class="year">{{row.year}}</td>
+	<td class="period">{{row.period}}</td>
+	<td class="data-type">
+		<div class="editor-data-type">
+			<div>{{row.dataType}}</div>
+			<select class="form-control"
+					ng-model="row.dataType"
+					ng-change="onChange()"
+					ng-options="dataType.narrative as dataType.narrative for dataType in dataTypes">
+			</select>
+		</div>
+	</td>
+	<td>{{row.value}}</td>
+</tr>

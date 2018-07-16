@@ -1,0 +1,67 @@
+fieldset{
+	border-width:2px;
+	border-style:groove;
+	border-color:threedface;
+	-webkit-padding-start:0.75em;
+}
+legend{
+	width:auto;
+	border:none;
+	-webkit-padding-start:2px;
+	font-size:16px;
+}
+#elementTable th{
+	border-width:1px 1px 1px 0;
+	border-style:solid;
+	border-color:#c0c0c0;
+}
+.dataTables_scrollHeadInner table thead tr{
+	background-color:#e3e3e3;
+}
+.dataTables_scrollHeadInner{
+	width:auto !important;
+}
+.dataTables_scrollHeadInner table{
+	width:100% !important;
+}
+.dataTables_scrollHeadInner table thead th{
+	border-width:1px 1px 1px 0;
+	border-style:solid;
+	border-color:#c0c0c0;
+}
+#msgModal .modal-content{
+	margin-top:80px;
+	background-color:#f5f5f5;
+	border:3px solid #ccc;
+}
+.groupTitle{
+	display:inline-block;
+}
+.dim-elements .buttons{
+	display:inline-block;
+}
+#calendarTable thead tr{
+	background-color:#e3e3e3;
+}
+#calendarTable tr.active td{
+	background-color:rgb(106,151,174);
+}
+.checkbox-radio div.radio{
+	display:inline-block;
+	margin-right:10px;
+}
+.no-margin{
+	margin:0;
+}
+
+#exTab1{
+	width:100%;
+}
+#externalTable th{
+    border-width:1px 1px 1px 0;
+    border-style:solid;
+    border-color:#e0e0e0;
+}
+#exTab1 ul{
+	display:none;
+}

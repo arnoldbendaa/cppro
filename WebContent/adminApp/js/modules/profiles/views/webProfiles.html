@@ -1,0 +1,14 @@
+<div class="data-types" ng-controller="WebProfilesPageController" id="gsFlexGrid">
+	<h1 class="text-center" ng-if="isProfilesLoaded">Web Profiles</h1>
+	<h1 class="text-center" ng-if="!isProfilesLoaded">Loading...</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="profileId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Model" binding="modelVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="User Name" binding="userName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Identifier"binding="profileVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description"binding="profileDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Last Updated" binding="updatedTime"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="175"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

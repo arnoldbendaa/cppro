@@ -1,0 +1,67 @@
+<div class="model-import-data clearfix" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-list"></i>
+			Model Import Data
+		</h3>
+	</div>
+	<div class="modal-body">
+
+		<div class="row">
+			<div class="col-md-6">
+				<fieldset>
+					<legend>Select Models</legend>
+					<div class="import-data-table elementToResize1">
+				  		<table class="table table-striped">
+							<thead>
+								<tr>
+									<th class="clickable" ng-click="orderModelsBy = ''; reverseModels=false">#</th>
+									<th class="clickable" ng-class="{sorted: orderModelsBy == 'modelVisId', desc: reverseModels}" ng-click="orderModelsBy = 'modelVisId'; reverseModels=!reverseModels">Model</th>
+									<th class="clickable"><input type="checkbox" ng-model="modelAllSelection" /></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="model in importData.models | orderBy:orderModelsBy:reverseModels">
+									<td>{{$index+1}}</td>
+									<td>{{model.modelVisId}} : {{model.modelDescription}}</td>
+									<td>
+										<input type="checkbox" ng-model="model.modelSelection" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</fieldset>
+			</div>
+			<div class="col-md-6">
+				<fieldset>
+					<legend>Select Data Types</legend>		
+					<div class="import-data-table elementToResize2">
+				  		<table class="table table-striped">
+							<thead>
+								<tr>
+									<th class="clickable" ng-click="orderDataTypesBy = ''; reverseDataTypes=false">#</th>
+									<th class="clickable" ng-class="{sorted: orderDataTypesBy == 'dataTypeVisId', desc: reverseDataTypes}" ng-click="orderDataTypesBy = 'dataTypeVisId'; reverseDataTypes=!reverseDataTypes">Data Type</th>
+									<th class="clickable"><input type="checkbox" ng-model="dataTypeAllSelection" /></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataType in importData.dataTypes | orderBy:orderDataTypesBy:reverseDataTypes">
+									<td>{{$index+1}}</td>
+									<td>{{dataType.dataTypeVisId}} : {{dataType.dataTypeDescription}}</td>
+									<td>
+										<input type="checkbox" ng-model="dataType.dataTypeSelection" />
+									</td>
+								</tr>
+							</tbody>
+						</table>		
+					</div>
+				</fieldset>
+			</div>
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">OK</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+	</div>
+</div>

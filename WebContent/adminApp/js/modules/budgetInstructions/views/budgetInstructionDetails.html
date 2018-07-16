@@ -1,0 +1,51 @@
+<div class="budget-instruction-details" ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.name.$dirty && form.name.$invalid]" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-user"></i>
+			Budget Instruction
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form name="budgetInstructionForm">
+			<div class="row getToCalc1">
+				<div class="col-md-4">
+					<div class="form-group" ng-class="{ 'has-error': budgetInstructionForm.visId.$invalid }">
+						<label for="">Name:</label>
+						<span class="text-danger" ng-show="validation.budgetInstructionVisId != ''" class="help-block">{{validation.budgetInstructionVisId}}</span>
+						<input name="visId" ng-model="budgetInstruction.budgetInstructionVisId" type="text" required class="form-control">
+					</div>
+				</div>
+				<div class="col-md-4">		        	
+					<div class="form-group">
+						<label for="">Current Document:</label>
+						<span class="text-danger" ng-show="validation.budgetInstructionDocumentRef != ''" class="help-block">{{validation.budgetInstructionDocumentRef}}</span>
+						<input name="name" ng-model="budgetInstruction.budgetInstructionDocumentRef" type="text"  class="form-control" ng-disabled="true">
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group" ng-class="{ 'has-error': budgetInstructionForm.a.$invalid }">
+		        		<label for="">Document:</label>
+		        		<span class="text-danger" ng-show="true" ng-if="budgetInstruction.budgetInstructionDocumentRef==null" >Choose file</span>
+		        	    <input name="a" type="file" ngf-select ngf-change="onFileSelect($files)" required class="form-control">
+		        	</div>
+				</div>
+			</div>
+
+			<fieldset>
+				<legend>Assignments</legend>
+				<div class="form-group ">
+					<span class="text-danger" ng-show="validation.budgetInstructionAssignment != ''" class="help-block">{{validation.budgetInstructionAssignment}}</span>
+					<div class="tree-panel elementToResize">
+						<js-tree id="1" tree-ajax="{{treeAjax}}" tree-plugins="checkbox,wholerow" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode"></js-tree>
+					</div>	
+				</div>		
+			</fieldset>
+
+		</form>
+
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="submit" ng-disabled="budgetInstructionForm.$invalid">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

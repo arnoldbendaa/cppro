@@ -1,0 +1,119 @@
+<div data-cookie="{{cookieName}}">
+	<div class="finance-cube-formula-details" ng-show="isModelChoosed" data-cookie="{{cookieName}}">
+		<div class="modal-header">
+			<h3><i class="fa fa-cube"></i>
+			Finance Cube Formula
+			</h3>
+		</div>
+		<div class="modal-body">
+			<div>
+				<fieldset class="getToCalc1">
+					<legend>Header</legend>
+					<div class="row">
+						<div class="col-md-3 form-group" >
+							<label for="">Model:</label>
+							<input name="name" ng-model="financeCube.model.modelVisId" type="text" readonly="readonly" class="form-control">
+						</div>
+						<div class="col-md-3 form-group">
+							<label for="">Finance Cube:</label>
+							<input name="name" ng-model="financeCube.financeCube.financeCubeVisId" type="text"   readonly="readonly" class="form-control">
+						</div>
+						<div class="col-md-4 form-group">
+							<label for="">Formula Type:</label>
+							<select class= "form-control" ng-model="financeCube.type">
+								<option value="0">Automatic</option>
+								<option value="1">Manual</option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<label>&nbsp;</label>
+							<div class="checkbox" ng-class="{true: 'has-error'}[validation.formulaEnabled != '']">
+								<span class="text-danger" ng-show="validation.formulaEnabled != ''" class="help-block">{{validation.formulaEnabled}}</span>
+								<label class="checkbox">
+									<input type="checkbox" ng-model="financeCube.deploymentInd">
+									Deployed
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-group" ng-class="{true: 'has-error'}[validation.visualId != '']">
+							<label for="">Visual Id:</label>
+							<span class="text-danger" ng-show="validation.visualId != ''" class="help-block">{{validation.visualId}}</span>
+							<input name="name" ng-model="financeCube.financeCubeFormulaVisId" type="text" class="form-control">
+						</div>
+						<div class="col-md-8 form-group"  ng-class="{true: 'has-error'}[validation.description != '']">
+							<label for="">Description:</label>
+							<span class="text-danger" ng-show="validation.description != ''" class="help-block">{{validation.description}}</span>
+							<input name="name" ng-model="financeCube.financeCubeFormulaDescription" type="text" class="form-control">
+						</div>
+					</div>
+				</fieldset>
+				<div class="row getToCalc2">
+					<div class="col-md-6">
+						<fieldset>
+							<legend>Formula</legend>
+							<div class="row">
+								<div class="col-md-12 form-group">
+									<textarea  class="formula form-control"
+									ng-model="financeCube.formulaText">
+									</textarea>
+								</div>
+							</div>
+							<div class="row compile pull-right">
+								<div class="col-md-12">
+									<button class="btn btn-primary btn-xs" ng-click="compile()">Compile</button>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="col-md-6">
+						<fieldset>
+							<legend>Messages</legend>
+							<div class="row">
+								<div class="col-md-12 fcfMessages">
+									<textarea  class="formula form-control"
+									ng-model="financeCube.formulaMessage"
+									ng-disabled="true">
+									</textarea>
+								</div>
+							</div>
+						</fieldset>
+					</div>				
+				</div>
+				<fieldset>
+					<legend>Deployments</legend>
+				    <div class="row">
+						<div class="col-md-12">
+							<wj-flex-grid 
+								class="deployments-grid"
+								items-source="ctx.data" 
+								control="ctx.flex"
+								selection-changed="selectionChangedHandler()"
+								resized-column="resizedColumn(s,e)"
+								sorted-column="sortedColumn(s,e)">
+								<wj-flex-grid-column header="Deployment Id" binding="lineIndex" is-read-only="true"></wj-flex-grid-column>
+								<wj-flex-grid-column header="{{financeCube.dimensions[1].dimensionVisId}}" name="cc" binding="deploymentDimensionEntries" is-read-only="true"></wj-flex-grid-column>
+								<wj-flex-grid-column header="{{financeCube.dimensions[0].dimensionVisId}}" name="exp" binding="deploymentDimensionEntries" is-read-only="true"></wj-flex-grid-column>
+								<wj-flex-grid-column header="{{financeCube.dimensions[2].dimensionVisId}}" name="cal" binding="deploymentDimensionEntries" is-read-only="true"></wj-flex-grid-column>
+								<wj-flex-grid-column header="Data Type" name="dataType" binding="dataTypes" is-read-only="true"></wj-flex-grid-column>
+							</wj-flex-grid>
+								<!-- <wj-flex-grid-column min-width="65" header="Actions" name="buttons" is-read-only="true"></wj-flex-grid-column> -->
+						</div>
+					</div>	
+					<div class="row pull-right">
+						<div class="col-md-12 deploymentsButtons getToCalc3">
+							<button class="btn btn-xs btn-success" ng-click="add()">Add</button>
+							<button class="btn btn-xs btn-danger" ng-click="remove()">Remove</button>
+						</div>
+					</div>
+				</fieldset>
+			</div>	
+		</div>
+		<div class="clearBoth"></div>
+		<div class="modal-footer">
+			<button class="btn btn-success" ng-click="save()" type="reset">Save</button>
+			<button class="btn btn-primary" ng-click="closeModal()" type="reset">Close</button>
+		</div>
+	</div>
+</div>

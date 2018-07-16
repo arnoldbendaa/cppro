@@ -1,0 +1,18 @@
+<div class="finance-cube-container">
+	<div class="finance-cube-filter clearfix" ng-if="isFilter">
+		<div class="pull-right">
+			<div class="input-group"> 
+				<span class="input-group-addon"> 
+					<span class="glyphicon glyphicon-filter"></span> 
+				</span> 
+				<input type="text" ng-model="ctx.filter" class="form-control" placeholder="filter"/> 
+			</div>
+		</div>
+	</div>
+	<div class="finance-cube-chooser" ng-class="{'no-filter': !isFilter}">
+		<wj-flex-grid class="grid finance-cube-grid" items-source="ctx.data" control="ctx.flex">
+			<wj-flex-grid-column header="Finance Cube" name="financeCubeVisId" binding="financeCubeVisId" width="*" min-width="15"></wj-flex-grid-column>
+			<wj-flex-grid-column header="" name="checked" binding="" align="center" width="40" min-width="15"></wj-flex-grid-column>
+		</wj-flex-grid>
+	</div>
+</div>

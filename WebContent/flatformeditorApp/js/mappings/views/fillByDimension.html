@@ -1,0 +1,27 @@
+<div id="fill-by-dimension">
+	<div class="modal-header">
+		<h3><i class="fa fa-cogs"></i> 
+			Fill By Dimension
+		</h3>		
+	</div>
+	<div class="modal-body">
+		<div class="text-center">
+			<div class="loader" ng-show="isDataLoading">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div ng-hide="isDataLoading">
+				<div ng-show="dim0 == '' && dim1 == '' && dim2 == ''">
+					<h4 class="text-danger">Mapping hasn't got any dimensions.</h4>
+				</div>
+				<div class="btn btn-lg" ng-class="{'btn-info': currentDim == 0, 'btn-default': currentDim !== 0}" ng-if="dim0 !== ''" ng-click="changeCurrentDim(0)">Cost Center</div>
+				<div class="btn btn-lg" ng-class="{'btn-info': currentDim == 1, 'btn-default': currentDim !== 1}" ng-if="dim1 !== ''" ng-click="changeCurrentDim(1)">Expense Code</div>
+				<div class="btn btn-lg" ng-class="{'btn-info': currentDim == 2, 'btn-default': currentDim !== 2}" ng-if="dim2 !== ''" ng-click="changeCurrentDim(2)">Calendar</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">OK</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>
+

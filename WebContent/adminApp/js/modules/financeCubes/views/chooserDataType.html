@@ -1,0 +1,20 @@
+<div class="data-type-container">
+	<div class="data-type-filter clearfix">
+		<div class="pull-right">
+			<div class="input-group"> 
+				<span class="input-group-addon"> 
+					<span class="glyphicon glyphicon-filter"></span> 
+				</span> 
+				<input type="text" ng-model="ctx.filter" class="form-control" placeholder="filter"/> 
+			</div>
+		</div>
+	</div>
+	<div class="data-type-chooser">
+		<wj-flex-grid class="grid data-type-grid" items-source="ctx.data" control="ctx.flex">
+			<wj-flex-grid-column header="Data Type" name="dataTypeVisId" binding="dataTypeVisId" width="*" min-width="15"></wj-flex-grid-column>
+			<wj-flex-grid-column header="Description" name="dataTypeDescription" binding="dataTypeDescription" width="*" min-width="15"></wj-flex-grid-column>
+			<wj-flex-grid-column header="Type" name="subTypeName" binding="subTypeName" width="*" min-width="15"></wj-flex-grid-column>
+			<wj-flex-grid-column header="" name="checked" binding="" align="center" width="15" min-width="15"></wj-flex-grid-column>
+		</wj-flex-grid>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+<div class="data-types" ng-controller="HierarchyFormDashboardController" id="gsFlexGrid">
+	<h1 class="text-center" ng-if="true">Hierarchy Based Dashboard</h1>
+	<h1 class="text-center" ng-if="false">Loading...</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" ></wj-flex-grid-column>
+		<wj-flex-grid-column header="Name" binding="dashboardName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Xml Form ID" binding="formName" align="left"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Last Updated" binding="lastUpdate"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="185"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

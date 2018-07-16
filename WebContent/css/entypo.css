@@ -1,0 +1,11 @@
+@font-face {
+	
+ 	font-family: "entypo";
+ 	src: url('../fonts/outlined-iconset.eot');
+ 	src: url('../fonts/outlined-iconset.eot?#iefix') format('embedded-opentype'),
+ 		 url('../fonts/outlined-iconset.woff') format('woff'),
+ 		 url('../fonts/outlined-iconset.ttf') format('truetype'),
+ 		 url('../fonts/outlined-iconset.svg#Entypo') format('svg');
+ 	font-style: normal;
+ 	font-weight: normal;	
+}

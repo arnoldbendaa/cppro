@@ -1,0 +1,1301 @@
+/************************* sheet editor *********************************/
+.sheet-editor .form-control{
+	height: 22px;
+	padding: 6px;
+}
+.sheet-editor .sheet-name {
+	width: 52%;
+}
+/************************* end of sheet editor ****************************/
+/************************* format cell editor *********************************/
+#preview .wrapper { /*CellPicker and FormatCellEditor preview for SpreadJS component */
+	position: relative;
+}
+#preview #format-cell-editor-preview,
+#preview #cell-picker-preview  {
+	border: 1px solid #ddd;
+}
+#format-cell-editor .panel {
+	margin-bottom: 0;
+	border: none;
+	box-shadow: none;
+	padding: 10px 10px 0 10px;
+	font-size: 12px;
+}
+#format-cell-editor .formats .list {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 250px;
+}
+#format-cell-editor .formats .list td.index {
+	width: 40px;
+}
+#format-cell-editor .borders .row {
+	margin-bottom: 5px;
+}
+#format-cell-editor .borders .color-picker,
+#format-cell-editor .borders .form-control.line-style {
+	float: left;
+}
+#format-cell-editor .borders .color-picker {
+	margin-right: 15px;
+}
+#format-cell-editor .borders .form-control.line-style {
+	width: 50%;
+}
+/************************* end of format cell editor ****************************/
+/******************** Insert Sparkline *****************************************/
+#insert-sparkline .popover {
+	max-width: 250px;
+	font-size: 80%;
+}
+#insert-sparkline .popover.bottom{
+	left: 0 !important;
+	max-width: 100%;
+}
+#insert-sparkline .fieldRange-boxPlotClass .popover.bottom{
+	max-width: 400px;
+}
+#insert-sparkline .fieldRange-boxPlotClass .popover-content{
+	width: 400px;
+}
+#insert-sparkline .popover.bottom>.arrow{
+	left: 27px;
+}
+.modal.softpro-modals.minimized .popover.bottom {
+	top: 10px !important;
+	max-width: calc(100% - 10px) !important;
+	margin-left: 5px !important;
+}
+
+#insert-sparkline{
+
+}
+#insert-sparkline .ctrls{
+	position: relative;
+}
+#insert-chart .ctrls{
+	position: relative;
+}
+#insert-sparkline .ctrls a.spread-btn{
+	position: absolute;
+	top: 4px;
+	right: 0;
+}
+#insert-chart .ctrls a.spread-btn{
+	position: absolute;
+	top: 4px;
+	right: 0;
+}
+#insert-sparkline .fieldRange.fullWidth{
+	width: 100%;
+}
+#insert-chart .fieldRange.fullWidth{
+	width: 100%;
+}
+#insert-sparkline .fieldRange .form-group > label,
+#insert-sparkline .fieldRange label.hint + div{
+	position: relative;
+	cursor: help;
+}
+#insert-sparkline .fieldRange label.hint,
+#insert-sparkline .fieldRange label.hint + div {
+	float: left;
+}
+#insert-chart .fieldRange label.hint,
+#insert-chart .fieldRange label.hint + div {
+	float: left;
+}
+#insert-sparkline .fieldRange label.hint{
+	margin-right: 0;
+}
+#insert-chart .fieldRange label.hint{
+	margin-right: 0;
+}
+#insert-sparkline .fieldRange label.hint + div {
+	margin-right: 20px;
+	margin-top: 3px;
+}
+#insert-chart .fieldRange label.hint + div {
+	margin-right: 20px;
+	margin-top: 3px;
+}
+#insert-sparkline .fieldRange .form-group > label:after,
+#insert-sparkline .fieldRange label.hint + div:after{
+	font-family: "FontAwesome";
+	content: "\f059";
+	font-weight: normal;
+	color: #76A7D7;
+	margin-left: 5px;
+}
+#insert-chart .fieldRange .form-group > label:after,
+#insert-chart .fieldRange label.hint + div:after{
+	font-family: "FontAwesome";
+	content: "\f059";
+	font-weight: normal;
+	color: #76A7D7;
+	margin-left: 5px;
+}
+#insert-sparkline .form-group > label:hover span,
+#insert-sparkline label.hint:hover span{
+	/*display: block;*/
+}
+#insert-sparkline .form-group > label span,
+#insert-sparkline label.hint span{
+	font-weight: normal;
+	font-size: 12px;
+	position: absolute;
+	top: 10px;
+	left: 13px;
+	display: none;
+	background: rgb(255, 255, 191);
+	z-index: 100;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+#insert-chart .form-group > label span,
+#insert-chart label.hint span{
+	font-weight: normal;
+	font-size: 12px;
+	position: absolute;
+	top: 10px;
+	left: 13px;
+	display: none;
+	background: rgb(255, 255, 191);
+	z-index: 100;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+#insert-sparkline .fieldRange img.boxPlotHelp{
+	width: 550px; 
+	border-radius: 10px; 
+	opacity: 0.9;
+}
+#insert-chart .fieldRange img.boxPlotHelp{
+	width: 550px; 
+	border-radius: 10px; 
+	opacity: 0.9;
+}
+.modal.softpro-modals.minimized fieldset
+/*.modal.softpro-modals fieldset*/{
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+.modal.softpro-modals.minimized fieldset legend
+/*.modal.softpro-modals fieldset legend*/{
+	display: none;
+}
+.modal.softpro-modals.minimized #insert-sparkline fieldset.left,
+.modal.softpro-modals.minimized #insert-sparkline fieldset.right{
+	width: calc(100% - 8px);
+}
+
+ 
+#format-cell-editor .radio,
+#format-cell-editor .checkbox {
+	font-size: 14px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#insert-sparkline .radio,
+#insert-sparkline .checkbox {
+	margin-top: 3px;
+	margin-bottom: 22px;
+	width: auto;
+	margin-right: 20px;
+}
+#insert-sparkline .radio+.radio, 
+#insert-sparkline .checkbox+.checkbox {
+	margin-top: 3px;
+}
+/******************** end of Insert Sparkline *******************************/
+/**************************************************** HEADER ************************************************/
+#container-navbar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+#container-navbar ul .pull-left {
+	margin-right: 4px;
+}
+#container-navbar ul .pull-right {
+	margin-left: 4px;
+}
+#container-navbar .nav > li > a {
+	padding: 5px 10px;
+	background-color: #FFFFFF;
+}
+#container-navbar .nav .active > a {
+	background-color: #F5EFDB;
+}
+#color-controller .color-picker {
+	width: 16px;
+	border: 1px solid #000;
+}
+#container-navbar ul.nav-tabs {
+	padding: 5px 15px 0 15px;
+	background-color: #446E9B;
+}
+#container-navbar ul.nav-tabs li {
+	cursor: pointer;
+}
+#container-navbar ul.nav-tabs li.save a,
+#container-navbar ul.nav-tabs li.showMenu a{
+	background-color: #5cb85c;
+	border: solid 1px #4cae4c;
+}
+#container-navbar ul.nav-tabs li.exit a{
+	background-color: #d9534f;
+	border: solid 1px #d43f3a;
+}
+#container-navbar ul.nav-tabs li.save a,
+#container-navbar ul.nav-tabs li.showMenu a,
+#container-navbar ul.nav-tabs li.exit a{
+	color: #fff;
+	border-bottom: 0;
+	cursor: pointer;
+}
+#container-navbar ul.nav-tabs li.save a:before,
+#container-navbar ul.nav-tabs li.exit a:before{
+	font-family: "FontAwesome";
+	padding-right: 5px;
+}
+#container-navbar ul.nav-tabs li.save a:before{
+	content: "\f0c7";
+}
+#container-navbar ul.nav-tabs li.exit a:before{
+	/*content: "\f00d";*/
+}
+#container-navbar ul.nav-tabs li.save a:hover,
+#container-navbar ul.nav-tabs li.exit a:hover{
+	cursor: pointer;
+}
+#container-navbar ul.nav-tabs li.runWorkbookTest a:before{
+	font-family: "FontAwesome";
+	content: "\f04b";
+	padding-right: 3px;
+}
+#container-navbar .tab-content {
+	padding: 10px;
+	background-color: #F5F5F5;
+}
+#container-navbar .tab-content .col-md-3{
+	width: 25%;
+	float: left;
+}
+#container-navbar .tab-content .col-md-5{
+	width: 41.66666667%;
+	float: left;
+}
+#container-navbar .tab-content .col-md-2{
+	width: 16.66666667%;
+	float: left;
+}
+#container-navbar #details .form-group.last {
+	margin-bottom: 0;
+}
+
+/**************************************************** Formula Bar ************************************************/
+
+#formula-bar {
+	display: table;
+	width: 100%;
+	height: 27px;
+	line-height: 1;
+}
+#formula-bar #position-box {
+	display: table-cell;
+	text-align: center;
+	width: 185px;
+	height: 27px;
+	line-height: 1;
+}
+#formula-bar #formula-box {
+	display: table-cell;
+	background: #ffffff;
+	border: 1px solid #adadad;
+	border-left: none;
+	border-right: none;
+	padding-left: 3px;
+	width: inherit;
+	line-height: 1;
+}
+/**************************************************** STATUS BAR ************************************************/
+#status-bar {
+	border-top: 1px solid #adadad;
+	padding: 3px 10px;
+	background: #f5f5f5;
+}
+#status-bar .zoom-state {
+	margin-left: 14px;
+}
+#status-bar .zoom-state input.form-control {
+	padding: 3px 6px;
+	font-size: 11px;
+	width: 55px;
+	text-align: center;
+	line-height: 1;
+	height: 25px;
+}
+.slider-selection {
+  background: #fff;;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.slider-track {
+  background: #fff;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #ccc;
+}
+.slider-handle {
+  position: absolute;
+/*  width: 5px;
+  height: 19px;*/
+  background: #fff;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+  opacity: 1;
+  border: 1px solid #ccc;
+}
+/**************************************************** Ribbon ************************************************/
+.ribbon{
+	width: 100%;
+	height: 95px;
+	margin-top: -6px;
+	margin-bottom: -9px;
+}
+.ribbon .group{
+	float: left;
+	height: 100%;
+	border-right: solid 1px lightgray;
+}
+.ribbon .group .content{
+	width: 100%;
+	height: 80%;
+	padding: 5px 10px;
+}
+.ribbon .group .content .separator{
+	width: 1px;
+	height: 16px;
+	background-color: lightgray;
+	float: left;
+	margin: 6px 2px 0 2px;
+}
+.ribbon .group .content .separator.big{
+	height: 60px;
+	margin-top: 0px;
+}
+.ribbon .group .content .col{
+	float: left;
+}
+.ribbon .group .content .row{
+	float: left;
+	clear: both;
+	margin: 0;
+}
+.ribbon .group .content.mappings label{
+	font-size: 10px;
+	font-weight: normal;
+	float: left;
+	text-align: right;
+	margin-right: 3px;
+	margin-top: 7px;
+	color: #333;
+}
+.ribbon .group .content.mappings .col1{
+	margin-right: 10px;
+}
+.ribbon .group .content.mappings .col2{
+	margin-left: 9px;
+}
+.ribbon .group .content.mappings input,
+.ribbon .group .content.mappings select{
+	float: left;
+	width: 300px;
+}
+.ribbon .group .content.mappings .col1 input,
+.ribbon .group .content.mappings .col1 select{
+	width: 310px;
+}
+.ribbon .group .content.mappings .col2 input,
+.ribbon .group .content.mappings .col2 select{
+	width: 290px;
+}
+@media screen and (min-width: 1200px) {
+	.ribbon .group .content.mappings .col1 input,
+	.ribbon .group .content.mappings .col1 select{
+		width: 360px;
+	}
+	.ribbon .group .content.mappings .col2 input,
+	.ribbon .group .content.mappings .col2 select{
+		width: 340px;
+	}
+}
+@media screen and (min-width: 1300px) {
+	.ribbon .group .content.mappings .col1 input,
+	.ribbon .group .content.mappings .col1 select{
+		width: 410px;
+	}
+	.ribbon .group .content.mappings .col2 input,
+	.ribbon .group .content.mappings .col2 select{
+		width: 390px;
+	}
+}
+@media screen and (min-width: 1500px) {
+	.ribbon .group .content.mappings .col1 input,
+	.ribbon .group .content.mappings .col1 select{
+		width: 510px;
+	}
+	.ribbon .group .content.mappings .col2 input,
+	.ribbon .group .content.mappings .col2 select{
+		width: 490px;
+	}
+}
+.ribbon .group .content.mappings .col2{
+	margin-left: 9px;
+}
+.ribbon .group .content.mappings .col1 label{
+	width: 34px;
+}
+.ribbon .group .content.mappings .col2 label{
+	width: 54px;
+}
+.ribbon .group .content.mappings .form-group {
+	margin-bottom: 4px;
+}
+.ribbon .group .content.mappings .separator.big {
+/*	height: 60px;
+	margin-top: 0px;*/
+}
+.ribbon select,
+.ribbon input{
+	padding: 3px 6px;
+	height: 28px;
+	font-size: 12px;
+	margin-left: 2px;
+	margin-right: 2px; 
+	border-radius: 0;
+}
+.selectFontFamily{
+	width: 142px;
+	float: left;
+}
+.selectFontSize{
+	width: 65px;
+	float: left;
+}
+.ribbon .group .content .row.fonts1{
+	width: 272px;
+}
+.ribbon .group .content .sp-preview {
+	border-radius: 0;
+	height: 4px;
+	margin-top: 10px;
+	width: 18px;
+}
+.ribbon .group .content .sp-replacer {
+	background: transparent;
+	border: 0;
+	padding: 0;
+	margin: 0 4px 2px 4px;
+	padding-top: 7px;	
+}
+.ribbon .group .content .sp-preview-inner:before {
+	content: "";
+	width: 16px;
+	height: 12px;
+	top: -13px;
+	position: absolute;
+	left: 0px;
+	background-image: url('../images/icons.png');
+	background-position: top left;
+	background-color: transparent;	
+}
+.ribbon .group .content .sp-clear-display { /*to reset Spectrum scale*/
+    -ms-transform: scale(1); /* IE 9 */
+    -webkit-transform: scale(1); /* Chrome, Safari, Opera */
+    transform: scale(1);
+}
+.ribbon .group .content .selectBackgroundColor,
+.ribbon .group .content .selectFontColor {
+	float: left;
+	margin: 2px;
+}
+.ribbon .group .content .selectBackgroundColor .sp-preview-inner:before{
+	background-position: 0 -1008px;
+}
+.ribbon .group .content .selectFontColor .sp-preview-inner:before{
+	background-position: 0 -1168px;
+}
+.ribbon .group .content a.btn,
+a.spread-btn{
+	padding: 2px 4px;
+	margin: 2px;
+	border-radius: 0;
+	border: 0;
+	background: transparent;
+	text-align: center;
+	float: left;
+}
+a.spread-btn:hover{
+	cursor: pointer;
+}
+.ribbon .group .content a.btn:hover,
+.ribbon .group .content a.btn.active:hover,
+.ribbon .group .content .selectBackgroundColor:hover,
+.ribbon .group .content .selectFontColor:hover,
+.ribbon .group .caption a.open-modal:hover{
+	background-color: #EEE8D4;
+}
+.ribbon .group .content a.btn.shortHeight{
+	max-height: 35px;
+	overflow: hidden;
+}
+.ribbon .group .content a.btn:active,
+.ribbon .group .content a.btn.active:active{
+	background-color: #f4e67a;
+}
+.ribbon .group .content a.btn.active{
+	background-color: #E6E6E6;
+}
+.ribbon .group .content a.btn:hover{
+}
+.ribbon .group .content a.btn i,
+.ribbon .group .caption a.open-modal i,
+a.spread-btn i,
+#context-menu li.withIcon a i{
+	width: 16px;
+	height: 16px;
+	border: 0;
+	background-image: url('../images/icons.png');
+	background-position: top left;
+	background-color: transparent;
+}
+#context-menu li.withIcon a i{
+	
+}
+.ribbon .group .caption a.open-modal{
+	cursor: pointer;
+}
+.ribbon .group .caption a.open-modal i {
+	float: left;
+	background-position: 0 -2576px;
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+    transform: rotate(-45deg);
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-bigbutton {
+	width: 33px;
+    height: 31px;
+    /*margin-top: -8px;*/
+}
+.ribbon .group .content a.btn i:before{
+	content: "";
+	opacity: 0.5;
+}
+.ribbon .group .content a.btn span{
+	font-size: 9px;
+	position: relative;;
+	top: -10px;
+}
+.ribbon .group .content a.btn i + span {
+	top: -5px;
+}
+.ribbon .group .caption{
+	width: 100%;
+	padding: 0 5px;
+	height: 20%;
+	text-align: center;
+	font-size: 11px;
+	color: #333;
+}
+.ribbon .group .caption a {
+	float: right;
+}
+.ribbon .group .content a.btn span.dropdownMenu:after {
+	content: "";
+	width: 11px;
+	height: 9px;
+	background: url('../images/icons.png') 0 -2576px transparent;
+	left: calc(50% - 6px);
+	position: absolute;
+	bottom: -6px;
+}
+.ribbon button{
+	background-image: url('../images/icons.png');
+	background-position: top left;
+	background-color: transparent;
+	width: 16px;
+	height: 16px;
+	border: 0;
+}
+@media (max-width: 1150px) {
+	.ribbon .group .content{
+		padding: 5px 3px;
+	}
+	.ribbon .group .content a.btn {
+		padding: 2px 3px;
+	}
+	.ribbon .group .content .row.fonts1 {
+		width: 258px;
+	}	
+	.selectFontFamily {
+		width: 130px;
+	}	
+}
+.ribbon .wijmo-wijribbon-bigbutton .ui-button-text {
+    padding-top: 4em;
+}
+.ribbon .wijmo-wijribbon-fontfamily-parent {
+    width: 100px;
+    border: 1px solid #d3d3d3;
+    white-space: nowrap;
+}
+.ribbon .wijmo-wijribbon-fontfamily {
+    width: 100%;
+    text-align: left;
+}
+.ribbon .wijmo-wijribbon-fontfamily .ui-button-text {
+    padding-left: .2em;
+}
+.ribbon .wijmo-wijribbon-fontsize-parent {
+    width: 42px;
+    border: 1px solid #d3d3d3;
+    white-space: nowrap;
+}
+.ribbon .wijmo-wijribbon-fontsize {
+    width: 100%;
+    text-align: left;
+}
+.ribbon .wijmo-wijribbon-fontsize .ui-button-text {
+    padding-left: .2em;
+}
+.ribbon .wijmo-wijribbon-number-parent {
+    width: 120px;
+    border: 1px solid #d3d3d3;
+    white-space: nowrap;
+}
+.ribbon .wijmo-wijribbon-number {
+    width: 100%;
+    text-align: left;
+}
+.ribbon .wijmo-wijribbon-number .ui-button-text {
+    padding-left: .2em;
+}
+.ribbon .ui-button-text-icon-primary .ui-button-text {
+    padding-right: 1px;
+}
+.ribbon .group .content a.btn i.accessbar-undo {
+    background-position: 0 -3344px;
+}
+.ribbon .group .content a.btn i.accessbar-redo {
+    background-position: 0 -2464px;
+}
+.ribbon .group .content a.btn i.accessbar-save {
+    background-position: 0 -2592px;
+}
+.ribbon .group .content a.btn i.accessbar-new {
+    background-position: 0 -1904px;
+}
+.ribbon .group .content a.btn i.accessbar-open {
+    background-position: 0 -1984px;
+}
+.ribbon .group .content a.btn i.accessbar-active {
+    background-position: 0 -3952px;
+}
+.ribbon .group .content a.btn i.ui-state-default {
+    background: #fff;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-paste{
+    background-position: -16px -2304px;
+}
+#context-menu li.withIcon a i.wijmo-wijribbon-paste {
+    background-position: 0 -4128px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-clear-celltype {
+    background-position: -16px -3712px;
+}
+.ribbon .ui-icon-triangle-1-s {
+    background-position: 0 -2576px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-cut,
+#context-menu li.withIcon a i.wijmo-wijribbon-cut {
+    background-position: 0 -768px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-copy,
+#context-menu li.withIcon a i.wijmo-wijribbon-copy {
+    background-position: 0 -752px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-increaseFontSize {
+    background-position: 0 -1472px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-decreaseFontSize {
+    background-position: 0 -2736px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-bold {
+    background-position: 0 -400px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-italic {
+    background-position: 0 -1712px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-underline {
+    background-position: 0 -3328px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-strikethrough {
+    background-position: 0 -4080px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-overline {
+    background-position: 0 -4096px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-bottomborder {
+    background-position: 0 -416px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-topborder {
+    background-position: 0 -3264px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-leftborder {
+    background-position: 0 -1728px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-rightborder {
+    background-position: 0 -2560px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-noborder {
+    background-position: 0 -1952px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-allborder {
+    background-position: 0 -128px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-outsideborder {
+    background-position: 0 -2016px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-thickborder {
+    background-position: 0 -3184px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-bdborder {
+    background-position: 0 -448px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-tbborder {
+    background-position: 0 -3200px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-tb2border {
+    background-position: 0 -3216px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-ttbborder {
+    background-position: 0 -3248px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-tdbborder {
+    background-position: 0 -3232px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-moreborder {
+    background-position: 0 -1856px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-bgcolor {
+    background-position: 0 -1008px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-forecolor {
+    background-position: 0 -1168px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-leftalign {
+    background-position: 0 -64px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-centeralign {
+    background-position: 0 -48px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-rightalign {
+    background-position: 0 -96px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-increaseindent {
+    background-position: 0 -1536px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-topalign {
+    background-position: 0 -112px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-middlealign {
+    background-position: 0 -80px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-bottomalign {
+    background-position: 0 -32px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-decreaseindent {
+    background-position: 0 -816px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-wraptext {
+    background-position: 0 -3456px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-mergecenter {
+    background-position: 0 -1840px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-mergeacross {
+    background-position: 0 -1792px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-mergecells {
+    background-position: 0 -1808px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-unmergecells {
+    background-position: 0 -3376px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-numberformat {
+    background-position: 0 -16px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-percentstyle {
+    background-position: 0 -2064px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-commastyle {
+    background-position: 0 -720px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-increasedecimal {
+    background-position: 0 -800px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-decreasedecimal {
+    background-position: 0 -1520px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-buttoncelltype {
+    background-position: 0 -3680px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-checkboxcelltype {
+    background-position: 0 -3728px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-comboboxcelltype {
+    background-position: 0 -3712px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-hyperlinkcelltype {
+    background-position: 0 -3696px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-conditionalformat {
+    background-position: -16px -352px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-formattable {
+    background-position: -16px -2400px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-cellstyles {
+    background-position: -16px -288px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-cellstyles {
+    background-position: -16px -288px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-insert {
+    background-position: -16px -1920px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-delete {
+    background-position: -16px -608px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-format {
+    background-position: -16px -992px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-insertcells {
+    background-position: 0 -1616px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-insertcolumns {
+    background-position: 0 -1568px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-insertsheet {
+    background-position: 0 -1632px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-deletecells {
+    background-position: 0 -832px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-deleterows {
+    background-position: 0 -928px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-deletecolumns {
+    background-position: 0 -912px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-deletesheet {
+    background-position: 0 -896px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-rowheight {
+    background-position: 0 -2688px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-columnwidth {
+    background-position: 0 -2672px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-protectsheet {
+    background-position: 0 -2176px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-lockcells {
+    background-position: 0 -1744px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-emptyicon {
+    background-position: 0 -16000px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-autosum {
+    background-position: 0 -3120px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-filldown,
+a.spread-btn i.wijmo-wijribbon-filldown {
+    background-position: 0 -1024px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-fillleft {
+    background-position: 0 -1040px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-fillright {
+    background-position: 0 -1056px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-fillup,
+a.spread-btn i.wijmo-wijribbon-fillup {
+    background-position: 0 -1072px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-clearall {
+    background-position: 0 -608px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-clearformat {
+    background-position: 0 -640px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sortfilter {
+    background-position: -16px -2912px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sortAZ {
+    background-position: 0 -2800px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sortZA {
+    background-position: 0 -2816px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-customsort {
+    background-position: 0 -2752px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-filter {
+    background-position: 0 -1088px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-clearfilter {
+    background-position: 0 -624px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-reapplyfilter {
+    background-position: 0 -2352px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-find {
+    background-position: -16px -928px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-smallfind {
+    background-position: 0 -1104px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-goto {
+    background-position: 0 -1328px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-insert-table {
+    background-position: -16px -1952px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-insert-picture {
+    background-position: -16px -3936px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-line {
+    background-position: -16px -3040px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-column {
+    background-position: -16px -2976px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-winloss {
+    background-position: -16px -3072px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-pie {
+    background-position: -16px -3968px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-area {
+    background-position: -16px -4032px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-scatter {
+    background-position: -16px -4000px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-bullet {
+    background-position: -16px -4096px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-spread {
+    background-position: -16px -4224px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-stacked {
+    background-position: -16px -4288px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-hbar {
+    background-position: -16px -4160px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-vbar {
+    background-position: -16px -4384px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-variance {
+    background-position: -16px -4352px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-boxplot {
+    background-position: -16px -4064px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-cascade {
+    background-position: -16px -4128px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-pareto {
+    background-position: -16px -4192px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-group {
+    background-position: 0 -2896px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-ungroup {
+    background-position: 0 -2992px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-color {
+    background-position: 0 -2848px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-marker-color {
+    background-position: 0 -2928px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-weight {
+    background-position: 0 -3872px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-weight-custom {
+    background-position: 0 -3888px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-dot25 {
+    background-position: 0 -3856px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-dot1 {
+    background-position: 0 -3840px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-dot225 {
+    background-position: 0 -3824px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-dot3 {
+    background-position: 0 -3808px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-dot45 {
+    background-position: 0 -3792px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sparkline-dot6 {
+    background-position: 0 -3776px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-insertfunction {
+    background-position: -16px -1248px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-namemanager {
+    background-position: -16px -2080px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-calculateoption {
+    background-position: -16px -256px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-calculatenow {
+    background-position: -16px -224px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-fromaccess {
+    background-position: -16px -1344px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-fromtext {
+    background-position: -16px -1408px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-fromother {
+    background-position: -16px -1376px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-exitconnect {
+    background-position: -16px -1312px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-refreshall {
+    background-position: -16px -2560px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-refreshallsmall {
+    background-position: 0 -2512px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-refresh {
+    background-position: 0 -2496px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sortbig {
+    background-position: -16px -2880px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-filterbig {
+    background-position: -16px -896px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-datavalidationbig {
+    background-position: -16px -512px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-datavalidation {
+    background-position: 0 -784px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-groupbig {
+    background-position: -16px -1792px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-ungroup {
+    background-position: -16px -3392px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-template-design-mode {
+    background-position: -16px -3392px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-showdetail {
+    background-position: 0 -992px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-hidedetail {
+    background-position: 0 -704px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-template-designmode {
+    background-position: -16px -4320px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-loadSchema {
+    background-position: 0 -4048px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-saveSchema {
+    background-position: 0 -4064px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-clearBindingPath {
+    background-position: 0 -4032px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-checked {
+    background-position: 0 -3600px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-unchecked {
+    background-position: 0 -3648px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-zoom {
+    background-position: -16px -3552px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-zoomdefault {
+    background-position: -16px -3584px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-zoomselection {
+    background-position: -16px -3616px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-freeze {
+    background-position: -16px -1152px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-unfreeze {
+    background-position: -16px -3648px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-split {
+    background-position: -16px -3104px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-spreadgeneral {
+    background-position: -16px -3136px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-splitbox {
+    background-position: 0 -3024px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-scrollbars {
+    background-position: 0 -2656px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-view {
+    background-position: 0 -3424px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-tabstrip {
+    background-position: 0 -3168px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-sheetgeneral {
+    background-position: -16px -2624px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-gridlines {
+    background-position: 0 -1440px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-calculation {
+    background-position: 0 -576px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-headers {
+    background-position: 0 -1488px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-resize-table {
+    background-position: 0 -2528px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-table-style {
+    background-position: -16px -3904px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevicon {
+    background-image: url(../images/icons.png);
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevgroup .ui-icon {
+    background-position: 0 -2576px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevclipboard {
+    background-position: 0 -768px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevfonts {
+    background-position: 0 -400px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevalignment {
+    background-position: 0 -48px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevnumbers {
+    background-position: 0 -2064px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevcelltype {
+    background-position: 0 -3728px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevstyles {
+    background-position: 0 -1232px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevcells {
+    background-position: 0 -1216px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevediting {
+    background-position: 0 -1024px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevtables {
+    background-position: 0 -1648px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevsparklines {
+    background-position: 0 -2912px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevfunctions {
+    background-position: 0 -1600px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevnames {
+    background-position: 0 -1872px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevsort {
+    background-position: 0 -2752px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevdata {
+    background-position: 0 -784px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevoutline {
+    background-position: 0 -1456px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevshow\5c\2fhide {
+    background-position: 0 -3600px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevzoom {
+    background-position: 0 -3584px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevviewport {
+    background-position: 0 -1264px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevspread {
+    background-position: 0 -2128px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevsheet {
+    background-position: 0 -2112px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevproperties {
+    background-position: 0 -2528px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevtable {
+    background-position: 0 -2704px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevtype {
+    background-position: 0 -2912px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevshow {
+    background-position: 0 -3600px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevstyle {
+    background-position: 0 -2928px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-abbrevgroups {
+    background-position: 0 -2896px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-clearIndentation {
+    background-position: 0 -4112px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-showHideRowsCols {
+    background-position: -16px -4420px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-showHideSheets {
+    background-position: -16px -4451px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-manageUsers {
+    background-position: -16px -4484px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-workbookProperties {
+    background-position: -16px -4519px;
+}
+.ribbon .group .content a.btn i.wijmo-wijribbon-worksheetProperties {
+    background-position: -16px -4557px;
+}

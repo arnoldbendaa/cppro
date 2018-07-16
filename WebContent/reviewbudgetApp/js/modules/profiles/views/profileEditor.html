@@ -1,0 +1,72 @@
+<form class="profile-editor" name="form" ng-submit="ok()" role="form" novalidate>
+<div class="modal-header">
+	<h3><i class="fa fa-file-text-o"></i> 
+		<span style="text-transform: capitalize;">{{mode}}</span> Profile
+	</h3>
+</div>
+
+<div class="modal-body">
+	<tabset justified="true">
+		<!-- -->
+		<tab heading="Identity">
+			<br />
+			<div class="form-group" ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.name.$dirty && form.name.$invalid]">
+				<label for="">Name</label>
+				<input name="name" ng-model="profile.name" type="text" class="form-control" id="" ng-maxlength="120" ng-uniq required ng-readonly="mode === 'edit'">
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="form.name.$invalid && !form.name.$pristine"></span>
+				<p class="text-danger" ng-show="form.name.$invalid && !form.name.$pristine" class="help-block">
+					<span ng-show="form.name.$error.required"> Profile name is required. </span>
+					<span ng-show="form.name.$error.maxlength"> The profile name can only contain 128 chars.</span>
+				</p>
+			</div>
+
+			<div class="form-group" ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.description.$dirty && form.description.$invalid]">
+				<label for ="">Description</label>
+				<input name="description" ng-model="profile.description" type="text" class="form-control" ng-maxlength="128">
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="form.description.$invalid && !form.description.$pristine" class="help-block"></span>
+				<p class="text-danger" ng-show="form.description.$invalid && !form.description.$pristine" class="help-block">The description can only contain 128 chars.</p>
+			</div>
+
+			<div class="form-group" ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.form.$dirty && form.form.$invalid]">
+				<label for="">Form</label>
+				<select name="form" class="form-control" id="select"
+						ng-model="currentForm"
+						ng-options="(formList.name + '  -  ' + formList.description) for formList in formLists" 
+						ng-change="change(currentForm)" ng-disabled="profile.defaultProfile" required>
+				</select> 
+				<p class="text-danger" ng-show="form.form.$invalid && !form.form.$pristine" class="help-block">The profile must have the form</p>
+			</div>
+		</tab>
+
+		<!-- -->
+		<tab heading="Selection criteria">
+			<br />
+
+			<button type="button" class="btn btn-info btn-block" ng-click="selectDimension(1)">
+				<span ng-show="profileDim1 == null || profileDim1.dimName == null">Select Bussiness Dimension</span>
+				<span ng-show="profileDim1 != null || profileDim1.dimName != null">{{ profileDim1.dimName }}</span>
+				</button>
+			<br />
+			<button type="button" class="btn btn-info btn-block" ng-click="selectDimension(2)">
+				<span ng-show="profileDim2 == null || profileDim2.dimName == null">Select Calendar Dimension</span>
+				<span ng-show="profileDim2 != null || profileDim2.dimName != null">{{ profileDim2.dimName }}</span>
+			</button>
+			<br />
+			<button type="button" class="btn btn-info btn-block" ng-click="selectDataType()">
+				<span ng-show="profileDim3 == null || profileDim3.dimName == null">Select Data Type</span>
+				<span ng-show="profileDim3 != null || profileDim3.dimName != null">{{ profileDim3.dimName }}</span>
+			</button>
+			<br /><br />
+			<button type="button" class="btn btn-default btn" ng-click="resetDims()">Reset</button>
+		</tab>
+	</tabset>
+
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="cancel()" type="reset">Cancel</button>
+	<button class="btn btn-primary btn-success" ng-show="mode === 'create'" ng-disabled="form.$invalid" type="submit">Create profile</button>
+	<button class="btn btn-primary btn-success" ng-show="mode === 'copy'" ng-disabled="form.$invalid" type="submit">Copy profile</button>
+	<button class="btn btn-primary btn-success" ng-show="mode === 'edit'" ng-disabled="form.$invalid" type="submit">Update profile</button>
+</div>
+</form>

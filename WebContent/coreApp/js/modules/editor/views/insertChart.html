@@ -1,0 +1,38 @@
+<div id="insert-chart" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-bar-chart"></i>
+			{{type}} Chart: Select range
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form name="sparkline" class="css-form" novalidate>	
+
+			<fieldset>
+				<legend>Main Data</legend>
+				<div class="row">
+					<div class="col-md-6 fieldRange fieldRange-dataRange">
+						<div class="form-group" ng-class="{ 'has-error': sparkline.dataRange.$invalid }" >
+							<label popover="{{descriptions.dataRange}}" popover-append-to-body="{{hint.atb}}" popover-placement="{{hint.placement}}" popover-popup-delay="{{hint.delay}}" popover-trigger="{{hint.trigger}}">{{fieldLabels.dataRange}}</label>
+							<div class="ctrls">
+								<input type="text" class="form-control" name="dataRange" ng-model="dataRange" required/>
+			                 	<a class="spread-btn" ng-click="getSelections('dataRange')" title="Select {{labels.dataRange}}">
+			                        <i class="fa wijmo-wijribbon-fillup"></i>
+			                    </a>
+							</div>			
+						</div>	
+					</div>
+					<div class="col-md-6 fieldRange fieldRange-dataRange">
+						<label>Select sheet to insert</label>
+						<select ng-model="selectedSheet" class="form-control">
+							<option ng-repeat="sheet in sheets" value="{{$index}}">{{sheet}}</option>
+						</select>
+					</div>					
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="insert()" ng-disabled="sparkline.$invalid" type="reset">{{buttonName}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+	</div>
+</div>

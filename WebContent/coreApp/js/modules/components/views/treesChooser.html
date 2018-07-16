@@ -1,0 +1,65 @@
+<div class="trees-chooser" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-cube"></i>
+		{{modalTitle}}
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div>
+			<tabset justified="true">
+			<tab heading="{{dimensionForModel[0].dimensionVisId}}" style="cursor:default" ng-click="tabSelected()" ng-if="treesVisibility[0]">
+
+			<div class="col-md-12">
+				<span class="label label-info label1">{{dimensionForModel[0].dimensionVisId}}</span>
+				<div class="elementToResize elementToResize1">
+					<div class="ud-security-panel-tree">
+						<js-tree id="1" tree-ajax="{{treeAjaxCC}}" tree-plugins="checkbox" checkbox-state="{{checkboxState}}" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode;activate_node:activeNode;loaded:isLoaded;before_open:beforeOpen"></js-tree>
+					</div>
+				</div>
+			</div>
+			
+			</tab>
+			<tab heading="{{dimensionForModel[1].dimensionVisId}}" style="cursor:default" ng-click="tabSelected()" ng-if="treesVisibility[1]">
+
+			<div class="col-md-12">
+				<span class="label label-info label2">{{dimensionForModel[1].dimensionVisId}}</span>
+				<div class="elementToResize elementToResize2">
+					<div class="ud-security-panel-tree">
+						<js-tree id="2" tree-ajax="{{treeAjaxEXP}}" tree-plugins="checkbox" checkbox-state="{{checkboxState}}" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode;activate_node:activeNode;loaded:isLoaded;before_open:beforeOpen"></js-tree>
+					</div>
+				</div>
+			</div>
+
+			</tab>
+			<tab heading="Calendar" style="cursor:default" ng-click="tabSelected()" ng-if="treesVisibility[2]">
+
+			<div class="col-md-12">
+				<span class="label label-info label3">Calendar</span>
+				<div class="elementToResize elementToResize3">
+					<div class="ud-security-panel-tree">
+						<js-tree id="3" tree-ajax="{{treeAjaxCalendars}}" tree-plugins="checkbox" checkbox-state="{{checkboxState}}" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode;activate_node:activeNode;loaded:isLoaded;before_open:beforeOpen"></js-tree>
+					</div>
+				</div>
+			</div>
+
+			</tab>
+			<tab heading="Data Types" style="cursor:default" ng-click="tabSelected()" ng-if="treesVisibility[3]">
+
+			<div class="col-md-12">
+				<span class="label label-info label4">Data Types</span>
+				<div class="elementToResize elementToResize4">
+					<div class="ud-security-panel-tree">
+						<js-tree id="4" tree-ajax="{{treeAjaxDataTypes}}" tree-plugins="checkbox" checkbox-state="{{checkboxState}}" tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode;activate_node:activeNode;loaded:isLoaded;before_open:beforeOpen"></js-tree>
+					</div>
+				</div>
+			</div>
+
+			</tab>
+			</tabset>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class = "btn btn-success" ng-click ="ok()"> Ok </button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button >
+	</div>
+</div>

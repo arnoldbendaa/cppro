@@ -1,0 +1,10 @@
+<div class="internal-destinations" ng-controller="InternalDestinationController">
+	<h1 class="text-center">Report: Internal Users Destinations</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="reportId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Internal Users Destination ID" binding="reportVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="reportDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="135" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+</div>

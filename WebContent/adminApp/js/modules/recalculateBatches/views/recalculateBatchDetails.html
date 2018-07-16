@@ -1,0 +1,134 @@
+<div class="recalculate-batch-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-tasks"></i> 
+			Batch Recalculate
+		</h3> 
+	</div>
+	<div class="modal-body">
+		<form class="recalculate-batch-details-form" name="form" novalidate>
+			<div class="loader align-center" ng-hide="isMainDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="isMainDataLoaded">
+				<div class="row getToCalc1">
+					<div class="col-md-6">
+						<div class="form-group" ng-class="{'has-error': validation.recalculateBatchVisId != '' || (form.recalculateBatchVisId.$invalid && !form.recalculateBatchVisId.$pristine)}">
+							<label class="control-label" for="name">Identifier:</label>
+							<input name="recalculateBatchVisId" ng-model="recalculateBatch.recalculateBatchVisId" type="text" class="form-control" ng-maxlength="128" required/>
+
+							<p class="text-danger" ng-hide="validation.recalculateBatchVisId == ''">{{validation.name}}</p>
+							<p class="text-danger" ng-show="form.recalculateBatchVisId.$invalid && !form.recalculateBatchVisId.$pristine">
+								<span ng-show="form.recalculateBatchVisId.$error.required">* Please supply an Identifier.</span>
+								<span ng-show="form.recalculateBatchVisId.$error.maxlength">* Length of identifier must not exceed 128 characters.</span>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group" ng-class="{'has-error': validation.recalculateBatchDescription != '' || (form.recalculateBatchDescription.$invalid && !form.recalculateBatchDescription.$pristine)}">
+							<label class="control-label" for="recalculateBatchDescription">Description:</label>
+							<input name="recalculateBatchDescription" ng-model="recalculateBatch.recalculateBatchDescription" type="text" class="form-control" ng-maxlength="128">
+
+							<p class="text-danger" ng-hide="validation.recalculateBatchDescription == ''">{{validation.recalculateBatchDescription}}</p>
+							<p class="text-danger" ng-show="form.recalculateBatchDescription.$invalid && !form.recalculateBatchDescription.$pristine">
+								<span ng-show="form.recalculateBatchDescription.$error.maxlength">* Length of description must not exceed 128 characters.</span>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row getToCalc2">
+					<div class="col-md-12" ng-hide="isModelDataLoaded">
+						<br/>
+						<div class="loader align-center">
+							<i class="fa fa-refresh fa-2x fa-spin"></i>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group" ng-show="isModelDataLoaded">
+							<label for="">Model:</label>
+							<select class="form-control"
+								ng-change="changeModel()"
+								ng-model="recalculateBatch.model.modelId"
+								ng-options="model.modelId as (model.modelVisId  + ' - ' + model.modelDescription) for model in models.sourceCollection">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div ng-show="isModelDataLoaded && !isBudgetCycleDataLoaded">
+							<br/>
+							<div class="loader align-center">
+								<i class="fa fa-refresh fa-2x fa-spin"></i>
+							</div>
+						</div>
+
+						<div class="form-group" ng-show="isModelDataLoaded && isBudgetCycleDataLoaded">
+							<label for="">BudgetCycle:</label>
+							<select class="form-control"
+								ng-change="changeBudgetCycle()"
+								ng-model="recalculateBatch.budgetCycleId"
+								ng-options="budgetCycle.budgetCycleId as budgetCycle.budgetCycleVisId for budgetCycle in budgetCycles">
+					        </select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<fieldset>
+							<legend class="getToCalc3">ResponsibilityAreas</legend>
+							<div class="form-group" ng-class="{'has-error': validation.responsibilityAreas != ''}" ng-show="isMainDataLoaded && isModelDataLoaded">
+								<p class="text-danger" ng-hide="validation.responsibilityAreas == ''">* {{validation.responsibilityAreas}}</p>
+								<div class="responsibility-areas elementToResize">
+									<js-tree tree-data="scope" tree-model="treeProcess" tree-plugins="checkbox,wholerow" tree-events="select_node:selectNode;deselect_node:deselectNode"></js-tree>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="col-md-6">
+						<fieldset>
+							<legend>XMLForms</legend>
+							<div ng-show="isModelDataLoaded && isBudgetCycleDataLoaded">
+								<div ng-hide="isProfilesDataLoaded">
+									<br/>
+									<div class="loader align-center">
+										<i class="fa fa-refresh fa-2x fa-spin"></i>
+									</div>
+								</div>
+								<div class="form-group" ng-class="{'has-error': validation.profiles != ''}" ng-show="isProfilesDataLoaded">
+									<p class="text-danger" ng-hide="validation.profiles == ''">* {{validation.profiles}}</p>
+									<div class="xmlforms elementToResize" ng-show="recalculateBatch.profiles && recalculateBatch.profiles.length > 0">
+										<table class="table profiles" ng-class="{'bg-danger': validation.profiles != '', 'table-striped': validation.profiles == ''}">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Description</th>
+													<th><input type="checkbox" ng-model="allProfileSelected" /></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="profile in recalculateBatch.profiles">
+													<td ng-click="profile.selected = !profile.selected">{{profile.name}}</td>
+													<td ng-click="profile.selected = !profile.selected">{{profile.description}}</td>
+													<td><input type="checkbox" ng-model="profile.selected" ng-change="toggleProfile()" /></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
+									<div class="align-center" ng-show="(!recalculateBatch.profiles || recalculateBatch.profiles.length <= 0)">No profiles related to batch recalculate {{recalculateBatch.name}}</div>
+								</div>
+							</div>
+
+						</fieldset>
+					</div>
+				</div>
+				
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-disabled="form.$invalid || $scope.isValid(recalculateBatch) == false" ng-click="save()">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

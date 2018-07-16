@@ -1,0 +1,504 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+body {
+	display: block;
+	background-color: #F5F5F5;
+	overflow: hidden;
+}
+.clear-both {
+	clear: both;
+}
+
+.btn-toolbar>.btn, .btn-toolbar>.btn-group, .btn-toolbar>.input-group {
+	padding: 0 10px 0 10px;
+}
+
+/** SpreadSheet **/
+
+#spreadSheet {
+	height: 86%;
+	margin-top: -5px;
+}
+
+.canvas-style {
+    cursor: pointer !important;
+}
+
+/** Veil **/
+
+#veil {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height:100%;
+	width:100%;
+	cursor: not-allowed;
+	filter: alpha(opacity=60);
+	opacity: 0.7;
+	z-index: 1000;
+	background: #000000 no-repeat center;
+}
+
+#veil-informations {
+	position: absolute;
+	top: 30%;
+	left: 37%;
+	text-align: center;
+	z-index: 1001;
+}
+
+#veil-informations > h1,
+#veil-critical-error > h1 {
+	color: #fff;
+	font-weight: bold;
+}
+
+#veil-informations > i, #veil-informations > p,
+#veil-critical-error > i, #veil-critical-error > p {
+	color: #fff;
+}
+
+#veil-critical-error {
+	display: none;
+	position: absolute;
+	top: 30%;
+	left: 22%;
+	text-align: center;
+	z-index: 1001;
+}
+
+
+/** Profiles **/
+
+#profilesShowGroupsDirective {
+	position: absolute;
+	top: 30%;
+	left: 37%;
+	text-align: center;
+	z-index: 1001;
+}
+
+#profilesErrorNotFound {
+	position: absolute;
+	top: 30%;
+	left: 26%;
+	text-align: center;
+	z-index: 1001;
+}
+
+#profilesDefaultProfileNotFoundDirective {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	text-align: center;
+	z-index: 1001;
+	width: 700px;
+	margin-left: -350px;
+}
+
+#profilesShowGroupsDirective > i, 
+#profilesDefaultProfileNotFoundDirective > i, 
+#profilesErrorNotFound > i {
+	color: #fff;
+}
+
+#profilesShowGroupsDirective > h1,
+#profilesDefaultProfileNotFoundDirective > h1,
+#profilesErrorNotFound > h1 {
+	color: #fff;
+	font-weight: bold;
+}
+
+.profielModal > .modal-dialog {
+	width: 900px;
+}
+
+/** ExceptionView **/
+
+.stackTraceExceptionModal {
+	width: 558px;
+	height: 168px;
+	font-size: 10px;
+	color: #000;
+}
+
+/** ContextMenu **/
+div#context-menu {
+	position: absolute;
+	z-index: 30000;
+  	display:none;
+}
+
+/** Cell Notes **/
+#cell-note {
+	position: absolute;
+	z-index: 500;
+	border: 1px black solid;
+	box-shadow: 1px 2px 5px rgba(0,0,0,0.4);
+	font: 9pt Arial;
+	background: #FFFFEE;
+	padding: 5;
+	min-width: 250px;
+	min-height: 53px;
+	max-width: 450px;
+	top: 100;
+	left: 200;
+	display: none;
+	padding: 8px
+}
+
+#cell-note > .note {
+	display: none;
+}
+
+#cell-note > .controlls {
+
+}
+
+#cell-note > .controlls > #show-full-note {
+	
+}
+
+#cell-note > .controlls > #hide-full-note {
+	display: none;
+}
+
+#cell-note > .close-note {
+	float: right;
+}
+
+#cell-note > #note-attachment-in-cell {
+	float: left;
+}
+
+.cell-note-modal > .modal-dialog {
+	width: 900px;
+}
+
+#cell-note-modal > .wrap {
+    width: 854px;
+}
+
+#cell-note-modal > .wrap table {
+    width: 839px;
+    table-layout: fixed;
+}
+
+div.note-information {
+	padding-bottom: 5px;
+	font-style: italic;
+}
+
+div.note-controlls {
+	padding: 5px;
+}
+
+td.note {
+    width: 720px;
+}
+
+td.note p {
+	font-size: 13px;
+}
+
+#cell-note-modal > .wrap > table.head tr td {
+    background: #eee;
+}
+
+#cell-note-modal > .wrap > .inner_table {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.button-add-new-in-manager {
+	padding-top: 14px;
+	padding-right: 10px;
+}
+
+/** Finance Cell **/
+.finance-cell-modal > .modal-dialog {
+	width: 1010px;
+}
+.finance-cell-modal h3{
+	margin-bottom:  20px;
+}
+.finance-cell-modal .modal-header > .main-informations {
+	font-size: 12px;
+}
+.finance-cell-modal .modal-header > .main-informations .row {
+	height: 29px;
+}
+.finance-cell-modal .modal-header > .main-informations .form-control {
+	height: 25px;
+	padding: 4px;
+	width: 63px;
+	font-size: 12px;
+	text-align: left;
+}
+.finance-cell-modal .modal-header > .main-informations input[type="text"] {
+	padding: 4px;
+	font-size: 12px;
+	width: 63px;
+	float: right;
+	text-align: left;
+}
+.finance-cell-modal table {
+	font-size: 13px;
+}
+/** Cell Status **/
+.cell-status-modal input {
+	display: block;
+}
+.cell-status-modal input[type="text"] {
+	width: 100%;
+}
+.cell-status-modal .box-content {
+	padding: 30px 0 0 0;
+	font-size: 13px;
+}
+.cell-status-modal .box-content .row {
+	margin-bottom: 5px;
+	height: 33px;
+}
+.cell-status-modal .box-content .row.last {
+	margin-bottom: 0;
+}
+
+/** Responsiblity Assigments **/
+.responsibility-assignments-modal > .modal-dialog {
+	width: 750px;
+}
+.responsibility-assignments-modal table {
+	font-size: 13px;
+}
+
+/** Responsiblity Assigments **/
+.export-file-modal > .modal-dialog {
+	width: 800px;
+}
+.export-file-modal table {
+	font-size: 13px;
+}
+.export-file-modal .modal-body {
+	padding: 0;
+	overflow: visible;
+}
+.export-pdf-file-modal .modal-body  {
+	min-height: 220px;
+}
+.export-file-modal .modal-section {
+	float: left;
+	width: 100%;
+	position: relative;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 30px;
+}
+.export-file-modal .modal-section.last {
+	border-bottom: none;
+}
+.export-file-modal .modal-section .row {
+	margin-bottom: 5px;
+	position: relative;
+}
+.export-file-modal .modal-section .row:not(.selectMultiple) {
+	height: 34px;
+}
+.export-file-modal .modal-body .row input[type="text"] 	{
+	display: block;
+	width: 100%;
+	padding-left: 10px
+}
+.export-file-modal .tool-tip {
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	z-index: 200;
+	width: 700px;
+	margin-left: -350px;
+	-webkit-box-shadow:0 5px 15px rgba(0,0,0,.5);
+	box-shadow:0 5px 15px rgba(0,0,0,.5)
+}
+.export-file-modal .tool-tip .row {
+	float: left;
+	margin-bottom: 5px;
+}
+.export-file-modal .tool-tip .btn {
+	font-size: 12px;
+	float: right;
+}
+.export-file-modal .form-control:not(.multiple) {
+	height: 28px;
+	padding: 3px 3px 3px 10px;
+	font-size: 14px;
+}
+.export-file-modal #allSheets {
+	cursor: pointer;
+}
+
+.pop-up-modal .align-left {
+	text-align: left;
+}
+.pop-up-modal .align-center {
+	text-align: center;
+}
+.pop-up-modal .align-right {
+	text-align: right;
+}
+
+/** Tree View **/
+
+div[data-angular-treeview] {
+  /* prevent user selection */
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  /* default */
+  font-family: Tahoma;
+  font-size: 14px;
+  color: #555;
+  text-decoration: none;
+}
+
+div[data-tree-model] ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; 
+  border: none;
+  overflow: hidden;
+}
+
+div[data-tree-model] li {
+  position: relative;
+  padding: 1px 0 1px 22px;
+  line-height: 25px;
+}
+
+div[data-tree-model] li .expanded {
+  	padding: 1px 5px;
+  	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+div[data-tree-model] li .collapsed {
+  	padding: 1px 5px;
+  	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+div[data-tree-model] li .normal {
+  	padding: 1px 5px;
+  	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+div[data-tree-model] li .loading {
+  	padding: 1px 5px;
+  	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+div[data-tree-model] li .check {
+  	padding: 1px 5px;
+  	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+div[data-tree-model] li .expanded:before {
+	content: "\f147";
+}
+
+div[data-tree-model] li .collapsed:before {
+  	content: "\f196";
+}
+
+div[data-tree-model] li .normal:before {
+  content: "\f096";
+}
+
+div[data-tree-model] li .loading:before {
+  content: "\f021";
+}
+
+div[data-tree-model] li .check:before {
+  content: "\f046";
+}
+
+div[data-tree-model] li i, div[data-tree-model] li span {
+  cursor: pointer;
+}
+
+div[data-tree-model] li .selected {
+  background-color: #aaddff;
+  font-weight: bold;
+  padding: 1px 5px;
+}
+
+/** Forms **/
+
+.form-control {
+	height: 32px;
+	padding: 5px 12px;
+	font-size: 14px;
+}
+
+/** Modal **/
+
+.modal-body {
+	max-height: 70vh;
+	overflow: auto;
+}
+
+/** bootstrap fix **/
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.row {
+	margin-left: 0px;
+	margin-right: 0px; 
+}
+
+.nav-tabs.nav-justified > li > a {
+	cursor: pointer;
+}
+
+.modal.fade .modal-dialog {
+  -webkit-transition: none;
+     -moz-transition: none
+       -o-transition: color 0 ease-out;
+          transition: none;
+  -webkit-transform: none;
+      -ms-transform: none;
+          transform: none;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: none;
+      -ms-transform: none;
+          transform: none;
+}
+.collapsing {
+  -webkit-transition: none;
+          transition: none;
+}
+/************************ Timer ************************/
+.timer{
+	right: 11px;
+}
+/************************ end of Timer ************************/
+

@@ -1,0 +1,268 @@
+<div class="hierarchy-details dimension-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-user"></i>
+		{{title}}
+		</h3>
+	</div>
+	<div class="modal-body" >
+		<div class="alert alert-danger" role="alert" ng-show="validation.hierarchyElement != ''">{{validation.hierarchyElement}}</div>
+		<div class="loader align-center" ng-hide="isMainDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="in-use-label" ng-show="hierarchy.inUseLabel != null"><i class="fa fa-warning"></i> {{hierarchy.inUseLabel}}</div>
+		<div class="modalDivider getToCalc3"></div>
+		<div class="dimension-main-data">
+			<div class="row">
+				<div class="col-md-4">
+					<label for="">Identifier:</label>
+					<span class="text-danger" ng-show="validation.identifier != ''" class="help-block">{{validation.identifier}}</span>
+					<input name="name" maxlength=100 ng-model="hierarchy.hierarchyVisId" ng-disabled="hierarchy.readOnly" type="text" class="form-control">
+				</div>
+				<div class="col-md-4">
+					<label for="">Description:</label>
+					<span class="text-danger" ng-show="validation.description != ''" class="help-block">{{validation.description}}</span>
+					<input name="name" maxlength=128 ng-model="hierarchy.hierarchyDescription" ng-disabled="hierarchy.readOnly" type="text" class="form-control">
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="">Dimension:</label>
+						<input type="text" class="form-control" ng-model="hierarchy.dimension.dimensionVisId" disabled>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modalDivider getToCalc1"></div>
+
+		<div class="hierarchy-elements">
+			<div class="crud-buttons">
+				<button class="btn btn-danger" ng-click="deleteTreeElements()" ng-disabled="!deleteAvailable || hierarchy.readOnly">Delete</button>
+				<button class="btn btn-success" ng-click="createTreeElement('before')" ng-disabled="!insertBeforeAvailable || hierarchy.readOnly">Insert Before</button>
+				<button class="btn btn-success" ng-click="createTreeElement('after')" ng-disabled="!insertAfterAvailable || hierarchy.readOnly">Insert After</button>
+				<button class="btn btn-success" ng-click="createTreeElement()" ng-disabled="!insertDependentAvailable || hierarchy.readOnly">Insert Dependent</button>
+				<button class="btn btn-warning" ng-click="moveTreeElement('before')" ng-disabled="!moveBeforeAvailable || hierarchy.readOnly">Move Up</button>
+				<button class="btn btn-warning" ng-click="moveTreeElement('after')" ng-disabled="!moveAfterAvailable || hierarchy.readOnly">Move Down</button>
+			</div>
+			<div class="col-md-12 panel elementToResize" ng-if="id == -1">
+				<js-tree tree-data="scope" tree-model="createdNode" tree-plugins="contextmenu,unique,dnd" tree-contextmenu="contextMenu" tree-events="select_node:selectNode;create_node:createNode;delete_node:deleteNode;move_node:dnd;refresh:refreshNode;ready:readyTree;activate_node:activeNode"></js-tree>
+			</div>
+			<div class="col-md-12 panel elementToResize" ng-if="id != -1">
+				<js-tree id="1" tree-ajax="{{treeAjax}}" tree-plugins="contextmenu,unique,dnd" tree-contextmenu="contextMenu" tree-events="select_node:selectNode;create_node:createNode;delete_node:deleteNode;move_node:dnd;refresh:refreshNode;ready:readyTree;activate_node:activeNode"></js-tree>
+			</div>
+			<!-- <div class="col-md-6 ob pull-right elementToResize">
+				<div class="dimension-chooser list clearfix">
+					<table class="table table-striped table-hover">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Description</th>
+								<th>Action</th>
+							</tr >
+						</thead>
+						<tbody>
+							<tr draggable="true"
+								ng-repeat="dimensionElement in hierarchy.dimensionElement">
+								<td>{{dimensionElement.dimensionElementVisId}}</td>
+								<td>{{dimensionElement.description}}</td>
+								<td><button class="btn btn-success" ng-click="add(dimensionElement)">Insert</button></td>
+							</tr >
+						</tbody>
+					</table >
+				</div>
+			</div> -->
+		</div>
+		
+		<div class="modalDivider getToCalc2"></div>
+
+		<div class="edit-hier-elem" ng-if="type === true">
+			<div class="coverEdition" ng-hide="select.state.selected">
+			</div>		
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="">Identifier:</label>
+					<input
+					name="name"
+					maxlength=64
+					ng-model="select.original.textNode"
+					ng-disabled="!select.original.augentElement || hierarchy.readOnly"
+					ng-change="changeValeuInNode()"
+					type="text"
+					class="form-control"
+					>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="">Description:</label>
+					<input
+					name="name"
+					maxlength=64
+					ng-model="select.original.description"
+					ng-disabled="!select.original.augentElement || hierarchy.readOnly"
+					ng-change="changeValeuInNode()"
+					type="text"
+					class="form-control">
+				</div>
+			</div>
+			<div class="row checkbox-radio">
+				<div ng-hide="hierarchy.operation == 'createNewElement'">
+					<div class="col-md-4" ng-show="select.original.feedImpl">
+						<fieldset>
+							<legend>Access:</legend>
+							<div class="form-group">
+								<div class="checkbox">
+									<label class="checkbox">
+										<input
+										type="checkbox"
+										ng-model="select.original.disabled"
+										ng-disabled="!(!hierarchy.readOnly && !select.original.feedImpl)"
+										ng-change="changeValeuInNode()"
+										>
+										Disabled
+									</label>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<fieldset>
+						<legend>Credit/Debit:</legend>
+						<div class="form-group">
+							<div class="radio">
+								<label class="radio">
+									<input
+									type="radio"
+									name="creditDebit"
+									data-ng-model="select.original.creditDebit"
+									ng-disabled="!select.original.augentElement || !hierarchy.augentMode "
+									ng-change="changeValeuInNode()"
+									value="1"> Credit
+								</label>
+							</div>
+							<div class="radio">
+								<label class="radio">
+									<input
+									type="radio"
+									name="creditDebit"
+									data-ng-model="select.original.creditDebit"
+									ng-disabled="!select.original.augentElement || !hierarchy.augentMode"
+									ng-change="changeValeuInNode()"
+									value="2"> Debit
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="col-md-4"  ng-hide="id == -1">
+					<fieldset>
+						<legend>Cr/Dr Override:</legend>
+						<div class="form-group">
+							<div class="radio">
+								<label class="radio">
+									<input
+									type="radio"
+									name="augCreditDebit"
+									data-ng-model="select.original.augCreditDebit"
+									ng-disabled="!((!hierarchy.readOnly && !select.original.feedImpl) && hierarchy.augentMode && !select.original.augentElement)"
+									ng-change="changeValeuInNode()"
+									value="1"> Credit
+								</label>
+								
+							</div>
+							<div class="radio">
+								<label class="radio">
+									<input
+									type="radio"
+									name="augCreditDebit"
+									data-ng-model="select.original.augCreditDebit"
+									ng-disabled="!(!hierarchy.readOnly && !select.original.feedImpl && hierarchy.augentMode && !select.original.augentElement)"
+									ng-change="changeValeuInNode()"
+									value="2"> Debit
+								</label>
+							</div>
+							<div class="radio">
+								<label class="radio">
+									<input
+									type="radio"
+									name="augCreditDebit"
+									data-ng-model="select.original.augCreditDebit"
+									ng-disabled="!(!hierarchy.readOnly && !select.original.feedImpl && hierarchy.augentMode && !select.original.augentElement)"
+									ng-change="changeValeuInNode()"
+									value="0"> No override
+								</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<br class="clearBoth" />
+		</div>
+		
+		<div class="edit-hier-elem" ng-if="type === false">
+			<div class="coverEdition" ng-hide="select.state.selected">
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="">Identifier:</label>
+					<input
+					name="name"
+					maxlength=60
+					ng-model="select.original.textNode"
+					ng-disabled="!select.original.augentElement || hierarchy.readOnly"
+					ng-change="changeValeuInNode()"
+					class="form-control"
+					>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="">Description:</label>
+					<input
+					name="name"
+					maxlength=64
+					ng-model="select.original.description"
+					ng-disabled="!select.original.augentElement || hierarchy.readOnly"
+					ng-change="changeValeuInNode()"
+					type="text"
+					class="form-control">
+				</div>
+			</div>
+			<div class="row" ng-show="!select.original.augentElement">
+				<div class="form-group col-md-12">
+					<label for="">Display Name:</label>
+					<input
+					name="name"
+					maxlength=50
+					ng-model="select.original.displayName"
+					ng-disabled="hierarchy.readOnly"
+					ng-change="changeDisplayNameAddEvent(select.original.displayName)"
+					type="text"
+					class="form-control"
+					>
+				</div>
+			</div>
+			<div class="row checkbox-radio" ng-show="select.state.selected">
+				<div class="col-md-4" ng-show="select.original.feedImpl">
+					<fieldset>
+						<legend>Access:</legend>
+						<div class="checkbox">
+							<label class="checkbox">
+								<input
+								type="checkbox"
+								ng-model="select.original.disabled"
+								ng-disabled="!(!hierarchy.readOnly && !select.original.feedImpl)"
+								type="text"
+								ng-change="changeValeuInNode()"
+								>
+								Disabled
+							</label>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+			<br class="clearBoth" />
+		</div>
+		
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" ng-disabled="hierarchy.readOnly" type="submit">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

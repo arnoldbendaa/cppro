@@ -1,0 +1,314 @@
+ *:focus {
+   outline: none;
+  }
+
+.softproHeader {
+	background: #E4E7F0 !important;
+	height: 50px;
+	border-bottom: 1px solid #74C2E1;
+}
+
+
+.softproHeaderSwish {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 50px;
+}
+.softproUtcWebappLogo {
+	width: 166px;
+}
+.softproUtcWebappLogo img {
+	max-width: 148px;
+	max-height: 40px;
+	padding: 6px 5px 0px 13px;
+}
+
+.softproHeaderTitle {
+	text-align: left;
+	width: 190px;
+	padding: 0px 0px 0px 10px;
+}
+
+.softproHeaderDevelopment {
+	text-align: center;
+	text-indent: -92px;
+	font-size: 24px;
+}
+
+.softproAppVersion {
+	text-align: right;
+	padding: 0px 12px 0px 0px;
+	color: #9EA1A6;
+	font-size: 13px;
+	width: 170px;
+	white-space: nowrap	
+}
+
+.softproHelloUserText {
+	color: #454545;
+	font-size: 14px;
+}
+
+.softproHelloUserText a, 
+.softproHelloUserText a:visited, 
+.softproHelloUserText a:hover {
+	font-size: 13px;
+	color: #000;
+	background: none;
+}
+
+.softproSplash {
+	text-align: center;
+}
+
+.softproSplash img {
+	padding: 15px;
+} 
+
+.softproHeader1 {
+	margin: 13px 0;
+	padding: 0;
+	font-size: 16pt;
+	font-weight: bold;
+	color: #000;
+}
+
+.softproLoginNote {
+	font-size: 12px;
+	font-style: italic;
+	margin-bottom: 6px;
+	color: #000;
+}
+
+.softproLoginField {
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.softproFirstField {
+	padding-top: 10px;
+}
+
+.softproFieldLabel {
+	color: #000;
+	padding-bottom: 2px;
+}
+
+.softproResetPassword a, 
+.softproResetPassword a:visited, 
+.softproResetPassword a:hover {
+	font-size: 13px;
+	color: #000;
+	background: none;
+}
+
+.coaMenuBar {
+	background: #3A5173 !important;
+	height: 33px !important;
+	color: #fff;
+}
+input[type="button"].coaButton:disabled {
+	background: #DBDBDB;
+	opacity: 0.25;
+  	filter: alpha(opacity = 25);
+}
+
+#crumb {
+	color: #ccc;
+}
+#crumb a,
+#crumb a:visited,
+#crumb a:hover {
+	color: #fff;
+	background: none;
+}
+
+/** Style **/
+
+/* main color: #C1BCC2 */
+/* banner color: #3A5173 */
+/* baner icons color: #B0B7C2 */
+/* version text color: #746B6C */
+/* main background: #E6E2DF */
+/* fields background: #BDB6B0 */
+/* fields text active: #080000 */
+/* fields text disactive: #5A534D*/
+
+
+/* Softpro Errors */
+
+.softproErrors {
+	text-align: center;
+}
+
+.softproErrors ul li {
+	list-style: none;
+	color: #e80b42;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 10px 0px;
+	margin: 0px 0px 0px 0px;
+	margin-left: -30px;
+	text-align: center;
+}
+
+/* Softpro menu overide */
+.dijitButtonNode {
+	background: none !important;
+	border: none !important;
+	color: #FFF;
+}
+
+.dijitReset.dijitInline.dijitIcon:hover {
+	color: #cfcfcf !important;
+}
+
+.dijitArrowButtonInner {
+	display: none !important;
+}
+
+
+/* inputs with icon */
+.left-inner-addon {
+    position: relative;
+}
+
+.left-inner-addon input {
+    padding-left: 30px;    
+}
+
+.left-inner-addon i {
+    position: absolute;
+    pointer-events: none;
+    top: 7px;
+	left: 40px;
+	color: #817E80 !important;
+
+}
+
+.sp-icon-user, .sp-icon-password, .sp-icon-email {
+	font-family: 'entypo';
+    font-size: 20px;
+    width:24px;
+    height:24px;
+    font-style: normal;
+}
+
+.sp-icon-user:before {
+	content: '\e057';
+}
+
+.sp-icon-password:before {
+	content: '\e032';
+}
+
+.sp-icon-email:before {
+	content: '\e038';
+}
+
+.sp-form-control {
+	height: 30px !important;
+	background: #E4E4E4 !important;
+	color: #000 !important;
+	padding-left: 40px !important;
+	width: 73%;
+	font-size: 16px;
+	font-weight: normal;
+	border: 1px solid #BCBCBC;
+}
+
+.sp-login-button {
+	background: #446F9C !important;
+	color: #FFF !important;
+	border-radius: 0px !important;
+	padding: 10px 100px !important;
+	border: none;
+	cursor: pointer;
+}
+
+
+.sp-cancel-button {
+	background: #E4E4E4 !important;
+	color: #000 !important;
+	border-radius: 0px !important;
+	padding: 10px 33px !important;
+	border: none;
+	cursor: pointer;
+}
+
+.sp-reset-button {
+	background: #446F9C !important;
+	color: #FFF !important;
+	border-radius: 0px !important;
+	padding: 10px 100px !important;
+	border: none;
+	cursor: pointer;
+}
+
+.sp-reset-password-link {
+	color: #000;
+}
+
+.sp-reset-password-link:hover, 
+.sp-reset-password-link:focus {
+	color: #000;
+	background: none;
+}
+
+.sp-logo-link:hover {
+	background: none;
+}
+
+
+/* profile settings */
+.sp-blue-button {
+	color: #FFF;
+	background: #446F9C !important;
+	border: none !important;
+	padding: 5px 10px;
+}
+
+/* legend table */
+.sp-table-with-legend {
+	padding: 5px 0px !important; 
+}
+
+/* Dojo Fixes */
+.claro .dijitComboBox .dijitArrowButtonInner {
+	display: block !important;
+}
+
+img {
+	padding-bottom: 4px;
+}
+
+/* Message box */
+
+.sp-blue-buttons-group > .coaButton {
+	color: #FFF !important;
+	background: #446F9C !important;
+	border: none !important;
+	padding: 5px 10px !important;
+}
+
+.sp-blue-buttons-group > .coaButtonHov {
+	color: #FFF !important;
+	background: #446F9C !important;
+	border: none !important;
+	padding: 5px 10px !important;
+}
+
+.claro .dijitContentPane {
+	background: #FFF !important;
+}
+
+td.sp-table-title {
+	font-weight: bold;
+	padding: 4px 7px 4px 0px;;
+}
+
+.sp-show-message {
+	padding: 0px 0px 0px 0px !important;
+	margin: 5px 0px;
+}

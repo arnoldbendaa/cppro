@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <div class="row">
+        <div class="col-md-7">
+            <h3><i class="fa fa-list-ul"></i> Profiles Manager</h3>
+        </div>
+        <div class="col-md-5">
+            <div class="pull-right button-add-new-in-manager">
+                <button type="button" class="btn btn-success" ng-click="createNew()">Create New Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Profile name</th>
+                <th>Profile description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="profile in profiles" ng-model="profile[$index]">
+                <td>{{profile.name}}</td>
+                <td>{{profile.description}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-xs" ng-click="edit(profile)">Edit</button>
+                    <button type="button" class="btn btn-warning btn-xs" ng-click="copyProfile(profile)">Copy</button>
+                    <button type="button" class="btn btn-danger btn-xs"  ng-click="deleteProfile(profile.profileId)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

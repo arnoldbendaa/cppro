@@ -1,0 +1,12 @@
+<div class="data-types" ng-controller="FlatFormsPageController">
+	<h1 class="text-center">Flat Forms</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="flatFormId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Finance Cube" binding="financeCube.financeCubeVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Xml Form ID" binding="flatFormVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description"binding="flatFormDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Last Updated" binding="updateTime"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="135"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

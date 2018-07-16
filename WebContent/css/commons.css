@@ -1,0 +1,1143 @@
+body{
+	min-width: 960px;
+	min-height: 400px;
+}
+.clearBoth,
+.clear-both {
+	clear: both;
+}
+h4.modalDetailsGroupTitle{
+	padding: 10px 0;
+}
+h4.groupTitle.floated{
+	float: left;
+	padding: 10px 0;
+}
+@media (min-width: 992px) {
+	.col-left{
+		padding-left: 0;
+	}
+	.col-right{
+		padding-right: 0;
+	}
+}
+.dropdown-menu {
+	font-size: 12px;
+}
+.dropdown-menu>li>a {
+	cursor: pointer;
+}
+label.nowrap{
+	white-space: nowrap;
+}
+.add-selected-element-to-table{
+	padding-top: 10px;
+}
+.add-selected-element-to-table *{
+	float: left;
+	margin-right: 5px;
+}
+.add-selected-element-to-table label{
+	padding-top: 5px;
+}
+.add-selected-element-to-table select,
+.add-selected-element-to-table input{
+	width: 300px;
+}
+.add-selected-element-to-table button{	
+}
+.no-margin-bottom{
+	margin-bottom: 0;
+}
+.modal-dialog fieldset {
+	/*border: double 3px rgb(172, 192, 167);*/
+	border: solid 1px #888;
+	padding: 10px 10px 0 10px;
+	margin-bottom: 10px;
+}
+.modal.softpro-modals fieldset.left{
+	width: calc(50% - 8px);
+	float: left;
+	margin-right: 8px;
+}
+.modal.softpro-modals fieldset.right{
+	width: calc(50% - 8px);
+	float: left;
+	margin-left: 8px;
+}
+.modal-dialog legend {
+	border: 0;
+	width: auto;
+	font-size: 14px;
+	padding: 0 2px;
+	margin: 0 0 0 -5px;
+	/*color: rgb(26, 98, 8);*/
+	color: #000;
+}
+.modalDivider{
+	width: 100%;
+	height: 1px;
+	background-color: #e5e5e5;
+	clear: both;
+	margin: 8px 0;
+}
+.wj-state-selected{ /* one selected cell */
+	/* background-color: #0085c7; */ /* original */ 
+	background-color: #80adbf;
+}
+.wj-state-multi-selected{ /* selected row cells */
+	/* background-color: #80adbf; */ /* original */
+}
+.total.wj-cell:not(.wj-header):not(.wj-group):not(.wj-alt):not(.wj-state-selected):not(.wj-state-multi-selected) {
+	/* Default grid cell color */
+	background: #FAF5E7;
+}
+.total.wj-alt:not(.wj-header):not(.wj-group):not(.wj-state-selected):not(.wj-state-multi-selected) {
+	/* Alternate grid cell color */
+	background: #f5efdb;
+}
+.wj-alt:not(.wj-state-selected):not(.wj-state-multi-selected),
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+	background-color: rgba(0,0,0,.06);
+}
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th{
+	background-color: rgba(0,0,0,0);
+}
+.table-hover thead tr:hover th.clickable {
+	cursor: pointer;
+}
+.table-hover tbody tr.selected td {
+	background-color: #eee8d4;
+	cursor: pointer;
+}
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+	background-color: #f5efdb;
+	cursor: pointer;
+}
+.table>thead>tr>th.sorted:after {
+	padding-left: 8px;
+	font-family: "FontAwesome";
+	content: "\f0d8";
+}
+.table>thead>tr>th.sorted.desc:after {
+	content: "\f0d7";
+}
+.table>tbody>tr>td.danger {
+	background-color: #f2dede !important;
+}
+table .action-column {
+	text-align: center;
+}
+.frontend-cover {
+	position: absolute;
+	width: 100%;
+	background-color: white;
+	opacity: 0.5;
+	height: 100%;
+	z-index: 1;
+}
+.frontend-cover i {
+	top: 50%;
+	left: 50%;
+	font-size: 40px;
+	position: relative;
+}
+.frontend-cover.modal-main-cover{
+	z-index: 3000;
+	border-radius: 5px;
+}
+/* Wijmo content originaly has display inline-block. It adds empty space under table. We don't need that space. */
+.wj-content{
+	display: block;
+}
+.wj-content button.btn {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+.wj-content button.btn:first-child{
+	margin-left: 10px;
+}
+.wj-content button.btn:last-child{
+	margin-right: 10px;
+}
+
+.datepicker-right {
+  position: relative;
+}
+.datepicker-right .dropdown-menu {
+   left: auto !important;
+   right: 0px;
+}
+
+/* //////////////////////////////////////////////////// Tabs ///////////////////////////////// */
+
+.modal .nav-tabs>li>a,
+.generalTabs .nav-tabs>li>a {
+	color: #000;
+	background-color: rgb(247, 247, 247);
+	border-left: solid #000 1px;
+	border-right: solid #000 1px;
+	border-top: solid #000 1px;
+	border-bottom: solid rgb(247, 247, 247) 1px;
+	border-radius: 6px 6px 0 0 !important;
+	cursor: pointer;
+	margin-left: -3px;
+}
+.modal .nav-tabs.nav-justified>li>a,
+.generalTabs .nav-tabs.nav-justified>li>a{
+	margin-left: -1px;
+}
+.modal .nav-tabs>li>a:hover,
+.generalTabs .nav-tabs>li>a:hover{
+	background-color: #eee;
+	border-bottom-color: #eee;
+
+}
+.modal .nav-tabs>li.active>a, 
+.modal .nav-tabs>li.active>a:hover, 
+.modal .nav-tabs>li.active>a:focus, 
+.generalTabs .nav-tabs>li.active>a, 
+.generalTabs .nav-tabs>li.active>a:hover, 
+.generalTabs .nav-tabs>li.active>a:focus{
+	background-color: #F5EFDB;
+	font-weight: bold;
+	font-size: 15px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	color: #555;
+	border-left: solid #444 1px;
+	border-right: solid #444 1px;
+	border-top: solid #444 1px;
+	border-bottom: solid #F5EFDB 1px;
+	cursor: pointer;
+	z-index: 1;
+}
+.modal .nav-tabs,
+.generalTabs .nav-tabs{
+	border-bottom: solid #000 1px;
+	padding-bottom: 6px;
+}
+.modal .nav-tabs.nav-justified{
+	border-bottom: 0;
+	padding-bottom: 10px;
+}
+.generalTabs .nav-tabs.nav-justified {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+.modal .nav-tabs>li,
+.generalTabs .nav-tabs>li {
+	margin-bottom: -8px;
+}
+.modal .nav-tabs.nav-justified>li,
+.generalTabs .nav-tabs.nav-justified>li {
+	margin-bottom: -1px;
+}
+.nav-tabs.nav-justified>li {
+	cursor: pointer;
+}
+.modal .nav-tabs.nav-justified>li.active>a, 
+.modal .nav-tabs.nav-justified>li.active>a:hover, 
+.modal .nav-tabs.nav-justified>li.active>a:focus,
+.generalTabs .nav-tabs.nav-justified>li.active>a, 
+.generalTabs .nav-tabs.nav-justified>li.active>a:hover, 
+.generalTabs .nav-tabs.nav-justified>li.active>a:focus  {
+	/*top: -6px;*/
+}
+.btn-file {
+	position: relative;
+}
+.btn-file input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: right;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	background: red;
+	cursor: inherit;
+	display: block;
+}
+/************************ ExceptionView ************************/
+.stackTraceExceptionModal.form-control {
+	width: 558px; 
+	height: 168px;
+	font-size: 10px;
+	color: #000;
+}
+/************************ end of ExceptionView ************************/
+/************************ Timer ************************/
+.timer{
+	font-size: 12px;
+	color: white;
+	position: absolute;
+	right: 7px;
+	top: 1px;
+}
+.bonhamsAdminApp .timer {
+	top: -17px;
+}
+.logout{
+	color: white;
+	cursor: pointer;
+	text-decoration: underline;
+}
+.logout:hover{
+	color: lightblue;
+}
+/************************ end of Timer ************************/
+/************** Sweet Alert ************/
+.sweet-overlay{
+	z-index: 1100;
+}
+.sweet-alert p {
+	color: #000;
+}	
+/* change animation color for warning info */
+@-webkit-keyframes pulseWarning {
+  0% {
+    border-color: #ED7600; }
+  100% {
+    border-color: #ED3700; } }
+@-moz-keyframes pulseWarning {
+  0% {
+    border-color: #ED7600; }
+  100% {
+    border-color: #ED3700; } }
+@keyframes pulseWarning {
+  0% {
+    border-color: #ED7600; }
+  100% {
+    border-color: #ED3700; } }
+.pulseWarning {
+  -webkit-animation: pulseWarning 0.75s infinite alternate;
+  -moz-animation: pulseWarning 0.75s infinite alternate;
+  animation: pulseWarning 0.75s infinite alternate; }
+
+@-webkit-keyframes pulseWarningIns {
+  0% {
+    background-color: #ED7600; }
+  100% {
+    background-color: #ED3700; } }
+@-moz-keyframes pulseWarningIns {
+  0% {
+    background-color: #ED7600; }
+  100% {
+    background-color: #ED3700; } }
+@keyframes pulseWarningIns {
+  0% {
+    background-color: #ED7600; }
+  100% {
+    background-color: #ED3700; } }
+.pulseWarningIns {
+  -webkit-animation: pulseWarningIns 0.75s infinite alternate;
+  -moz-animation: pulseWarningIns 0.75s infinite alternate;
+  animation: pulseWarningIns 0.75s infinite alternate; }
+
+/* change animation - to not look like blink */ 
+@-webkit-keyframes showSweetAlert {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7); }
+/*   45% {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05); }
+80% {
+  transform: scale(0.95);
+  -webkit-tranform: scale(0.95); } */
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } }
+@-moz-keyframes showSweetAlert {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7); }
+/*   45% {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05); }
+80% {
+  transform: scale(0.95);
+  -webkit-tranform: scale(0.95); } */
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } }
+@keyframes showSweetAlert {
+  0% {
+    transform: scale(0.7);
+    -webkit-transform: scale(0.7); }
+/*   45% {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05); }
+80% {
+  transform: scale(0.95);
+  -webkit-tranform: scale(0.95); } */
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } }
+/************** end of Sweet Alert ************/   
+/************************ modals ************************/
+.modal-footer button:not(.btn-success) {
+	float: left;
+	background-color: lightgray;
+	border-color: rgba(0,0,0,0.1);
+	color: #333;
+}
+.modal-footer button:not(.btn-success):hover {
+	background-color: rgb(196, 196, 196);
+	border-color: rgba(0,0,0,0.2);
+}
+.modal-dialog {
+/*	background-color: yellow;
+	height: 580px;
+	padding-left: 1px;
+	padding-right: 1px;*/
+}
+.modal-dialog.modalReset{
+	width: 900px !important;
+	height: 100% !important;
+	left: auto !important;
+	top: auto !important;
+	margin: 0 auto !important;
+}
+.testYellowBg{
+	background-color: yellow;
+}
+.modal-header, .modal-footer {
+	background-color: rgb(247, 247, 247);
+}
+.modal-header{
+	padding: 15px 15px 10px 15px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;	
+}
+.modal-header h3 {
+	margin: 0;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;	
+}
+.modal-footer {
+	padding: 8px 15px 10px 15px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.modal.softpro-modals{
+	/*padding: 5px;*/
+	padding-right: 5px;
+	padding-bottom: 5px;
+}
+.modal.softpro-modals .modal-dialog{
+	height: calc(100% - 60px);
+	max-height: calc(100% - 60px);
+	max-width: calc(100% - 2px);
+	/*left: 50%;*/
+	/*margin-left: -450px;*/
+	top: 30px;
+}
+.modal.softpro-modals .modal-dialog.ui-resizable{
+	margin: 0;
+	left: calc(50% - 450px);
+}
+
+@media (max-width: 991px) {
+	.modal.softpro-modals .modal-dialog{
+		width: auto;
+	}
+}
+.modal.softpro-modals .modal-content{
+	height: 100%;
+}
+.modal.softpro-modals.no-resize .modal-content{
+	height: auto;
+}
+.modal.softpro-modals .modal-content div[data-cookie],
+.modal.softpro-modals .modal-content form[data-cookie]{
+	height: 100%;
+}
+.modal.softpro-modals .modal-content .reset-bottom-margin {
+	margin-bottom: 0;
+}
+.modal.softpro-modals .modal-content .elementToResize {
+	overflow: auto;
+}
+/*.modal.softpro-modals .modal-content .elementToResize.reset-overflow {
+	overflow: initial;
+}*/
+.modal.softpro-modals .modal-body {
+	height: calc(100% - 105px);
+	overflow: auto;
+}
+.modal.softpro-modals .modal-header.ui-draggable-handle, 
+.modal.softpro-modals .modal-footer.ui-draggable-handle{
+	cursor: move;
+}
+.modal.softpro-modals .modalReset .modal-header.ui-draggable-handle, 
+.modal.softpro-modals .modalReset .modal-footer.ui-draggable-handle{
+	cursor: default;
+}
+.modalReset .ui-resizable-handle{
+	display: none !important;
+}
+.modal.softpro-modals.minimized{
+	padding-right: 10px;
+	padding-bottom: 16px;	
+	right: auto;
+	bottom: auto;
+}
+.modal.softpro-modals.minimized .modal-dialog{
+	top: 0 !important;
+	left: 0 !important;
+	height: auto !important;
+	width: 900px !important;
+}
+.modal.softpro-modals.minimized .modal-dialog .modal-header,
+.modal.softpro-modals.minimized .modal-dialog .modal-footer{
+	display: none;
+}
+/************************ end of modals ************************/
+/************************ Main Messages ************************/
+.mc-messages {
+	position: fixed;
+	top: 3px;
+	left: 10%;
+	width: 80%;
+	z-index: 2000;
+		top: -4px;
+		width: initial;
+		left: 50%;
+		text-align: center;	
+}
+.mc-messages > div {
+		margin-left: -50%;
+		margin-right: 50%;
+		float: left;
+		padding-top: 16px;
+}
+.mc-messages .alert{
+	margin: 1px;
+	box-shadow: 0px 0px 9px 0px rgba(50, 50, 50, 0.3);
+	text-align: center;
+		padding: 3px 25px 1px 25px;
+		display: inline-block;
+		margin-top: -15px;	
+}
+.mc-messages .alert .close{
+		margin-right: -15px;
+		margin-left: 15px;
+}
+.mc-messages .alert > span {
+		/*padding: 0px 17px 0 25px;*/
+}
+
+div[flash-message] {
+	position: fixed;
+	z-index: 2000;
+	top: 8px;
+	width: initial;
+	left: 50%;
+	text-align: center;	
+}
+div[flash-message] div.alert {
+	margin-left: -50%;
+	margin-right: 50%;
+	padding: 3px 25px 1px 25px;
+	box-shadow: 0px 0px 9px 0px rgba(50, 50, 50, 0.3);
+}
+div[flash-message] .alert .close{
+	margin-right: 8px;
+	margin-left: -3px;
+}
+/************************ end of Main Messages ************************/
+.select-users .selectSth{
+	text-align: right;
+}
+.trees-chooser .scroll {
+	/*height: 450px;*/
+	/*overflow: auto;*/
+}
+.flat-form-container,
+.data-type-container,
+.finance-cube-container {
+	height: 100%;
+}
+.flat-form-filter,
+.data-type-filter,
+.finance-cube-filter {
+	margin-bottom: 10px;
+}
+.flat-form-filter .input-group,
+.data-type-filter .input-group,
+.finance-cube-filter .input-group {
+	width: 200px;
+}
+.flat-form-chooser,
+.data-type-chooser,
+.finance-cube-chooser {
+	height: calc(100% - 60px);
+	overflow: auto;
+	margin-bottom: 20px;	
+}
+.flat-form-chooser.no-filter,
+.data-type-chooser.no-filter,
+.finance-cube-chooser.no-filter {
+	height: calc(100% - 13px);
+}
+.flat-form-chooser .flat-form-grid, 
+.data-type-chooser .data-type-grid,
+.finance-cube-chooser .finance-cube-grid {
+	height: 100%;
+}
+.flat-form-chooser-modal .flat-form-chooser .flat-form-grid, 
+.data-type-chooser-modal .data-type-chooser .data-type-grid,
+.finance-cube-chooser-modal .finance-cube-chooser .finance-cube-grid {
+	max-height: 400px;
+}
+/************************* sheet editor *********************************/
+.sheet-editor .form-control{
+	height: 22px;
+	padding: 6px;
+}
+.sheet-editor .sheet-name {
+	width: 52%;
+}
+/************************* end of sheet editor ****************************/
+/************************* format cell editor *********************************/
+#preview #format-cell-editor-preview,
+#preview #cell-picker-preview  {
+	border: 1px solid #ddd;
+}
+#format-cell-editor .panel {
+	margin-bottom: 0;
+	border: none;
+	box-shadow: none;
+	padding: 10px 10px 0 10px;
+	font-size: 12px;
+}
+#format-cell-editor .formats .list {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 250px;
+}
+#format-cell-editor .formats .list td.index {
+	width: 40px;
+}
+#format-cell-editor .borders .row {
+	margin-bottom: 5px;
+}
+#format-cell-editor .borders .color-picker,
+#format-cell-editor .borders .form-control.line-style {
+	float: left;
+}
+#format-cell-editor .borders .color-picker {
+	margin-right: 15px;
+}
+#format-cell-editor .borders .form-control.line-style {
+	width: 50%;
+}
+/************************* end of format cell editor ****************************/
+/**************************************************** Dictionary Editor ************************************************/
+.dictionary-editor .modal-header span {
+	font-size: 90%;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.dictionary-editor .form-control {
+	height: 22px;
+	padding: 6px;
+}
+.dictionary-editor .type:first-letter {
+    text-transform: uppercase;
+}
+/**************************************************** end of Dictionary Editor ************************************************/
+/******************** Insert Sparkline *****************************************/
+#insert-sparkline .popover {
+	max-width: 250px;
+	font-size: 80%;
+}
+#insert-sparkline .popover.bottom{
+	left: 0 !important;
+	max-width: 100%;
+}
+#insert-sparkline .fieldRange-boxPlotClass .popover.bottom{
+	max-width: 400px;
+}
+#insert-sparkline .fieldRange-boxPlotClass .popover-content{
+	width: 400px;
+}
+#insert-sparkline .popover.bottom>.arrow{
+	left: 27px;
+}
+.modal.softpro-modals.minimized .popover.bottom {
+	top: 10px !important;
+	max-width: calc(100% - 10px) !important;
+	margin-left: 5px !important;
+}
+
+#insert-sparkline{
+
+}
+#insert-sparkline .ctrls{
+	position: relative;
+}
+#insert-sparkline .ctrls a.spread-btn{
+	position: absolute;
+	top: 4px;
+	right: 0;
+}
+#insert-sparkline .fieldRange.fullWidth{
+	width: 100%;
+}
+#insert-sparkline .fieldRange .form-group > label,
+#insert-sparkline .fieldRange label.hint + div{
+	position: relative;
+	cursor: help;
+}
+#insert-sparkline .fieldRange label.hint,
+#insert-sparkline .fieldRange label.hint + div {
+	float: left;
+}
+#insert-sparkline .fieldRange label.hint{
+	margin-right: 0;
+}
+#insert-sparkline .fieldRange label.hint + div {
+	margin-right: 20px;
+	margin-top: 3px;
+}
+#insert-sparkline .fieldRange .form-group > label:after,
+#insert-sparkline .fieldRange label.hint + div:after{
+	font-family: "FontAwesome";
+	content: "\f059";
+	font-weight: normal;
+	color: #76A7D7;
+	margin-left: 5px;
+}
+#insert-sparkline .form-group > label:hover span,
+#insert-sparkline label.hint:hover span{
+	/*display: block;*/
+}
+#insert-sparkline .form-group > label span,
+#insert-sparkline label.hint span{
+	font-weight: normal;
+	font-size: 12px;
+	position: absolute;
+	top: 10px;
+	left: 13px;
+	display: none;
+	background: rgb(255, 255, 191);
+	z-index: 100;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+#insert-sparkline .fieldRange img.boxPlotHelp{
+	width: 550px; 
+	border-radius: 10px; 
+	opacity: 0.9;
+}
+.modal.softpro-modals.minimized fieldset
+/*.modal.softpro-modals fieldset*/{
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+.modal.softpro-modals.minimized fieldset legend
+/*.modal.softpro-modals fieldset legend*/{
+	display: none;
+}
+.modal.softpro-modals.minimized #insert-sparkline fieldset.left,
+.modal.softpro-modals.minimized #insert-sparkline fieldset.right{
+	width: calc(100% - 8px);
+}
+#insert-sparkline .radio,
+#insert-sparkline .checkbox {
+	margin-top: 3px;
+	margin-bottom: 22px;
+	width: auto;
+	margin-right: 20px;
+}
+#insert-sparkline .radio+.radio, 
+#insert-sparkline .checkbox+.checkbox {
+	margin-top: 3px;
+}
+/******************** end of Insert Sparkline *******************************/
+
+/************************* JSTree *********************************/
+.jstree-default .jstree-leaf .jstree-anchor>.jstree-themeicon {
+	background-position: -100px -70px;
+}
+.jstree-default .jstree-anchor>.jstree-themeicon.template{
+	background: url('../libs/jsTree/32px.png');
+	background-position: -100px -70px;
+}
+.jstree-default .jstree-anchor>.jstree-themeicon.template.simple-template:before{
+	content: "S";
+	color: green;
+}
+.jstree-default .jstree-anchor>.jstree-themeicon.template.hierarchy-template:before{
+	content: "H";
+	color: red;
+}
+.jstree-default .jstree-anchor>.jstree-themeicon.template.simple-template:before,
+.jstree-default .jstree-anchor>.jstree-themeicon.template.hierarchy-template:before{
+	/*color: gray;*/
+	font-size: 9px;
+	top: -1px;
+	position: relative;
+	font-style: normal;
+}
+.jstree-default .jstree-anchor>.jstree-themeicon.directory{
+	background: url('../libs/jsTree/32px.png');
+	background-position: -260px -4px;
+}
+#jstree-marker{
+	z-index: 1500;
+}
+/************************* end of JSTree ****************************/
+/************************* Wijmo 5 *********************************/
+#wj-wm {
+	display: none;
+}
+/************************* end of Wijmo 5 ****************************/
+/************************* Kendo *********************************/
+/**** override and resizing kendo elements  ***/
+.k-grid td { 
+            	
+}
+.k-grid .k-alt:not(.k-state-selected) td {
+	background: #f0f0f0;
+}
+
+.k-grid-header .k-header .k-link, .k-grid-header .k-header, .k-grid-header .k-link, .k-grid-header .k-link:link, .k-pager-info, .k-scheduler-header, .k-scheduler-agendaview .k-scheduler-datecolumn {
+	color: #000000;
+}
+.k-grid-header .k-header-column-menu{
+	padding: 0;
+}
+
+.k-grid-header th.k-header>.k-link {
+	padding: 0em 1.286em .262em 0.7em;
+}
+
+.k-numeric-wrap .k-input,
+.k-autocomplete .k-input,
+.k-dropdown-wrap .k-input,
+.k-picker-wrap .k-input{
+	height: 1.214em;
+	line-height: 1.214em;
+	text-indent: .4em;
+}
+.k-dropdown-wrap .k-input{
+	visibility: hidden;
+}
+.k-numeric-wrap{
+	padding: 0 1.571em 0 0;
+}
+.k-numeric-wrap .k-select{
+	height: auto;
+	min-height: initial;
+	width: 1.571em;
+}
+.k-filtercell{
+	display: inherit;
+}
+.k-filtercell>span{
+	min-height: initial;
+	padding-right: 4.24em;
+}
+.k-filtercell .k-widget{
+	display: inherit;
+}
+.k-numerictextbox .k-link {
+  	height: 0.784em;
+  	line-height: 0em;
+  	overflow: hidden;
+}
+.k-numeric-wrap:before{
+	height: 1.214em;
+}
+.k-filtercell>span>.k-button {
+  padding: 0.2em;
+  line-height: 0;
+}
+.k-dropdown-wrap {
+	padding-right: 1.6em;
+}
+.k-dropdown-wrap .k-select {
+  width: 1.571em;
+  height: initial;
+  min-height: 1.214em;
+  line-height: 1.564em;
+  margin-right: 0.15em;
+}
+.k-filter-row .k-dropdown-operator{
+	width: 2em;
+	overflow: hidden;
+	right: 1.957em;
+}
+.k-picker-wrap .k-select{
+    min-height: initial;
+    line-height: 1.564em;
+    height: initial;
+}
+.k-picker-wrap.k-state-default{
+	height: 22px;
+}
+.k-picker-wrap .k-input{
+    background: #fff;
+}
+/************************* end of Kendo *********************************/
+/**************************************************** VEIL ************************************************/
+#veil {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height:100%;
+	width:100%;
+	cursor: not-allowed;
+	filter: alpha(opacity=60);
+	opacity: 0.7;
+	z-index: 1060;
+	background: #000000 no-repeat center;
+}
+#veil-informations {
+	position: absolute;
+	top: 30%;
+	left: 37%;
+	text-align: center;
+	z-index: 1065;
+}
+#veil-informations > h1,
+#veil-critical-error > h1 {
+	color: #fff;
+	font-weight: bold;
+}
+#veil-informations > i, #veil-informations > p,
+#veil-critical-error > i, #veil-critical-error > p {
+	color: #fff;
+}
+
+#veil-critical-error {
+	display: none;
+	position: absolute;
+	top: 30%;
+	left: 22%;
+	text-align: center;
+	z-index: 1065;
+}
+
+/************************* overide some wijmo-jquery styles (which overrides jquery ui) *********************************/
+.ui-icon-gripsmall-diagonal-se {
+	background-image: url("../libs/jquery-ui/images/ui-icons_222222_256x240.png");
+}
+.ui-resizable-se {
+	cursor: se-resize;
+	width: 16px;
+	height: 16px;
+}
+/************************* end of overide ... *********************************/
+
+@media (min-width: 0px) {
+	.nav-tabs.nav-justified>li {
+		display: table-cell;
+		width: 1%;
+	}	
+	.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, 
+	.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, 
+	.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, 
+	.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12	{
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+  }
+  .col-md-12 {
+    width: 100%;
+  }
+  .col-md-11 {
+    width: 91.66666667%;
+  }
+  .col-md-10 {
+    width: 83.33333333%;
+  }
+  .col-md-9 {
+    width: 75%;
+  }
+  .col-md-8 {
+    width: 66.66666667%;
+  }
+  .col-md-7 {
+    width: 58.33333333%;
+  }
+  .col-md-6 {
+    width: 50%;
+  }
+  .col-md-5 {
+    width: 41.66666667%;
+  }
+  .col-md-4 {
+    width: 33.33333333%;
+  }
+  .col-md-3 {
+    width: 25%;
+  }
+  .col-md-2 {
+    width: 16.66666667%;
+  }
+  .col-md-1 {
+    width: 8.33333333%;
+  }
+  .col-md-pull-12 {
+    right: 100%;
+  }
+  .col-md-pull-11 {
+    right: 91.66666667%;
+  }
+  .col-md-pull-10 {
+    right: 83.33333333%;
+  }
+  .col-md-pull-9 {
+    right: 75%;
+  }
+  .col-md-pull-8 {
+    right: 66.66666667%;
+  }
+  .col-md-pull-7 {
+    right: 58.33333333%;
+  }
+  .col-md-pull-6 {
+    right: 50%;
+  }
+  .col-md-pull-5 {
+    right: 41.66666667%;
+  }
+  .col-md-pull-4 {
+    right: 33.33333333%;
+  }
+  .col-md-pull-3 {
+    right: 25%;
+  }
+  .col-md-pull-2 {
+    right: 16.66666667%;
+  }
+  .col-md-pull-1 {
+    right: 8.33333333%;
+  }
+  .col-md-pull-0 {
+    right: auto;
+  }
+  .col-md-push-12 {
+    left: 100%;
+  }
+  .col-md-push-11 {
+    left: 91.66666667%;
+  }
+  .col-md-push-10 {
+    left: 83.33333333%;
+  }
+  .col-md-push-9 {
+    left: 75%;
+  }
+  .col-md-push-8 {
+    left: 66.66666667%;
+  }
+  .col-md-push-7 {
+    left: 58.33333333%;
+  }
+  .col-md-push-6 {
+    left: 50%;
+  }
+  .col-md-push-5 {
+    left: 41.66666667%;
+  }
+  .col-md-push-4 {
+    left: 33.33333333%;
+  }
+  .col-md-push-3 {
+    left: 25%;
+  }
+  .col-md-push-2 {
+    left: 16.66666667%;
+  }
+  .col-md-push-1 {
+    left: 8.33333333%;
+  }
+  .col-md-push-0 {
+    left: auto;
+  }
+  .col-md-offset-12 {
+    margin-left: 100%;
+  }
+  .col-md-offset-11 {
+    margin-left: 91.66666667%;
+  }
+  .col-md-offset-10 {
+    margin-left: 83.33333333%;
+  }
+  .col-md-offset-9 {
+    margin-left: 75%;
+  }
+  .col-md-offset-8 {
+    margin-left: 66.66666667%;
+  }
+  .col-md-offset-7 {
+    margin-left: 58.33333333%;
+  }
+  .col-md-offset-6 {
+    margin-left: 50%;
+  }
+  .col-md-offset-5 {
+    margin-left: 41.66666667%;
+  }
+  .col-md-offset-4 {
+    margin-left: 33.33333333%;
+  }
+  .col-md-offset-3 {
+    margin-left: 25%;
+  }
+  .col-md-offset-2 {
+    margin-left: 16.66666667%;
+  }
+  .col-md-offset-1 {
+    margin-left: 8.33333333%;
+  }
+  .col-md-offset-0 {
+    margin-left: 0;
+  }
+}
+
+#container-full {
+	margin-right: auto;
+	margin-left: auto;
+}
+#container-navbar {
+	padding: 18px 6px 12px 6px;
+	background-color: #446E9B;
+	color: #FDFDFD;
+}
+#container-navbar .form-control {
+    height: 30px;
+    padding: 5px 12px;
+}
+
+#container-navbar .chooser .arrow {
+    height: 15px;
+}
+
+.k-scheduler-layout .k-state-selected, .k-scheduler .k-today.k-state-selected, .k-grid tr.k-state-selected, .k-grid td.k-state-selected, .k-grid td.k-state-selected.k-state-focused, .k-marquee-color, .k-gantt .k-treelist .k-state-selected, .k-gantt .k-treelist .k-state-selected td, .k-gantt .k-treelist .k-alt.k-state-selected, .k-gantt .k-treelist .k-alt.k-state-selected>td, .k-listview>.k-state-selected, .k-state-selected.k-line {
+    background-color: #80ADBF;
+}
+
+.btn-save {
+	color: green;
+}
+.btn-save:hover {
+	color: green;
+}
+
+.form-group {
+	margin-bottom: 10px;
+}

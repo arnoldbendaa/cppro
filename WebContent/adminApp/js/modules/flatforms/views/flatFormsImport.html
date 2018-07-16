@@ -1,0 +1,19 @@
+<div class="flat-forms-import" data-cookie="{{cookieName}}">
+	<div class="modal-header" >
+		<h3><i class="fa fa-file"></i>
+			Meta Data Import
+		</h3>
+	</div>
+	<div class="modal-body">
+		<p class="bg-info">Import action operates only on flat forms named different than flat forms in database. If you want import flat forms named the same like flat forms in database you must delete them first.</p>
+		<h4>
+			Select file to import:
+		</h4>
+  		<span class="text-danger" ng-show="!selected" >Select zip file</span>
+     	<input name="file" type="file" ngf-select ngf-change="onFileSelect($files)" accept=".zip" class="form-control">
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="importFlatForms()">Import</button>
+		<button class="btn btn-primary" ng-click="close()">Close</button>
+	</div>
+</div>

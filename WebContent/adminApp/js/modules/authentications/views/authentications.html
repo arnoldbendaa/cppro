@@ -1,0 +1,12 @@
+<div class="authentication" ng-controller="AuthenticationController">
+	<h1 class="text-center">Authentications</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="authenticationId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Authentication Policy" binding="authenticationVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="authenticationDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Authentication Technique" binding="authenticationTechnique.name"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Active" binding="active"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="195" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+</div>

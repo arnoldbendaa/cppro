@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h3><i class="fa fa-exclamation-triangle"></i> {{ error.title }}</h3>
+</div>
+
+<div class="modal-body" ng-if="error.message != ''">
+	<textarea onclick="this.select()" class="stackTraceExceptionModal" readonly="readonly">{{error.message}}</textarea>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">Close</button>
+</div>

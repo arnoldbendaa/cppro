@@ -1,0 +1,104 @@
+<div class="data-editor" ng-controller="DataEditorController">
+	<h1 class="text-center">Data Editor</h1>
+	<div class="inner">
+		<div class="data-editor-filter clearfix">
+			<div class="col-md-1"></div>
+			<div class="col-md-2 finance-cubes" ng-class="{'has-error': validation.financeCubes != ''}">
+				<div class="form-group">
+					<label class="control-label">Finance Cube:</label>
+					<multiple-chooser items-source="financeCubes" items-selected="selectedFinanceCubes" items-loaded="true" on-change="onChange()"></multiple-chooser>
+					<p class="text-danger" ng-hide="validation.financeCubes == ''">* {{validation.financeCubes}}</p>
+				</div>
+			</div>
+			<div class="col-md-2 dimension-filters" ng-class="{'has-error': validation.costCenters != ''}">
+				<label class="control-label">Cost Center:</label>
+				<div class="form-group">
+					<multiple-chooser items-source="costCenters" items-selected="selectedCostCenters" items-loaded="loadingManager.isCostCenterLoaded" all-option="true"></multiple-chooser>
+					<p class="text-danger" ng-hide="validation.costCenters == ''">* {{validation.costCenters}}</p>
+				</div>
+			</div>
+
+			<div class="col-md-2 dimension-filters" ng-class="{'has-error': validation.expenseCodes != ''}">
+				<label class="control-label">Expense Code:</label>
+				<div class="form-group">
+					<multiple-chooser items-source="expenseCodes" items-selected="selectedExpenseCodes" items-loaded="loadingManager.isExpenseCodeLoaded" all-option="true"></multiple-chooser>
+					<p class="text-danger" ng-hide="validation.expenseCodes == ''">* {{validation.expenseCodes}}</p>
+				</div>
+			</div>
+
+			<div class="col-md-2" ng-class="{'has-error': validation.calendarPeriods != ''}">
+				<label class="control-label">Calendar (from - to):</label>
+				<div class="form-group">
+					<month-chooser date="periodFrom"></month-chooser>
+				</div>
+				<div class="form-group">
+					<month-chooser date="periodTo"></month-chooser>
+				</div>
+				<p class="text-danger" ng-hide="validation.calendarPeriods == ''">* {{validation.calendarPeriods}}</p>
+			</div>
+			<div class="col-md-2" ng-class="{'has-error': validation.dataTypes != ''}">	
+				<label class="control-label">Data Type:</label>
+				<div class="form-group">
+					<multiple-chooser items-source="dataTypes" items-selected="selectedDataTypes" items-loaded="loadingManager.isDataTypesLoaded" all-option="true"></multiple-chooser>
+					<p class="text-danger" ng-hide="validation.dataTypes == ''">* {{validation.dataTypes}}</p>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="data-editor-buttons clearfix">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<a class="btn btn-success pull-right" 
+						ng-disabled="loadingManager.isRowsLoaded == false || isAnyRowsEdited == false || loadingManager.isRowsSaving == true"
+						ng-click="save()">
+					Save <i class="fa fa-refresh fa-x fa-spin" ng-if="loadingManager.isRowsSaving"></i>
+				</a>
+				
+				<a class="btn btn-warning pull-right" 
+						ng-disabled="loadingManager.isRowsLoaded == false || isEditDisabled == true"
+						ng-click="edit()">
+					Edit
+				</a> 
+				<a class="btn btn-info pull-right"
+						ng-click="exportXls()">
+					<i class="fa fa-upload"></i> Export 
+				</a>
+ 				<span class="btn btn-danger pull-right file-input btn-file">
+ 					<i class="fa fa-folder-open"></i> Import
+ 					<input type="file" ngf-select ngf-change="upload($files)" accept=".xls,.xlsx" />
+ 				</span>
+				<a class="btn btn-primary pull-right" ng-click="display()">
+					Display
+				</a>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="data-editor-flex-grid">    
+			<div class="loader align-center" ng-show="loadingManager.isRowsLoading == true">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<!-- ng-show="loadingManager.isRowsLoading == false && loadingManager.isRowsLoaded == true" -->
+			<wj-flex-grid class="grid" ng-class="{'dark': loadingManager.isRowsLoading == true}" 
+				items-source="ctx.data" 
+				control="ctx.flex"
+				resized-column="resizedColumn(s,e)" 
+				sorted-column="sortedColumn(s,e)"
+				>
+				<wj-flex-grid-column header="#" name="index" is-read-only="true"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Finance Cube" binding="financeCubeVisId" is-read-only="true"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Cost Center" binding="costCenter"></wj-flex-grid-column>
+				<wj-flex-grid-column header="ID (dim0)" format="d" binding="dim0"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Expense Code" binding="expenseCode"></wj-flex-grid-column>
+				<wj-flex-grid-column header="ID (dim1)" format="d" binding="dim1"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Year" format="d" binding="year"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Period" format="d" binding="period"></wj-flex-grid-column>
+				<wj-flex-grid-column header="Data Type" binding="dataType" width="150">
+					{{$item.dataType}}
+				</wj-flex-grid-column>
+				<wj-flex-grid-column header="Value" format="" binding="value">
+					{{$item.value}}
+				</wj-flex-grid-column>
+			</wj-flex-grid>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,157 @@
+<div class="model-details model-or-external-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-list"></i>
+			Model
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-show="!isDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div ng-show="availableReferences">
+			<tabset justified="true" ng-show="availableReferences">
+				
+				<tab heading="Details">
+					<!-- <h4 class="groupTitle">Details:</h4> -->
+					<div class="inner" ng-show="isDataLoaded">
+						<fieldset>
+							<legend>Details</legend>
+							<div class="row">
+							  <div class="col-md-6 form-group">
+							  	<label for="">Model ID:</label>
+							  	<span class="text-danger" ng-show="validation.identifier != ''" class="help-block">{{validation.identifier}}</span>
+								<input name="name" ng-model="model.modelVisId" type="text" class="form-control">
+							  </div>
+							  <div class="col-md-6 form-group">
+							  	<label for="">Name:</label>
+							  	<span class="text-danger" ng-show="validation.description != ''" class="help-block">{{validation.description}}</span>
+								<input name="name" ng-model="model.modelDescription" type="text" class="form-control">
+							  </div>
+						  	</div>
+						  	
+						  	<div class="row">
+							  <div class="alert alert-danger" role="alert" ng-show="validation.references != ''">{{validation.references}}</div>
+							  <div class="col-md-6 form-group">
+							  	<label for="">Account Dimension:</label>
+								<select class="form-control"
+									ng-options="account.dimensionVisId for account in accountList"
+									ng-change="changeAccountDimension(choosedAccountDimension)"
+									ng-model="choosedAccountDimension">
+								</select>
+							  </div>
+							  <div class="col-md-6 form-group">
+							  	<label for="">Calendar Dimension:</label>
+							  	<select class="form-control"
+									ng-options="calendar.dimensionVisId for calendar in calendarList"
+									ng-change="changeCalendarDimension(choosedCalendarDimension)"
+									ng-model="choosedCalendarDimension">
+								</select>
+							  </div>						  
+						  	</div>
+						  	
+						  	<div class="row">
+							  <div class="col-md-6 form-group">
+							  	<label for="">Business Dimension:</label>
+							  	<select class="form-control"
+									ng-options="business.dimensionVisId for business in businessList"
+									ng-change="changeBusinessDimension(choosedBusinessDimension)"
+									ng-model="choosedBusinessDimension">
+								</select>
+							  </div>
+							  <div class="col-md-6 form-group">
+							  	<label for="">Budget Hierarchy:</label>
+								<select class="form-control"
+									ng-options="hierarchy.hierarchyVisId for hierarchy in hierarchyList"
+									ng-change="changeHierarchy(choosedHierarchy)"
+									ng-model="choosedHierarchy">
+								</select>
+							  </div>
+						  	</div>
+							
+						</fieldset>
+
+						<fieldset>
+							<legend>Status</legend>
+						  	<!-- <h4 class="groupTitle">Status:</h4> -->
+					  		<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="model.locked" disabled="disabled">
+									Locked
+								</label>
+							</div>
+						</fieldset>						
+					  	
+				  	</div>
+			  	</tab>
+					  	
+			  	<tab heading="Budget Transfer Controls">
+			  		<fieldset>
+			  			<legend>Budget Transfer Entry</legend>
+			  			<!-- <h4 class="groupTitle">Budget Transfer Entry:</h4> -->
+				  		<div class="checkbox">
+							<label class="checkbox">
+								<input type="checkbox" ng-model="model.virementEntryEnabled">
+								Enabled
+							</label>
+						</div>
+			  		</fieldset>
+			  	</tab>
+				  	
+			  	<tab heading="Properties">
+			  		<h4 class="groupTitle floated getToCalc1">Model Properties:</h4>
+			  		<button class="btn btn-success add-remove-property-button" ng-click="createProperty(selectedProperty.name, selectedProperty.value)" type="reset">Insert</button>
+			  		<br class="clearBoth" />
+			  		<span class="text-danger" ng-show="validation.properties != ''" class="help-block">{{validation.properties}}</span>
+			  		<div class="properties-table">
+				  		<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="clickable" ng-click="orderBy = ''; reverse=false">#</th>
+									<th class="clickable limited" ng-class="{sorted: orderBy == 'name', desc: reverse}" ng-click="orderBy = 'name'; reverse=!reverse">Name</th>
+									<th class="clickable limited" ng-class="{sorted: orderBy == 'value', desc: reverse}" ng-click="orderBy = 'value'; reverse=!reverse">Value</th>
+									<th class="action-column" style="width: 75px">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-class="{selected: property === selectedProperty}" 
+									ng-repeat="property in model.properties | orderBy:orderBy:reverse" 
+									ng-click="changeSelectedProperty(property)">
+									<td>{{$index+1}}</td>
+									<td class="limited"><div>{{property.name}}</div></td>
+									<td class="limited"><div>{{property.value}}</div></td>
+									<td class="action-column">
+										<button type="button" class="btn btn-danger btn-xs" ng-click="deleteProperty($index); $event.stopPropagation();">Delete</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br class="clearBoth" />
+					<fieldset class="getToCalc2">
+						<legend>Model Property details</legend>
+						<div class="row">
+							<div class="col-md-6 form-group">
+								<label for="">Name:</label>
+								<input name="name" ng-model="selectedProperty.name" type="text" class="form-control">
+							</div>
+							<div class="col-md-6 form-group">
+								<label for="">Value:</label>
+								<textarea rows="2" ng-model="selectedProperty.value" class="form-control">
+								</textarea>
+							</div>
+						</div>
+					</fieldset>
+		  		</tab>
+	  		</tabset>
+	
+		</div>
+		<div ng-show="!availableReferences">
+			<div class="alert alert-danger" role="alert">{{availableReferencesProblemMessage}}</div>
+			<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

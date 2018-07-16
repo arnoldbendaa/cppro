@@ -1,0 +1,25 @@
+<form ng-submit="save(note.text)" name="creareForm" role="form" novalidate>
+    <div class="modal-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h3><i class="fa fa-file-text-o"></i> Create new note</h3>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        
+        <div class="form-group" ng-class="{true: 'has-error has-feedback',false: 'is-required'}[creareForm.note.$dirty && creareForm.note.$invalid]">
+            <label for="">Note</label>
+            <textarea ng-model="note.text" id="new-note" class="form-control" name="note" rows="10" required></textarea>
+            <p class="text-danger" ng-show="creareForm.note.$invalid && !creareForm.note.$pristine" class="help-block">The note text is required.</p>
+        </div>
+        <div class="form-group">
+            <label for="">Upload attachment</label>
+            <input type="file" ngf-select ngf-change="onFileSelect($files)" >
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="reset" ng-click="cancel()">Cancel</button>
+        <button class="btn btn-primary btn-success" ng-disabled="creareForm.$invalid" type="submit">Create note</button>
+    </div>
+</form>

@@ -1,0 +1,156 @@
+<div data-cookie="{{cookieName}}">
+	<div class="finance-cube-details-model-chooser" ng-hide="isModelChoosed">
+		<model-chooser id="financeCube.model.modelId" vis-id="financeCube.model.modelVisId" close="close()"></model-chooser>
+	</div>
+	<div class="finance-cube-details" ng-show="isModelChoosed" data-cookie="{{cookieName}}">
+	
+		<div class="modal-header">
+			<h3><i class="fa fa-cubes"></i>
+				Finance Cube
+			</h3>
+		</div>
+		<div class="modal-body useInModalHeightCalc">
+			<div class="alert alert-danger" role="alert" ng-show="validation.change != ''">{{validation.change}}</div>
+			<div class="alert alert-danger" role="alert" ng-show="validation.dataTypesSize != ''">{{validation.dataTypesSize}}</div>
+			<div class="alert alert-danger" role="alert" ng-show="validation.dataTypesBudgetTransfer != ''">{{validation.dataTypesBudgetTransfer}}</div>
+			<div class="alert alert-danger" role="alert" ng-show="validation.dataTypesMapped != ''">{{validation.dataTypesMapped}}</div>
+			<div class="loader align-center" ng-show="!isDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+		
+			<div class="inner" ng-show="isDataLoaded">
+				<div class="row getToCalc1">
+					<div class="col-md-3 form-group" ng-class="{true: 'has-error'}[validation.identifier != '']">
+						<label for="">Identifier:</label>
+						<span class="text-danger" ng-show="validation.identifier != ''" class="help-block">{{validation.identifier}}</span>
+						<input name="name" ng-model="financeCube.financeCubeVisId" type="text" class="form-control">
+					</div>
+		
+					<div class="col-md-5 form-group" ng-class="{true: 'has-error'}[validation.description != '']">
+						<label for="">Description:</label>
+						<span class="text-danger" ng-show="validation.description != ''" class="help-block">{{validation.description}}</span>
+						<input name="name" ng-model="financeCube.financeCubeDescription" type="text" class="form-control">
+					</div>
+					<div class="col-md-2 form-group">
+						<label for="">Model:</label>
+						<input name="name" ng-model="financeCube.model.modelVisId" type="text" readonly="readonly" class="form-control">
+					</div>
+		
+					<div class="col-md-2 form-group">
+						<label for="" class="nowrap">Locked by TaskID:</label>
+						<input name="name" ng-model="financeCube.lockedByTaskId" type="text" readonly="readonly" class="form-control">
+					</div>
+				</div>
+					
+				<div class="row getToCalc2">
+					<div class="col-md-6 form-group">
+						<label for="">Internal Key:</label>
+						<input name="name" ng-model="financeCube.internalKey" type="text" readonly="readonly" class="form-control">
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+						<label for=""></label>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="financeCube.audited">
+									Audited
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for=""></label>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="financeCube.hasData" disabled="disabled">
+									Has Data
+								</label>
+							</div>
+						</div>		
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for=""></label>
+							<div class="checkbox">
+								<label class="checkbox">
+									<input type="checkbox" ng-model="financeCube.cubeFormulaEnabled">
+									Cube formula enabled
+								</label>
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+			
+			<tabset justified="true">
+			
+				<tab heading="Data Types">
+					<div class="fc-panel fc-data-types">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="clickable" ng-click="orderBy = ''; reverse=false">#</th>
+									<th class="clickable" ng-class="{sorted: orderBy == 'dataTypeVisId', desc: reverse}" ng-click="orderBy = 'dataTypeVisId'; reverse=!reverse">Data Type</th>
+									<th class="clickable" ng-class="{sorted: orderBy == 'dataTypeDescription', desc: reverse}" ng-click="orderBy = 'dataTypeDescription'; reverse=!reverse">Description</th>
+									<th class="clickable" ng-class="{sorted: orderBy == 'subTypeName', desc: reverse}" ng-click="orderBy = 'subTypeName'; reverse=!reverse">Type</th>
+									<th class="clickable" ng-class="{sorted: orderBy == 'cubeLastUpdated', desc: reverse}" ng-click="orderBy = 'cubeLastUpdated'; reverse=!reverse">Cube Last Updated</th>
+									<th class="action-column" style="width: 75px">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="dataType in financeCube.dataTypes | orderBy:orderBy:reverse">
+									<td>{{$index+1}}</td>
+									<td title="Data Type">{{dataType.dataTypeVisId}}</td>
+									<td title="Description">{{dataType.dataTypeDescription}}</td>
+									<td title="Type">{{dataType.subTypeName}}</td>
+									<td title="Cube Last Updated">{{dataType.cubeLastUpdated | date:'short'}}</td>
+									<td class="action-column">
+										<button type="button" class="btn btn-danger btn-xs" ng-click="deleteFinanceCubeDataType(dataType.dataTypeId); $event.stopPropagation();">Remove</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="add-selected-element-to-table getToCalc3" ng-class="{true: 'has-error has-feedback',false: 'is-required'}[form.name.$dirty && form.name.$invalid]">
+						<label for="">Add Data Type:</label>
+						<button type="button" class="btn btn-success" ng-click="openDataTypeForFinanceCubeChooser(separate); $event.stopPropagation();">Add</button>
+						<br class="clearBoth" />
+					</div>
+					<br class="clearBoth" />
+				</tab>
+			
+				<tab heading="Roll up Rules">
+					<div class="fc-panel fc-roll-up-rules">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th class="clickable">#</th>
+									<th class="clickable">Data Type</th>
+									<th ng-repeat="dimension in financeCube.dimensions">
+										{{dimension.dimensionVisId}}
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="rollUpRuleLine in financeCube.rollUpRuleLines">
+									<td>{{$index+1}}</td>
+									<td>{{rollUpRuleLine.dataType.dataTypeVisId}}</td>
+									<td ng-repeat="rollUpRule in rollUpRuleLine.rollUpRules">
+										<input type="checkbox" ng-model="rollUpRule.rollUp">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>	
+				</tab>
+			
+			</tabset>
+	
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-success" ng-click="save()" type="reset">Save</button>
+			<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,49 @@
+<div class="budget-cycle-xml-forms">
+	<div class="loader align-center" ng-hide="isDataLoaded">
+		<i class="fa fa-refresh fa-2x fa-spin"></i>
+	</div>
+	<div class="clearfix" ng-show="isDataLoaded">
+		<div class="selected-forms">
+			<div class="xml-forms" ng-show="selectedXmlForms.length > 0">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>XML Form ID</th>
+							<th>Description</th>
+							<th class="data-type-xml">Data Type</th>
+							<th class="default-xml">Default</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-class="{selected: selectedXmlFormId == xmlForm.flatFormId}" 
+							ng-repeat="xmlForm in selectedXmlForms"
+							ng-click="selectXmlForm(xmlForm.flatFormId)">
+							<td>{{xmlForm.flatFormVisId}}</td>
+							<td>{{xmlForm.flatFormDescription}}</td>
+							<td ng-click="$event.stopPropagation()" class="data-type-xml">
+								<select class="form-control"
+									ng-change="changeDataType(xmlForm)"
+									ng-model="xmlForm.dataType"
+									ng-options="dataType.dataTypeVisId as dataType.dataTypeVisId for dataType in dataTypes.sourceCollection">
+								</select>
+							</td>
+							<td class="text-center default-xml" ng-click="$event.stopPropagation()">
+								<input type="radio" ng-checked="xmlForm.flatFormId == defaultXmlFormId" ng-click="changeDefaultXML(xmlForm.flatFormId);"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div ng-show="notSelectedXmlForms.length > 0 && selectedXmlForms.length == 0">
+				<p class="bg-info text-center  forms-info">Choose available XML forms (press Add).</p>
+			</div>
+			<div ng-show="notSelectedXmlForms.length == 0 && selectedXmlForms.length == 0">
+				<p class="bg-danger text-center forms-info">There is no available XML forms.</p>
+			</div>
+			<div class="pull-right xml-forms-buttons" ng-hide="notSelectedXmlForms.length == 0 && selectedXmlForms.length == 0">
+				<button type="button" class="btn btn-success btn-xs" ng-click="addXmlForms()">Add</button>
+				<button type="button" class="btn btn-danger btn-xs" ng-disabled="selectedXmlFormId == -1" ng-click="deleteXmlForm();">Remove</button>
+			</div>
+		</div>
+	</div>
+</div>

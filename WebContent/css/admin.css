@@ -1,0 +1,41 @@
+.nav-main span,.nav-main a i{
+    color:black;
+}
+#sidebar{
+    background-color:#f5f5ff;
+    height:99vh;
+    overflow-y:auto;
+}
+.nav-main li.open > a.nav-submenu > i{
+    color:black;
+}
+.nav-main li.open > a.nav-submenu:before{
+    color:black;
+}
+.nav-main a.nav-submenu:before{
+    color:black;
+}
+.nav-main ul a{
+    color:black;
+}
+#header-navbar{
+    background-color:#446e9b
+}
+.nav-main a:hover, .nav-main a:focus{
+    background-color:#446e9b;
+}
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover{
+    background-color:rgb(128,173,191);
+}
+#example th{
+    border-width:1px 1px 1px 0;
+    border-style:solid;
+    border-color:#e0e0e0;
+}
+.nav-main li.active{
+	background-color:#ccc;
+}
+#tree{
+	height:110px;
+	overflow-y:scroll;
+}

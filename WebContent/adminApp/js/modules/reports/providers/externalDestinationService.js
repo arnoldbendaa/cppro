@@ -1,0 +1,181 @@
+/*******************************************************************************
+ * Copyright ©2015. IT Services Jacek Kurasiewicz, Warsaw, Poland. All Rights
+ * Reserved.
+ *
+ * Republication, redistribution, granting a license to other parties, using,
+ * copying, modifying this software and its documentation is prohibited without the
+ * prior written consent of IT Services Jacek Kurasiewicz.
+ * Contact The Office of IT Services Jacek Kurasiewicz, ul. Koszykowa 60/62 lok.
+ * 43, 00-673 Warszawa, jk@softpro.pl, +48 512-25-67-67, for commercial licensing
+ * opportunities.
+ *
+ * IN NO EVENT SHALL IT SERVICES JACEK KURASIEWICZ BE LIABLE TO ANY PARTY FOR
+ * DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST
+ * PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF
+ * IT SERVICES JACEK KURASIEWICZ HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ * DAMAGE.
+ *
+ * IT SERVICES JACEK KURASIEWICZ SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING,
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+ * PARTICULAR PURPOSE. THE SOFTWARE AND ACCOMPANYING DOCUMENTATION, IF ANY,
+ * PROVIDED HEREUNDER IS PROVIDED "AS IS". IT SERVICES JACEK KURASIEWICZ HAS NO
+ * OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR
+ * MODIFICATIONS.
+ *******************************************************************************/
+(function() {
+	'use strict';
+
+	angular
+		.module('adminApp.report')
+		.service('ExternalDestinationService', ExternalDestinationService);
+
+	/* @ngInject */
+	function ExternalDestinationService($rootScope, $http, UsersPageService, CoreCommonsService) {
+
+		var self = this;
+		var areReportsLoaded = false;
+		var areReportsLoading = false;
+		var url = $BASE_PATH + 'adminPanel/report/externaldestinations';
+		var reports = new wijmo.collections.CollectionView();
+		var reportDetails = {};
+		var actions = [{
+			name: "Delete",
+			action: "deleteExternalDestination",
+			disabled: true
+		}];
+		self.isCreateDisabled = false;
+		self.isOpenDisabled = true;
+		self.isPrintDisabled = true;
+		self.isAskDisabled = false;
+		self.getReports = getReports;
+		self.getReportDetails = getReportDetails;
+		self.createEmptyReport = createEmptyReport;
+		self.save = save;
+		self.deleteExternalDestination = deleteExternalDestination;
+		self.getActions = getActions;
+
+		var getReportsFromDatabase = function() {
+			areReportsLoaded = false;
+			areReportsLoading = true;
+			$http.get(url).success(function(data) {
+				areReportsLoaded = true;
+				areReportsLoading = false;
+				if (data && data.length >= 0) {
+					reports.sourceCollection = data;
+				}
+			});
+		};
+
+		/**
+		 * Return reports if were taken, otherwise call getting Reports from database.
+		 */
+		function getReports(hardReload) {
+			if ((!areReportsLoaded && !areReportsLoading) || hardReload) {
+				getReportsFromDatabase();
+			}
+			return reports;
+		}
+
+		/**
+		 * Get details of one Report (get always from database to have the newest version).
+		 * @param  {Integer} reportId [description]
+		 */
+		function getReportDetails(reportId) {
+			reportDetails = {};
+			if (reportId != -1) {
+				$http.get(url + "/" + reportId).success(function(response) {
+					angular.copy(response, reportDetails);
+				});
+			}
+			return reportDetails;
+		}
+
+		/**
+		 * Create new Dmension Report object to return to directive and have ready object for scope and template. Now "id" is always -1.
+		 * @param  {Integer} id
+		 */
+		function createEmptyReport(id) {
+			var report = {
+				reportId: id, // now id=-1
+				reportVisId: "",
+				reportDescription: "",
+				versionNum: -1,
+				users: [],
+			};
+			return report;
+		}
+
+		/**
+		 * Save report details. It's "insert" (when report.id is -1) or "update" otherwise.
+		 * @param  {Object} report [report details]
+		 */
+		function save(report) {
+		    var insert;
+			if (report === null) {
+				return;
+			}
+			var method = "";
+			if (report.reportId != -1) {
+				// edit Report
+				method = "PUT";
+				insert = false;
+			} else {
+				// create Report
+				method = "POST";
+				insert = true;
+			}
+			// Send request as PUT (for insert) or POST (for update)
+			$http({
+				method: method,
+				url: url + "/",
+				data: report
+			}).success(function(response) {
+				if (response.success) {
+					reports.length = 0;
+					// refresh listing
+					if (insert){
+                        getReportsFromDatabase();
+                    } else {
+                    var reportChange = CoreCommonsService.findElementByKey(reports.sourceCollection, report.reportId, 'reportId');
+                    reportChange.reportVisId = report.reportVisId;
+                    reportChange.reportDescription = report.reportDescription;
+                    reports.refresh();
+                    }
+					var dataToReturn = response;
+					// to response object add information if it was PUT or POST action
+					dataToReturn.method = method;
+					$rootScope.$broadcast('ExternalDestinationDetails:close', dataToReturn);
+				} else if (response.error) {
+					$rootScope.$broadcast('ExternalDestinationService:reportDetailsSaveError', response);
+				}
+			});
+		}
+
+		/**
+		 * Delete Report
+		 * @param  {Integer} reportId
+		 */
+		function deleteExternalDestination(reportId) {
+			$http({
+				method: 'DELETE',
+				url: url + "/" + reportId
+			}).success(function(response) {
+				if (response.success) {
+					reports.length = 0;
+					// refresh listing
+					getReportsFromDatabase();
+					$rootScope.$broadcast('ExternalDestinationService:reportDetailsDeleteSuccess');
+				} else if (response.error) {
+					$rootScope.$broadcast('ExternalDestinationService:reportDetailsDeleteError', response);
+				}
+			});
+		}
+
+		/**
+		 * For top buttons
+		 */
+		function getActions() {
+			return actions;
+		}
+	}
+})();

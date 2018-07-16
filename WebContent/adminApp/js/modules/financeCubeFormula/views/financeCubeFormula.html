@@ -1,0 +1,14 @@
+<div class="finance-cube-formula" ng-controller="FinanceCubeFormulaPageController">
+	<h1 class="text-center">Finance Cube Formula</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="financeCubeId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Model ID" binding="model.modelVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Finance Cube ID" binding="financeCube.financeCubeVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Vis ID" binding="financeCubeFormulaVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="financeCubeFormulaDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Type" binding="type" name="type"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Deployed" binding="deployed"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="135" header="Actions" name="buttons"></wj-flex-grid-column>
+	</wj-flex-grid>	
+</div>

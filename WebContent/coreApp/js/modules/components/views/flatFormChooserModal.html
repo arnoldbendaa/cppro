@@ -1,0 +1,23 @@
+<div class="flat-form-chooser-modal" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-refresh"></i> 
+			{{modalTitle}}
+		</h3>
+	</div>
+	<div class="modal-body">
+		<flat-form-chooser 
+			selected="selectedFlatForms" 
+			available="availableFlatForms" 
+			info="modalInfo" 
+			is-finance-cube-column="isFinanceCubeColumnVisible" 
+			is-last-updated-column="isLastUpdatedColumnVisible" 
+			modal-context="modalContext"
+			is-profile-module="isProfileModule"
+			select-form="selectForm"
+		></flat-form-chooser>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success"  ng-disabled="selectForm.isFlatFormChooserChanged" ng-click="ok()">{{okBtnModalLabel}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>	

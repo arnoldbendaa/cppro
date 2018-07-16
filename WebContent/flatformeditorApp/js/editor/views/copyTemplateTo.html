@@ -1,0 +1,7 @@
+<div id="copy-template-to">
+	<div ng-show="showLoader" class="frontend-cover">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>	
+	<flat-form-chooser selected="selectedFlatForms" available="flatForms" is-finance-cube-column="isFinanceCubeColumn"></flat-form-chooser>
+	<button class="btn btn-success pull-right" ng-click="save()" ng-disabled="saveAsForm.$invalid || showLoader">Copy Template</button>
+</div>

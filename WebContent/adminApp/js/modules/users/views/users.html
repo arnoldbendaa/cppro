@@ -1,0 +1,11 @@
+<div class="user-details" ng-controller="UsersPageController">
+	<h1 class="text-center">Users</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" control="ctx.flex" selection-changed="selectionChangedHandler()" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="userId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="User" binding="userName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="userFullName"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Disabled" binding="userDisabled"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Actions" name="buttons" min-width="135"></wj-flex-grid-column>
+	</wj-flex-grid>
+</div>

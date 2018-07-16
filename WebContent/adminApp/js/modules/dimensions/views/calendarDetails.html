@@ -1,0 +1,92 @@
+<div class="dimension-details dimensions-calendar-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-tachometer"></i> 
+			Dimension Calendar
+		</h3>
+	</div>
+	<div class="modal-body">
+		<form class="dimension-details-form dimensions-calendar-details-form" name="form" role="form" novalidate>
+			<div class="loader align-center" ng-show="!isMainDataLoaded">
+				<i class="fa fa-refresh fa-2x fa-spin"></i>
+			</div>
+			<div class="inner" ng-show="isMainDataLoaded">
+
+				<div ng-show="calendar.inUseLabel != null">
+					<div ng-switch on="calendar.inUseLabel[(calendar.inUseLabel).length-1]">
+						<div ng-switch-when="*">
+							<div class="in-use-label alert alert-danger"><i class="fa fa-warning"></i>{{calendar.inUseLabel | limitTo: (calendar.inUseLabel).length-1}}</div>
+						</div>
+						<div ng-switch-default>
+							<div class="in-use-label"><i class="fa fa-warning"></i>{{calendar.inUseLabel}}</div>
+						</div>
+					</div>
+					<div class="modalDivider"></div>
+				</div>
+
+				<div class="dimension-main-data">
+					
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.dimensionVisId != '']">
+								<label for="">Hierarchy Identifier:</label>
+								<span class="text-danger" ng-show="validation.dimensionVisId != ''" class="help-block">{{validation.dimensionVisId}}</span>					
+								<input name="name" ng-model="calendar.dimensionVisId" ng-disabled="calendar.readOnly" type="text" class="form-control">
+							</div>							
+						</div>
+						<div class="col-md-4">
+							<div class="form-group" ng-class="{true: 'has-error'}[validation.dimensionDescription != '']">
+								<label for="">Description:</label>
+								<span class="text-danger" ng-show="validation.dimensionDescription != ''" class="help-block">{{validation.dimensionDescription}}</span>
+								<input name="name" ng-model="calendar.dimensionDescription" ng-disabled="calendar.readOnly" type="text" class="form-control">
+							</div>							
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="">Model:</label>
+								<input name="name" ng-model="calendar.model.modelVisId" type="text" class="form-control" disabled="disabled">
+							</div>							
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="">Source System:</label>
+								<input name="name" ng-model="calendar.externalSystemRefName" type="text" class="form-control" disabled="disabled">
+							</div>						
+						</div>
+					</div>
+
+				</div>
+
+				<div class="modalDivider"></div>
+				<div class="dim-elements">
+
+					<h4 class="groupTitle">Years:</h4>
+					
+					<div class="buttons">
+						<button type="button" class="btn btn-success btn-md add-remove-dimension-element" ng-disabled="false" ng-click="addYear('left')">Add Left</button>
+						<button type="button" class="btn btn-success btn-md add-remove-dimension-element" ng-disabled="false" ng-click="addYear('right')">Add Right</button>
+						<button type="button" class="btn btn-danger btn-md add-remove-dimension-element" ng-disabled="false" ng-click="deleteYear('left')">Delete Left</button>
+						<button type="button" class="btn btn-danger btn-md add-remove-dimension-element" ng-disabled="false" ng-click="deleteYear('right')">Delete Right</button>
+					</div>
+
+					<br class="clearBoth" />
+					<div class="row">
+						<div class="col-md-12">
+							<div id="calendarTable"></div> 
+						</div>
+					</div>
+				</div>	
+
+				<div class="text-danger" ng-show="validation.years !== ''">
+					<br/>
+					* {{validation.years}}
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-disabled="calendar.readOnly" ng-click="save()" type="reset">{{submitButtonName}}</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

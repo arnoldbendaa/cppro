@@ -1,0 +1,60 @@
+<div ng-controller="GenerateController" class="generate">
+
+	<div class="paneContainer">
+
+		<div class="leftPane">
+			<div class="paneContent">
+				<span class="label" ng-class="{ 'label-info': validation.templates == '', 'label-danger': validation.templates !== ''}" >Templates</span>
+				<js-tree id="selectTemplatesTree" tree-ajax="{{templatesTreeAjaxUrl}}" class="templates" tree-plugins="types,contextmenu,checkbox" checkbox-state="false" tree-types="templatesTypesConfig" tree-contextmenu="contextMenu" tree-events="ready:readyTree;activate_node:activateNode"
+				></js-tree>
+				<span class="text-danger" ng-show="validation.templates !== ''">
+					* {{validation.templates}}
+				</span>
+			</div>
+		</div>
+
+		<div class="rightPane">
+			<div class="paneContent">
+				<span class="label" ng-class="{ 'label-info': validation.configurations == '', 'label-danger': validation.configurations !== ''}" >Configurations</span>
+				<js-tree id="selectConfigurationsTree" tree-ajax="{{configurationsTreeAjaxUrl}}" class="configurations" tree-model="configurationsTree" tree-plugins="contextmenu,types,checkbox" checkbox-state="false" tree-types="configurationsTypesConfig" tree-contextmenu="contextMenu" tree-events="ready:readyTree;activate_node:activateNode">
+				</js-tree>
+				<span class="text-danger" ng-show="validation.configurations !== ''">
+					* {{validation.configurations}}
+				</span>
+			</div>
+		</div>
+
+		<br class="clearBoth">
+	</div>
+
+	<div class="generateForm">
+		<div class="inner">
+			<h1 class="text-center">Generate</h1>
+			<form role="form" name="generateForm" novalidate>
+				<div class="form-group" ng-class="{ 'has-error': generateForm.name.$dirty && generateForm.name.$invalid }" >
+					<label for="name">Name:</label>
+					<input type="text" class="form-control" id="name" name="name" ng-model="generator.name" ng-maxlength="100" required placeholder="Name"/>
+					<span class="text-danger" ng-show="generateForm.name.$dirty && generateForm.name.$invalid">
+						* Length of Name must be supplied and not exceed 100 signs.
+					</span>				
+				</div>
+				<div class="form-group" ng-class="{ 'has-error': generateForm.description.$dirty && generateForm.description.$invalid}" >
+					<label for="description">Description:</label>
+					<input type="text" class="form-control" id="description" name="description" ng-model="generator.description" ng-maxlength="128" required placeholder="Description"/>
+					<span class="text-danger" ng-show="generateForm.description.$dirty && generateForm.description.$invalid">
+						* Length of Description must be supplied and not exceed 128 signs.
+					</span>				
+				</div>
+				<div class="form-group financeCubeChooser" ng-class="{ 'has-error': validation.financeCubes !== ''}" >
+					<finance-cube-chooser selected="generator.financeCubeModels" available="financeCubes" is-filter="false"></finance-cube-chooser>
+					<span class="text-danger" ng-show="validation.financeCubes !== ''">
+						* {{validation.financeCubes}}
+					</span>				
+				</div>
+					
+				<button class="btn btn-success pull-right" ng-disabled="generateForm.$invalid" ng-click="doGenerate()">Generate</button>
+			</form>
+		</div>
+	</div>
+
+</div>

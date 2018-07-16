@@ -1,0 +1,88 @@
+<div class="budget-cycles" ng-controller="BudgetCyclesController">
+
+
+
+
+
+<button class="btn btn-primary pull-left" ng-click="add()">Manage Categories</button>
+
+<button class="btn btn-warning pull-left" ng-click="edit()" style="margin-left: 30px">{{btnText}}</button>
+<button class="btn btn-primary pull-right" ng-show="bShow" ng-click="save()" style="margin-left: 30px">{{btnNextText}}</button>
+
+
+
+
+
+
+
+
+	<h1 class="text-center">Budget Cycles</h1>
+
+	<wj-flex-grid class="grid" items-source="ctx.data" selection-changed="selectionChangedHandler()" control="ctx.flex" resized-column="resizedColumn(s,e)" sorted-column="sortedColumn(s,e)">
+		<wj-flex-grid-column header="#" name="index" binding="budgetCycleId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Model ID" binding="model.modelVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Budget Cycle ID" binding="budgetCycleVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column header="Description" binding="budgetCycleDescription"></wj-flex-grid-column>
+		<wj-flex-grid-column align="left" header="Status" name="status" binding="status"></wj-flex-grid-column>
+		<wj-flex-grid-column align="center" min-width="100" header="Period From" name="periodFromVisId" binding="periodFromVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column align="center" min-width="100" header="Period To" name="periodToVisId" binding="periodToVisId"></wj-flex-grid-column>
+		<wj-flex-grid-column align="center" min-width="100" header="Category" name="category" binding="category"></wj-flex-grid-column>
+		<wj-flex-grid-column min-width="170" header="Actions" name="buttons" ></wj-flex-grid-column>
+	</wj-flex-grid>	
+
+	<div class="popover top">
+		<div class="arrow"></div>
+		<div class="popover-inner">
+			<h3 class="popover-title">
+				Update <strong>Period {{type | uppercase}}</strong> 
+				<div class="close"><i class="fa fa-times"></i></div>
+			</h3>
+			<div class="popover-content">
+				<div ng-if="type == 'from'">
+					<calendar-period
+							model-id="current.model.modelId"
+							period-id="current.periodFromId"
+							period-vis-id="current.periodFromVisId"
+							max-period-id="current.periodToId"
+							on-period-change="onPeriodChange(id, visId)">
+							<div class="form-group" ng-click="changePeriod(current.budgetCycleId, type);">
+								<input class="form-control" value="{{current.periodFromVisId}}" type="text">
+							</div>
+					</calendar-period>
+				</div>
+
+				<div ng-if="type == 'to'">
+					<calendar-period
+							model-id="current.model.modelId"
+							period-id="current.periodToId"
+							period-vis-id="current.periodToVisId"
+							min-period-id="current.periodFromId"
+							on-period-change="onPeriodChange(id, visId)">
+							<div class="form-group" ng-click="changePeriod(current.budgetCycleId, type);">
+								<input class="form-control" value="{{current.periodToVisId}}" type="text">
+							</div>
+					</calendar-period>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popoverCategory top">
+		<div class="arrow"></div>
+		<div class="popover-inner">
+			<h3 class="popover-title">
+				Update <strong>Category</strong> 
+				<div class="close"><i class="fa fa-times"></i></div>
+			</h3>
+			<div class="popover-content">
+				<select class="form-control ng-pristine ng-valid" ng-model="selectCategoryValue" ng-change="onCategoryChange();">
+					<option value="0">Management Accounts</option>
+					<option value="1">Forecast</option>
+					<option value="2">Budget</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="clearBoth"></div> 
+</div>

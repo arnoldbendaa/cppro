@@ -1,0 +1,30 @@
+<form role="form" name="saveTemplateForm">
+	<div class="form-group" ng-class="{ 'has-error': saveTemplateForm.visId.$invalid }" >
+		<label for="name">Name:</label>
+		<input type="text" class="form-control" id="name" name="visId" ng-model="template.visId" ng-maxlength="100" required />
+		<span class="text-danger" ng-show="saveTemplateForm.visId.$invalid">
+			Length of Name must be supplied and not exceed 100 on a Template.
+		</span>				
+	</div>
+		<div class="form-group" ng-class="{'has-error': saveTemplateForm.description.$invalid}">
+		<label for="description">Description:</label>
+		<input type="text" class="form-control" id="description" name="description" ng-model="template.description" ng-maxlength="128" />
+		<span class="text-danger" ng-show="saveTemplateForm.description.$invalid">
+			Length of Description can not exceed 128 on a Templae.
+		</span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': saveTemplateForm.currentTemplateType.$invalid}">
+		<label for="templateType">Type:</label>
+		<select class="form-control"
+			id="templateType"
+			name="currentTemplateType"
+			required
+			ng-model="template.type"
+			ng-options="templateType for templateType in templateTypes">
+	    </select>   
+		<span class="text-danger" ng-show="saveTemplateForm.currentTemplateType.$invalid">
+			Template Type must be set.
+		</span>					
+		</div>
+	<button class="btn btn-success pull-right" ng-disabled="saveTemplateForm.$invalid" ng-click="save()">Save</button>
+</form>

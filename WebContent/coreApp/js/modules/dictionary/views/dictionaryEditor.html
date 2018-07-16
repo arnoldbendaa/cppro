@@ -1,0 +1,87 @@
+<div class="dictionary-editor" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-book"></i> 
+			Dictionary <span ng-if="type">[{{type}}]</span>
+		</h3>
+	</div>
+	<div class="modal-body">
+			<div class="getToCalc1">
+			<a ng-show="enableInsert" class="btn btn-success btn-xs" ng-disabled="isNewRowAdded" ng-click="insertRow()" >Insert</a>
+		</div>
+		<div class="list clearfix elementToResize">
+		<button class="btn btn-info" ng-click="importCompanies()">Synchronize</button>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="col-md-1"><p>#</p></th>
+						<th class="col-md-2 type"><p>{{type}}</p></th>
+						<th class="col-md-3" ><p ng-if="enableDescription">Description</p></th>
+						<th class="col-md-1" ><p ng-if="enableProperties">Currency</p></th>
+						<th class="col-md-1" ><p ng-if="enableProperties">Precision</p></th>
+						<th class="col-md-2" ><p ng-if="enableActions">Actions</p></th>
+						<th class "col-md-2" ng-if="enableOrder"><p >Order</p></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr	ng-repeat="dictionaryItem in dictionaries">
+						<td class="col-md-1">{{$index+1}}</td>
+						<td class="col-md-2 value">
+							<div ng-show="editedRowIndex == $index">
+								<input type="text" class="form-control" ng-model="dictionaryItem.value" capitalize placeholder="Value..." maxlength="50">
+							</div>
+							<div ng-show="editedRowIndex != $index">
+								<span>{{dictionaryItem.value}}</span>
+							</div>
+							
+						</td>
+						<td class="col-md-3">
+							<div ng-show="editedRowIndex == $index">
+								<input type="text" class="form-control" ng-model="dictionaryItem.description" placeholder="Description..." maxlength="120">
+							</div>
+							<div ng-show="editedRowIndex != $index && enableDescription">
+							<!-- // && type !='category' -->
+								<span>{{dictionaryItem.description}}</span>
+							</div>
+						</td>
+						<td class="col-md-1">
+							<div ng-show="editedRowIndex == $index && enableProperties">
+								<input type="text" class="form-control" ng-model="dictionaryItem.dictionaryProperties.currency" placeholder="Currency..." maxlength="5">
+							</div>							
+							<div ng-show=" editedRowIndex != $index && enableProperties">
+							<!-- // && type !='category' -->
+								<span>{{dictionaryItem.dictionaryProperties.currency}}</span>
+							</div>
+						</td>
+						<td class="col-md-1">
+							<div ng-show="editedRowIndex == $index && enableProperties">
+								<input type="text" class="form-control" ng-model="dictionaryItem.dictionaryProperties.precision" placeholder="Precision..." maxlength="5">
+							</div>							
+							<div ng-show=" editedRowIndex != $index && enableProperties">
+							<!-- // && type !='category' -->
+								<span>{{dictionaryItem.dictionaryProperties.precision}}</span>
+							</div>
+						</td>
+
+						<td class="col-md-2">
+							<a ng-show="enableActions" class="btn btn-primary btn-xs" ng-click="editRow($index)" ng-if="editedRowIndex != $index">Edit</a>
+							<a ng-show="enableActions" class="btn btn-success btn-xs" ng-click="saveRow($index)" ng-if="editedRowIndex == $index">Save</a>
+							<a ng-show="enableActions" class="btn btn-danger btn-xs" ng-click="deleteRow($index)" >Delete</a>
+						</td>
+						<td class="col-md-2" ng-if="enableOrder">
+							<a class="btn btn-default btn-xs" ng-click="moveRow($index, -1)" ng-if="$index > 0"><i class="fa fa-arrow-up"></i></a>
+							<a class="btn btn-default btn-xs disabled" ng-if="$index <= 0"><i class="fa fa-arrow-up"></i></a>
+							<a class="btn btn-default btn-xs" ng-click="moveRow($index, 1)" ng-if="$index < dictionaries.length - 1"><i class="fa fa-arrow-down"></i></a>
+							<a class="btn btn-default btn-xs disabled" ng-if="$index >= dictionaries.length - 1"><i class="fa fa-arrow-down"></i></a>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<p class="text-danger" ng-hide="validation == ''">* {{validation}}</p>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="ok()">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>	

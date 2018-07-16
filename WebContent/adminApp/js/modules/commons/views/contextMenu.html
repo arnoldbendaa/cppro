@@ -1,0 +1,7 @@
+<div id="context-menu" oncontextmenu="return false;">
+    <ul class="dropdown-menu" ng-if="ctx.actions.length > 0">
+    	<li ng-repeat="action in ctx.actions" ng-class="{divider: action.isDivider == true, disabled: action.disabled}">
+    		<a ng-if="!action.isDivider" ng-click="action.disabled != true && doAction(action.action)">{{action.name}}</a>
+    	</li>
+    </ul>
+</div>

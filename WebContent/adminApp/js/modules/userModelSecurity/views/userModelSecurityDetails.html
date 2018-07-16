@@ -1,0 +1,48 @@
+<div class="security-details" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-lock"></i>
+			User/Model Security
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="loader align-center" ng-show="!isDataLoaded">
+			<i class="fa fa-refresh fa-2x fa-spin"></i>
+		</div>
+		<div class="inner" ng-show="isDataLoaded">
+		  <div class="form-group getToCalc1">
+		  	<label>User:</label>
+			<input name="name" ng-model="userDescription" type="text" readonly="readonly" class="form-control">
+		  </div>
+	    </div>
+	    <div class="row">
+			<div class="col-md-6 left">
+		  		<label class="getToCalc3">Model Element Access:</label>
+				<wj-flex-grid class="grid security-panel-normal elementToResize1" 
+					items-source="ctx.data" 
+					control="ctx.flex"
+					resized-column="resizedColumn(s,e)"
+					sorted-column="sortedColumn(s,e)">
+					<wj-flex-grid-column header="Element" binding="element" is-read-only="true"></wj-flex-grid-column>
+					<wj-flex-grid-column header="Read Only" name="Read Only" format="d" binding="readOnly" is-read-only="false"></wj-flex-grid-column>
+				</wj-flex-grid>
+			</div>
+			<div class="col-md-6 right">
+		  		<label class="getToCalc4">Budget Responsibility Areas:</label>
+				<select class="form-control getToCalc5" ng-options="model.modelVisId for model in models" ng-change="onChange()" ng-model="choosedModel"></select>
+			    <div class="security-panel-small elementToResize2">
+			    	<js-tree tree-data="scope" ng-show="isChoosedModel" tree-model="treeProcess" tree-plugins="checkbox,wholerow" tree-events="select_node:selectNode;deselect_node:deselectNode"></js-tree>
+		    	</div>
+	    	</div>
+		</div>
+		<div class="checkbox getToCalc2">
+			<label class="checkbox">
+				<input type="checkbox" ng-model="deploy">
+				Deploy for users
+			</label>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-success" ng-click="save()" type="reset">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Close</button>
+	</div>
+</div>

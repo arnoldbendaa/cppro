@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>Document</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/themes/default/style.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.3/jstree.min.js"></script>
+</head>
+<body>
+<div id="container">
+</div>
+<script>
+    $(function() {
+//        $('#container').jstree({
+//            'core' : {
+//                'data' : [
+//                    {
+//                        "text" : "Root node",
+//                        "state" : {"opened" : true },
+//                        "children" : [
+//                            {
+//                                "text" : "Child node 1",
+//                                "state" : { "selected" : true },
+//                                "icon" : "glyphicon glyphicon-flash"
+//                            },
+//                            { "text" : "Child node 2", "state" : { "disabled" : true } }
+//                        ]
+//                    }
+//                ]
+//            }
+//        });
+
+        var jsonData = [
+            {
+                id  : 1,
+                text : "Folder 1",
+                type: "root",
+                state : {
+                    selected  : false
+                },
+                children    : [
+                    {
+                        id  : 2,
+                        text : "Sub Folder 1",
+                        type: "child",
+                        state : {
+                            selected  : false
+                        },
+                    },
+                    {
+                        id  : 3,
+                        text : "Sub Folder 2",
+                        type: "child",
+                        state : {
+                            selected  : false
+                        },
+                    }
+                ]
+            },
+            {
+                id: 4,
+                text : "Folder 2",
+                state : {
+                    selected : true
+                },
+                children : []
+            }
+        ];
+
+        $('#container')
+                .jstree({
+                    core: {
+                        data: jsonData
+                    },
+                    types: {
+                        "root": {
+                            "icon" : "glyphicon glyphicon-plus"
+                        },
+                        "child": {
+                            "icon" : "glyphicon glyphicon-leaf"
+                        },
+                        "default" : {
+                        }
+                    },
+                    plugins: ["search", "themes", "types"]
+                }).on('open_node.jstree', function (e, data) { data.instance.set_icon(data.node, "glyphicon glyphicon-minus");
+        }).on('close_node.jstree', function (e, data) { data.instance.set_icon(data.node, "glyphicon glyphicon-plus"); });
+
+    });
+</script>
+
+</body>
+</html>

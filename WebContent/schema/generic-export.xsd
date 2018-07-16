@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+
+	<!-- Generic Export Entry Type -->
+	<xsd:complexType name="genericExportType">
+		<xsd:sequence>
+			<xsd:element name="company" type="companyType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="extractDateTime" type="xsd:dateTime" use="required"/>
+		<xsd:attribute name="externalSystemVisId" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="companyType">
+		<xsd:sequence>
+			<xsd:element name="ledger" type="ledgerType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="companyVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="companyDescription" type="xsd:string" use="required"/>
+		<xsd:attribute name="modelVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="modelDescription" type="xsd:string" use="required"/>
+		<xsd:attribute name="dummy" type="xsd:boolean" use="required"/>
+		<xsd:attribute name="exportCalendarColumnIndex" type="xsd:int" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="ledgerType">
+		<xsd:sequence>
+			<xsd:element name="dimension" type="dimensionType" minOccurs="2" maxOccurs="unbounded"/>
+			<xsd:element name="financeCube" type="financeCubeType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ledgerVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="dummy" type="xsd:boolean" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="dimensionType">
+		<xsd:attribute name="dimensionVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="exportColumnIndex" type="xsd:int" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="financeCubeType">
+		<xsd:sequence>
+			<xsd:element name="value" type="exportRowType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="financeCubeVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+	</xsd:complexType>
+
+	<!--
+	CP exports the value as longs with four implied decimal places.
+	-->
+	<xsd:complexType name="exportRowType">
+		<xsd:attribute name="visId0" type="xsd:string" use="required"/>
+		<xsd:attribute name="visId1" type="xsd:string" use="required"/>
+		<xsd:attribute name="visId2" type="xsd:string" use="required"/>
+		<xsd:attribute name="visId3" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId4" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId5" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId6" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId8" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId7" type="xsd:string" use="optional"/>
+		<xsd:attribute name="visId9" type="xsd:string" use="optional"/>
+		<xsd:attribute name="valueTypeVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="currencyVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="calendarYearVisId" type="xsd:string" use="required"/>
+		<xsd:attribute name="value" type="xsd:long" use="required"/>
+	</xsd:complexType>
+
+	<xsd:element name="genericExport" type="genericExportType"/>
+
+</xsd:schema>

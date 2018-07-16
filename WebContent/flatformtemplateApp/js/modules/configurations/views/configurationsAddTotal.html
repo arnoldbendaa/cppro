@@ -1,0 +1,45 @@
+<div class="configurations-add-total" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-tachometer"></i>
+			<span  ng-model = "headTitle">
+			{{headTitle}}
+			</span>
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div  class = "getToCalc1">
+			<form name="myForm" novalidate ng-valid ng-invalid ng-dirty ng-pristine>
+				<div class="form-group">
+					<label for="inputName">Sheet name:</label>	
+					<input id="inputName" name="inputName" type="text" class="form-control" ng-model="inputName" ng-change="validationName(inputName)" ng-maxlength="50" required/>
+					<span class="text-danger" ng-show="!myForm.inputName.$valid">
+						Length of name shuldn't be less than 1 or longer than 50 								
+					</span>
+					<span class="text-danger" ng-show="isForbiddenChar">
+						Make sure the name does not contain any of the following characters: : \ / ? * [ or ]	
+					</span>				
+					<span class="text-danger" ng-show="isWrongName">
+						This name is allready in use				 								
+					</span>
+			  	</div>
+  				<div class="form-group" ng-show="dimensionVisId">
+					<label for="dimensionVisId">Dimension Element:</label>	
+					<input name="dimensionVisId" type="text" class="form-control" ng-model="dimensionVisId" disabled />
+				</div>				
+			</form>
+		</div>
+		<br>
+		<div ng-show="!isDim">
+			<wj-flex-grid class="grid data-dimensions" items-source="ctx.data" control="ctx.flex" >
+				<wj-flex-grid-column header="Dimensions" name="dimensions" binding="dimensionVisId" width="4*" min-width="15"></wj-flex-grid-column>
+				<wj-flex-grid-column  allow-sort="true" sort-direction="ascending" header="Model" name="model" binding="modelVisId" width="4*" min-width="15"></wj-flex-grid-column>
+				<wj-flex-grid-column header="" name="checked" binding="" align="center" width="*" min-width="30"></wj-flex-grid-column>
+			</wj-flex-grid>	
+		</div>
+	</div>	
+	<div class="modal-footer">		
+		<button type="button" class="btn btn-danger pull-right" ng-disabled="isWrongName || myForm.inputName.$invalid || isForbiddenChar" 
+		ng-click="saveTotalToTable(inputName);validationName(inputName);close()">Save</button>
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<div class="configurations-tree" data-cookie="{{cookieName}}">
+	<div class="modal-header">
+		<h3><i class="fa fa-tachometer"></i> 
+			Business dimensions:
+		</h3>
+	</div>
+	<div class="modal-body">
+		<label class="getToCalc1">Business dimensions:</label> 
+		<select
+			class="form-control getToCalc2"
+			ng-options="model.modelVisId for model in models"
+			ng-change="onChange()" ng-model="choosedModel">
+		</select>
+		<br>
+		<div class="security-panel-small elementToResize">
+			<div class="frontend-cover configurationsTreeBusinessDimensionChooser">
+            	<i class="fa fa-refresh fa-2x fa-spin"></i>
+            </div>
+			<js-tree class="jstree-checked" tree-data="scope" ng-show="isChoosedModel"
+				tree-model="treeProcess" tree-plugins="checkbox,wholerow" checkbox-state="false"
+				tree-events="ready:readyTree;select_node:selectNode;deselect_node:deselectNode">
+			</js-tree>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-primary" ng-click="close()" type="reset">Cancel</button>
+		<button type="button" class="btn btn-danger pull-right" ng-click="saveDimensions();close();">Save</button>
+	</div>
+</div>
