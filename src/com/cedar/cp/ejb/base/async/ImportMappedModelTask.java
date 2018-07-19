@@ -217,7 +217,11 @@ public class ImportMappedModelTask extends AbstractTask {
 
          while(var24.hasNext()) {
             MappedFinanceCubeEVO var29 = (MappedFinanceCubeEVO)var24.next();
+            
             FinanceCubeEVO var28 = modelEvo.getFinanceCubesItem(new FinanceCubePK(var29.getFinanceCubeId()));
+            if(var28==null){
+            	System.out.println(var29.toString());
+            }
             this.log("    FinanceCube=" + var28.getVisId() + " (id=" + var28.getFinanceCubeId() + ")");
             boolean var32 = false;
             dtRows = new ArrayList();

@@ -9,7 +9,6 @@ import com.cedar.cp.api.task.TaskRequest;
 import com.cedar.cp.dto.task.RestartTaskMessage;
 import com.cedar.cp.dto.task.TaskPK;
 import com.cedar.cp.ejb.api.task.TaskProcessServer;
-import com.cedar.cp.ejb.impl.task.TaskProcessSEJB;
 import com.cedar.cp.util.common.JmsConnectionImpl;
 import com.cedar.cp.util.task.NewTaskMessage;
 import javax.naming.InitialContext;
@@ -26,9 +25,6 @@ public class TaskMessageFactory {
 
    public static int issueNewTask(InitialContext ctxt, int taskType, boolean remote, TaskRequest request, int userId, int issuingTaskId) throws Exception {
       long systemTime = System.currentTimeMillis();
-//      TaskProcessSEJB taskProcessSEJB = new TaskProcessSEJB();
-//      taskProcessSEJB.ejbCreate();
-//      int taskId = taskProcessSEJB.newTask(userId, taskType, request, systemTime, issuingTaskId);
       int taskId = (new TaskProcessServer(ctxt, remote)).newTask(userId, taskType, request, systemTime, issuingTaskId);
       NewTaskMessage msg = new NewTaskMessage(taskId, userId, systemTime);
       JmsConnectionImpl jms = new JmsConnectionImpl(ctxt, 1, "taskReceiverQueue");

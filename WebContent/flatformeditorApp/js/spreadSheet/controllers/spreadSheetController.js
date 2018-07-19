@@ -268,11 +268,12 @@
 			if (angular.isUndefined($scope.flatForm.jsonForm) || angular.isUndefined($scope.viewMode.currentItem)) {
 				return;
 			}
+//			spread.suspendPaint ();
 			//spread.suspendCalcService();
 //			spread.grayAreaBackColor("#FCFDFD");
 			spread.options.grayAreaBackColor = ("#FCFDFD");
 //			spread.suspendPaint ();
-			spread.isPaintSuspended(true);
+//			spread.isPaintSuspended(true);
 			spread.clearSheets();
 			
 
@@ -298,8 +299,8 @@
 				return;
 			}
 			//spread.suspendCalcService();
-//			spread.suspendPaint ();
-			spread.isPaintSuspended(true);
+			spread.suspendPaint ();
+//			spread.isPaintSuspended(true);
 			var worksheets = $scope.flatForm.xmlForm.worksheets;
 			for (var i = 0; i < worksheets.length; i++) {
 				sheet = spread.getSheet(i);
@@ -315,6 +316,7 @@
 			}
 			ViewModeService.setCurrentViewMode("VALUE");
 			//setUpCells(true);
+			spread.resumePaint ();
 		}
 
 		function setUpCells(isSetUpCell, xmlForm) {
@@ -326,8 +328,8 @@
 			}
 			spread.suspendCalcService(false);
 			if (isSetUpCell) {
-//				spread.suspendPaint ();
-				spread.isPaintSuspended(true);
+				spread.suspendPaint ();
+//				spread.isPaintSuspended(true);
 				var worksheets = xmlForm.worksheets;
 				for (var i = 0; i < worksheets.length; i++) {
 					sheet = spread.getSheetFromName(worksheets[i].name);
@@ -348,8 +350,8 @@
 				}
 			}
 			spread.resumeCalcService(true);
-//			spread.resumePaint();
-			spread.isPaintSuspended(false);
+			spread.resumePaint();
+//			spread.isPaintSuspended(false);
 
 			spread.repaint();
 			updatePositionBox();
@@ -806,8 +808,8 @@
 			var y = e.pageY - offset.top;
 
 			var sheet = $scope.spread.getActiveSheet();
-//			sheet.suspendPaint ();
-			spread.isPaintSuspended(true);
+			sheet.suspendPaint ();
+//			spread.isPaintSuspended(true);
 			var target = sheet.hitTest(x, y); // current selected cell (could be cell in headers viewport)
 
 			var inRowRange = false;
@@ -824,8 +826,8 @@
 			if (inRowRange === false || inColumnRange === false) {
 				sheet.setActiveCell(target.row, target.col);
 			}
-//			sheet.resumePaint();
-			spread.isPaintSuspended(false);
+			sheet.resumePaint();
+//			spread.isPaintSuspended(false);
 			return true;
 		}
 

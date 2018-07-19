@@ -364,6 +364,24 @@
 //        }
         function setTaskId(id){
         	runningTaskId = id;
+            var timer = setInterval(function(){
+            	ModelMappingsService.getTaskStatus(runningTaskId,function(response){
+            		if(runningTaskId==0)
+            			clearInterval(timer);
+            		
+            		if(response==5 || response==9){
+            			clearInterval(timer);
+            			checkedModelMapIds.splice(0,1);
+            			setTaskId(0);
+            			startMultiImport();
+            		}else if(response==4){
+            			 Flash.create('danger', "The task "+runningTaskId+" is failed");
+            			 clearInterval(timer);
+            			 setTaskId(0);
+            		}
+            	});
+            },2000);
+
         }
         function startMultiImport(){
         	//get checked modelMapping ids.
@@ -375,23 +393,6 @@
                 var mappedModelToImport = CoreCommonsService.findElementByKey($scope.ctx.data.sourceCollection, checkedModelMapIds[0], 'mappedModelId');
                 if (mappedModelToImport) {
                     ModelMappingsService.importSafe(mappedModelToImport,setTaskId);
-                    var timer = setInterval(function(){
-                    	ModelMappingsService.getTaskStatus(runningTaskId,function(response){
-                    		if(runningTaskId==0)
-                    			clearInterval(timer);
-                    		
-                    		if(response==5 || response==9){
-                    			clearInterval(timer);
-                    			checkedModelMapIds.splice(0,1);
-                    			setTaskId(0);
-                    			startMultiImport();
-                    		}else if(response==4){
-                    			 Flash.create('danger', "The task "+runningTaskId+" is failed");
-                    			 clearInterval(timer);
-                    			 setTaskId(0);
-                    		}
-                    	});
-                    },2000);
                 }
         	}
         }
