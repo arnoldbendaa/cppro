@@ -34,6 +34,17 @@ public class TaskMessageFactory {
       jms.closeConnection();
       return taskId;
    }
+   public static int multiIssueNewTask(InitialContext ctxt, int taskType, boolean remote, TaskRequest request, int userId, int issuingTaskId) throws Exception {
+	      long systemTime = System.currentTimeMillis();
+	      int taskId = (new TaskProcessServer(ctxt, remote)).newTask(userId, taskType, request, systemTime, issuingTaskId);
+	      NewTaskMessage msg = new NewTaskMessage(taskId, userId, systemTime);
+	      JmsConnectionImpl jms = new JmsConnectionImpl(ctxt, 1, "multiTaskReceiverQueue");
+	      jms.createSession();
+	      jms.send(msg, System.currentTimeMillis() + 500L);
+	      jms.closeSession();
+	      jms.closeConnection();
+	      return taskId;
+	   }
 
    public static void restartTask(InitialContext ctxt, TaskPK taskPK) throws Exception {
       RestartTaskMessage msg = new RestartTaskMessage(taskPK);

@@ -372,8 +372,20 @@
                 Flash.create('success', messageToReturn);
             });
         }
-        function mutiImportSafe(){
-        	console.log("multi import safe");
+        function mutiImportSafe(mappedModel,callback){
+            if (mappedModel === null) {
+                return;
+            }
+            $http({
+                method: "POST",
+                url: url + "modelMappings/multiImportSafe",
+                data: mappedModel
+            }).success(function(response) {
+                var messageToReturn = "Import Task = '" + response + "'' issued for mapped model = '" + mappedModel.mappedModelVisId + "'.";
+                Flash.create('success', messageToReturn);
+                if(callback)
+                	callback(response);
+            });
         }
         function getTaskStatus(taskId,callback){
         	$http({

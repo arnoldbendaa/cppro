@@ -27,6 +27,10 @@ package com.softproideas.app.admin.modelmappings.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJBException;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -40,6 +44,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cedar.cp.api.base.EntityList;
+import com.cedar.cp.api.base.ValidationException;
+import com.cedar.cp.api.task.TaskRequest;
+import com.cedar.cp.dto.cm.AllChangeMgmtsELO;
+import com.cedar.cp.dto.model.mapping.ImportMappedModelTaskRequest;
+import com.cedar.cp.dto.task.TaskObjects;
+import com.cedar.cp.dto.task.TaskPK;
+import com.cedar.cp.dto.user.UserPK;
+import com.cedar.cp.ejb.api.model.mapping.MappedModelEditorSessionServer;
+import com.cedar.cp.ejb.api.task.TaskProcessServer;
+import com.cedar.cp.ejb.impl.cm.ChangeMgmtDAO;
+import com.cedar.cp.ejb.impl.task.TaskAccessor;
+import com.cedar.cp.ejb.impl.task.TaskDAO;
+import com.cedar.cp.ejb.impl.task.TaskEVO;
+import com.cedar.cp.ejb.impl.task.TaskMessage;
+import com.cedar.cp.ejb.impl.user.UserAccessor;
+import com.cedar.cp.ejb.impl.user.UserEVO;
+import com.cedar.cp.util.common.JmsConnectionImpl;
+import com.cedar.cp.util.task.NewTaskMessage;
+import com.cedar.cp.util.task.TaskMessageFactory;
 import com.softproideas.app.admin.datatypes.model.DataTypeDetailsDTO;
 import com.softproideas.app.admin.dimensions.account.service.AccountService;
 import com.softproideas.app.admin.dimensions.business.service.BusinessService;
@@ -62,6 +86,8 @@ import com.softproideas.app.admin.modelmappings.service.ModelMappingsService;
 import com.softproideas.app.admin.models.model.ModelDetailsDTO;
 import com.softproideas.app.admin.models.service.ModelsService;
 import com.softproideas.app.core.model.model.ModelCoreDTO;
+import com.softproideas.common.exceptions.ServiceException;
+import com.softproideas.commons.context.CPContextHolder;
 import com.softproideas.commons.model.ResponseMessage;
 
 /**
@@ -89,6 +115,12 @@ public class ModelMappingsController {
     CalendarService calendarService;
     @Autowired
     HierarchiesService hierarchiesService;
+    @Autowired
+    CPContextHolder cpContextHolder;
+    private transient TaskAccessor mTaskAccessor;
+    private transient UserAccessor mUserAccessor;
+
+    private Context _jndiContext;
 
     /**
      * GET /modelMappings
@@ -127,6 +159,21 @@ public class ModelMappingsController {
             taskId = modelMappingsService.issueModelImportTask(true, mappedModel.getMappedModelId());
         }
         return taskId;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/multiImportSafe", method = RequestMethod.POST)
+    public int multiImportSafe(@Valid @RequestBody MappedModelDTO mappedModel) throws Exception {
+        int taskId = 0;
+        int mappedModelId = mappedModel.getMappedModelId();
+        try {
+            MappedModelEditorSessionServer server = cpContextHolder.getMappedModelEditorSessionServer();
+            int[] mappedModelIds = new int[] { mappedModelId };
+            taskId = server.multiIssueModelImportTask(true, mappedModelIds);
+            return taskId;
+        } catch (Exception e) {
+            throw new ServiceException("Error during issueModelImportTask with key =" + mappedModelId + "!", e);
+        }
     }
 
     @ResponseBody
@@ -314,4 +361,23 @@ public class ModelMappingsController {
     	String result = modelMappingsService.getTaskStatus(taskId);
 		return result;    	
     }
+    
+    
+    private TaskAccessor getTaskAccessor() {
+	    if(this.mTaskAccessor == null) {
+	       this.mTaskAccessor = new TaskAccessor(this.getInitialContext());
+	    }
+	    return this.mTaskAccessor;
+	}
+    private UserAccessor getUserAccessor() {
+        if(this.mUserAccessor == null) {
+           this.mUserAccessor = new UserAccessor(this.getInitialContext());
+        }
+
+        return this.mUserAccessor;
+     }
+    private InitialContext getInitialContext() {
+        return (InitialContext)this._jndiContext;
+     }
+
 }

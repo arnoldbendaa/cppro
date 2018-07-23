@@ -1672,6 +1672,31 @@ public class MappedModelEditorSessionSEJB extends AbstractSession {
          }
       }
    }
+   public int multiIssueModelImportTask(int userId, boolean safeMode, int[] mappedModelIds, int issuingTaskId) throws ValidationException, EJBException {
+	      ImportMappedModelTaskRequest request = new ImportMappedModelTaskRequest(safeMode, mappedModelIds);
+	      AllChangeMgmtsELO cmList = (new ChangeMgmtDAO()).getAllChangeMgmts();
+	      byte taskEL = 0;
+	         EntityList var13 = (new TaskDAO()).getTasks();
+
+	         int e;
+	         for(e = 0; e < var13.getNumRows(); ++e) {
+	            int taskId = ((Integer)var13.getValueAt(e, "TaskId")).intValue();
+	            String taskName = (String)var13.getValueAt(e, "TaskName");
+	            int status = ((Integer)var13.getValueAt(e, "Status")).intValue();
+	            if(taskName.equals("ChangeManagementTask") && status != 5 && status != 10 && status != 9) {
+	               throw new ValidationException("Change Management task is outstanding - task " + taskId);
+	            }
+	         }
+
+	         try {
+	            e = TaskMessageFactory.multiIssueNewTask(new InitialContext(),0, false, request, userId, issuingTaskId);
+	            this.mLog.debug("issueModelImportTask", "taskId=" + e);
+	            return e;
+	         } catch (Exception var12) {
+	            var12.printStackTrace();
+	            throw new EJBException(var12);
+	         }
+	   }
 
    public int issueMappedModelExportTask(int userId, int mappedModelId, String mappedModelVisId, List<EntityRef> financeCubes) throws ValidationException, EJBException {
       try {

@@ -322,21 +322,21 @@ public class TaskDespatcherMEJB implements MessageDrivenBean, MessageListener {
             return false;
          }
 
-         List eal = taskobjects.getRequest().getExclusiveAccessList();
-         if(eal != null) {
-            ResourceLock msg = rlh.getFirstConflict(String.valueOf(taskId_), eal);
-            if(rlh.getFirstConflict(String.valueOf(taskId_), eal) != null) {
-               String lockMsg = "locked out by task " + msg.getOwner() + ", resource " + msg.getResource();
-               this.mLog.info("issueWaitingTasks", taskId_ + " " + lockMsg);
-               if(!taskEVO.getStep().equals(lockMsg)) {
-                  this.logTaskProgressEvent(taskId_, lockMsg);
-                  taskEVO.setStep(lockMsg);
-                  this.getTaskAccessor().setDetails(taskEVO);
-               }
-
-               return false;
-            }
-         }
+//         List eal = taskobjects.getRequest().getExclusiveAccessList();
+//         if(eal != null) {
+//            ResourceLock msg = rlh.getFirstConflict(String.valueOf(taskId_), eal);
+//            if(rlh.getFirstConflict(String.valueOf(taskId_), eal) != null) {
+//               String lockMsg = "locked out by task " + msg.getOwner() + ", resource " + msg.getResource();
+//               this.mLog.info("issueWaitingTasks", taskId_ + " " + lockMsg);
+//               if(!taskEVO.getStep().equals(lockMsg)) {
+//                  this.logTaskProgressEvent(taskId_, lockMsg);
+//                  taskEVO.setStep(lockMsg);
+//                  this.getTaskAccessor().setDetails(taskEVO);
+//               }
+//
+//               return false;
+//            }
+//         }
 
          taskEVO.setStatus(2);
          this.getTaskAccessor().setDetails(taskEVO);

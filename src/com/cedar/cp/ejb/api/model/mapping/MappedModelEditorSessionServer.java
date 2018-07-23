@@ -233,6 +233,13 @@ public class MappedModelEditorSessionServer extends AbstractSession {
          throw this.unravelException(var4);
       }
    }
+   public int multiIssueModelImportTask(boolean safeMode, int[] mappedModelIds) throws CPException, ValidationException {
+      try {
+         return this.getRemote().multiIssueModelImportTask(this.getUserId(), safeMode, mappedModelIds, 0);
+      } catch (Exception var4) {
+         throw this.unravelException(var4);
+      }
+   }
 
    public int issueModelImportTask(int userId, int[] mappedModelIds, int issuingTaskId) throws CPException, ValidationException {
       try {

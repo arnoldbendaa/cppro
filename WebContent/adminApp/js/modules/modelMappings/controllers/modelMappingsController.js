@@ -45,17 +45,22 @@
         $scope.open = open;
         $scope.deleteModelMapping = deleteModelMapping;
         $scope.addImport = addImport;
-        $scope.multiImport = false;
+        $scope.multiImport = localStorage['multiImport']==undefined?false:JSON.parse(localStorage['multiImport']);
+        $scope.multiImport = !$scope.multiImport ;
         $scope.cancelMultiImport = cancelMultiImport;
         $scope.startMultiImport = startMultiImport;
+        $scope.clearMultiImport = clearMultiImport;
         $scope.allCheck = allCheck;
         var allImport = false;
         var maxLeng = 1000;
         $scope.multiImportChk = [];
-        var checkedModelMapIds = [];
-        var runningTaskId = 0;
+        var checkedModelMapIdsInFunc = localStorage['checkedModelMapIdsInFunc']==undefined?[]:JSON.parse(localStorage['checkedModelMapIdsInFunc']);
+        var checkedModelMapIds = localStorage['checkedModelMapIds']==undefined?[]:JSON.parse(localStorage['checkedModelMapIds']);//for display check box
+//        var completeModelMapIds = localStorage['completeModelMapIds']==undefined?[]:JSON.parse(localStorage['completeModelMapIds']);
+//        var incompleteModelMapIds = localStorage['incompleteModelMapIds']==undefined?[]:JSON.parse(localStorage['incompleteModelMapIds']);
         activate();
-
+        //mutiImportSafe();
+        
         function activate() {
             PageService.setCurrentPageService(ModelMappingsService);
             $scope.globalSettings = CoreCommonsService.globalSettings;
@@ -244,11 +249,25 @@
                     case 'checkbox':
                     	var flex = $scope.ctx.flex;
                     	var modelId = flex.rows[r]._data.mappedModelId;
-                    	var index = checkedModelMapIds.indexOf(modelId);
-                    	if(index>-1)
-                        	html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/>';
-                    	else 
-                    		html='<input type="checkbox" ng-click="addImport($event,'+r+')"/>';
+//                    	var index = checkedModelMapIds.indexOf(modelId);
+//            			var incompleteIndex = incompleteModelMapIds.indexOf(modelId);
+//            			var completeIndex = completeModelMapIds.indexOf(modelId);
+                    	
+//                    	if(incompleteIndex>-1 || completeIndex>-1 ||index>-1 ){
+//                			if(incompleteIndex>-1)
+//                				html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>incompleted</span>';
+//                			else if(completeIndex>-1)
+//                				html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>completed</span>';
+//                    		else
+//                    			html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/>';
+//                    			
+//                    	}else 
+//                    		html='<input type="checkbox" ng-click="addImport($event,'+r+')"/>';
+                    	var index = checkModelMapContains(modelId);
+                    	if(index > -1){
+                    		html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>'+checkedModelMapIds[index].status+'</span>';
+                    	}else
+                    		html='<input type="checkbox" ng-click="addImport($event,'+r+')"/>';                    	
                     	break;
                 }
 
@@ -264,7 +283,7 @@
                     	cell.innerHTML="<input type='checkbox' checked ng-click='allCheck($event)'/>";
                 	else 
                 		cell.innerHTML="<input type='checkbox' ng-click='allCheck($event)'/>"
-                	 $compile(cell)($scope);	
+                	 $compile(cell)($scope);
                 }
 
             }
@@ -279,6 +298,13 @@
                 flex.itemFormatter = itemFormatter;
                 CoreCommonsService.initializeResizeFlexGrid($scope.ctx, $scope.currentCookie);
             }
+        });
+        $scope.$watch('mappedModels.sourceCollection',function(){
+        	console.log("mappedModels changed");
+        	setTimeout(function(){
+        		mutiImportSafe();
+        	},1000);
+        	
         });
         /**
          * Call "open" for update after click on button on the submenu.
@@ -309,17 +335,25 @@
         $scope.$on("SubMenuController:mutiImportSafe",function(){
         	mutiImportSafe();
         });
+        function checkModelMapContains(modelMapId){
+        	for(var i = 0 ; i < checkedModelMapIds.length;i++){
+        		if(checkedModelMapIds[i].id==modelMapId)
+        			return i;
+        	}
+        	return -1;
+        }
         function mutiImportSafe(){
-        	if(!runningTaskId){
+//        	if(checkedModelMapIds.length<1){
         		var flex = $scope.ctx.flex;
 	        	$scope.multiImport = !$scope.multiImport;
+	        	localStorage['multiImport'] = JSON.stringify($scope.multiImport);
 	        	if($scope.multiImport)
 	                flex.columns.push(new wijmo.grid.Column({ header: '<input type="checkbox"/>',name:'checkbox',align:'center'}));
 	        	else 
 	        		flex.columns.splice(-1,1);
-        	}else{
-        		Flash.create('danger', "Now running multiple import.Please try again");
-        	}
+//        	}else{
+//        		Flash.create('danger', "Now running multiple import.Please try again");
+//        	}
         }
 
         //by arnold
@@ -327,85 +361,115 @@
             var flex = $scope.ctx.flex;
         	$scope.multiImport = false;
         	flex.columns.splice(-1,1);
+        	localStorage['multiImport'] = JSON.stringify($scope.multiImport);
         }
         function addImport(e,index){
             var flex = $scope.ctx.flex;
             var flag = e.target.checked;
             var selectedModelMapId = flex.rows[index]._data.mappedModelId;
-        	var indexInArray = checkedModelMapIds.indexOf(selectedModelMapId);
+        	var indexInArray = checkedModelMapIdsInFunc.indexOf(selectedModelMapId);
             if(flag){
-            	if(indexInArray<0)
-            		checkedModelMapIds.push(selectedModelMapId);
+            	if(indexInArray<0){
+            		checkedModelMapIdsInFunc.push(selectedModelMapId);
+            		var temp = {id:selectedModelMapId,status:'queued'};
+            		checkedModelMapIds.push(temp)
+            	}
             }
             else {
-            	checkedModelMapIds.splice(indexInArray,1);
+            	checkedModelMapIdsInFunc.splice(indexInArray,1);
+            	var modelMapIndex = checkModelMapContains(selectedModelMapId);
+            	checkedModelMapIds.splice(modelMapIndex,1);
             } 
-            console.log(checkedModelMapIds);
+            
+//        	incompleteModelMapIds = checkedModelMapIdsInFunc.slice();
+//        	checkedModelMapIds = checkedModelMapIdsInFunc.slice();
+//        	completeModelMapIds = [];
+        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
+        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
+//        	localStorage["incompleteModelMapIds"] = JSON.stringify(incompleteModelMapIds);
+//        	localStorage["completeModelMapIds"] = JSON.stringify(completeModelMapIds);
+        	
+			flex.invalidate(true);
+
         }
-//        function startMultiImport(){
-//        	//get checked modelMapping ids.
-////        	for(var i = 0 ; i < checkedModelMapIds.length;i++){
-////                var mappedModelToImport = CoreCommonsService.findElementByKey($scope.ctx.data.sourceCollection, checkedModelMapIds[i], 'mappedModelId');
-////                if (mappedModelToImport) {
-////                    ModelMappingsService.importSafe(mappedModelToImport);
-////                }
-////        	}
-//        	
-//        	var i = 0 ; 
-//        	var timer = setInterval(function(){
-//                var mappedModelToImport = CoreCommonsService.findElementByKey($scope.ctx.data.sourceCollection, checkedModelMapIds[i], 'mappedModelId');
-//                if (mappedModelToImport) {
-//                    ModelMappingsService.importSafe(mappedModelToImport);
-//                }
-//                i++;
-//                if(i>=checkedModelMapIds.length)
-//                	clearInterval(timer);
-//        	},2000);
-//        }
         function setTaskId(id){
-        	runningTaskId = id;
-            var timer = setInterval(function(){
-            	ModelMappingsService.getTaskStatus(runningTaskId,function(response){
-            		if(runningTaskId==0)
-            			clearInterval(timer);
-            		
-            		if(response==5 || response==9){
-            			clearInterval(timer);
-            			checkedModelMapIds.splice(0,1);
-            			setTaskId(0);
-            			startMultiImport();
-            		}else if(response==4){
-            			 Flash.create('danger', "The task "+runningTaskId+" is failed");
-            			 clearInterval(timer);
-            			 setTaskId(0);
-            		}
-            	});
-            },2000);
+        	var timer = setInterval(function(){
+        		ModelMappingsService.getTaskStatus(id,function(response){        		
+	        		if(response==5 || response==9){
+	        			clearInterval(timer);
+//	        			completeModelMapIds.push(checkedModelMapIdsInFunc[0]);
+//	        			incompleteModelMapIds.splice(0,1);
+	        			var modelMapIndex = checkModelMapContains(checkedModelMapIdsInFunc[0]);
+	        			checkedModelMapIds[modelMapIndex].status='finished';
+	        			checkedModelMapIdsInFunc.splice(0,1);
+	        			startMultiImport();
+	        			
+	        			
+	        		}else if(response==4 || response==7){
+	        			 Flash.create('danger', "The task "+id+" is failed");
+	        			 clearInterval(timer);
+	        			var modelMapIndex = checkModelMapContains(checkedModelMapIdsInFunc[0]);
+	        			checkedModelMapIds[modelMapIndex].status='failed';
+	        			 checkedModelMapIdsInFunc.splice(0,1);
+
+	        			 //startMultiImport();
+	        		}
+	        	});
+        	},2000);
 
         }
         function startMultiImport(){
         	//get checked modelMapping ids.
-        	if(checkedModelMapIds.length<1){
+			var modelMapIndex = checkModelMapContains(checkedModelMapIdsInFunc[0]);
+			checkedModelMapIds[modelMapIndex].status='running';
+
+        	var flex = $scope.ctx.flex;
+			flex.invalidate(true);
+			
+        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
+        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
+//        	localStorage["incompleteModelMapIds"] = JSON.stringify(incompleteModelMapIds);
+//        	localStorage["completeModelMapIds"] = JSON.stringify(completeModelMapIds);
+
+        	if(checkedModelMapIdsInFunc.length<1){
         		return;
         	}
-        	if(runningTaskId==0){
-        		
-                var mappedModelToImport = CoreCommonsService.findElementByKey($scope.ctx.data.sourceCollection, checkedModelMapIds[0], 'mappedModelId');
-                if (mappedModelToImport) {
-                    ModelMappingsService.importSafe(mappedModelToImport,setTaskId);
-                }
-        	}
+
+            var mappedModelToImport = CoreCommonsService.findElementByKey($scope.ctx.data.sourceCollection, checkedModelMapIdsInFunc[0], 'mappedModelId');
+            if (mappedModelToImport) {
+                ModelMappingsService.importSafe(mappedModelToImport,setTaskId);
+            }
         }
 
         function allCheck(e){
             allImport = e.target.checked;
             var flex = $scope.ctx.flex;
+        	checkedModelMapIdsInFunc = [];
         	checkedModelMapIds = [];
             if(allImport){
             	for(var i=0;i<flex.rows.length; i++){
-            		checkedModelMapIds.push(flex.rows[i]._data.mappedModelId);
+            		checkedModelMapIdsInFunc.push(flex.rows[i]._data.mappedModelId);
+            		var temp = {id:flex.rows[i]._data.mappedModelId,status:'queued'};
+            		checkedModelMapIds.push(temp)
+
             	}
             }
+//        	incompleteModelMapIds = checkedModelMapIdsInFunc.slice();
+//        	checkedModelMapIds = checkedModelMapIdsInFunc.slice();
+//        	completeModelMapIds = [];
+        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
+        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
+//        	localStorage["incompleteModelMapIds"] = JSON.stringify(incompleteModelMapIds);
+//        	localStorage["completeModelMapIds"] = JSON.stringify(completeModelMapIds);
+
+            flex.invalidate(true);
+        }
+        function clearMultiImport(){
+        	checkedModelMapIdsInFunc = [];
+        	checkedModelMapIds = [];
+        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
+        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
+            var flex = $scope.ctx.flex;
             flex.invalidate(true);
         }
     }
