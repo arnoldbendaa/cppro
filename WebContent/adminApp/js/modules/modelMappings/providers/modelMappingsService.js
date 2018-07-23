@@ -60,6 +60,7 @@
         self.setSelectedModel = setSelectedModel;
         self.mutiImportSafe = mutiImportSafe;
         self.getTaskStatus = getTaskStatus; 
+        self.getTaskTime = getTaskTime; 
         activate();
 
         function activate() {
@@ -391,6 +392,14 @@
         	$http({
         		method:"GET",
         		url:url+"modelMappings/getTaskStatus/"+taskId
+        	}).success(function(response){
+        		callback(response);
+        	})
+        }
+        function getTaskTime(taskId,callback){
+        	$http({
+        		method:"GET",
+        		url:url+"modelMappings/getTaskTime/"+taskId
         	}).success(function(response){
         		callback(response);
         	})

@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script type="text/javascript" src="<%=path %>/libs/wijmo/SpreadJS/11.0.0/scripts/plugins/gc.spread.sheets.charts.11.0.0.min.js"></script>
         <script type="text/javascript" src="<%=path %>/libs/wijmo/SpreadJS/11.0.0/scripts/interop/gc.spread.excelio.11.0.0.min.js"></script>
        
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <script src="<%=path %>/js/FileSaver.min.js"></script>
 
         <!-- SoftproIdeas style -->
         <link rel="stylesheet" href="<%= path %>/css/commons.css?">

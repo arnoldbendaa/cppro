@@ -97,7 +97,7 @@ public interface ModelMappingsService {
     ResponseMessage updateMappedModelDetailsGlobal(MappedModelDetailsDTO mappedModelDetails, HttpSession session) throws ServiceException;
     ResponseMessage updateMappedModelDetails(MappedModelDetailsDTO mappedModelDetails, HttpSession session) throws ServiceException;
     String getTaskStatus(String taskId);
-
+    String getTaskTime(String taskId);
 
     
 

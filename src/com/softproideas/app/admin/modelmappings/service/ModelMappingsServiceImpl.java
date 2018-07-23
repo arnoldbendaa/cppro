@@ -1104,6 +1104,15 @@ public class ModelMappingsServiceImpl implements ModelMappingsService {
 		
 		return server.getTaskStatus(taskId);
 	}
+	@Override
+	public String getTaskTime(String taskId) {
+		// TODO Auto-generated method stub
+		if(taskId.equals("0"))
+			return "5";
+		MappedModelEditorSessionServer server = cpContextHolder.getMappedModelEditorSessionServer();
+		
+		return server.getTaskTime(taskId);
+	}
 
 
 

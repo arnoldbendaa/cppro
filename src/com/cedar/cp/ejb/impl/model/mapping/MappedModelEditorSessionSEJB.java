@@ -1838,4 +1838,7 @@ public class MappedModelEditorSessionSEJB extends AbstractSession {
    public String getTaskStatus(String taskId){
 	   return new MappedModelDAO().getTaskStatus(taskId);
    }
+   public String getTaskTime(String taskId){
+	   return new MappedModelDAO().getTaskTime(taskId);
+   }
 }

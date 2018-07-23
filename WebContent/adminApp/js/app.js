@@ -59,6 +59,7 @@ var adminApp = angular.module('adminApp', [
     'adminApp.userModelSecurity',
     'adminApp.financeCubeFormulaPage',
     'adminApp.dashboardPage',
-    
+	'gcspreadsheets',
+
 
 ]);

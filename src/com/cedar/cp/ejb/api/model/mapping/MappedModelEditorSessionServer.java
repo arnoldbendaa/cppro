@@ -315,4 +315,17 @@ public class MappedModelEditorSessionServer extends AbstractSession {
 	       }
 	      return null;
 	}
+	public String getTaskTime(String taskId){
+	      try {
+	          if(this.isRemoteConnection()) {
+	             return this.getRemote().getTaskTime(taskId);
+	          } else {
+	             return this.getLocal().getTaskTime(taskId);
+	          }
+
+	       } catch (Exception var4) {
+	          var4.printStackTrace();
+	       }
+	      return null;
+	}
 }

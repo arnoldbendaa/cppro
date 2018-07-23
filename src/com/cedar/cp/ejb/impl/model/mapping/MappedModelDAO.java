@@ -241,6 +241,36 @@
 				      }
 				      return returnValue;			
 			 }
+			 public String getTaskTime(String taskId){
+				 PreparedStatement stmt = null;
+				     ResultSet resultSet = null;
+				      String returnValue;
+				      try
+				      {
+				        stmt = getConnection().prepareStatement("select step from task where task_id=?");
+				  
+				        int col = 1;
+				        stmt.setString(col++, taskId);
+				  
+				        resultSet = stmt.executeQuery();
+				  
+				        if (!resultSet.next())
+				          throw new RuntimeException(getEntityName() + " checkVersionNum: select of " + getPK() + " not found");
+				        else
+				          returnValue = resultSet.getString(1);
+				      }
+				      catch (SQLException sqle)
+				      {
+				        throw handleSQLException("select status from task where task_id=?", sqle);
+				      }
+				      finally
+				      {
+				        closeResultSet(resultSet);
+				        closeStatement(stmt);
+				        closeConnection();
+				      }
+				      return returnValue;			
+			 }
 /*      */ 
 /*      */   private MappedModelEVO getEvoFromJdbc(ResultSet resultSet_)
 /*      */     throws SQLException

@@ -51,13 +51,12 @@
         $scope.startMultiImport = startMultiImport;
         $scope.clearMultiImport = clearMultiImport;
         $scope.allCheck = allCheck;
+        $scope.exportReport = exportReport;
         var allImport = false;
         var maxLeng = 1000;
         $scope.multiImportChk = [];
         var checkedModelMapIdsInFunc = localStorage['checkedModelMapIdsInFunc']==undefined?[]:JSON.parse(localStorage['checkedModelMapIdsInFunc']);
         var checkedModelMapIds = localStorage['checkedModelMapIds']==undefined?[]:JSON.parse(localStorage['checkedModelMapIds']);//for display check box
-//        var completeModelMapIds = localStorage['completeModelMapIds']==undefined?[]:JSON.parse(localStorage['completeModelMapIds']);
-//        var incompleteModelMapIds = localStorage['incompleteModelMapIds']==undefined?[]:JSON.parse(localStorage['incompleteModelMapIds']);
         activate();
         //mutiImportSafe();
         
@@ -249,20 +248,6 @@
                     case 'checkbox':
                     	var flex = $scope.ctx.flex;
                     	var modelId = flex.rows[r]._data.mappedModelId;
-//                    	var index = checkedModelMapIds.indexOf(modelId);
-//            			var incompleteIndex = incompleteModelMapIds.indexOf(modelId);
-//            			var completeIndex = completeModelMapIds.indexOf(modelId);
-                    	
-//                    	if(incompleteIndex>-1 || completeIndex>-1 ||index>-1 ){
-//                			if(incompleteIndex>-1)
-//                				html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>incompleted</span>';
-//                			else if(completeIndex>-1)
-//                				html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>completed</span>';
-//                    		else
-//                    			html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/>';
-//                    			
-//                    	}else 
-//                    		html='<input type="checkbox" ng-click="addImport($event,'+r+')"/>';
                     	var index = checkModelMapContains(modelId);
                     	if(index > -1){
                     		html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>'+checkedModelMapIds[index].status+'</span>';
@@ -343,17 +328,13 @@
         	return -1;
         }
         function mutiImportSafe(){
-//        	if(checkedModelMapIds.length<1){
-        		var flex = $scope.ctx.flex;
-	        	$scope.multiImport = !$scope.multiImport;
-	        	localStorage['multiImport'] = JSON.stringify($scope.multiImport);
-	        	if($scope.multiImport)
-	                flex.columns.push(new wijmo.grid.Column({ header: '<input type="checkbox"/>',name:'checkbox',align:'center'}));
-	        	else 
-	        		flex.columns.splice(-1,1);
-//        	}else{
-//        		Flash.create('danger', "Now running multiple import.Please try again");
-//        	}
+    		var flex = $scope.ctx.flex;
+        	$scope.multiImport = !$scope.multiImport;
+        	localStorage['multiImport'] = JSON.stringify($scope.multiImport);
+        	if($scope.multiImport)
+                flex.columns.push(new wijmo.grid.Column({ header: '<input type="checkbox"/>',name:'checkbox',align:'center'}));
+        	else 
+        		flex.columns.splice(-1,1);
         }
 
         //by arnold
@@ -371,7 +352,7 @@
             if(flag){
             	if(indexInArray<0){
             		checkedModelMapIdsInFunc.push(selectedModelMapId);
-            		var temp = {id:selectedModelMapId,status:'queued'};
+            		var temp = {id:selectedModelMapId,status:'queued','mappedModelVisId':flex.rows[index]._data.mappedModelVisId,taskId:0,time:''};
             		checkedModelMapIds.push(temp)
             	}
             }
@@ -380,57 +361,54 @@
             	var modelMapIndex = checkModelMapContains(selectedModelMapId);
             	checkedModelMapIds.splice(modelMapIndex,1);
             } 
-            
-//        	incompleteModelMapIds = checkedModelMapIdsInFunc.slice();
-//        	checkedModelMapIds = checkedModelMapIdsInFunc.slice();
-//        	completeModelMapIds = [];
-        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
-        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
-//        	localStorage["incompleteModelMapIds"] = JSON.stringify(incompleteModelMapIds);
-//        	localStorage["completeModelMapIds"] = JSON.stringify(completeModelMapIds);
-        	
-			flex.invalidate(true);
-
+            refreshAndSave();
         }
         function setTaskId(id){
+        	var modelMapIndex = checkModelMapContains(checkedModelMapIdsInFunc[0]);
+        	checkedModelMapIds[modelMapIndex].taskId=id;
         	var timer = setInterval(function(){
         		ModelMappingsService.getTaskStatus(id,function(response){        		
 	        		if(response==5 || response==9){
-	        			clearInterval(timer);
-//	        			completeModelMapIds.push(checkedModelMapIdsInFunc[0]);
-//	        			incompleteModelMapIds.splice(0,1);
-	        			var modelMapIndex = checkModelMapContains(checkedModelMapIdsInFunc[0]);
-	        			checkedModelMapIds[modelMapIndex].status='finished';
+	        			checkedModelMapIds[modelMapIndex].status='completed';
 	        			checkedModelMapIdsInFunc.splice(0,1);
-	        			startMultiImport();
-	        			
-	        			
+	        			if(checkedModelMapIdsInFunc.length>0)
+	        				startMultiImport();
+	        			refreshAndSave();
+	        			ModelMappingsService.getTaskTime(id,function(response){
+	        				checkedModelMapIds[modelMapIndex].time=response;
+		        			if(checkedModelMapIdsInFunc.length<1)
+		        				$scope.exportReport();
+	        			});
+	        			clearInterval(timer);
+
 	        		}else if(response==4 || response==7){
 	        			 Flash.create('danger', "The task "+id+" is failed");
-	        			 clearInterval(timer);
-	        			var modelMapIndex = checkModelMapContains(checkedModelMapIdsInFunc[0]);
 	        			checkedModelMapIds[modelMapIndex].status='failed';
-	        			 checkedModelMapIdsInFunc.splice(0,1);
+	        			checkedModelMapIdsInFunc.splice(0,1);
+	        			refreshAndSave();
+	        			if(checkedModelMapIdsInFunc.length<1)
+	        				$scope.exportReport();
+	        			 clearInterval(timer);
 
-	        			 //startMultiImport();
 	        		}
 	        	});
         	},2000);
-
+        }
+        function refreshAndSave(){
+        	var flex = $scope.ctx.flex;
+			flex.invalidate(true);
+        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
+        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
         }
         function startMultiImport(){
+        	if(checkedModelMapIdsInFunc.length<1){
+        		swal("Please select at least 1 model mapping");
+        		return;
+        	}
         	//get checked modelMapping ids.
 			var modelMapIndex = checkModelMapContains(checkedModelMapIdsInFunc[0]);
 			checkedModelMapIds[modelMapIndex].status='running';
-
-        	var flex = $scope.ctx.flex;
-			flex.invalidate(true);
-			
-        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
-        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
-//        	localStorage["incompleteModelMapIds"] = JSON.stringify(incompleteModelMapIds);
-//        	localStorage["completeModelMapIds"] = JSON.stringify(completeModelMapIds);
-
+			refreshAndSave();
         	if(checkedModelMapIdsInFunc.length<1){
         		return;
         	}
@@ -449,28 +427,43 @@
             if(allImport){
             	for(var i=0;i<flex.rows.length; i++){
             		checkedModelMapIdsInFunc.push(flex.rows[i]._data.mappedModelId);
-            		var temp = {id:flex.rows[i]._data.mappedModelId,status:'queued'};
+            		var temp = {id:flex.rows[i]._data.mappedModelId,status:'queued','mappedModelVisId':flex.rows[index]._data.mappedModelVisId,taskId:0,time:''};
             		checkedModelMapIds.push(temp)
 
             	}
             }
-//        	incompleteModelMapIds = checkedModelMapIdsInFunc.slice();
-//        	checkedModelMapIds = checkedModelMapIdsInFunc.slice();
-//        	completeModelMapIds = [];
-        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
-        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
-//        	localStorage["incompleteModelMapIds"] = JSON.stringify(incompleteModelMapIds);
-//        	localStorage["completeModelMapIds"] = JSON.stringify(completeModelMapIds);
-
-            flex.invalidate(true);
-        }
+            refreshAndSave();
+            }
         function clearMultiImport(){
         	checkedModelMapIdsInFunc = [];
         	checkedModelMapIds = [];
-        	localStorage["checkedModelMapIdsInFunc"] = JSON.stringify(checkedModelMapIdsInFunc);
-        	localStorage["checkedModelMapIds"] = JSON.stringify(checkedModelMapIds);
-            var flex = $scope.ctx.flex;
-            flex.invalidate(true);
+        	refreshAndSave();
+        }
+        function exportReport(){
+			var spread = $scope.spread = new GC.Spread.Sheets.Workbook(document.getElementById('spreadsheet'));
+        	var sheet = spread.getActiveSheet();                              
+        	sheet.setValue(0,0,'Task Id');
+        	sheet.setValue(0,1,'Model Mapping');
+        	sheet.setValue(0,2,'Time Taken');
+        	sheet.setValue(0,3,'Status');
+            sheet.setColumnWidth(1, 120.0,GC.Spread.Sheets.SheetArea.viewport);
+            sheet.setColumnWidth(2, 120.0,GC.Spread.Sheets.SheetArea.viewport);
+            sheet.setColumnWidth(3, 120.0,GC.Spread.Sheets.SheetArea.viewport);
+            for(var i=0; i <checkedModelMapIds.length;i++) {
+            	sheet.setValue(i+1,0,checkedModelMapIds[i].taskId);
+            	sheet.setValue(i+1,1,checkedModelMapIds[i].mappedModelVisId);
+            	sheet.setValue(i+1,2,checkedModelMapIds[i].time);
+            	sheet.setValue(i+1,3,checkedModelMapIds[i].status);
+            }
+        	var excelIO = new GC.Spread.Excel.IO();
+            var json = JSON.stringify(spread.toJSON());
+            var fileName="report.xlsx";
+            excelIO.save(json, function (blob) {
+                saveAs(blob, fileName);
+            }, function (e) {
+                console.log(e);
+            });
+
         }
     }
 })();

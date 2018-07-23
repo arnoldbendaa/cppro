@@ -140,7 +140,7 @@
 			<div class="page" ng-view></div>
 		</div>
 	</div>
-
+<div id="spreadsheet" gcuielement="gcSpread" class="gc-host-none-user-select" ></div>
 </body>
 
 <!-- DEVELOPER -->
@@ -558,5 +558,17 @@
 	src="<%=path%>/adminApp/js/modules/slideShow/controllers/slideShowController.js"></script>
 <script type="text/javascript"
 	src="<%=path%>/adminApp/js/modules/slideShow/providers/slideShowService.js"></script>
+	        <!-- SpreadJS -->
+    <link rel="stylesheet" type="text/css" href="<%=path %>/libs/wijmo/SpreadJS/11.0.0/css/gc.spread.sheets.excel2013white.11.0.0.css">
+        <link rel="stylesheet" href="<%= path %>/libs/wijmo/SpreadJS/8.40.20151.4/css/sterling/jquery-wijmo.css">
+        <script type="text/javascript" src="<%=path %>/libs/wijmo/SpreadJS/11.0.0/scripts/gc.spread.sheets.all.11.0.0.min.js"></script>
+        <script type="text/javascript" src="<%=path %>/libs/wijmo/SpreadJS/11.0.0/scripts/interop/angularjs/gc.spread.sheets.angularjs.11.0.0.min.js"></script>
+        <script type="text/javascript" src="<%=path %>/libs/wijmo/SpreadJS/11.0.0/scripts/plugins/gc.spread.sheets.charts.11.0.0.min.js"></script>
+        <script type="text/javascript" src="<%=path %>/libs/wijmo/SpreadJS/11.0.0/scripts/interop/gc.spread.excelio.11.0.0.min.js"></script>
+            <script src="<%=path %>/js/FileSaver.min.js"></script>
+        
+		<script type="text/javascript">
+			GC.Spread.Sheets.LicenseKey = "localhost,438998912661945#A03V2csFmZ0IiczRmI1pjIs9WQisnOiQkIsISP3c6SLdWcwYmNBJnV0hFVwdjQa3ENttyRxNWR4RFdLlmY4F7NtxWcxIkQtZnSvRlWXBlM6F7aNJjUr9WMBdUMCFVOrRDVwR7QFdzS5MlUHZVV5dkQwd6TiojITJCL8YzM4cTN6gTO0IicfJye#4Xfd5nIzImNnJiOiMkIsISMx8idgMlSgQWYlJHcTJiOi8kI1tlOiQmcQJCLikDM4QzMwASNyYDM8EDMyIiOiQncDJCLiQ7cvhGbhN6bsJiOiMXbEJCLiQGdMByM9cTMgMXbhhmbvJkI0ISYONkIsISN4kTM6YjMxkDO9kDOzQjI0ICZcJjL";
+	    </script>
 	
 </html>

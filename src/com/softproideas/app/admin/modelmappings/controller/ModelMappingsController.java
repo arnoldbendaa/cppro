@@ -361,6 +361,12 @@ public class ModelMappingsController {
     	String result = modelMappingsService.getTaskStatus(taskId);
 		return result;    	
     }
+    @ResponseBody
+    @RequestMapping(value = "/getTaskTime/{taskId}", method = RequestMethod.GET)
+    public String getTaskTime(@PathVariable String taskId){
+    	String result = modelMappingsService.getTaskTime(taskId);
+		return result;    	
+    }
     
     
     private TaskAccessor getTaskAccessor() {
