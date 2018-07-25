@@ -402,5 +402,6 @@
             openDeletingConfirmBox1($scope.selectedTaskId);
         });
 
+
     }
 })();

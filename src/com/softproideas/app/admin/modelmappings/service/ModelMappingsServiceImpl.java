@@ -1113,7 +1113,16 @@ public class ModelMappingsServiceImpl implements ModelMappingsService {
 		
 		return server.getTaskTime(taskId);
 	}
+	public String deleteFailedTask(String taskId) {
+		// TODO Auto-generated method stub
+		if(taskId.equals("0"))
+			return "5";
+		MappedModelEditorSessionServer server = cpContextHolder.getMappedModelEditorSessionServer();
+		
+		return server.deleteFailedTask(taskId);
+	}
 
+	
 
 
 }

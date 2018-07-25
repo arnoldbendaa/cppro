@@ -61,6 +61,7 @@
         self.mutiImportSafe = mutiImportSafe;
         self.getTaskStatus = getTaskStatus; 
         self.getTaskTime = getTaskTime; 
+        self.deleteFailedTask = deleteFailedTask;
         activate();
 
         function activate() {
@@ -449,6 +450,15 @@
          */
         function getActions() {
             return actions;
+        }
+        function deleteFailedTask(taskId,callback){
+        	$http({
+        		method:"GET",
+        		url:url+"modelMappings/deleteFailedTask/"+taskId
+        	}).success(function(response){
+        		if(callback)
+        			callback(response);
+        	})
         }
     }
 })();

@@ -116,7 +116,7 @@ public class WorkbookMapper {
 //    	stringXml = stringXml.replaceAll("&apos;","\"");
 //    	stringXml = stringXml.replaceAll("''","\"");
         String stringToParse = stringXml.replace("\n", "").replace("\r", "").replaceAll("  +", " ").replace(" <", "<");
-//        stringToParse = stringToParse.replaceAll("''","'");
+        stringToParse = stringToParse.replaceAll("''","'");
 //        System.out.println(stringToParse);
        
         Document xml = loadXMLFromString(stringToParse);

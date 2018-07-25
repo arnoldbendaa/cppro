@@ -52,6 +52,8 @@
         $scope.clearMultiImport = clearMultiImport;
         $scope.allCheck = allCheck;
         $scope.exportReport = exportReport;
+        $scope.viewDetail = viewDetail;
+        
         var allImport = false;
         var maxLeng = 1000;
         $scope.multiImportChk = [];
@@ -250,7 +252,10 @@
                     	var modelId = flex.rows[r]._data.mappedModelId;
                     	var index = checkModelMapContains(modelId);
                     	if(index > -1){
-                    		html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>'+checkedModelMapIds[index].status+'</span>';
+                    		if(checkedModelMapIds[index].status=='failed')
+                    			html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><a ng-click="viewDetail(\''+index+'\')" style="cursor:pointer" title="Click to view Details">'+checkedModelMapIds[index].status+'</a>';
+                    		else 
+                    			html='<input type="checkbox" checked ng-click="addImport($event,'+r+')"/><span>'+checkedModelMapIds[index].status+'</span>';
                     	}else
                     		html='<input type="checkbox" ng-click="addImport($event,'+r+')"/>';                    	
                     	break;
@@ -388,7 +393,12 @@
 	        			refreshAndSave();
 	        			if(checkedModelMapIdsInFunc.length<1)
 	        				$scope.exportReport();
-	        			 clearInterval(timer);
+	                	ModelMappingsService.deleteFailedTask(id,function(response){
+	                		checkedModelMapIds[modelMapIndex].task = response;
+	                		startMultiImport();
+	                		clearInterval(timer);
+	        			});
+	        			 
 
 	        		}
 	        	});
@@ -454,6 +464,12 @@
             	sheet.setValue(i+1,1,checkedModelMapIds[i].mappedModelVisId);
             	sheet.setValue(i+1,2,checkedModelMapIds[i].time);
             	sheet.setValue(i+1,3,checkedModelMapIds[i].status);
+            	if(checkedModelMapIds[i].status=='failed'){
+            		document.getElementById("failedContent").innerHTML = checkedModelMapIds[i].task.taskEvents;
+            		var text = document.getElementById("failedContent").textContent;
+            		sheet.setValue(i+1,4,text);
+            	}
+            		
             }
         	var excelIO = new GC.Spread.Excel.IO();
             var json = JSON.stringify(spread.toJSON());
@@ -463,7 +479,29 @@
             }, function (e) {
                 console.log(e);
             });
-
         }
+        function viewDetail(taskId){
+        	console.log(taskId);
+        	var info = {'taskId':taskId,'userName':'fc1'};
+        	openModal(taskId, 'fc1');
+        }
+        var openModal = function(index, userName) {
+            var modalInstance = $modal.open({
+                template: '<failed-task-details id="taskId" task="task"></failed-task-details>',
+                windowClass: 'task-viewer-modals softpro-modals',
+                backdrop: 'static',
+                size: 'lg',
+                controller: ['$scope', '$modalInstance',
+                    function($scope, $modalInstance) {
+                        $scope.taskId = checkedModelMapIds[index].taskId;
+                        $scope.task = checkedModelMapIds[index].task;
+                        $scope.$on('TaskViewerDetails:close', function(event, args) {
+                            $modalInstance.close();
+                        });
+                    }
+                ]
+            });
+        };
+
     }
 })();

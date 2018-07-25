@@ -85,6 +85,8 @@ import com.softproideas.app.admin.modelmappings.model.details.MappedModelDetails
 import com.softproideas.app.admin.modelmappings.service.ModelMappingsService;
 import com.softproideas.app.admin.models.model.ModelDetailsDTO;
 import com.softproideas.app.admin.models.service.ModelsService;
+import com.softproideas.app.admin.monitors.model.TaskDetailsDTO;
+import com.softproideas.app.admin.monitors.services.TaskViewerService;
 import com.softproideas.app.core.model.model.ModelCoreDTO;
 import com.softproideas.common.exceptions.ServiceException;
 import com.softproideas.commons.context.CPContextHolder;
@@ -117,6 +119,9 @@ public class ModelMappingsController {
     HierarchiesService hierarchiesService;
     @Autowired
     CPContextHolder cpContextHolder;
+    @Autowired
+    TaskViewerService taskViewerService;
+
     private transient TaskAccessor mTaskAccessor;
     private transient UserAccessor mUserAccessor;
 
@@ -367,7 +372,23 @@ public class ModelMappingsController {
     	String result = modelMappingsService.getTaskTime(taskId);
 		return result;    	
     }
-    
+    @ResponseBody
+    @RequestMapping(value = "/deleteFailedTask/{taskId}", method = RequestMethod.GET)
+    public TaskDetailsDTO deleteFailedTask(@PathVariable String taskId){
+    	TaskDetailsDTO result = null;
+		try {
+			result = taskViewerService.fetchTask(Integer.parseInt(taskId));
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	 modelMappingsService.deleteFailedTask(taskId);
+		return result;
+    }
+
     
     private TaskAccessor getTaskAccessor() {
 	    if(this.mTaskAccessor == null) {

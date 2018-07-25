@@ -86,24 +86,20 @@ public class FinanceSystemController {
         context[2] = contextDim2;
         context[3] = contextDataType;
         List<ElementDTO> dimensions = null;
-//        try{
             dimensions = dimensionService.fetchDimensionDetails(modelId, mapping, context, sheetModel);
-//        }catch(Exception ex){
-//        	ex.printStackTrace();
-//        }
 
 
-        if (dimensionService.checkIfDimensionAreLeafs(dimensions)) {
+//        if (dimensionService.checkIfDimensionAreLeafs(dimensions)) {
             ElementDTO dataType = dimensionService.fetchDataType(mapping, context[3]);
             String cellPK = dimensionService.fetchCellPK(dimensions, dataType);
             int cmpy = getCompanyFromMapping(mapping);
             
             return financeSystemService.browseInvoices(cellPK, financeCubeToken, cmpy);
-        } else {
-            InvoiceDTO invoiceDTO = new InvoiceDTO();
-            invoiceDTO.setWarningMessage("One of dimensions is not a leaf [" + dimensions.get(0).getName() + ", " + dimensions.get(1).getName() + ", " + dimensions.get(2).getName() + "]");
-            return invoiceDTO;
-        }
+//        } else {
+//            InvoiceDTO invoiceDTO = new InvoiceDTO();
+//            invoiceDTO.setWarningMessage("One of dimensions is not a leaf [" + dimensions.get(0).getName() + ", " + dimensions.get(1).getName() + ", " + dimensions.get(2).getName() + "]");
+//            return invoiceDTO;
+//        }
     }
 
     private int getCompanyFromMapping(String mapping) {

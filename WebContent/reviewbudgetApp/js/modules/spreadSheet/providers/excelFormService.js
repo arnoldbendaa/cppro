@@ -55,7 +55,7 @@
                 var spreadJSON = JSON.parse(response.jsonForm);
                 self.spreadSheet = SpreadSheetService.spreadSheet;
                 self.spreadSheet.fromJSON(spreadJSON.spread);
-
+                self.spreadSheet.options.allowContextMenu = false;
                 $rootScope.selectedDimensions = ContextVariablesService.selectedDimension = response.selectedDimension;
                 $rootScope.selectedDataType = ContextVariablesService.dataType = response.dataType;
 

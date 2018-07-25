@@ -271,6 +271,37 @@
 				      }
 				      return returnValue;			
 			 }
+			 public String deleteFailedTask(String taskId){
+				 PreparedStatement stmt = null;
+				     ResultSet resultSet = null;
+				      String returnValue;
+				      try
+				      {
+				        stmt = getConnection().prepareStatement("delete from TASK where TASK_ID=?");
+				  
+				        int col = 1;
+				        stmt.setString(col++, taskId);
+				  
+				        resultSet = stmt.executeQuery();
+				  				        
+				        String sql1 = "delete from CHANGE_MGMT";
+				        stmt = getConnection().prepareStatement(sql1);
+				        resultSet = stmt.executeQuery();
+				        returnValue = "OK";
+				      }
+				      catch (SQLException sqle)
+				      {
+				        throw handleSQLException("delete from TASK where TASK_ID=?", sqle);
+				      }
+				      finally
+				      {
+				        closeResultSet(resultSet);
+				        closeStatement(stmt);
+				        closeConnection();
+				      }
+				      return returnValue;			
+			 }
+			 
 /*      */ 
 /*      */   private MappedModelEVO getEvoFromJdbc(ResultSet resultSet_)
 /*      */     throws SQLException

@@ -98,6 +98,7 @@ public interface ModelMappingsService {
     ResponseMessage updateMappedModelDetails(MappedModelDetailsDTO mappedModelDetails, HttpSession session) throws ServiceException;
     String getTaskStatus(String taskId);
     String getTaskTime(String taskId);
+    String deleteFailedTask(String taskId);
 
     
 

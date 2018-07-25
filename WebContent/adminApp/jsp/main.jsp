@@ -141,6 +141,7 @@
 		</div>
 	</div>
 <div id="spreadsheet" gcuielement="gcSpread" class="gc-host-none-user-select" ></div>
+<div id="failedContent"></div>
 </body>
 
 <!-- DEVELOPER -->
@@ -484,6 +485,8 @@
 	src="<%=path%>/adminApp/js/modules/modelMappings/providers/modelMappingsService.js"></script>
 <script type="text/javascript"
 	src="<%=path%>/adminApp/js/modules/modelMappings/directives/modelMappingsDetails.js"></script>
+<script type="text/javascript"
+	src="<%=path%>/adminApp/js/modules/modelMappings/directives/failedTaskDetails.js"></script>
 <script type="text/javascript"
 	src="<%=path%>/adminApp/js/modules/modelMappings/directives/mappedFinanceCubeChooser.js"></script>
 

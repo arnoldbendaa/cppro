@@ -328,4 +328,18 @@ public class MappedModelEditorSessionServer extends AbstractSession {
 	       }
 	      return null;
 	}
+	public String deleteFailedTask(String taskId){
+	      try {
+	          if(this.isRemoteConnection()) {
+	             return this.getRemote().deleteFailedTask(taskId);
+	          } else {
+	             return this.getLocal().deleteFailedTask(taskId);
+	          }
+
+	       } catch (Exception var4) {
+	          var4.printStackTrace();
+	       }
+	      return null;
+	}
+	
 }
