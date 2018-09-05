@@ -24,6 +24,7 @@
  *******************************************************************************/
 package com.softproideas.app.reviewbudget.financesystem.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cedar.cp.api.base.EntityList;
+import com.cedar.cp.api.dimension.HierarchyNode;
+import com.cedar.cp.dto.dimension.DimensionRefImpl;
+import com.cedar.cp.dto.model.ModelPK;
 import com.cedar.cp.util.xmlform.swing.ValidationMessageStore;
 import com.softproideas.app.flatformeditor.form.model.MappingsValidation;
 import com.softproideas.app.reviewbudget.dimension.model.ElementDTO;
 import com.softproideas.app.reviewbudget.dimension.service.DimensionService;
 import com.softproideas.app.reviewbudget.financesystem.model.InvoiceDTO;
+import com.softproideas.app.reviewbudget.financesystem.model.InvoiceDTO.DimensionInfoDTO;
+import com.softproideas.app.reviewbudget.financesystem.model.InvoiceDTO.PropertyDTO;
 import com.softproideas.app.reviewbudget.financesystem.service.FinanceSystemService;
 import com.softproideas.commons.context.CPContextHolder;
+import com.softproideas.commons.util.DimensionUtil;
 import com.softproideas.util.validation.MappingArguments;
 import com.softproideas.util.validation.MappingValidator;
 
@@ -88,18 +96,69 @@ public class FinanceSystemController {
         List<ElementDTO> dimensions = null;
             dimensions = dimensionService.fetchDimensionDetails(modelId, mapping, context, sheetModel);
 
-
-//        if (dimensionService.checkIfDimensionAreLeafs(dimensions)) {
+//            boolean isLeaf = dimensionService.checkIfDimensionAreLeafs(dimensions);
+        if (dimensionService.checkIfDimensionAreLeafs(dimensions)) {
             ElementDTO dataType = dimensionService.fetchDataType(mapping, context[3]);
             String cellPK = dimensionService.fetchCellPK(dimensions, dataType);
             int cmpy = getCompanyFromMapping(mapping);
-            
-            return financeSystemService.browseInvoices(cellPK, financeCubeToken, cmpy);
-//        } else {
-//            InvoiceDTO invoiceDTO = new InvoiceDTO();
-//            invoiceDTO.setWarningMessage("One of dimensions is not a leaf [" + dimensions.get(0).getName() + ", " + dimensions.get(1).getName() + ", " + dimensions.get(2).getName() + "]");
-//            return invoiceDTO;
-//        }
+            InvoiceDTO invoiceDTO  = financeSystemService.browseInvoices(cellPK, financeCubeToken, cmpy);
+            return invoiceDTO;
+//            return financeSystemService.browseInvoices(cellPK, financeCubeToken, cmpy);
+        } else {
+    		// if there is a sheetModel then use it
+    		if (sheetModel != null && !sheetModel.isEmpty()) {
+
+    			int sheetModelId = 0;
+    			ModelPK sheetModelPk = ModelPK.getKeyFromTokens(sheetModel);
+    			sheetModelId = sheetModelPk.getModelId();
+
+    			if (modelId != sheetModelId && sheetModelId > 0) {
+    				modelId = sheetModelId;
+    			}
+    		}
+
+    		List<ElementDTO> results = new ArrayList<ElementDTO>();
+    		EntityList dims = cpContextHolder.getListHelper().getModelDimensions(modelId);
+    		String[] fixedDimensions = DimensionUtil.fixProperDimensions(mapping, context);
+    		int dimNumber = 0;
+			DimensionRefImpl dimensionRef = (DimensionRefImpl) dims.getValueAt(dimNumber, "Dimension");
+			int dimensionId = dimensionRef.getDimensionPK().getDimensionId();
+
+			HierarchyNode hierarchyNode = dimensionService.fetchHierarchyNodeElement(dimensionId, fixedDimensions[dimNumber]);
+			int childCount = hierarchyNode.getChildCount();
+			List<List<Object>> rows = new ArrayList<List<Object>>(); ;
+			InvoiceDTO invoiceDTO= null;
+			List<String> columnNames = null;
+			List<PropertyDTO> selectionInfo = null;
+			List<DimensionInfoDTO> dimensionInfo = null;
+			for(int i=0; i < childCount;i++){
+				context[0] = hierarchyNode.getChildAt(i).toString();
+				dimensions = dimensionService.fetchDimensionDetails(modelId, mapping, context, sheetModel);
+	            ElementDTO dataType = dimensionService.fetchDataType(mapping, context[3]);
+	            String cellPK = dimensionService.fetchCellPK(dimensions, dataType);
+	            int cmpy = getCompanyFromMapping(mapping);
+	            invoiceDTO = financeSystemService.browseInvoices(cellPK, financeCubeToken, cmpy);
+	            if(invoiceDTO.getRows()!=null){
+	            	rows.addAll(invoiceDTO.getRows());
+	            	dimensionInfo = invoiceDTO.getDimensionInfo();
+	            	columnNames = invoiceDTO.getColumnNames();
+	            	selectionInfo = invoiceDTO.getSelectionInfo();
+	            }
+	            	
+			}
+        	invoiceDTO.setRows(rows);    
+        	if(dimensionInfo!=null){
+            	DimensionInfoDTO temp = dimensionInfo.get(1);
+            	temp.setValue(hierarchyNode.getVisId());
+            	temp.setDescription(hierarchyNode.getDescription());
+            	dimensionInfo.set(1, temp);
+            	invoiceDTO.setDimensionInfo(dimensionInfo);
+            	invoiceDTO.setColumnNames(columnNames);
+            	invoiceDTO.setSelectionInfo(selectionInfo);
+        	}
+            return invoiceDTO;
+        	
+        }
     }
 
     private int getCompanyFromMapping(String mapping) {

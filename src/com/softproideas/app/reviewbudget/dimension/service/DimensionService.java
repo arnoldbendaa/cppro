@@ -26,6 +26,7 @@ package com.softproideas.app.reviewbudget.dimension.service;
 
 import java.util.List;
 
+import com.cedar.cp.api.dimension.HierarchyNode;
 import com.softproideas.app.reviewbudget.dimension.model.ElementDTO;
 import com.softproideas.common.exceptions.ServiceException;
 import com.softproideas.commons.model.TreeNodeDTO;
@@ -104,6 +105,7 @@ public interface DimensionService {
      */
     List<ElementDTO> fetchDimensionDetails(int modelId, String mapping, String[] context, String sheetModel) throws ServiceException;
     
+    public HierarchyNode fetchHierarchyNodeElement(int dimensionId, String dimensionName) throws ServiceException;
     /**
      * Method returns data type details from mapping or contextDataType
      * @param mapping

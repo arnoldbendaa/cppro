@@ -411,7 +411,7 @@ public class DimensionServiceImpl implements DimensionService {
 	/**
 	 * Method return hierarchy node for dimensionId and dimensioName.
 	 */
-	private HierarchyNode fetchHierarchyNodeElement(int dimensionId, String dimensionName) throws ServiceException {
+	public HierarchyNode fetchHierarchyNodeElement(int dimensionId, String dimensionName) throws ServiceException {
 		EntityList entityListHierarchy = cpContextHolder.getHierarchiesProcess()
 				.getHierarcyDetailsFromDimId(dimensionId);
 		HierarchyRefImpl hierarchyRef = (HierarchyRefImpl) entityListHierarchy.getValueAt(0, "Hierarchy");

@@ -483,9 +483,9 @@
         function viewDetail(taskId){
         	console.log(taskId);
         	var info = {'taskId':taskId,'userName':'fc1'};
-        	openModal(taskId, 'fc1');
+        	openFailModal(taskId, 'fc1');
         }
-        var openModal = function(index, userName) {
+        var openFailModal = function(index, userName) {
             var modalInstance = $modal.open({
                 template: '<failed-task-details id="taskId" task="task"></failed-task-details>',
                 windowClass: 'task-viewer-modals softpro-modals',
