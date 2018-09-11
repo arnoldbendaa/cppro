@@ -302,7 +302,7 @@ public class FinanceCubeEditorSessionSEJB extends AbstractSession {
       int financeCubeId = this.mFinanceCubeEVO.getFinanceCubeId();
       this.issueFinanceCubeAdminTask(financeCubeId, editorData.getVisId(), editorData.getDescription(), 0, editorData.isGlobal() );
       ModelDimensionsELO modelDimensions = this.getModelAccessor().getModelDimensions(this.mModelEVO.getModelId());
-//      this.mModelAccessor.setDetails(this.mModelEVO);
+      this.mModelAccessor.setDetails(this.mModelEVO,true);
    }
 
    private void validateInsert() throws ValidationException {}
